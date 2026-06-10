@@ -1,0 +1,17 @@
+# FreeCAD backup files
+*.FCBak
+*.FCStd1
+
+# FreeCAD temporary files
+*.FCStd.lock
+*.FCStd~
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor artifacts
+*~
+*.swp
+*.swo
