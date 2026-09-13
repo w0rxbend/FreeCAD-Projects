@@ -3,8 +3,10 @@
 import hashlib
 import json
 import subprocess
+import xml.etree.ElementTree as ET
 from dataclasses import asdict
 from importlib.metadata import version
+from math import dist
 from pathlib import Path
 
 from build123d import ExportDXF, ExportSVG, Mesher, export_gltf, export_step, export_stl
@@ -18,7 +20,13 @@ from tigerbee.models import (
     build_profile,
     profile_data,
 )
-from tigerbee.references import MEASURED_WHEELBASE_RANGE_MM, MEASUREMENT_REFERENCE
+from tigerbee.references import (
+    ARM_THICKNESS_MM,
+    MEASURED_WHEELBASE_RANGE_MM,
+    MEASUREMENT_REFERENCE,
+    NOMINAL_WHEELBASE_MM,
+    PLATE_THICKNESS_MM,
+)
 
 
 def source_revision() -> str | None:
@@ -26,6 +34,75 @@ def source_revision() -> str | None:
         ["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=False
     )
     return result.stdout.strip() if result.returncode == 0 else None
+
+
+def export_motor_layout(directory: Path, report: dict) -> None:
+    """Dimension the independently measured motor centers in the frame XY datum."""
+    centers = report["geometry_audit"]["actual_motor_centers_mm"]
+    root = ET.Element(
+        "svg",
+        {
+            "xmlns": "http://www.w3.org/2000/svg",
+            "viewBox": "-175 -175 350 350",
+            "width": "900",
+            "height": "900",
+        },
+    )
+    ET.SubElement(root, "title").text = "Tigerbee motor axes: measured from CAD bores"
+    ET.SubElement(
+        root, "rect", {"x": "-175", "y": "-175", "width": "350", "height": "350", "fill": "white"}
+    )
+    geometry = ET.SubElement(
+        root,
+        "g",
+        {"transform": "scale(1,-1)", "fill": "none", "stroke": "#2563eb", "stroke-width": "0.7"},
+    )
+    for a, b in (("front-left-arm", "rear-right-arm"), ("front-right-arm", "rear-left-arm")):
+        p, q = centers[a], centers[b]
+        ET.SubElement(
+            geometry, "line", {"x1": str(p[0]), "y1": str(p[1]), "x2": str(q[0]), "y2": str(q[1])}
+        )
+    for label, (x, y) in centers.items():
+        ET.SubElement(geometry, "circle", {"cx": str(x), "cy": str(y), "r": "3"})
+        name = label.removesuffix("-arm").upper()
+        label_y = -y - 14 if y > 0 else -y + 12
+        for row, caption in enumerate((name, f"({x:.3f}, {y:.3f}) mm")):
+            ET.SubElement(
+                root,
+                "text",
+                {
+                    "x": str(x),
+                    "y": str(label_y + row * 7),
+                    "text-anchor": "middle",
+                    "font-family": "sans-serif",
+                    "font-size": "5",
+                },
+            ).text = caption
+    diagonals = [
+        dist(centers[a], centers[b])
+        for a, b in (("front-left-arm", "rear-right-arm"), ("front-right-arm", "rear-left-arm"))
+    ]
+    for y, caption in (
+        (-153, "Motor centers · frame XY datum"),
+        (145, f"Diagonals: {diagonals[0]:.3f} / {diagonals[1]:.3f} mm"),
+        (157, "True X · perpendicular diagonals · common center (0, 0)"),
+    ):
+        ET.SubElement(
+            root,
+            "text",
+            {
+                "x": "0",
+                "y": str(y),
+                "text-anchor": "middle",
+                "font-family": "sans-serif",
+                "font-size": "6",
+            },
+        ).text = caption
+    ET.SubElement(geometry, "circle", {"cx": "0", "cy": "0", "r": "1.5"})
+    ET.indent(root)
+    ET.ElementTree(root).write(
+        directory / "tigerbee-motor-layout.svg", encoding="utf-8", xml_declaration=True
+    )
 
 
 def export_component(
@@ -62,13 +139,9 @@ def export_component(
         "machining tolerances are not specified"
     ]
     if name in ("rear-plate", "top-plate"):
-        assumptions.extend(
-            [
-                "Symmetric analytic dimensions inferred from Scan_2; "
-                "physical dimensions unconfirmed",
-                f"{effective['thickness']:g} mm selected plate thickness; "
-                "verify against physical stock",
-            ]
+        assumptions.append(
+            "Symmetric analytic outline dimensions inferred from Scan_2; "
+            "mounting interfaces follow the user-specified 305 mm X layout"
         )
     manifest = {
         "part": name,
@@ -81,6 +154,10 @@ def export_component(
         "reference_status": "symmetric-design-derived-from-reference",
         "authoritative_geometry_source": reference["source"],
         "reference_body": reference.get("source_body"),
+        "nominal_frame_wheelbase_mm": NOMINAL_WHEELBASE_MM,
+        "nominal_thickness_mm": (
+            ARM_THICKNESS_MM if name.startswith("arm-type-") else PLATE_THICKNESS_MM
+        ),
         "measured_frame_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
         "measurement_reference": MEASUREMENT_REFERENCE,
         "reference_note": (
@@ -149,6 +226,7 @@ def export_frame(directory: Path, top_z: float = 35, require_fit: bool = False) 
         svg = ExportSVG(scale=2, margin=5, line_weight=0.25)
         svg.add_shape(visible)
         svg.write(directory / f"tigerbee-{name}.svg")
+    export_motor_layout(directory, report)
     report["source_revision"] = source_revision()
     report["source_sha256"] = source_digest()
     report["build123d"] = version("build123d")

@@ -7,12 +7,14 @@ from math import isfinite
 
 from build123d import Axis, Edge, Face, Keep, Part, Plane, Pos, ThreePointArc, Wire, extrude, split
 
+from tigerbee.references import ARM_THICKNESS_MM, PLATE_THICKNESS_MM
+
 PARTS = ("arm-type-1", "arm-type-2", "camera-plate", "rear-plate", "top-plate")
 
 
 @dataclass(frozen=True)
 class PartParameters:
-    """Dimensions in mm. None preserves the reference part's measured value."""
+    """Dimensions in mm. None uses the user-specified 5 mm arms / 3 mm plates."""
 
     thickness: float | None = None
     mounting_hole_diameter: float = 3.2
@@ -146,7 +148,7 @@ def build_part(name: str, parameters: PartParameters = DEFAULT_PARAMETERS) -> Pa
     profile = build_profile(name, parameters)
     thickness = parameters.thickness
     if thickness is None:
-        thickness = profile_data(name)["thickness"]
+        thickness = ARM_THICKNESS_MM if name.startswith("arm-type-") else PLATE_THICKNESS_MM
     part = extrude(profile, amount=thickness, dir=(0, 0, 1))
     part.label = name
     if not part.is_valid or len(part.solids()) != 1 or part.volume <= 0:

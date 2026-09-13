@@ -10,13 +10,14 @@ foundation and make every canonical export reflect the same current geometry.
 ## Reference and modeling requirements
 
 - Tigerbee.FCStd and the three supplied arm/camera 3MF files outrank Scan_1/Scan_2.
-- Preserve their design intent, camera central square opening and saved 5/3 mm thicknesses.
+- Preserve their design intent, camera central square opening and confirmed 5 mm arms, 3 mm plates and 6 mm standoff outside diameter.
 - Use Scan_2 for the missing rear/top plate silhouettes, with nominal analytic features.
 - Do not use compare_a4 as an authority or a completion gate.
 - Every plate and each arm pair must mirror exactly across frame X=0.
 - Rear/top outlines and repeated openings use lines, tangent radii and circles.
 - Shared mounting coordinates must produce coaxial holes through every mating layer.
-- Four arms have equal diagonal wheelbases within the measured 303–304 mm interval.
+- Four actual motor centers form a square X with both diagonals exactly 305 mm,
+  perpendicular at frame (0,0), superseding the historical 303–304 mm estimate.
 - Preserve arm motor and root patterns; relieve colliding root tips deliberately.
 - Keep dimensional parameters in Python, independent of generated CAD files.
 - Reject invalid dimensions, lost holes, split solids or disconnected features.
@@ -36,8 +37,9 @@ foundation and make every canonical export reflect the same current geometry.
 
 ## Physical scope
 
-The geometry gate establishes nominal CAD fit. The two 2.5 mm plates, top underside
-Z=35 mm and simplified 6/3.2 mm standoffs are explicit design assumptions. Material,
+The geometry gate establishes nominal CAD fit. Plate stock 3 mm, arm stock 5 mm
+and standoff outside diameter 6 mm are user-confirmed. Top underside Z=35 mm and
+the standoff 3.2 mm bore are retained nominal choices. Material,
 layup, machining tolerances, purchased hardware and physical fit/load tests remain
 necessary for a physical production release. Do not report those as measured or
 validated. End brackets require dimensions beyond the five supplied plate designs.

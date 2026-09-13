@@ -1,5 +1,7 @@
 # Symmetric design verification
 
+> Historical 303.5 mm revision, superseded by the [305 mm true-X verification](305-design.md).
+
 This revision addresses the user's visual review of `top-plate.svg`,
 `rear-plate.svg` and `tigerbee-top.svg`. Tigerbee.FCStd and the supplied arm/camera
 3MF files remain the higher-priority design foundation; Scan_2 informs missing

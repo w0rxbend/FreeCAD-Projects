@@ -15,10 +15,15 @@ from tigerbee.layout import (
 )
 from tigerbee.models import PartParameters, build_part, profile_data
 from tigerbee.references import (
+    ARM_THICKNESS_MM,
     MEASURED_WHEELBASE_RANGE_MM,
     MEASUREMENT_REFERENCE,
+    NOMINAL_WHEELBASE_MM,
+    PLATE_THICKNESS_MM,
+    STANDOFF_DIAMETER_MM,
     WHEELBASE_COMPARISON_ALLOWANCE_MM,
     wheelbase_matches_measurement,
+    wheelbase_matches_nominal,
 )
 from tigerbee.validation import FastenerAxis, audit_frame, require_frame_fit
 
@@ -62,15 +67,24 @@ def fit_mounts(source: list[Point], target: list[Point]) -> MountFit:
 class AssemblyParameters:
     """Stack dimensions in mm. Top height remains inferred from product photos."""
 
-    plate_thickness: float = 2.5
-    camera_plate_thickness: float = 3.0
-    arm_thickness: float = 5.0
+    plate_thickness: float = PLATE_THICKNESS_MM
+    camera_plate_thickness: float = PLATE_THICKNESS_MM
+    arm_thickness: float = ARM_THICKNESS_MM
     top_z: float = 35.0
+    standoff_diameter: float = STANDOFF_DIAMETER_MM
 
     def validate(self) -> None:
-        for field in ("plate_thickness", "camera_plate_thickness", "arm_thickness", "top_z"):
+        for field in (
+            "plate_thickness",
+            "camera_plate_thickness",
+            "arm_thickness",
+            "top_z",
+            "standoff_diameter",
+        ):
             if not isfinite(getattr(self, field)) or getattr(self, field) <= 0:
                 raise ValueError(f"{field} must be positive and finite")
+        if self.standoff_diameter <= 3.2:
+            raise ValueError("standoff_diameter must exceed the 3.2 mm bore diameter")
         if self.top_z <= self.plate_thickness + self.arm_thickness + self.camera_plate_thickness:
             raise ValueError("top_z must be above the lower plates and arms")
 
@@ -86,8 +100,8 @@ def require_final_fit(report: dict, hole_tolerance: float = 1e-6) -> None:
     errors = list(report.get("mounting_errors_mm", {}).values())
     if not errors or any(not isfinite(error) or error > hole_tolerance for error in errors):
         raise ValueError("Assembly is not ready: mounting-hole misalignment")
-    if not wheelbase_matches_measurement(report.get("diagonal_wheelbases_mm", [])):
-        raise ValueError("Assembly differs from the approximate 303–304 mm physical measurement")
+    if not wheelbase_matches_nominal(report.get("diagonal_wheelbases_mm", [])):
+        raise ValueError("Assembly differs from the specified 305 mm nominal wheelbase")
 
 
 def mounting_holes(name: str) -> list[Point]:
@@ -178,7 +192,9 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
             else camera_z + parameters.camera_plate_thickness
         )
         length = parameters.top_z - bottom
-        spacer = Pos(x, y, bottom) * extrude(Circle(3) - Circle(1.6), amount=length)
+        spacer = Pos(x, y, bottom) * extrude(
+            Circle(parameters.standoff_diameter / 2) - Circle(1.6), amount=length
+        )
         spacer.label = f"standoff-{i + 1:02}"
         spacer.color = Color(0.65, 0.68, 0.72)
         parts.append(spacer)
@@ -242,9 +258,13 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
         "parameters": asdict(parameters),
         "motor_centers_mm": motors,
         "diagonal_wheelbases_mm": diagonals,
+        "nominal_wheelbase_mm": NOMINAL_WHEELBASE_MM,
+        "motor_layout": "true-X",
+        "wheelbase_matches_nominal": wheelbase_matches_nominal(diagonals),
         "measured_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
         "wheelbase_comparison_allowance_mm": WHEELBASE_COMPARISON_ALLOWANCE_MM,
-        "wheelbase_reference": MEASUREMENT_REFERENCE,
+        "wheelbase_reference": "User specification: 305 mm symmetric true-X motor layout",
+        "historical_wheelbase_reference": MEASUREMENT_REFERENCE,
         "authoritative_geometry_sources": {
             "arm-type-1": "Tigerbee.FCStd#Body001; mirrored pairs with filleted root clearances",
             "arm-type-2": "Tigerbee.FCStd#Body002; mirrored pairs with filleted root clearances",
@@ -265,7 +285,8 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
             "Scan_2 supplies design intent for rear and top plates",
             "Original tracings remain reference evidence, not manufacturing outlines",
             "User measured approximately 303–304 mm between opposite motor-hole centers",
-            "Both nominal diagonals are constrained to 303.5 mm",
+            "User specified a 305 mm true-X wheelbase, superseding the earlier approximate reading",
+            "All four motor centers form a square about the frame datum",
             "Left arms are mirrored matched copies of the right arms",
             "Shared mounting axes replace independent imperfect hole fits",
             "CAD fit does not establish carbon laminate strength or flight qualification",

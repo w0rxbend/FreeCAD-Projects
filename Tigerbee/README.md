@@ -14,16 +14,18 @@ build step, geometry authority or acceptance gate.
 | `arm-type-1` | FreeCAD foundation, front mirrored pair, local root relief | 5 mm |
 | `arm-type-2` | FreeCAD foundation, rear mirrored pair, local root relief | 5 mm |
 | `camera-plate` | Mirrored FreeCAD silhouette, tangent joins, nominal openings | 3 mm |
-| `rear-plate` | Analytic symmetric silhouette and repeated features from Scan_2 | 2.5 mm assumed |
-| `top-plate` | Analytic symmetric silhouette, slots and matching support holes | 2.5 mm assumed |
+| `rear-plate` | Analytic symmetric silhouette and repeated features from Scan_2 | 3 mm |
+| `top-plate` | Analytic symmetric silhouette, slots and matching support holes | 3 mm |
 
 ## Geometry and parameters
 
-The nominal diagonal wheelbase is **303.5 mm**, within the user's approximate
-303–304 mm measurement. Front/rear arm rotations are 59°/130° and left copies are
-mirrored about frame X=0. Motor and shaft geometry retain their saved CAD basis.
-Root tips have a **0.6 mm center gap** and rounded local electronics clearance
-notches. Nominal structural bores are **3.2 mm** for the modeled 3 mm shafts.
+The user-specified diagonal wheelbase is **305 mm**. Motor centers form a square
+X at (±107.833784131, ±107.833784131) mm, with perpendicular diagonals centered at
+(0, 0). Front/rear arm rotations are 45°/135°; left copies are mirrored about X=0.
+Motor pads and shaft geometry retain their saved CAD basis.
+Root tips have a **0.6 mm left/right gap**, transverse root clearance and rounded
+local electronics clearance notches. Camera/rear clamp shoulders are locally
+reinforced for the new shared hole positions. Nominal structural bores are **3.2 mm** for the modeled 3 mm shafts.
 
 All plate mounting holes derive from one shared interface in
 [src/tigerbee/layout.py](src/tigerbee/layout.py); independent tracing fits are no
@@ -55,6 +57,8 @@ The canonical [components](exports/parts/) and [assembly](exports/assembly/)
 contain STEP, 3MF, STL, SVG and native FCStd files, plus component DXF, assembly
 GLB and JSON reports. The [top view](exports/assembly/tigerbee-top.svg) and
 [fit report](exports/assembly/assembly-report.json) describe the same geometry.
+The [dimensioned motor layout](exports/assembly/tigerbee-motor-layout.svg) shows
+the actual bore-center coordinates and both measured diagonals.
 Every assembly export requires the actual-solid geometry audit to pass, including
 when `--require-fit` is omitted. The explicit flag additionally enforces report
 consistency. Native export saves and reopens every FCStd document; the final
@@ -73,8 +77,9 @@ uv run tigerbee build camera-plate --center-hole-diameter 19 --output build/cust
 uv run tigerbee build --all --preset product-7inch --output build/product-7inch
 ```
 
-The `original` preset name means original source **thicknesses**, not original
-asymmetric geometry. `build_reference_profile` explicitly reconstructs the saved
+The default `frame` preset uses the confirmed 5 mm arms and 3 mm plates.
+The explicitly selected `original` preset uses historical source **thicknesses**,
+not original asymmetric geometry. `build_reference_profile` explicitly reconstructs the saved
 profiles for independent historical regression tests. Custom standalone variants
 are not automatically qualified as replacement parts in the default assembly.
 
@@ -96,8 +101,9 @@ and exported STEP round trips. Inspect the current assembly report for measured
 values and acceptance thresholds.
 
 The assembly contains four arms, three plates and eight simplified standoffs.
-Top underside Z=35 mm, rear/top stock 2.5 mm and 6/3.2 mm tube standoffs are explicit
-design assumptions. Six standoffs are 24.5 mm long and two are 32.5 mm. Bolt/nut
+All plate stock is confirmed at 3 mm, arms at 5 mm and standoff outside diameter
+at 6 mm. The retained top underside Z=35 mm gives six 24 mm and two 32 mm
+standoffs. Their modeled internal clearance is 3.2 mm. Bolt/nut
 and camera/end-bracket solids are not modeled. Stock, layup, machining tolerances,
 purchased hardware and physical fit/load tests remain necessary for a production
 release; passing the geometry audit establishes nominal CAD fit.

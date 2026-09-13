@@ -37,7 +37,8 @@ def test_frame_has_valid_components_exact_interfaces_and_equal_diagonals(frame):
     assert report["physical_validation_status"] == "unconfirmed-stack-hardware-and-material"
     assert report["diagonal_wheelbases_mm"] == pytest.approx([WHEELBASE_MM] * 2, abs=1e-8)
     assert report["measured_wheelbase_range_mm"] == [303, 304]
-    assert report["wheelbase_matches_measurement"]
+    assert report["wheelbase_matches_nominal"]
+    assert not report["wheelbase_matches_measurement"]
     assert max(report["mounting_errors_mm"].values()) < 1e-8
     assert report["interference_volume_mm3"] == 0
     assert report["interferences"] == []
@@ -66,7 +67,7 @@ def test_actual_solid_motor_holes_match_report(frame):
         math.dist(centers[a], centers[b])
         for a, b in (("front-right-arm", "rear-left-arm"), ("front-left-arm", "rear-right-arm"))
     ]
-    assert diagonals == pytest.approx([303.5, 303.5], abs=1e-7)
+    assert diagonals == pytest.approx([305, 305], abs=1e-7)
     assert diagonals == pytest.approx(report["diagonal_wheelbases_mm"], abs=1e-7)
 
 
@@ -85,7 +86,7 @@ def test_actual_assembly_matches_exported_parts_and_reflects_exactly(frame):
         common = left.intersect(right.mirror(Plane.YZ))
         assert sum(s.volume for s in common.solids()) == pytest.approx(left.volume, abs=1e-6)
     assert report["parameters"]["camera_plate_thickness"] == 3
-    assert report["standoff_lengths_mm"] == pytest.approx([24.5] * 6 + [32.5] * 2)
+    assert report["standoff_lengths_mm"] == pytest.approx([24] * 6 + [32] * 2)
 
 
 def test_final_fit_gate_rejects_hole_error_even_without_collision(frame):
@@ -102,10 +103,10 @@ def test_final_fit_gate_requires_real_geometry_audit(frame):
         require_final_fit(report)
 
 
-def test_final_fit_gate_uses_physical_measurement_instead_of_product_photo(frame):
+def test_final_fit_gate_uses_latest_specified_wheelbase(frame):
     report = copy.deepcopy(frame[1])
     report["diagonal_wheelbases_mm"] = [330, 330]
-    with pytest.raises(ValueError, match="physical measurement"):
+    with pytest.raises(ValueError, match="nominal wheelbase"):
         require_final_fit(report)
 
 
@@ -131,3 +132,22 @@ def test_top_height_changes_standoff_lengths(frame):
 def test_invalid_stack_height_rejected(height):
     with pytest.raises(ValueError, match="top_z"):
         build_assembly(AssemblyParameters(top_z=height))
+
+
+def test_default_stack_uses_specified_plate_arm_and_standoff_dimensions(frame):
+    assembly, report = frame
+    for part in assembly.children:
+        if "plate" in part.label:
+            assert part.bounding_box().size.Z == pytest.approx(3)
+        elif "arm" in part.label:
+            assert part.bounding_box().size.Z == pytest.approx(5)
+        elif "standoff" in part.label:
+            assert part.bounding_box().size.X == pytest.approx(6)
+            assert part.bounding_box().size.Y == pytest.approx(6)
+    assert report["parameters"]["standoff_diameter"] == 6
+
+
+@pytest.mark.parametrize("diameter", [0, 3.2, float("nan"), float("inf")])
+def test_invalid_standoff_diameter_rejected(diameter):
+    with pytest.raises(ValueError, match="standoff_diameter"):
+        build_assembly(AssemblyParameters(standoff_diameter=diameter))

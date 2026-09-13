@@ -22,3 +22,15 @@ def test_explicit_dimension_overrides_preset():
 def test_center_hole_override_cannot_silently_do_nothing():
     with pytest.raises(ValueError, match="no center hole"):
         build_part("top-plate", PartParameters(center_hole_diameter=8))
+
+
+@pytest.mark.parametrize("name", ["camera-plate", "rear-plate", "top-plate"])
+def test_frame_preset_uses_confirmed_three_mm_plate_stock(name):
+    assert build_part(name, part_parameters(name, "frame")).bounding_box().size.Z == pytest.approx(
+        3
+    )
+
+
+@pytest.mark.parametrize("name", ["rear-plate", "top-plate"])
+def test_historical_thickness_requires_explicit_original_preset(name):
+    assert part_parameters(name, "original").thickness == 2.5

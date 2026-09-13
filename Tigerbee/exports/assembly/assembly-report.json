@@ -3,39 +3,44 @@
   "physical_validation_status": "unconfirmed-stack-hardware-and-material",
   "units": "mm",
   "parameters": {
-    "plate_thickness": 2.5,
+    "plate_thickness": 3.0,
     "camera_plate_thickness": 3.0,
     "arm_thickness": 5.0,
-    "top_z": 35.0
+    "top_z": 35.0,
+    "standoff_diameter": 6.0
   },
   "motor_centers_mm": {
     "front-right-arm": [
-      127.5,
-      82.0
+      107.83378413094849,
+      107.83378413094849
     ],
     "front-left-arm": [
-      -127.5,
-      82.0
+      -107.83378413094849,
+      107.83378413094849
     ],
     "rear-right-arm": [
-      115.0,
-      -100.49931506720785
+      107.83378413094849,
+      -107.83378413094849
     ],
     "rear-left-arm": [
-      -115.0,
-      -100.49931506720785
+      -107.83378413094849,
+      -107.83378413094849
     ]
   },
   "diagonal_wheelbases_mm": [
-    303.5,
-    303.5
+    304.99999999999994,
+    304.99999999999994
   ],
+  "nominal_wheelbase_mm": 305.0,
+  "motor_layout": "true-X",
+  "wheelbase_matches_nominal": true,
   "measured_wheelbase_range_mm": [
     303.0,
     304.0
   ],
   "wheelbase_comparison_allowance_mm": 0.5,
-  "wheelbase_reference": "refs/measurements.md",
+  "wheelbase_reference": "User specification: 305 mm symmetric true-X motor layout",
+  "historical_wheelbase_reference": "refs/measurements.md",
   "authoritative_geometry_sources": {
     "arm-type-1": "Tigerbee.FCStd#Body001; mirrored pairs with filleted root clearances",
     "arm-type-2": "Tigerbee.FCStd#Body002; mirrored pairs with filleted root clearances",
@@ -43,15 +48,15 @@
     "rear-plate": "refs/Scan_2.jpeg; nominal symmetric analytic design",
     "top-plate": "refs/Scan_2.jpeg; nominal symmetric analytic design"
   },
-  "wheelbase_matches_measurement": true,
+  "wheelbase_matches_measurement": false,
   "mounting_errors_mm": {
     "front-right-arm-root-1": 0.0,
     "front-right-arm-root-2": 0.0,
     "front-left-arm-root-1": 0.0,
     "front-left-arm-root-2": 0.0,
-    "rear-right-arm-root-1": 1.4210854715202004e-14,
+    "rear-right-arm-root-1": 0.0,
     "rear-right-arm-root-2": 0.0,
-    "rear-left-arm-root-1": 1.4210854715202004e-14,
+    "rear-left-arm-root-1": 0.0,
     "rear-left-arm-root-2": 0.0,
     "front-support-1": 0.0,
     "front-support-2": 0.0,
@@ -63,14 +68,14 @@
     "electronics-4": 0.0
   },
   "standoff_lengths_mm": [
-    24.5,
-    24.5,
-    24.5,
-    24.5,
-    24.5,
-    24.5,
-    32.5,
-    32.5
+    24.0,
+    24.0,
+    24.0,
+    24.0,
+    24.0,
+    24.0,
+    32.0,
+    32.0
   ],
   "interferences": [],
   "interference_volume_mm3": 0,
@@ -79,15 +84,16 @@
     "issues": [],
     "thresholds": {
       "axis_tolerance_mm": 1e-06,
+      "plate_thickness_mm": 3.0,
+      "arm_thickness_mm": 5.0,
+      "standoff_outer_diameter_mm": 6.0,
       "volume_tolerance_mm3": 1e-06,
       "propeller_diameter_mm": 177.8,
       "minimum_propeller_tip_gap_mm": 3.0,
       "minimum_mounting_ligament_mm": 2.0,
       "minimum_standoff_wall_mm": 1.0,
-      "wheelbase_range_mm": [
-        303.0,
-        304.0
-      ],
+      "nominal_wheelbase_mm": 305.0,
+      "motor_layout": "true symmetric X centered at (0, 0)",
       "equal_diagonal_tolerance_mm": 1e-06
     },
     "symmetry_difference_mm3": {
@@ -208,14 +214,100 @@
         ]
       }
     },
+    "stock_checks": {
+      "rear-plate": {
+        "thickness_mm": 3.0,
+        "required_thickness_mm": 3.0
+      },
+      "camera-plate": {
+        "thickness_mm": 3.0,
+        "required_thickness_mm": 3.0
+      },
+      "front-right-arm": {
+        "thickness_mm": 5.0,
+        "required_thickness_mm": 5.0
+      },
+      "front-left-arm": {
+        "thickness_mm": 5.0,
+        "required_thickness_mm": 5.0
+      },
+      "rear-right-arm": {
+        "thickness_mm": 5.0,
+        "required_thickness_mm": 5.0
+      },
+      "rear-left-arm": {
+        "thickness_mm": 5.0,
+        "required_thickness_mm": 5.0
+      },
+      "top-plate": {
+        "thickness_mm": 3.0,
+        "required_thickness_mm": 3.0
+      },
+      "standoff-01": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      },
+      "standoff-02": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      },
+      "standoff-03": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      },
+      "standoff-04": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      },
+      "standoff-05": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      },
+      "standoff-06": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      },
+      "standoff-07": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      },
+      "standoff-08": {
+        "outer_diameters_mm": [
+          6.0,
+          6.0
+        ],
+        "required_outer_diameter_mm": 6.0
+      }
+    },
     "interferences": [],
     "fastener_axes": [
       {
         "name": "front-right-arm-root-1",
-        "x": 26.87126387509413,
-        "y": 18.334946158348174,
+        "x": 25.596122037224674,
+        "y": 21.715559880126506,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "front-right-arm",
@@ -225,10 +317,10 @@
       },
       {
         "name": "front-right-arm-root-2",
-        "x": 28.352110754731285,
-        "y": 31.975771603447974,
+        "x": 23.73296708658303,
+        "y": 35.30944379659837,
         "z_min": 0,
-        "z_max": 37.5,
+        "z_max": 38.0,
         "members": [
           "rear-plate",
           "front-right-arm",
@@ -240,10 +332,10 @@
       },
       {
         "name": "front-left-arm-root-1",
-        "x": -26.87126387509413,
-        "y": 18.334946158348174,
+        "x": -25.596122037224674,
+        "y": 21.715559880126506,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "front-left-arm",
@@ -253,10 +345,10 @@
       },
       {
         "name": "front-left-arm-root-2",
-        "x": -28.352110754731285,
-        "y": 31.975771603447974,
+        "x": -23.73296708658303,
+        "y": 35.30944379659837,
         "z_min": 0,
-        "z_max": 37.5,
+        "z_max": 38.0,
         "members": [
           "rear-plate",
           "front-left-arm",
@@ -268,10 +360,10 @@
       },
       {
         "name": "rear-right-arm-root-1",
-        "x": 26.38033256658744,
-        "y": -20.126651635228953,
+        "x": 26.55628046515082,
+        "y": -20.043250011289288,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "rear-right-arm",
@@ -281,10 +373,10 @@
       },
       {
         "name": "rear-right-arm-root-2",
-        "x": 25.72370375511555,
-        "y": -33.27707290165941,
+        "x": 24.756015591627914,
+        "y": -33.08640098280688,
         "z_min": 0,
-        "z_max": 37.5,
+        "z_max": 38.0,
         "members": [
           "rear-plate",
           "rear-right-arm",
@@ -296,10 +388,10 @@
       },
       {
         "name": "rear-left-arm-root-1",
-        "x": -26.38033256658744,
-        "y": -20.126651635228953,
+        "x": -26.55628046515082,
+        "y": -20.043250011289288,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "rear-left-arm",
@@ -309,10 +401,10 @@
       },
       {
         "name": "rear-left-arm-root-2",
-        "x": -25.72370375511555,
-        "y": -33.27707290165941,
+        "x": -24.756015591627914,
+        "y": -33.08640098280688,
         "z_min": 0,
-        "z_max": 37.5,
+        "z_max": 38.0,
         "members": [
           "rear-plate",
           "rear-left-arm",
@@ -326,8 +418,8 @@
         "name": "front-support-1",
         "x": -19.25,
         "y": 108.75,
-        "z_min": 7.5,
-        "z_max": 37.5,
+        "z_min": 8.0,
+        "z_max": 38.0,
         "members": [
           "camera-plate",
           "standoff-01",
@@ -339,8 +431,8 @@
         "name": "front-support-2",
         "x": 19.25,
         "y": 108.75,
-        "z_min": 7.5,
-        "z_max": 37.5,
+        "z_min": 8.0,
+        "z_max": 38.0,
         "members": [
           "camera-plate",
           "standoff-02",
@@ -353,7 +445,7 @@
         "x": -16.5,
         "y": -94.0,
         "z_min": 0,
-        "z_max": 37.5,
+        "z_max": 38.0,
         "members": [
           "rear-plate",
           "standoff-07",
@@ -366,7 +458,7 @@
         "x": 16.5,
         "y": -94.0,
         "z_min": 0,
-        "z_max": 37.5,
+        "z_max": 38.0,
         "members": [
           "rear-plate",
           "standoff-08",
@@ -379,7 +471,7 @@
         "x": -15.25,
         "y": -15.25,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "camera-plate"
@@ -391,7 +483,7 @@
         "x": 15.25,
         "y": -15.25,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "camera-plate"
@@ -403,7 +495,7 @@
         "x": -15.25,
         "y": 15.25,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "camera-plate"
@@ -415,7 +507,7 @@
         "x": 15.25,
         "y": 15.25,
         "z_min": 0,
-        "z_max": 10.5,
+        "z_max": 11.0,
         "members": [
           "rear-plate",
           "camera-plate"
@@ -430,7 +522,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.976812886027045,
+        "minimum_edge_ligament_mm": 6.803877962775324,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -439,7 +531,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.3925506092252546,
+        "minimum_edge_ligament_mm": 3.3925506092252156,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -448,7 +540,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.8362049619930185,
+        "minimum_edge_ligament_mm": 5.183231792845628,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -457,7 +549,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.7363377750324567,
+        "minimum_edge_ligament_mm": 2.295416455511092,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -466,7 +558,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.900000395764879,
+        "minimum_edge_ligament_mm": 2.900000395764941,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -475,7 +567,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.504749106120944,
+        "minimum_edge_ligament_mm": 2.3265656337072667,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -493,7 +585,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.047889245268713,
+        "minimum_edge_ligament_mm": 4.50363614056161,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -502,7 +594,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.976812886027045,
+        "minimum_edge_ligament_mm": 6.803877962775324,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -511,7 +603,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.3925506092252546,
+        "minimum_edge_ligament_mm": 3.3925506092251774,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -520,7 +612,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.8362049619930185,
+        "minimum_edge_ligament_mm": 5.183231792845628,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -529,7 +621,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.7363377750324567,
+        "minimum_edge_ligament_mm": 2.295416455511098,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -538,7 +630,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.900000395764879,
+        "minimum_edge_ligament_mm": 2.900000395764981,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -547,7 +639,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.504749106120944,
+        "minimum_edge_ligament_mm": 2.3265656337072667,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -565,7 +657,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.047889245268713,
+        "minimum_edge_ligament_mm": 4.50363614056161,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -574,7 +666,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.50056664953286,
+        "minimum_edge_ligament_mm": 4.3059108202569565,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -583,7 +675,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.512498353952331,
+        "minimum_edge_ligament_mm": 4.512498353952339,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -592,7 +684,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.586859005470653,
+        "minimum_edge_ligament_mm": 3.406142033410527,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -601,7 +693,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.019251302334033,
+        "minimum_edge_ligament_mm": 2.5061484332973074,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -610,7 +702,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.004106360416621,
+        "minimum_edge_ligament_mm": 3.004106360416644,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -619,7 +711,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.76503574924969,
+        "minimum_edge_ligament_mm": 2.594591944361449,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -637,7 +729,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.6762962448844476,
+        "minimum_edge_ligament_mm": 4.643984408372084,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -646,7 +738,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.500566649532858,
+        "minimum_edge_ligament_mm": 4.305910820256958,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -655,7 +747,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.512498353952331,
+        "minimum_edge_ligament_mm": 4.512498353952339,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -664,7 +756,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.5868590054706604,
+        "minimum_edge_ligament_mm": 3.406142033410527,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -673,7 +765,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.0192513023340304,
+        "minimum_edge_ligament_mm": 2.506148433297305,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -682,7 +774,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.004106360416621,
+        "minimum_edge_ligament_mm": 3.004106360416644,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -691,7 +783,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.76503574924969,
+        "minimum_edge_ligament_mm": 2.5945919443614547,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -709,7 +801,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.676296244884444,
+        "minimum_edge_ligament_mm": 4.643984408372081,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -718,7 +810,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.7459656655707043,
+        "minimum_edge_ligament_mm": 2.745965665570698,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -745,7 +837,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 2.7459656655707043,
+        "minimum_edge_ligament_mm": 2.745965665570698,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -826,7 +918,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.951791399387092,
+        "minimum_edge_ligament_mm": 9.080359262960336,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -835,7 +927,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.951791399387092,
+        "minimum_edge_ligament_mm": 9.080359262960336,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -844,7 +936,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.951791399387092,
+        "minimum_edge_ligament_mm": 9.080359262960336,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -853,7 +945,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.951791399387092,
+        "minimum_edge_ligament_mm": 9.080359262960336,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -862,7 +954,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.823754274538175,
+        "minimum_edge_ligament_mm": 9.000233840900245,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -871,7 +963,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.823754274538175,
+        "minimum_edge_ligament_mm": 9.000233840900245,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -880,7 +972,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.823754274538175,
+        "minimum_edge_ligament_mm": 9.000233840900245,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -889,78 +981,120 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 8.823754274538175,
+        "minimum_edge_ligament_mm": 9.000233840900245,
         "required_edge_ligament_mm": 2.0
       }
     ],
     "actual_motor_centers_mm": {
       "front-left-arm": [
-        -127.5,
-        82.0
+        -107.83378413094849,
+        107.83378413094849
       ],
       "front-right-arm": [
-        127.5,
-        82.0
+        107.83378413094849,
+        107.83378413094849
       ],
       "rear-left-arm": [
-        -115.0,
-        -100.49931506720785
+        -107.83378413094849,
+        -107.83378413094849
       ],
       "rear-right-arm": [
-        115.0,
-        -100.49931506720785
+        107.83378413094849,
+        -107.83378413094849
       ]
     },
     "diagonal_wheelbases_mm": [
-      303.5,
-      303.5
+      304.99999999999994,
+      304.99999999999994
     ],
+    "motor_layout": {
+      "passed": true,
+      "required_layout": "true symmetric X centered at (0, 0)",
+      "centroid_mm": [
+        0.0,
+        0.0
+      ],
+      "diagonal_midpoints_mm": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "diagonal_cosine": 0.0,
+      "front_span_mm": 215.66756826189697,
+      "rear_span_mm": 215.66756826189697,
+      "left_span_mm": 215.66756826189697,
+      "right_span_mm": 215.66756826189697,
+      "maximum_nominal_axis_error_mm": 0.0,
+      "expected_motor_centers_mm": {
+        "front-left-arm": [
+          -107.83378413094849,
+          107.83378413094849
+        ],
+        "front-right-arm": [
+          107.83378413094849,
+          107.83378413094849
+        ],
+        "rear-left-arm": [
+          -107.83378413094849,
+          -107.83378413094849
+        ],
+        "rear-right-arm": [
+          107.83378413094849,
+          -107.83378413094849
+        ]
+      }
+    },
     "propeller_clearances": [
       {
         "motors": [
           "front-left-arm",
           "front-right-arm"
         ],
-        "tip_gap_mm": 77.19999999999999
+        "tip_gap_mm": 37.86756826189696
       },
       {
         "motors": [
           "front-left-arm",
           "rear-left-arm"
         ],
-        "tip_gap_mm": 5.1268979674667605
+        "tip_gap_mm": 37.86756826189696
       },
       {
         "motors": [
           "front-left-arm",
           "rear-right-arm"
         ],
-        "tip_gap_mm": 125.69999999999999
+        "tip_gap_mm": 127.19999999999993
       },
       {
         "motors": [
           "front-right-arm",
           "rear-left-arm"
         ],
-        "tip_gap_mm": 125.69999999999999
+        "tip_gap_mm": 127.19999999999993
       },
       {
         "motors": [
           "front-right-arm",
           "rear-right-arm"
         ],
-        "tip_gap_mm": 5.1268979674667605
+        "tip_gap_mm": 37.86756826189696
       },
       {
         "motors": [
           "rear-left-arm",
           "rear-right-arm"
         ],
-        "tip_gap_mm": 52.19999999999999
+        "tip_gap_mm": 37.86756826189696
       }
     ],
     "minimum_edge_ligament_mm": 1.3999999999999986,
-    "minimum_structural_edge_ligament_mm": 2.0192513023340304,
+    "minimum_structural_edge_ligament_mm": 2.295416455511092,
     "minimum_standoff_wall_mm": 1.3999999999999986,
     "scope": "CAD fit only; propeller discs assume a shared unobstructed plane. Edge ligaments and propeller gaps meet explicit design minima only. No material strength, manufacturing process, or flight qualification."
   },
@@ -971,20 +1105,22 @@
     "Scan_2 supplies design intent for rear and top plates",
     "Original tracings remain reference evidence, not manufacturing outlines",
     "User measured approximately 303\u2013304 mm between opposite motor-hole centers",
-    "Both nominal diagonals are constrained to 303.5 mm",
+    "User specified a 305 mm true-X wheelbase, superseding the earlier approximate reading",
+    "All four motor centers form a square about the frame datum",
     "Left arms are mirrored matched copies of the right arms",
     "Shared mounting axes replace independent imperfect hole fits",
     "CAD fit does not establish carbon laminate strength or flight qualification"
   ],
-  "source_revision": "0e4c1db66a64cbea87cea189d2d9d9e3682d5e63",
-  "source_sha256": "ce02b04d138f8808f50f43250878481a49071ab9c14a1d4b80020f988df616c9",
+  "source_revision": "4d86251751cbfe1453864a285c1410ba06b763b0",
+  "source_sha256": "de40354aa4bc0ad4abf622f1abd659c376d15ac3462cba566ef6c4008aa09d06",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "80a73e50016b3ecdfe3d0cec92f7441b8a43310b74178bea29e6e0e41954432b",
-    "tigerbee-assembly.glb": "84386ff31996e801bd63c62fad0938abdff94c14efc2419094b3700e1fd83584",
-    "tigerbee-isometric.svg": "fc9baf1ab4a7fd17b8637153a1ef4b670a2de7779e724a2cfa897bbed180d079",
-    "tigerbee-top.svg": "d93b02a87b615c9e2618af0ab833aa1a933705e1de2888ff033ecf9261735331",
-    "tigerbee-assembly.stl": "3892338cc18e036c2d7cc9e637d41a22511f8a1eaf3a235857b6674940f21833",
-    "tigerbee-assembly.3mf": "440073f25769054d06668fbbefebe96057b5d3a88665dda923ac71bf3d387beb"
+    "tigerbee-assembly.step": "f33b6b584426c7baad575f4099e6b2a6c8c6b1f2d95bc78fa47aa99a242c20a6",
+    "tigerbee-assembly.glb": "6cc0aff56e9b48a62d038eaf7ac4f7c1898a6e94f3c48739467b5677d96bf289",
+    "tigerbee-isometric.svg": "c2a6514e7b74e961996f08631361536cd38d13416b7686904bc75666d7ee2538",
+    "tigerbee-top.svg": "9848c4a048b5cb6b9fcfb13d0abb27c6c8ed44ce9de986e85b704d9441843acb",
+    "tigerbee-assembly.stl": "007dee03c89a223959d6dde4ab25c928a0b66e8d241c93669ca489db9b8f07b4",
+    "tigerbee-assembly.3mf": "bad776f6d295c1dac3c5eb30fe5ab1edcf58f8c707ac5bb34954f51a0c853ddf",
+    "tigerbee-motor-layout.svg": "10d75a1eb904402a459da7ba8b56d1fdb38fc06431878f61af1a33c79c1f0b99"
   }
 }

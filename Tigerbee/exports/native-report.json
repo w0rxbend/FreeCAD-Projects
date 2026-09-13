@@ -3,36 +3,36 @@
     "file": "parts/arm-type-1.FCStd",
     "valid": true,
     "solids": 1,
-    "volume_mm3": 12886.379062983371
+    "volume_mm3": 12801.79362197606
   },
   {
     "file": "parts/arm-type-2.FCStd",
     "valid": true,
     "solids": 1,
-    "volume_mm3": 12827.141227710908
+    "volume_mm3": 12772.041549697895
   },
   {
     "file": "parts/camera-plate.FCStd",
     "valid": true,
     "solids": 1,
-    "volume_mm3": 17035.022046377435
+    "volume_mm3": 17418.149075573197
   },
   {
     "file": "parts/rear-plate.FCStd",
     "valid": true,
     "solids": 1,
-    "volume_mm3": 15599.886926570205
+    "volume_mm3": 19739.864317194995
   },
   {
     "file": "parts/top-plate.FCStd",
     "valid": true,
     "solids": 1,
-    "volume_mm3": 21306.251600596166
+    "volume_mm3": 25567.501920711256
   },
   {
     "file": "assembly/tigerbee-assembly.FCStd",
     "valid": true,
     "solids": 15,
-    "volume_mm3": 109657.35476999386
+    "volume_mm3": 118081.41184510011
   }
 ]

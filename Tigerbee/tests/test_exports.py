@@ -43,21 +43,23 @@ def test_every_component_export_is_valid(name, tmp_path):
     assert report["mesh_validation"]["valid"]
 
 
-def test_cli_default_bores_match_assembly_components(tmp_path, monkeypatch):
+@pytest.mark.parametrize("name", ["camera-plate", "rear-plate", "top-plate"])
+def test_cli_default_bores_match_assembly_components(name, tmp_path, monkeypatch):
     import sys
 
     from tigerbee.cli import main
     from tigerbee.models import DEFAULT_PARAMETERS
 
-    monkeypatch.setattr(
-        sys, "argv", ["tigerbee", "build", "camera-plate", "--output", str(tmp_path)]
-    )
+    monkeypatch.setattr(sys, "argv", ["tigerbee", "build", name, "--output", str(tmp_path)])
     main()
-    saved = json.loads((tmp_path / "camera-plate.json").read_text())
+    saved = json.loads((tmp_path / f"{name}.json").read_text())
     assert (
         saved["parameters"]["mounting_hole_diameter"] == DEFAULT_PARAMETERS.mounting_hole_diameter
     )
     assert saved["parameters"]["mounting_hole_diameter"] == 3.2
+    assert saved["parameters"]["thickness"] == 3.0
+    assert saved["nominal_thickness_mm"] == 3.0
+    assert saved["nominal_frame_wheelbase_mm"] == 305.0
 
 
 def test_failed_geometry_cannot_be_exported_without_optional_fit_flag(tmp_path, monkeypatch):

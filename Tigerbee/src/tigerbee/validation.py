@@ -2,9 +2,17 @@
 
 from dataclasses import asdict, dataclass
 from itertools import combinations
-from math import dist, isfinite, pi
+from math import dist, isfinite, pi, sqrt
 
 from build123d import Circle, Compound, Edge, GeomType, Part, Plane, Pos, Shape, ShapeList, extrude
+
+from tigerbee.references import (
+    ARM_THICKNESS_MM,
+    NOMINAL_WHEELBASE_MM,
+    PLATE_THICKNESS_MM,
+    STANDOFF_DIAMETER_MM,
+    wheelbase_matches_nominal,
+)
 
 Point = tuple[float, float]
 AXIS_TOLERANCE_MM = 1e-6
@@ -13,7 +21,6 @@ PROPELLER_DIAMETER_MM = 177.8
 MINIMUM_PROPELLER_GAP_MM = 3.0
 MINIMUM_MOUNTING_LIGAMENT_MM = 2.0
 MINIMUM_STANDOFF_WALL_MM = 1.0
-WHEELBASE_RANGE_MM = (303.0, 304.0)
 
 
 @dataclass(frozen=True)
@@ -66,6 +73,43 @@ def _ligament(part: Part, x: float, y: float, radius: float) -> float | None:
     return min(ligaments, default=None)
 
 
+def _motor_layout(measured: dict[str, Point]) -> dict:
+    """Measure the true-X condition from motor bores, independently of arm shapes."""
+    if len(measured) != 4:
+        return {"passed": False, "required_layout": "true symmetric X centered at (0, 0)"}
+    fl, fr = measured["front-left-arm"], measured["front-right-arm"]
+    rl, rr = measured["rear-left-arm"], measured["rear-right-arm"]
+    half_span = NOMINAL_WHEELBASE_MM / (2 * sqrt(2))
+    expected = {
+        f"{end}-{side}-arm": (sx * half_span, sy * half_span)
+        for end, sy in (("front", 1), ("rear", -1))
+        for side, sx in (("left", -1), ("right", 1))
+    }
+    maximum_error = max(dist(measured[name], point) for name, point in expected.items())
+    vectors = [(rr[0] - fl[0], rr[1] - fl[1]), (rl[0] - fr[0], rl[1] - fr[1])]
+    diagonal_product = dist(fl, rr) * dist(fr, rl)
+    cosine = (
+        sum(a * b for a, b in zip(*vectors, strict=True)) / diagonal_product
+        if diagonal_product > 0
+        else None
+    )
+    return {
+        "passed": maximum_error <= AXIS_TOLERANCE_MM,
+        "required_layout": "true symmetric X centered at (0, 0)",
+        "centroid_mm": [sum(p[i] for p in measured.values()) / 4 for i in (0, 1)],
+        "diagonal_midpoints_mm": [
+            [(a[i] + b[i]) / 2 for i in (0, 1)] for a, b in ((fl, rr), (fr, rl))
+        ],
+        "diagonal_cosine": cosine,
+        "front_span_mm": dist(fl, fr),
+        "rear_span_mm": dist(rl, rr),
+        "left_span_mm": dist(fl, rl),
+        "right_span_mm": dist(fr, rr),
+        "maximum_nominal_axis_error_mm": maximum_error,
+        "expected_motor_centers_mm": expected,
+    }
+
+
 def audit_frame(
     assembly: Compound,
     joints: list[FastenerAxis],
@@ -78,9 +122,38 @@ def audit_frame(
     parts = {part.label: part for part in assembly.children}
     if len(parts) != len(assembly.children) or not parts:
         issues.append("missing or duplicate component labels")
+    stock_checks: dict[str, dict[str, float | list[float]]] = {}
     for name, part in parts.items():
         if not part.is_valid or len(part.solids()) != 1:
             issues.append(f"invalid component: {name}")
+        bounds = part.bounding_box()
+        if name.endswith("-plate") or name.endswith("-arm"):
+            expected = PLATE_THICKNESS_MM if name.endswith("-plate") else ARM_THICKNESS_MM
+            stock_checks[name] = {"thickness_mm": bounds.size.Z, "required_thickness_mm": expected}
+            if abs(bounds.size.Z - expected) > AXIS_TOLERANCE_MM:
+                issues.append(f"incorrect stock thickness: {name}")
+        elif name.startswith("standoff-"):
+            outer_diameters = []
+            for face in part.faces():
+                box = face.bounding_box()
+                if (
+                    box.size.Z > AXIS_TOLERANCE_MM
+                    or min(abs(box.min.Z - bounds.min.Z), abs(box.min.Z - bounds.max.Z))
+                    > AXIS_TOLERANCE_MM
+                ):
+                    continue
+                edges = face.outer_wire().edges()
+                if len(edges) == 1 and edges[0].geom_type == GeomType.CIRCLE:
+                    outer_diameters.append(2 * edges[0].radius)
+            stock_checks[name] = {
+                "outer_diameters_mm": outer_diameters,
+                "required_outer_diameter_mm": STANDOFF_DIAMETER_MM,
+            }
+            if len(outer_diameters) != 2 or any(
+                abs(diameter - STANDOFF_DIAMETER_MM) > AXIS_TOLERANCE_MM
+                for diameter in (*outer_diameters, bounds.size.X, bounds.size.Y)
+            ):
+                issues.append(f"incorrect standoff outer diameter: {name}")
     opening_checks = {}
     if expected_openings is not None:
         if set(expected_openings) != set(parts):
@@ -243,10 +316,11 @@ def audit_frame(
     ]
     if len(diagonals) != 2 or abs(diagonals[0] - diagonals[1]) > AXIS_TOLERANCE_MM:
         issues.append("unequal or missing wheelbase diagonals")
-    if len(diagonals) != 2 or any(
-        not WHEELBASE_RANGE_MM[0] <= diagonal <= WHEELBASE_RANGE_MM[1] for diagonal in diagonals
-    ):
-        issues.append("wheelbase outside 303–304 mm measured range")
+    if not wheelbase_matches_nominal(diagonals, AXIS_TOLERANCE_MM):
+        issues.append("wheelbase differs from the 305 mm design target")
+    motor_layout = _motor_layout(measured)
+    if not motor_layout["passed"]:
+        issues.append("motor axes do not form a true symmetric X centered at (0, 0)")
     ligaments = [
         c["minimum_edge_ligament_mm"]
         for c in joint_checks
@@ -257,21 +331,27 @@ def audit_frame(
         "issues": issues,
         "thresholds": {
             "axis_tolerance_mm": AXIS_TOLERANCE_MM,
+            "plate_thickness_mm": PLATE_THICKNESS_MM,
+            "arm_thickness_mm": ARM_THICKNESS_MM,
+            "standoff_outer_diameter_mm": STANDOFF_DIAMETER_MM,
             "volume_tolerance_mm3": VOLUME_TOLERANCE_MM3,
             "propeller_diameter_mm": PROPELLER_DIAMETER_MM,
             "minimum_propeller_tip_gap_mm": MINIMUM_PROPELLER_GAP_MM,
             "minimum_mounting_ligament_mm": MINIMUM_MOUNTING_LIGAMENT_MM,
             "minimum_standoff_wall_mm": MINIMUM_STANDOFF_WALL_MM,
-            "wheelbase_range_mm": list(WHEELBASE_RANGE_MM),
+            "nominal_wheelbase_mm": NOMINAL_WHEELBASE_MM,
+            "motor_layout": "true symmetric X centered at (0, 0)",
             "equal_diagonal_tolerance_mm": AXIS_TOLERANCE_MM,
         },
         "symmetry_difference_mm3": symmetry,
         "opening_checks": opening_checks,
+        "stock_checks": stock_checks,
         "interferences": collisions,
         "fastener_axes": [asdict(joint) for joint in joints],
         "joint_checks": joint_checks,
         "actual_motor_centers_mm": measured,
         "diagonal_wheelbases_mm": diagonals,
+        "motor_layout": motor_layout,
         "propeller_clearances": clearances,
         "minimum_edge_ligament_mm": min(ligaments, default=None),
         "minimum_structural_edge_ligament_mm": min(

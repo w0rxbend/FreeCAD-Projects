@@ -65,7 +65,7 @@ def test_nominal_plate_has_valid_outline_and_all_openings(name, openings):
     part = build_part(name)
     assert part.is_valid
     assert len(part.solids()) == 1
-    assert part.bounding_box().size.Z == pytest.approx(2.5)
+    assert part.bounding_box().size.Z == pytest.approx(3.0)
 
 
 @pytest.mark.parametrize("name", ["arm-type-1", "arm-type-2"])
@@ -89,3 +89,10 @@ def test_arm_extension_preserves_motor_and_root_holes(name):
 def test_plate_rejects_arm_only_parameter():
     with pytest.raises(ValueError, match="only supported for arms"):
         build_part("camera-plate", PartParameters(length_extension=10))
+
+
+@pytest.mark.parametrize("name", PARTS)
+def test_default_stock_thickness_matches_user_specification(name):
+    part = build_part(name)
+    expected = 5.0 if name.startswith("arm-type-") else 3.0
+    assert part.bounding_box().size.Z == pytest.approx(expected)

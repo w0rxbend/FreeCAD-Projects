@@ -1,7 +1,8 @@
 """Analytic, symmetric plate designs derived from the frame's reference silhouettes.
 
 Coordinates use the assembly clamp datum. The camera silhouette preserves the
-FreeCAD right half, with tangent joins and reflection. Rear/top dimensions are
+FreeCAD right half, with tangent joins, reflection, and a raised front clamp
+shoulder for the 305 mm true-X mounting pattern. Rear/top dimensions are
 nominal design choices from the pen tracing; source profiles remain untouched.
 Mounting coordinates belong to the caller's shared interface, not to the outline.
 """
@@ -22,6 +23,8 @@ class PlateDimensions:
     transition_radius: float = 1.0
     top_shoulder_radius: float = 5.0
     camera_datum_y: float = 61.25
+    camera_clamp_shoulder_extension: float = 5.0
+    rear_front_shoulder_extension: float = 5.0
     camera_round_diameter: float = 18.5
     camera_square_size: float = 15.0
     camera_square_radius: float = 2.0
@@ -112,13 +115,20 @@ def _camera_outline(dimensions: PlateDimensions) -> Face:
 
     Original source points define circular radii and straight constraints. The
     left half's small drafting offsets are discarded. A 1 mm tangent blend
-    removes the inherited non-tangent arc joins without changing the silhouette.
+    removes inherited non-tangent joins. The front clamp shoulder arc pair moves
+    forward by 5 mm for the true-X interface; overall width and length are retained.
     """
     data = json.loads(files("tigerbee").joinpath("profiles", "camera-plate.json").read_text())
     segments = next(loop["segments"] for loop in data["loops"] if loop["outer"])
     edges = []
     for segment in segments:
-        points = [tuple(p) for p in segment["points"]]
+        # Raise the inherited front clamp shoulder as a rigid arc pair. This
+        # makes room for the 305 mm true-X interface without widening the CAD
+        # silhouette or altering the camera neck, rear clamp, or openings.
+        points = [
+            (x, y + dimensions.camera_clamp_shoulder_extension if -31 < y < -23 else y)
+            for x, y in segment["points"]
+        ]
         if all(x >= -1e-8 for x, _ in points):
             edge = (
                 Edge.make_line(*points)
@@ -177,10 +187,10 @@ def _camera_openings(dimensions: PlateDimensions, center_diameter: float | None)
 def _rear_outline(dimensions: PlateDimensions) -> Face:
     # Broad clamp plate transitions to a 36 mm strap stem with two end lugs.
     right: list[tuple[float, float]] = [
-        (0, 29),
-        (13, 29),
-        (28, 37),
-        (34, 34),
+        (0, 29 + dimensions.rear_front_shoulder_extension),
+        (13, 29 + dimensions.rear_front_shoulder_extension),
+        (28, 37 + dimensions.rear_front_shoulder_extension),
+        (34, 34 + dimensions.rear_front_shoulder_extension),
         (34, 17),
         (29, 10),
         (34, 0),

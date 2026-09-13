@@ -192,16 +192,19 @@ def test_camera_retains_source_square_round_and_slot_metrics():
         assert slot.bounding_box().size.Y == pytest.approx(8.5)
 
 
-def test_camera_outer_silhouette_stays_within_cad_design_envelope():
-    from build123d import Face
+def test_camera_outer_silhouette_changes_only_near_true_x_front_clamp():
+    from build123d import Face, Pos, Rectangle
 
     from tigerbee.models import build_profile, build_reference_profile
 
     reference = Face(build_reference_profile("camera-plate").outer_wire()).translate((0, 61.25, 0))
     actual = Face(build_profile("camera-plate").outer_wire())
-    # Symmetry correction preserves the design: under 0.2% outline change,
-    # unchanged front/rear extent and less than 0.1 mm total width correction.
-    assert (actual - reference).area + (reference - actual).area < reference.area * 0.002
+    # The 305 mm true-X root moves into the old shoulder recess. Allow its
+    # local reinforcement while guarding the original neck and rear clamp.
+    clamp_region = (Pos(0, 30) * Rectangle(70, 28)).face()
+    added, removed = actual - reference, reference - actual
+    assert added.area + removed.area < reference.area * 0.025
+    assert (added - clamp_region).area + (removed - clamp_region).area < reference.area * 0.002
     assert actual.bounding_box().size.Y == pytest.approx(reference.bounding_box().size.Y, abs=1e-6)
     assert abs(actual.bounding_box().size.X - reference.bounding_box().size.X) < 0.1
 
@@ -217,10 +220,28 @@ def test_clearance_bores_must_keep_two_millimeter_material_ligament():
     from tigerbee.layout import plate_mounting_holes
 
     with pytest.raises(ValueError, match="ligament"):
-        build_plate_profile("rear-plate", plate_mounting_holes("rear-plate"), hole_diameter=3.5)
+        build_plate_profile("rear-plate", plate_mounting_holes("rear-plate"), hole_diameter=6.0)
 
 
 @pytest.mark.parametrize("diameter", [-1, 0, float("nan"), float("inf")])
 def test_direct_camera_builder_rejects_invalid_center_diameter(diameter):
     with pytest.raises(ValueError, match="center_hole_diameter"):
         build_plate_profile("camera-plate", [], center_hole_diameter=diameter)
+
+
+@pytest.mark.parametrize(
+    "name,dimension",
+    [
+        ("camera-plate", "camera_clamp_shoulder_extension"),
+        ("rear-plate", "rear_front_shoulder_extension"),
+    ],
+)
+def test_true_x_clamp_requires_reinforced_front_shoulders(name, dimension):
+    from tigerbee.layout import plate_mounting_holes
+
+    with pytest.raises(ValueError, match="opening|perimeter|ligament"):
+        build_plate_profile(
+            name,
+            plate_mounting_holes(name),
+            dimensions=replace(PlateDimensions(), **{dimension: 0.1}),
+        )

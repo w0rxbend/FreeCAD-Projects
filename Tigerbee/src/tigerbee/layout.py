@@ -13,11 +13,14 @@ from math import cos, dist, isfinite, radians, sin, sqrt
 
 from build123d import Axis, Circle, Face, Keep, Plane, Pos, Shape, split
 
+from tigerbee.references import NOMINAL_WHEELBASE_MM
+
 Point = tuple[float, float]
 ROOT_GAP_MM = 0.6
 ELECTRONICS_ROOT_CLEARANCE_RADIUS_MM = 2.0
 ROOT_RELIEF_FILLET_MM = 0.6
 ROOT_CENTERLINE_FILLET_MM = 0.2
+REAR_TRANSVERSE_ROOT_DATUM_MM = -1.0
 
 
 @dataclass(frozen=True)
@@ -61,25 +64,22 @@ class ArmPlacement:
 
 # Nominal assembly dimensions. Motor positions and plate interfaces use this
 # single datum; none is independently fitted to an imperfect tracing.
-WHEELBASE_MM = 303.5
-FRONT_MOTOR_X_MM = 127.5
-REAR_MOTOR_X_MM = 115.0
-FRONT_MOTOR_Y_MM = 82.0
-FRONT_ARM_ANGLE_DEG = -59.0
-REAR_ARM_ANGLE_DEG = -130.0
+WHEELBASE_MM = NOMINAL_WHEELBASE_MM
+MOTOR_OFFSET_MM = WHEELBASE_MM / (2 * sqrt(2))
+FRONT_ARM_ANGLE_DEG = -45.0
+REAR_ARM_ANGLE_DEG = -135.0
 FRONT_SUPPORTS: tuple[Point, ...] = ((-19.25, 108.75), (19.25, 108.75))
 REAR_SUPPORTS: tuple[Point, ...] = ((-16.5, -94.0), (16.5, -94.0))
 
 
 def frame_arm_layout() -> tuple[ArmPlacement, ...]:
-    """Mirror matched arm types about X=0 with an exact 303.5 mm wheelbase.
+    """Place all motor bores on a 305 mm true-X square centered at the datum.
 
-    The measured arm profiles remain rigid. The front/rear angles are nominal
-    59°/130°; the rear motor Y follows from the wheelbase constraint.
+    Diagonals have equal lengths and midpoint, and intersect at 90 degrees.
+    Matched source arm types are mirrored left/right, with 45°/135° rotations.
     """
-    front = (FRONT_MOTOR_X_MM, FRONT_MOTOR_Y_MM)
-    longitudinal_span = sqrt(WHEELBASE_MM**2 - (FRONT_MOTOR_X_MM + REAR_MOTOR_X_MM) ** 2)
-    rear = (REAR_MOTOR_X_MM, FRONT_MOTOR_Y_MM - longitudinal_span)
+    front = (MOTOR_OFFSET_MM, MOTOR_OFFSET_MM)
+    rear = (MOTOR_OFFSET_MM, -MOTOR_OFFSET_MM)
     return (
         ArmPlacement("arm-type-1", "front-right-arm", False, FRONT_ARM_ANGLE_DEG, front),
         ArmPlacement(
@@ -149,6 +149,25 @@ def trim_arm_profile(face: Face, name: str, gap: float = ROOT_GAP_MM) -> Face:
     if len(cut_corners) not in (2, 4):
         raise ValueError("Centerline relief must create one or two pairs of edge junctions")
     trimmed = trimmed.fillet_2d(ROOT_CENTERLINE_FILLET_MM, cut_corners)
+    # Keep rear roots below the transverse datum as well: the original tips
+    # otherwise approach the front pair within 0.134 mm in the true-X layout.
+    if placement.label.startswith("rear"):
+        boundary_y = min(-gap / 2, REAR_TRANSVERSE_ROOT_DATUM_MM)
+        dx, dy = -mx, boundary_y - my
+        transverse_plane = Plane(origin=(c * dx + s * dy, -s * dx + c * dy, 0), z_dir=(-s, -c, 0))
+        transverse = split(trimmed, transverse_plane, keep=Keep.TOP)
+        faces = transverse.faces()
+        if len(faces) != 1 or not faces[0].is_valid:
+            raise ValueError("Transverse root relief must leave one continuous arm")
+        trimmed = faces[0]
+        corners = [
+            vertex
+            for vertex in trimmed.vertices()
+            if abs(placement.apply(tuple(vertex)[:2])[1] - boundary_y) < 1e-6
+        ]
+        if len(corners) != 2:
+            raise ValueError("Transverse root relief must create one edge junction pair")
+        trimmed = trimmed.fillet_2d(ROOT_CENTERLINE_FILLET_MM, corners)
     # The 30.5 mm equipment fasteners pass through both lower plates. Their
     # axes clip the very edge of each original arm root, so create an open
     # clearance scallop instead of leaving the shaft obstructed by carbon.

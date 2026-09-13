@@ -10,8 +10,9 @@ The user's latest clarification ranks **Tigerbee.FCStd and the three supplied
    meshes independently carry those same thicknesses and matching overall bounds.
 2. `Scan_2.jpeg` supplies the rear/top plates absent from those CAD files.
    Its pen irregularities are replaced by analytic, symmetric nominal features.
-3. [Physical measurements](measurements.md) set the approximate 303–304 mm
-   opposite-motor center distance. Neither 330 mm nor 295 mm photo labels override it.
+3. The latest [confirmed design dimensions](measurements.md) specify a 305 mm
+   true X, 5 mm arms, 3 mm plates and 6 mm standoff outside diameter. These supersede
+   the earlier approximate 303–304 mm reading and all photo wheelbase labels.
 4. `Scan_1.jpeg` and product photos support interpretation of the design and assembly.
 
 The user also explicitly requested ideal symmetry, fixed parametric dimensions,

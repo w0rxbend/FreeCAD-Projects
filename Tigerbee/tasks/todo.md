@@ -7,7 +7,7 @@
 - [x] Mirror the camera CAD silhouette and preserve its refined openings.
 - [x] Restore all accessory features with symmetric nominal geometry.
 - [x] Share arm/plate/support coordinates; remove independent hole fitting.
-- [x] Mirror matched arm pairs with equal nominal 303.5 mm motor diagonals.
+- [x] Mirror matched arm pairs with a square true-X motor layout and perpendicular 305 mm diagonals.
 - [x] Resolve root collisions and electronics fastener passages with rounded relief.
 - [x] Check actual-solid symmetry, axes, passages, interference and mounting ligaments.
 - [x] Check intended opening counts, tangent plate perimeters and 7-inch disc clearance.
@@ -15,13 +15,14 @@
 - [x] Require passing actual-solid audit before every assembly export.
 - [x] Finish canonical regeneration, native reopen and final export inventory audit.
 - [x] Inspect final exported component and assembly views.
-- [x] Run the full final test suite (110 tests) and package/lint/type checks.
+- [x] Run the full final test suite (136 tests) and package/lint/type checks.
 - [ ] Verify GitHub Actions execution after the branch is pushed.
 
 Physical production release remains a separate unresolved part of the overall
 production-grade frame objective:
 
-- [ ] Confirm rear/top stock thickness, vertical stack and purchased standoffs.
+- [x] Apply user-confirmed plate stock 3 mm, arm stock 5 mm and standoff outside diameter 6 mm.
+- [x] Retain top underside Z=35 mm and derive six 24 mm/two 32 mm standoffs.
 - [ ] Confirm bolt/nut and camera/end-bracket dimensions; model those accessories.
 - [ ] Establish material/layup and machining tolerances.
 - [ ] Validate manufactured fit and load performance.

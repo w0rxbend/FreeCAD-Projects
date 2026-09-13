@@ -7,13 +7,15 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "0e4c1db66a64cbea87cea189d2d9d9e3682d5e63",
-  "source_sha256": "ce02b04d138f8808f50f43250878481a49071ab9c14a1d4b80020f988df616c9",
+  "source_revision": "4d86251751cbfe1453864a285c1410ba06b763b0",
+  "source_sha256": "de40354aa4bc0ad4abf622f1abd659c376d15ac3462cba566ef6c4008aa09d06",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
   "reference_status": "symmetric-design-derived-from-reference",
   "authoritative_geometry_source": "Tigerbee.FCStd",
   "reference_body": "Body",
+  "nominal_frame_wheelbase_mm": 305.0,
+  "nominal_thickness_mm": 3.0,
   "measured_frame_wheelbase_range_mm": [
     303.0,
     304.0
@@ -35,7 +37,7 @@
     "nonmanifold_edges": 0,
     "winding_errors": 0
   },
-  "volume_mm3": 17035.022046377886,
+  "volume_mm3": 17418.149075573863,
   "dimensions_mm": [
     65.59120886742969,
     152.9776504186795,
@@ -51,17 +53,19 @@
     "camera-plate.dxf"
   ],
   "file_sha256": {
-    "camera-plate.step": "566c3734b62e10494d3e7fff93bbcf9b3fa4f975938a6377c54370d055f982dc",
-    "camera-plate.stl": "c0bc9eb1b86f5cc40b21741aaebb43572d6d7242b70854934909491a6951c8ed",
-    "camera-plate.3mf": "dde17b6bb4a41e7a4da242e8c4a069cd9dfdc73d078a380a62956586d13e6f40",
-    "camera-plate.svg": "670a8a97158c2f64b36478e095296456e076514bbe498dca2761eb121eb17d6f",
-    "camera-plate.dxf": "c2c103f12302f32d5eca8d6f9d8e981bd4e419b2392099f490519ef904b5a919"
+    "camera-plate.step": "8c4692307566c40ec896922387debdd9bdd37653a56a599320b6094289193576",
+    "camera-plate.stl": "396264aae580342716063506ceb1c1980fd9e395b481408ee5d9f3d37b9a21c3",
+    "camera-plate.3mf": "9e98bc5173d0fbdcf9411254b1ece5469d515799ea3d71a06221b9db1ea9d6e6",
+    "camera-plate.svg": "89a0d6eb7bad9c59a97c986b31ddbb0ca1068befa58957f499472fbe46426a15",
+    "camera-plate.dxf": "17d1f0db9de3fee859a5f600c7d5c08e6f202d19e439d165bf0f3f78871cc020"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,
     "transition_radius": 1.0,
     "top_shoulder_radius": 5.0,
     "camera_datum_y": 61.25,
+    "camera_clamp_shoulder_extension": 5.0,
+    "rear_front_shoulder_extension": 5.0,
     "camera_round_diameter": 18.5,
     "camera_square_size": 15.0,
     "camera_square_radius": 2.0,
@@ -87,36 +91,36 @@
   },
   "mounting_hole_centers_mm": [
     [
-      26.87126387509413,
-      18.334946158348174
+      25.596122037224674,
+      21.715559880126506
     ],
     [
-      28.352110754731285,
-      31.975771603447974
+      23.73296708658303,
+      35.30944379659837
     ],
     [
-      -26.87126387509413,
-      18.334946158348174
+      -25.596122037224674,
+      21.715559880126506
     ],
     [
-      -28.352110754731285,
-      31.975771603447974
+      -23.73296708658303,
+      35.30944379659837
     ],
     [
-      26.38033256658744,
-      -20.126651635228953
+      26.55628046515082,
+      -20.043250011289288
     ],
     [
-      25.72370375511555,
-      -33.27707290165941
+      24.756015591627914,
+      -33.08640098280688
     ],
     [
-      -26.38033256658744,
-      -20.126651635228953
+      -26.55628046515082,
+      -20.043250011289288
     ],
     [
-      -25.72370375511555,
-      -33.27707290165941
+      -24.756015591627914,
+      -33.08640098280688
     ],
     [
       -15.25,

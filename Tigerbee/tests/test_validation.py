@@ -1,3 +1,5 @@
+from math import sqrt
+
 import pytest
 from build123d import Box, Circle, Compound, Pos, Rectangle, extrude
 
@@ -10,19 +12,20 @@ def fixture_frame():
     for x in (-20, 20):
         profile -= Pos(x, 10) * Circle(1.6)
     for name, z in (("rear-plate", 0), ("camera-plate", 10), ("top-plate", 35)):
-        part = Pos(0, 0, z) * extrude(profile, amount=2)
+        part = Pos(0, 0, z) * extrude(profile, amount=3)
         part.label = name
         parts.append(part)
     motors = {}
-    for end, y in (("front", 105), ("rear", -105)):
-        for side, x in (("left", -109.5), ("right", 109.5)):
+    half_span = 305 / (2 * sqrt(2))
+    for end, y in (("front", half_span), ("rear", -half_span)):
+        for side, x in (("left", -half_span), ("right", half_span)):
             name = f"{end}-{side}-arm"
             part = Pos(x, y, 5) * extrude(Rectangle(20, 20) - Circle(3.5), amount=5)
             part.label = name
             parts.append(part)
             motors[name] = (x, y)
     joints = [
-        FastenerAxis(f"joint-{x}", x, 10, 0, 37, ("rear-plate", "camera-plate", "top-plate"))
+        FastenerAxis(f"joint-{x}", x, 10, 0, 38, ("rear-plate", "camera-plate", "top-plate"))
         for x in (-20, 20)
     ]
     return parts, joints, motors
@@ -36,7 +39,16 @@ def test_actual_solids_pass_symmetry_bores_and_propeller_clearance():
     assert len(report["joint_checks"]) == 6
     assert all(check["coaxial"] for check in report["joint_checks"])
     assert report["minimum_edge_ligament_mm"] == pytest.approx(8.4)
-    assert min(c["tip_gap_mm"] for c in report["propeller_clearances"]) == pytest.approx(32.2)
+    assert report["motor_layout"]["passed"]
+    assert report["motor_layout"]["centroid_mm"] == pytest.approx([0, 0])
+    assert report["motor_layout"]["diagonal_cosine"] == pytest.approx(0)
+    for midpoint in report["motor_layout"]["diagonal_midpoints_mm"]:
+        assert midpoint == pytest.approx([0, 0])
+    for span in ("front_span_mm", "rear_span_mm", "left_span_mm", "right_span_mm"):
+        assert report["motor_layout"][span] == pytest.approx(305 / sqrt(2))
+    assert min(c["tip_gap_mm"] for c in report["propeller_clearances"]) == pytest.approx(
+        305 / sqrt(2) - 177.8
+    )
 
 
 def test_displaced_plate_is_rejected_from_actual_geometry():
@@ -122,7 +134,7 @@ def test_thin_mounting_ligament_is_rejected_even_when_bore_is_clear():
         require_frame_fit(report)
 
 
-def test_equal_diagonals_outside_measured_range_are_rejected():
+def test_equal_diagonals_differing_from_nominal_design_are_rejected():
     parts, joints, motors = fixture_frame()
     for index, part in enumerate(parts):
         if "arm" not in part.label:
@@ -133,7 +145,7 @@ def test_equal_diagonals_outside_measured_range_are_rejected():
         motors[part.label] = (x + delta_x, y)
     report = audit_frame(Compound(children=parts), joints, motors)
     assert report["diagonal_wheelbases_mm"][0] == pytest.approx(report["diagonal_wheelbases_mm"][1])
-    with pytest.raises(ValueError, match="303–304"):
+    with pytest.raises(ValueError, match="305 mm design target"):
         require_frame_fit(report)
 
 
@@ -197,4 +209,80 @@ def test_standoff_exteriors_must_also_be_mirror_symmetric():
     report = audit_frame(Compound(children=parts), joints, motors)
     assert report["interferences"] == []
     with pytest.raises(ValueError, match="asymmetry: standoff"):
+        require_frame_fit(report)
+
+
+@pytest.mark.parametrize("layout", ["trapezoid", "rectangle", "translated_square"])
+def test_equal_305_diagonals_do_not_prove_a_true_centered_x(layout):
+    parts, joints, motors = fixture_frame()
+    half_span = 305 / (2 * sqrt(2))
+    for index, part in enumerate(parts):
+        if "arm" not in part.label:
+            continue
+        old_x, old_y = motors[part.label]
+        side = -1 if "left" in part.label else 1
+        front = "front" in part.label
+        if layout == "trapezoid":
+            x = side * (127.5 if front else 115.0)
+            y = (1 if front else -1) * sqrt(305**2 - 242.5**2) / 2
+        elif layout == "rectangle":
+            x = side * 115.0
+            y = (1 if front else -1) * sqrt((305 / 2) ** 2 - 115**2)
+        else:
+            x = side * half_span
+            y = (1 if front else -1) * half_span + 2
+        parts[index] = part.translate((x - old_x, y - old_y, 0))
+        motors[part.label] = (x, y)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["diagonal_wheelbases_mm"] == pytest.approx([305, 305])
+    assert all(error == pytest.approx(0) for error in report["symmetry_difference_mm3"].values())
+    with pytest.raises(ValueError, match="true symmetric X"):
+        require_frame_fit(report)
+
+
+def test_nominal_target_does_not_overwrite_the_historical_measurement():
+    from tigerbee.references import (
+        MEASURED_WHEELBASE_RANGE_MM,
+        NOMINAL_WHEELBASE_MM,
+        wheelbase_matches_measurement,
+        wheelbase_matches_nominal,
+    )
+
+    assert MEASURED_WHEELBASE_RANGE_MM == (303, 304)
+    assert NOMINAL_WHEELBASE_MM == 305
+    assert wheelbase_matches_measurement([303.5, 303.5])
+    assert not wheelbase_matches_nominal([303.5, 303.5])
+    assert wheelbase_matches_nominal([305, 305])
+    assert not wheelbase_matches_measurement([305, 305])
+    assert not wheelbase_matches_nominal([float("nan"), 305])
+
+
+@pytest.mark.parametrize("member,thickness", [("top-plate", 2.5), ("front-right-arm", 6.0)])
+def test_wrong_actual_stock_thickness_rejected(member, thickness):
+    parts, joints, motors = fixture_frame()
+    index = next(i for i, part in enumerate(parts) if part.label == member)
+    if "arm" in member:
+        x, y = motors[member]
+        replacement = Pos(x, y, 5) * extrude(Rectangle(20, 20) - Circle(3.5), amount=thickness)
+    else:
+        profile = Rectangle(60, 70)
+        for x in (-20, 20):
+            profile -= Pos(x, 10) * Circle(1.6)
+        replacement = Pos(0, 0, 35) * extrude(profile, amount=thickness)
+    replacement.label = member
+    parts[index] = replacement
+    report = audit_frame(Compound(children=parts), joints, motors)
+    with pytest.raises(ValueError, match="stock thickness"):
+        require_frame_fit(report)
+
+
+def test_symmetric_tubes_of_wrong_outer_diameter_are_rejected():
+    parts, joints, motors = fixture_frame()
+    for index, x in enumerate((-20, 20), start=1):
+        tube = Pos(x, 10, 20) * extrude(Circle(3.5) - Circle(1.6), amount=5)
+        tube.label = f"standoff-{index:02}"
+        parts.append(tube)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert all(error == pytest.approx(0) for error in report["symmetry_difference_mm3"].values())
+    with pytest.raises(ValueError, match="standoff outer diameter"):
         require_frame_fit(report)

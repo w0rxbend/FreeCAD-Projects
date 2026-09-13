@@ -18,3 +18,7 @@ of the user’s actual frame parts.
 Tigerbee.FCStd and the three supplied arm/camera 3MF files outrank the scans for
 those parts. The current design retains their foundation while correcting
 bilateral symmetry and assembly interfaces.
+
+The latest user specification supersedes the earlier reconstruction: **305 mm true
+X, 5 mm arms, 3 mm plates, 6 mm standoff outside diameter**. See [confirmed
+dimensions](../measurements.md).

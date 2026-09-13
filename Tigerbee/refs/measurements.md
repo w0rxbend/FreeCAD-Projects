@@ -1,22 +1,29 @@
-# Physical frame measurements
+# Confirmed design dimensions
 
-The user confirmed approximately **303–304 mm between opposite motor-hole
-centers** on the physical frame. Both scans are near-1:1 A4 pen tracings with small
-drawing errors. These statements override 330 mm and 295 mm product-photo labels.
+The user's latest instruction specifies:
 
-The symmetric design specifies **303.5 mm** for both diagonals. This is a nominal
-engineering choice within the measured interval, not a claim of measurement
-precision. The strict audit measures motor bores in the actual solids and checks
-their diagonal lengths and equality. Historical fits used a 0.5 mm comparison
-allowance, which does not relax current structural mounting or symmetry checks.
+- **305 mm wheelbase** between opposite motor-bore centers.
+- Symmetric **X** arrangement. The current design uses a square motor layout with
+  perpendicular diagonals intersecting at frame (0, 0).
+- **5 mm arm thickness** for both types.
+- **3 mm thickness for every other plate** (camera, rear and top).
+- **6 mm outside diameter for the mounting standoffs**.
 
-Tigerbee.FCStd and the supplied arm/camera 3MF files are the higher-priority source
-for those parts, including camera thickness 3 mm and arm thickness 5 mm. The latest
-request authorizes symmetry/interface corrections while retaining that foundation.
-The generated 3.2 mm structural bores, 0.6 mm central root gap and local equipment
-clearance notches are explicit design choices.
+Motor centers therefore lie at **(±107.833784131, ±107.833784131) mm**. Their spacing
+along each side is 215.667568262 mm. These are derived nominal dimensions, not
+claims about measuring precision. The geometry audit reads the actual exported
+bores, thicknesses and standoff surfaces to verify this contract.
 
-Rear/top thicknesses, vertical stack, purchased standoffs, fasteners and brackets
-remain unconfirmed. The modeled stack assumes 2.5 mm rear/top plates, top underside
-Z=35 mm, six 24.5 mm standoffs and two 32.5 mm standoffs. Actual material, tolerances
-and physical fit must be established before production release.
+The 305 mm design target supersedes the earlier approximate **303–304 mm** reading
+of the physical frame and the previous 303.5 mm reconstructed layout. The original
+reading is retained as historical evidence, alongside the superseded 330 mm and
+295 mm photo labels. It no longer acts as the current wheelbase acceptance gate.
+
+Tigerbee.FCStd and the supplied arm/camera 3MF files remain the foundation for
+shapes and openings, above the pen scans. New mounting locations and localized
+root/plate relief implement the user's explicit 305 mm X revision.
+
+The top-plate underside remains at the existing nominal Z=35 mm because no new
+height was specified. With 3 mm lower plate, 5 mm arms and 3 mm camera plate, six
+standoffs are **24 mm** long and two are **32 mm**. Their 3.2 mm bore is the modeled
+clearance for nominal M3 axes; thread and end-bracket details are not included.

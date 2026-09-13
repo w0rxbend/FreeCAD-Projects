@@ -28,7 +28,7 @@ def main() -> None:
     build = commands.add_parser("build", help="Generate STEP, 3MF, STL, SVG, DXF and metadata")
     build.add_argument("part", nargs="?", choices=PARTS)
     build.add_argument("--all", action="store_true", help="Build every implemented component")
-    build.add_argument("--preset", choices=PRESETS, default="original")
+    build.add_argument("--preset", choices=PRESETS, default="frame")
     build.add_argument("--output", type=Path, default=Path("exports/parts"))
     build.add_argument("--thickness", type=float)
     build.add_argument(
