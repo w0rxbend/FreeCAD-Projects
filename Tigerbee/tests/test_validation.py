@@ -1,7 +1,7 @@
 from math import sqrt
 
 import pytest
-from build123d import Box, Circle, Compound, Pos, Rectangle, extrude
+from build123d import Axis, Box, Circle, Compound, Face, Plane, Pos, Rectangle, Wire, extrude
 
 from tigerbee.validation import FastenerAxis, audit_frame, require_frame_fit
 
@@ -20,7 +20,20 @@ def fixture_frame():
     for end, y in (("front", half_span), ("rear", -half_span)):
         for side, x in (("left", -half_span), ("right", half_span)):
             name = f"{end}-{side}-arm"
-            part = Pos(x, y, 5) * extrude(Rectangle(20, 20) - Circle(3.5), amount=5)
+            direction = 1 if end == "front" else -1
+            side_sign = 1 if side == "right" else -1
+            shaft = (Pos(0, 83) * Rectangle(10, 144)).rotate(Axis.Z, -45)
+            if side_sign < 0:
+                shaft = shaft.mirror(Plane.YZ)
+            if direction < 0:
+                shaft = shaft.mirror(Plane.XZ)
+            profile = shaft.fuse(Pos(x, y) * Rectangle(20, 20))
+            profile = profile.cut(Pos(x, y) * Circle(3.5))
+            for coordinate in (12, 20):
+                profile = profile.cut(
+                    Pos(side_sign * coordinate, direction * coordinate) * Circle(1.6)
+                )
+            part = Pos(0, 0, 5) * extrude(profile, amount=5)
             part.label = name
             parts.append(part)
             motors[name] = (x, y)
@@ -151,7 +164,7 @@ def test_equal_diagonals_differing_from_nominal_design_are_rejected():
 
 def test_extra_opening_cannot_pass_declared_topology_contract():
     parts, joints, motors = fixture_frame()
-    expected = {part.label: (1 if "arm" in part.label else 2) for part in parts}
+    expected = {part.label: (3 if "arm" in part.label else 2) for part in parts}
     report = audit_frame(Compound(children=parts), joints, motors, expected_openings=expected)
     require_frame_fit(report)
     extra = parts[1].cut(Pos(0, 0, 10) * extrude(Circle(2), amount=2))
@@ -286,3 +299,69 @@ def test_symmetric_tubes_of_wrong_outer_diameter_are_rejected():
     assert all(error == pytest.approx(0) for error in report["symmetry_difference_mm3"].values())
     with pytest.raises(ValueError, match="standoff outer diameter"):
         require_frame_fit(report)
+
+
+def test_symmetric_root_tabs_outside_clamp_plates_are_rejected():
+    parts, joints, motors = fixture_frame()
+    for index, part in enumerate(parts):
+        if not part.label.startswith("front-"):
+            continue
+        sign = -1 if "left" in part.label else 1
+        footprint = Face(
+            Wire.make_polygon(
+                [(sign * x, y) for x, y in ((8, 10), (12, 14), (39, -13), (35, -17))],
+                close=True,
+            )
+        )
+        tab = Pos(0, 0, 5) * extrude(footprint, amount=5, dir=(0, 0, 1))
+        extended = part.fuse(tab)
+        for coordinate in (12, 20):
+            extended = extended.cut(
+                Pos(sign * coordinate, coordinate, 5) * extrude(Circle(1.6), amount=5)
+            )
+        extended.label = part.label
+        parts[index] = extended
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["interferences"] == []
+    assert all(error == pytest.approx(0) for error in report["symmetry_difference_mm3"].values())
+    with pytest.raises(ValueError, match="root protrudes beyond clamp"):
+        require_frame_fit(report)
+
+
+def test_clamp_openings_are_not_mistaken_for_outer_root_protrusions():
+    parts, joints, motors = fixture_frame()
+    # An internal service opening lies above/below a root. Its outer contour is unchanged.
+    parts[0] = parts[0].cut(Pos(14, 18, 0) * extrude(Circle(1), amount=3))
+    parts[0].label = "rear-plate"
+    parts[1] = parts[1].cut(Pos(14, 18, 10) * extrude(Circle(1), amount=3))
+    parts[1].label = "camera-plate"
+    # Mirror the service opening so the independent plate symmetry gate still holds.
+    parts[0] = parts[0].cut(Pos(-14, 18, 0) * extrude(Circle(1), amount=3))
+    parts[0].label = "rear-plate"
+    parts[1] = parts[1].cut(Pos(-14, 18, 10) * extrude(Circle(1), amount=3))
+    parts[1].label = "camera-plate"
+    report = audit_frame(Compound(children=parts), joints, motors)
+    require_frame_fit(report)
+    assert all(check["outside_clamp_area_mm2"] < 1e-6 for check in report["root_checks"].values())
+
+
+@pytest.mark.parametrize("name", ["arm-type-1", "arm-type-2"])
+def test_root_correction_preserves_complete_outward_mount_pad_and_shaft(name):
+    from build123d import GeomType, Keep, split
+
+    from tigerbee.models import PartParameters, build_profile, build_reference_profile
+
+    reference = build_reference_profile(name, PartParameters(mounting_hole_diameter=3.2))
+    actual = build_profile(name)
+    bores = [
+        edge
+        for edge in reference.edges().filter_by(GeomType.CIRCLE)
+        if abs(edge.radius - 1.6) < 1e-6
+    ]
+    # Preserve the whole source beyond the base region's 2 mm blending allowance.
+    protected_y = min(edge.arc_center.Y for edge in bores) + 1.6 + 2 + 2
+    plane = Plane(origin=(0, protected_y, 0), z_dir=(0, 1, 0))
+    original_shaft = split(reference, plane, keep=Keep.TOP)
+    actual_shaft = split(actual, plane, keep=Keep.TOP)
+    assert original_shaft.cut(actual_shaft).area < 1e-6
+    assert actual_shaft.cut(original_shaft).area < 1e-6

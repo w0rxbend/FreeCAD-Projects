@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "4d86251751cbfe1453864a285c1410ba06b763b0",
-  "source_sha256": "de40354aa4bc0ad4abf622f1abd659c376d15ac3462cba566ef6c4008aa09d06",
+  "source_revision": "66c3344c7ab7b5aad9d059d1eeec70781b03cebe",
+  "source_sha256": "728a58752f2214efb93b80d8eb4bf220568015a90ff25b9a9ebc79d0774b1465",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -30,17 +30,17 @@
   "solid_count": 1,
   "mesh_validation": {
     "valid": true,
-    "triangles": 7724,
+    "triangles": 7960,
     "components": 1,
     "degenerate_faces": 0,
     "boundary_edges": 0,
     "nonmanifold_edges": 0,
     "winding_errors": 0
   },
-  "volume_mm3": 12772.041549707234,
+  "volume_mm3": 12481.271645761544,
   "dimensions_mm": [
-    35.521244659516555,
-    170.76240899994482,
+    31.13510910570196,
+    170.76240899994485,
     5.0
   ],
   "mesh_linear_deflection_mm": 0.01,
@@ -53,11 +53,16 @@
     "arm-type-2.dxf"
   ],
   "file_sha256": {
-    "arm-type-2.step": "b3675a01e37f24e548940e1e70ccb6f9ce7150c02e87caf4c3b8932ea84a5567",
-    "arm-type-2.stl": "d95011967e9415dc49a9fd5264425fcd95cb2755795ee23cd37384bff5243538",
-    "arm-type-2.3mf": "3ed8cfd7fd1edb5f7d1a57a42df5cdfe38a0c13afbd87e0ea6a3d977bdff7b90",
-    "arm-type-2.svg": "50e15e5014016d035befde14c680a75bccd27f9de12eb66c0afd4b6e7cb3e23e",
-    "arm-type-2.dxf": "21998781fc0c793762e49be08c578f7aaa748585d8f55dc04c7d8db9faafefdc"
+    "arm-type-2.step": "f320c9b75d733ab3d263ec69c3616997ee88b19a3f469e7db649a1db56f57847",
+    "arm-type-2.stl": "2eeb0d4069777ce8c6f6cd142a56a4eca86be46168a31bcd0d93b15c0af93a18",
+    "arm-type-2.3mf": "d1785d7eb88187ea8afc0ec2e6bad54cc2176756faef2bd3c091d0e388932769",
+    "arm-type-2.svg": "614337cb51b808ace30e2f1cbd6667f46fa4bd04bd85a19ae0a3554ac266977d",
+    "arm-type-2.dxf": "1c8f7a18d6a5740db8571d33af8fc72af91fc856a9bacae0a01043f85f3cbece"
   },
-  "datum": "Motor shaft center X=Y=0; shaft extends toward negative Y; lower face Z=0"
+  "datum": "Motor shaft center X=Y=0; shaft extends toward negative Y; lower face Z=0",
+  "root_clamp_relief_mm": {
+    "outline_inset": 0.2,
+    "blend_radius": 0.3,
+    "transition_local_y": -115.0
+  }
 }

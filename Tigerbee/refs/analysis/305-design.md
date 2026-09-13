@@ -15,6 +15,8 @@ The latest user specification replaces the previous 303.5 mm layout:
 | Left/right solid reflection | Zero Boolean difference |
 | Mounting-axis offsets | Below 0.000001 mm |
 | Intersections and blocked fastener passages | None |
+| Root-base area outside the common clamp outline | 0 mm², all four bases |
+| Minimum rear root transition width | 18.075 mm (18 mm required) |
 | Minimum structural mounting ligament | 2.295 mm (2 mm required) |
 | Minimum nominal 7-inch propeller-disc gap | 37.868 mm |
 
@@ -30,7 +32,10 @@ reflection. The native export separately saves and reopens all six FCStd files.
 Front/rear arm rotations are now 45°/135° with mirrored left copies. The original
 motor pads, shafts and mounting-hole centers remain based on Tigerbee.FCStd and
 the supplied 3MF files. Rounded local root relief gives 0.6 mm left/right separation
-and sufficient transverse clearance between front/rear roots.
+and sufficient transverse clearance between front/rear roots. The subsequent
+[root containment correction](arm-root-fit.md) removes the exposed rear tongues
+with a 0.2 mm clamp-outline inset and R0.3 tangent blends, preserving the original
+outward pads and shafts.
 
 The new root-hole axes require local camera/rear front shoulder extensions of 5 mm.
 The camera's overall width and length remain unchanged; the top plate outline
@@ -42,6 +47,6 @@ assembly. The retained top underside Z=35 mm gives six 24 mm and two 32 mm stand
 Their 3.2 mm internal bore remains a modeled M3 clearance; detailed threads and
 accessories are outside these five plate/arm designs.
 
-All 136 tests, lint, formatting, types and package build passed. All 45 canonical
+All 146 tests, lint, formatting, types and package build passed. All 45 canonical
 exports passed inventory verification; final top/isometric/component and motor
 layout SVGs were rendered and inspected.

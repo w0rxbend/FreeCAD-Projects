@@ -24,7 +24,10 @@ X at (±107.833784131, ±107.833784131) mm, with perpendicular diagonals centere
 (0, 0). Front/rear arm rotations are 45°/135°; left copies are mirrored about X=0.
 Motor pads and shaft geometry retain their saved CAD basis.
 Root tips have a **0.6 mm left/right gap**, transverse root clearance and rounded
-local electronics clearance notches. Camera/rear clamp shoulders are locally
+local electronics clearance notches. Rear bases follow the shared clamp outline
+with a 0.2 mm inset and R0.3 tangent blends; the outward mounting pads and shafts
+retain their original geometry. See the [root fit comparison](refs/analysis/arm-root-fit.svg).
+Camera/rear clamp shoulders are locally
 reinforced for the new shared hole positions. Nominal structural bores are **3.2 mm** for the modeled 3 mm shafts.
 
 All plate mounting holes derive from one shared interface in
@@ -95,7 +98,9 @@ uv build
 
 Checks cover actual-solid reflection, coaxial through bores, shaft passage through
 every intersected layer, opening counts, solid interference, minimum mounting
-ligaments, equal motor-bore diagonals and nominal 7-inch propeller-disc gaps.
+ligaments, root-base containment within both lower plate outlines, equal motor-bore
+diagonals and nominal 7-inch propeller-disc gaps. Root transition tests also check
+18 mm minimum width and preservation of the original shaft.
 Tests also cover original FreeCAD baselines, dimensional variants, mesh topology
 and exported STEP round trips. Inspect the current assembly report for measured
 values and acceptance thresholds.

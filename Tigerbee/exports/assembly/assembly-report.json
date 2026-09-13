@@ -91,6 +91,9 @@
       "propeller_diameter_mm": 177.8,
       "minimum_propeller_tip_gap_mm": 3.0,
       "minimum_mounting_ligament_mm": 2.0,
+      "maximum_root_protrusion_area_mm2": 1e-06,
+      "root_region": "inward of innermost root bore outer rim plus 2 mm",
+      "root_envelope": "intersection of filled camera and rear plate outer contours",
       "minimum_standoff_wall_mm": 1.0,
       "nominal_wheelbase_mm": 305.0,
       "motor_layout": "true symmetric X centered at (0, 0)",
@@ -298,6 +301,84 @@
           6.0
         ],
         "required_outer_diameter_mm": 6.0
+      }
+    },
+    "root_checks": {
+      "front-left-arm": {
+        "root_bore_centers_mm": [
+          [
+            -25.596122037224674,
+            21.715559880126506
+          ],
+          [
+            -23.73296708658303,
+            35.30944379659837
+          ]
+        ],
+        "root_region_outward_limit_mm": 37.05441111309998,
+        "outward_axis_xy": [
+          -0.7071067811865476,
+          0.7071067811865476
+        ],
+        "root_area_mm2": 595.9066582208412,
+        "outside_clamp_area_mm2": 0.0
+      },
+      "front-right-arm": {
+        "root_bore_centers_mm": [
+          [
+            25.596122037224674,
+            21.715559880126506
+          ],
+          [
+            23.73296708658303,
+            35.30944379659837
+          ]
+        ],
+        "root_region_outward_limit_mm": 37.05441111309998,
+        "outward_axis_xy": [
+          0.7071067811865476,
+          0.7071067811865476
+        ],
+        "root_area_mm2": 595.9066582208425,
+        "outside_clamp_area_mm2": 0.0
+      },
+      "rear-left-arm": {
+        "root_bore_centers_mm": [
+          [
+            -26.55628046515082,
+            -20.043250011289288
+          ],
+          [
+            -24.756015591627914,
+            -33.08640098280688
+          ]
+        ],
+        "root_region_outward_limit_mm": 36.55084399999999,
+        "outward_axis_xy": [
+          -0.7071067811865476,
+          -0.7071067811865476
+        ],
+        "root_area_mm2": 540.1273193241077,
+        "outside_clamp_area_mm2": 0.0
+      },
+      "rear-right-arm": {
+        "root_bore_centers_mm": [
+          [
+            26.55628046515082,
+            -20.043250011289288
+          ],
+          [
+            24.756015591627914,
+            -33.08640098280688
+          ]
+        ],
+        "root_region_outward_limit_mm": 36.55084399999999,
+        "outward_axis_xy": [
+          0.7071067811865476,
+          -0.7071067811865476
+        ],
+        "root_area_mm2": 540.1273193241074,
+        "outside_clamp_area_mm2": 0.0
       }
     },
     "interferences": [],
@@ -675,7 +756,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.512498353952339,
+        "minimum_edge_ligament_mm": 3.2061420334105306,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -747,7 +828,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.512498353952339,
+        "minimum_edge_ligament_mm": 3.2061420334105306,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -1111,16 +1192,16 @@
     "Shared mounting axes replace independent imperfect hole fits",
     "CAD fit does not establish carbon laminate strength or flight qualification"
   ],
-  "source_revision": "4d86251751cbfe1453864a285c1410ba06b763b0",
-  "source_sha256": "de40354aa4bc0ad4abf622f1abd659c376d15ac3462cba566ef6c4008aa09d06",
+  "source_revision": "66c3344c7ab7b5aad9d059d1eeec70781b03cebe",
+  "source_sha256": "728a58752f2214efb93b80d8eb4bf220568015a90ff25b9a9ebc79d0774b1465",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "f33b6b584426c7baad575f4099e6b2a6c8c6b1f2d95bc78fa47aa99a242c20a6",
-    "tigerbee-assembly.glb": "6cc0aff56e9b48a62d038eaf7ac4f7c1898a6e94f3c48739467b5677d96bf289",
-    "tigerbee-isometric.svg": "c2a6514e7b74e961996f08631361536cd38d13416b7686904bc75666d7ee2538",
-    "tigerbee-top.svg": "9848c4a048b5cb6b9fcfb13d0abb27c6c8ed44ce9de986e85b704d9441843acb",
-    "tigerbee-assembly.stl": "007dee03c89a223959d6dde4ab25c928a0b66e8d241c93669ca489db9b8f07b4",
-    "tigerbee-assembly.3mf": "bad776f6d295c1dac3c5eb30fe5ab1edcf58f8c707ac5bb34954f51a0c853ddf",
+    "tigerbee-assembly.step": "8bffcaa6ae97c4fc883654df0393a198032b7a29d1b56f44de6a1526ee9dee4b",
+    "tigerbee-assembly.glb": "8ffdbdf94686cfb711fda78079d483f309cce438970734114677f736483d032f",
+    "tigerbee-isometric.svg": "ce4583879e24f827b3988823e1c0c3632401f532b9676e2611fa4422ea86060d",
+    "tigerbee-top.svg": "bfeac23d50a76c217ac73e57bb66769f670cf9c24f1249bdb63b22237c3b4aef",
+    "tigerbee-assembly.stl": "4ea36170a7180f0ab50839bd07b81d9c93df09637ef1f366449a8c6ad93e0933",
+    "tigerbee-assembly.3mf": "73b6502011c530904edff24936d22af745bf1e0b389a1aee0be9bb57b01cdc92",
     "tigerbee-motor-layout.svg": "10d75a1eb904402a459da7ba8b56d1fdb38fc06431878f61af1a33c79c1f0b99"
   }
 }

@@ -19,6 +19,9 @@ foundation and make every canonical export reflect the same current geometry.
 - Four actual motor centers form a square X with both diagonals exactly 305 mm,
   perpendicular at frame (0,0), superseding the historical 303–304 mm estimate.
 - Preserve arm motor and root patterns; relieve colliding root tips deliberately.
+- Keep the clamped arm bases inside both lower plate outer silhouettes; distinguish
+  the inward base from the shaft entry using the innermost clamp bore and its material margin.
+  Blend any trimming tangentially into the original shaft, preserving mounting ligaments.
 - Keep dimensional parameters in Python, independent of generated CAD files.
 - Reject invalid dimensions, lost holes, split solids or disconnected features.
 
@@ -27,6 +30,8 @@ foundation and make every canonical export reflect the same current geometry.
 - Independent Boolean reflection of complete plate solids and arm pairs.
 - Actual circular bore edges and unobstructed shaft passages through all clamp/support layers.
 - No positive-volume interference among any assembly components.
+- Measure arm-root projection outside each actual lower plate silhouette and reject
+  protrusions, including symmetric protrusions that pass reflection checks.
 - Actual mounting-edge ligament and 7-inch motor-to-motor propeller-disc clearances.
 - Exact intended opening counts and only analytic lines/circles in the engineered plates.
 - Source reference regressions, parameter variants, mesh audit and STEP round trips.

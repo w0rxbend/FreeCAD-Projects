@@ -1,17 +1,19 @@
-"""Symmetric arm placements and the small root relief required by those placements.
+"""Symmetric arm placements and localized root relief for the clamp interfaces.
 
 The saved FreeCAD motor pads, shafts and mounting axes define the arm geometry.
 Two copies of type 1 form the front pair and two copies of type 2 the rear pair;
 the left copies are reflected. Filleted root clearances provide a deliberate
-centerline gap and unobstructed equipment fastener passages.
+centerline gap and unobstructed equipment fastener passages. Rear bases follow
+the shared clamp outline while preserving the outward mounting pads and shafts.
 """
 
 import json
 from dataclasses import dataclass
+from functools import cache
 from importlib.resources import files
 from math import cos, dist, isfinite, radians, sin, sqrt
 
-from build123d import Axis, Circle, Face, Keep, Plane, Pos, Shape, split
+from build123d import Axis, Circle, Face, Keep, Plane, Pos, Rectangle, Shape, split
 
 from tigerbee.references import NOMINAL_WHEELBASE_MM
 
@@ -21,6 +23,9 @@ ELECTRONICS_ROOT_CLEARANCE_RADIUS_MM = 2.0
 ROOT_RELIEF_FILLET_MM = 0.6
 ROOT_CENTERLINE_FILLET_MM = 0.2
 REAR_TRANSVERSE_ROOT_DATUM_MM = -1.0
+ROOT_CLAMP_INSET_MM = 0.2
+ROOT_CLAMP_FILLET_MM = 0.3
+ROOT_CLAMP_TRANSITION_Y_MM = -115.0
 
 
 @dataclass(frozen=True)
@@ -190,4 +195,65 @@ def trim_arm_profile(face: Face, name: str, gap: float = ROOT_GAP_MM) -> Face:
     trimmed = trimmed.fillet_2d(ROOT_RELIEF_FILLET_MM, junctions)
     if len(trimmed.inner_wires()) != len(face.inner_wires()):
         raise ValueError("Root relief must preserve every arm opening")
-    return trimmed
+    return _fit_root_to_clamp(trimmed, placement)
+
+
+@cache
+def _common_clamp_outline() -> Face:
+    """Filled plate intersection; equipment openings do not constrain an arm edge."""
+    from tigerbee.plates import build_plate_profile
+
+    outlines = [
+        Face(build_plate_profile(name, plate_mounting_holes(name)).outer_wire())
+        for name in ("camera-plate", "rear-plate")
+    ]
+    intersection = outlines[0].intersect(outlines[1])
+    common = intersection.faces() if intersection is not None else []
+    if len(common) != 1:
+        raise ValueError("Lower clamp outlines must share one continuous footprint")
+    inset = Face(common[0].outer_wire().offset_2d(-ROOT_CLAMP_INSET_MM))
+    # Coplanar union needs consistently oriented faces. Source camera CAD uses
+    # a downward normal, whereas the clipping half-planes use an upward normal.
+    return Face(inset.wrapped.Reversed()) if inset.normal_at().Z < 0 else inset
+
+
+def _fit_root_to_clamp(face: Face, placement: ArmPlacement) -> Face:
+    """Remove the rear root's inward tongue with a tangent, localized clamp relief.
+
+    The front base already lies inside both plates. On the rear, preserve the
+    outer flank and the motorward shaft; only the inward flank follows the
+    common plate boundary. A 0.2 mm inset leaves room for the 0.3 mm blends.
+    """
+    if placement.part_name != "arm-type-2":
+        return face
+    mx, my = placement.motor_center
+    envelope = _common_clamp_outline().translate((-mx, -my, 0)).rotate(Axis.Z, -placement.angle)
+    shaft = (Pos(0, ROOT_CLAMP_TRANSITION_Y_MM + 100) * Rectangle(400, 200)).face()
+    outer_flank = (Pos(100, 0) * Rectangle(200, 400)).face()
+    allowed = envelope.fuse(shaft, outer_flank)
+    intersection = face.intersect(allowed)
+    faces = intersection.faces() if intersection is not None else []
+    if len(faces) != 1 or not faces[0].is_valid:
+        raise ValueError("Clamp relief must preserve one continuous arm")
+    relieved = faces[0]
+    original_vertices = [tuple(vertex) for vertex in face.outer_wire().vertices()]
+    corners = []
+    perimeter = relieved.outer_wire()
+    for vertex in perimeter.vertices():
+        if min(dist(tuple(vertex), old) for old in original_vertices) < 1e-6:
+            continue
+        edges = [
+            edge
+            for edge in perimeter.edges()
+            if any((v.center() - vertex.center()).length < 1e-6 for v in edge.vertices())
+        ]
+        tangents = [
+            edge.tangent_at(0 if (edge.position_at(0) - vertex.center()).length < 1e-6 else 1)
+            for edge in edges
+        ]
+        if len(tangents) == 2 and abs(abs(tangents[0].dot(tangents[1])) - 1) > 1e-8:
+            corners.append(vertex)
+    relieved = relieved.fillet_2d(ROOT_CLAMP_FILLET_MM, corners)
+    if not relieved.is_valid or len(relieved.inner_wires()) != len(face.inner_wires()):
+        raise ValueError("Clamp relief must preserve every arm opening")
+    return relieved

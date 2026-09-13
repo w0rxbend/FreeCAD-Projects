@@ -9,7 +9,7 @@
     "file": "parts/arm-type-2.FCStd",
     "valid": true,
     "solids": 1,
-    "volume_mm3": 12772.041549697895
+    "volume_mm3": 12481.271645751944
   },
   {
     "file": "parts/camera-plate.FCStd",
@@ -33,6 +33,6 @@
     "file": "assembly/tigerbee-assembly.FCStd",
     "valid": true,
     "solids": 15,
-    "volume_mm3": 118081.41184510011
+    "volume_mm3": 117499.87203806217
   }
 ]

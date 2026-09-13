@@ -196,6 +196,18 @@ def export_component(
         manifest["datum"] = (
             "Motor shaft center X=Y=0; shaft extends toward negative Y; lower face Z=0"
         )
+        if name == "arm-type-2":
+            from tigerbee.layout import (
+                ROOT_CLAMP_FILLET_MM,
+                ROOT_CLAMP_INSET_MM,
+                ROOT_CLAMP_TRANSITION_Y_MM,
+            )
+
+            manifest["root_clamp_relief_mm"] = {
+                "outline_inset": ROOT_CLAMP_INSET_MM,
+                "blend_radius": ROOT_CLAMP_FILLET_MM,
+                "transition_local_y": ROOT_CLAMP_TRANSITION_Y_MM - parameters.length_extension,
+            }
     stem.with_suffix(".json").write_text(json.dumps(manifest, indent=2) + "\n")
     return manifest
 

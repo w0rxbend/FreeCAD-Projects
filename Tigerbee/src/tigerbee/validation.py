@@ -4,7 +4,21 @@ from dataclasses import asdict, dataclass
 from itertools import combinations
 from math import dist, isfinite, pi, sqrt
 
-from build123d import Circle, Compound, Edge, GeomType, Part, Plane, Pos, Shape, ShapeList, extrude
+from build123d import (
+    Circle,
+    Compound,
+    Edge,
+    Face,
+    GeomType,
+    Keep,
+    Part,
+    Plane,
+    Pos,
+    Shape,
+    ShapeList,
+    extrude,
+    split,
+)
 
 from tigerbee.references import (
     ARM_THICKNESS_MM,
@@ -17,6 +31,7 @@ from tigerbee.references import (
 Point = tuple[float, float]
 AXIS_TOLERANCE_MM = 1e-6
 VOLUME_TOLERANCE_MM3 = 1e-6
+AREA_TOLERANCE_MM2 = 1e-6
 PROPELLER_DIAMETER_MM = 177.8
 MINIMUM_PROPELLER_GAP_MM = 3.0
 MINIMUM_MOUNTING_LIGAMENT_MM = 2.0
@@ -108,6 +123,82 @@ def _motor_layout(measured: dict[str, Point]) -> dict:
         "maximum_nominal_axis_error_mm": maximum_error,
         "expected_motor_centers_mm": expected,
     }
+
+
+def _bottom_profile(part: Part) -> Face:
+    z = part.bounding_box().min.Z
+    faces = [
+        face
+        for face in part.faces()
+        if face.bounding_box().size.Z <= AXIS_TOLERANCE_MM
+        and abs(face.bounding_box().min.Z - z) <= AXIS_TOLERANCE_MM
+    ]
+    if len(faces) != 1:
+        raise ValueError("Component must have one planar bottom profile")
+    return faces[0].translate((0, 0, -z))
+
+
+def _root_coverage(parts: dict[str, Part], motors: dict[str, Point]) -> tuple[dict, list[str]]:
+    """Check actual root material inside both clamp silhouettes; shaft exits remain free.
+
+    Two actual 3.2 mm root bores locate each clamped end independently of the
+    trimming implementation. The audited half-plane extends from the inner end
+    to 2 mm beyond the outer rim of the innermost root bore, along the motor axis.
+    Plate service openings are intentionally excluded from the outer envelope.
+    """
+    checks: dict[str, dict] = {}
+    issues: list[str] = []
+    if "rear-plate" not in parts or "camera-plate" not in parts:
+        return checks, ["missing root clamp envelope"]
+    try:
+        rear = Face(_bottom_profile(parts["rear-plate"]).outer_wire())
+        camera = Face(_bottom_profile(parts["camera-plate"]).outer_wire())
+    except ValueError:
+        return checks, ["invalid root clamp envelope"]
+    common = rear.intersect(camera)
+    if common is None or not common.faces():
+        return checks, ["missing common root clamp envelope"]
+    for name, motor in motors.items():
+        part = parts[name]
+        bottom_z = part.bounding_box().min.Z
+        bores = [
+            edge
+            for edge in _circles(part)
+            if abs(edge.radius - 1.6) <= AXIS_TOLERANCE_MM
+            and abs(edge.arc_center.Z - bottom_z) <= AXIS_TOLERANCE_MM
+        ]
+        if len(bores) != 2:
+            issues.append(f"missing pair of actual root bores: {name}")
+            continue
+        radius = dist((0, 0), motor)
+        if radius <= AXIS_TOLERANCE_MM:
+            issues.append(f"invalid root direction: {name}")
+            continue
+        direction = (motor[0] / radius, motor[1] / radius)
+        seam = (
+            min(
+                sum(tuple(edge.arc_center)[i] * direction[i] for i in (0, 1)) + edge.radius
+                for edge in bores
+            )
+            + MINIMUM_MOUNTING_LIGAMENT_MM
+        )
+        plane = Plane(origin=(direction[0] * seam, direction[1] * seam, 0), z_dir=(*direction, 0))
+        try:
+            root = split(_bottom_profile(part), plane, keep=Keep.BOTTOM)
+        except ValueError:
+            issues.append(f"invalid root profile: {name}")
+            continue
+        outside = root.cut(*common.faces()).area
+        checks[name] = {
+            "root_bore_centers_mm": [list(tuple(edge.arc_center)[:2]) for edge in bores],
+            "root_region_outward_limit_mm": seam,
+            "outward_axis_xy": list(direction),
+            "root_area_mm2": root.area,
+            "outside_clamp_area_mm2": outside,
+        }
+        if not isfinite(outside) or outside > AREA_TOLERANCE_MM2:
+            issues.append(f"root protrudes beyond clamp silhouettes: {name}")
+    return checks, issues
 
 
 def audit_frame(
@@ -301,6 +392,8 @@ def audit_frame(
             or dist(actual, motor_centers[name]) > AXIS_TOLERANCE_MM
         ):
             issues.append(f"motor center differs from solid: {name}")
+    root_checks, root_issues = _root_coverage(parts, measured)
+    issues.extend(root_issues)
     clearances: list[dict] = [
         {"motors": [a, b], "tip_gap_mm": dist(p, q) - PROPELLER_DIAMETER_MM}
         for (a, p), (b, q) in combinations(measured.items(), 2)
@@ -338,6 +431,9 @@ def audit_frame(
             "propeller_diameter_mm": PROPELLER_DIAMETER_MM,
             "minimum_propeller_tip_gap_mm": MINIMUM_PROPELLER_GAP_MM,
             "minimum_mounting_ligament_mm": MINIMUM_MOUNTING_LIGAMENT_MM,
+            "maximum_root_protrusion_area_mm2": AREA_TOLERANCE_MM2,
+            "root_region": "inward of innermost root bore outer rim plus 2 mm",
+            "root_envelope": "intersection of filled camera and rear plate outer contours",
             "minimum_standoff_wall_mm": MINIMUM_STANDOFF_WALL_MM,
             "nominal_wheelbase_mm": NOMINAL_WHEELBASE_MM,
             "motor_layout": "true symmetric X centered at (0, 0)",
@@ -346,6 +442,7 @@ def audit_frame(
         "symmetry_difference_mm3": symmetry,
         "opening_checks": opening_checks,
         "stock_checks": stock_checks,
+        "root_checks": root_checks,
         "interferences": collisions,
         "fastener_axes": [asdict(joint) for joint in joints],
         "joint_checks": joint_checks,
