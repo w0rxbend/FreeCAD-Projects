@@ -27,3 +27,16 @@ The top-plate underside remains at the existing nominal Z=35 mm because no new
 height was specified. With 3 mm lower plate, 5 mm arms and 3 mm camera plate, six
 standoffs are **24 mm** long and two are **32 mm**. Their 3.2 mm bore is the modeled
 clearance for nominal M3 axes; thread and end-bracket details are not included.
+
+## Equipment information supplied after the mounting handoff
+
+The user has now specified a **21 mm FPV camera**, **2807 1300KV motors**,
+an **analog FPV VTX antenna**, and a **915 MHz receiver antenna**. The 21 mm
+camera dimension is being used as housing width for the mounting study; camera
+height, depth, lens envelope and side-screw details have not been supplied.
+
+Motor manufacturer/model, mounting pattern and allowed screw engagement remain
+unconfirmed. Antenna frequency/type does not yet specify a mounting envelope:
+VTX connector style and RX antenna shape/dimensions are still needed. These
+equipment choices supersede the earlier request for all equipment categories,
+while their remaining mechanical details are still open.

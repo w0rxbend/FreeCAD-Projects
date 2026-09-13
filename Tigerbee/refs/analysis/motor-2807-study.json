@@ -1,0 +1,69 @@
+{
+  "scope": "Hypothetical four equally spaced M3 shafts on a 19 mm bolt circle, sampled phases 40\u201350 degrees in 0.25 degree increments. Does not identify the user motor, or certify hardware, head clearance or engagement. A 19 mm square pattern is different.",
+  "results": {
+    "arm-type-1": {
+      "step_sha256": "b6df5505e03cf0add37f2da03b999d3838509df020b31e61bdda9007083dd31a",
+      "best_sampled_19mm_bolt_circle": {
+        "phase_deg": 44.5,
+        "outside_opening_areas_mm2": [
+          0.13338579241125675,
+          0.11907023449480875,
+          0.13338593124717446,
+          0.11907118250971899
+        ],
+        "maximum_outside_area_mm2": 0.13338593124717446
+      },
+      "slot_centers_mm": [
+        [
+          6.757331788165001,
+          -6.677459629565
+        ],
+        [
+          6.8803133555835,
+          6.5506708152075
+        ],
+        [
+          -6.8803134264835,
+          -6.5506707407575
+        ],
+        [
+          -6.7573312729925,
+          6.677460150917501
+        ]
+      ]
+    },
+    "arm-type-2": {
+      "step_sha256": "705a8717f5b998a1dfcdc8e538675bc860f66316564c5b11b803edd3253141ab",
+      "best_sampled_19mm_bolt_circle": {
+        "phase_deg": 44.75,
+        "outside_opening_areas_mm2": [
+          0.08604589920781702,
+          0.048148910955726626,
+          0.09118046182356582,
+          0.04861300761364579
+        ],
+        "maximum_outside_area_mm2": 0.09118046182356582
+      },
+      "slot_centers_mm": [
+        [
+          -6.8322308288075,
+          -6.9346148568325
+        ],
+        [
+          -6.704555371608,
+          6.872549212232
+        ],
+        [
+          6.75918469061,
+          -6.92854736016
+        ],
+        [
+          6.7146248783075,
+          6.8152465286325
+        ]
+      ]
+    }
+  },
+  "capture_note": "Measured STEP components before the requested regeneration; hashes identify those inspected artifacts at commit cad6a21. CAD source geometry is unchanged by the regeneration.",
+  "generator_source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a"
+}

@@ -73,10 +73,13 @@ selected motor drawing with its corresponding exported arm and protector.
 
 ## Next input and work
 
-The next equipment-dependent modeling step needs the selected **FPV camera,
-motor, antenna and power connector**. Manufacturer model names are sufficient
-when their drawings give the relevant dimensions; otherwise the dimensions in
-the table above are needed. For the GoPro holder, identify the camera/cage too.
+The user has specified a **21 mm FPV camera**, **2807 1300KV motors**, an
+**analog VTX antenna** and a **915 MHz RX antenna**; see
+[the equipment record](measurements.md#equipment-information-supplied-after-the-mounting-handoff).
+Camera body/pivot details, exact motor mounting and antenna attachment envelopes
+remain open. Manufacturer model names are sufficient when their drawings give
+the relevant dimensions; otherwise use the dimensional requests above. The
+power connector and GoPro camera/cage are still unspecified.
 
 With those interfaces known, model camera/end brackets and the selected hardware,
 then check body tilt, cable exits, screw/nut access and interference in the full
