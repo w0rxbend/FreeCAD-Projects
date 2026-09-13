@@ -31,6 +31,8 @@ longer used. [PlateDimensions](src/tigerbee/plates.py) controls repeated opening
 sizes, pitches and radii. Camera features retain the 15 × 15 mm R2 square,
 18.5 mm round opening and 11.5 × 8.5 mm R2.5 slots from the CAD foundation.
 Plate contours use only lines and circular arcs, with tangent perimeter joins.
+Export reports keep historical tracing assumptions in `reference_assumptions`;
+`assumptions` and effective dimensions describe the current generated design.
 
 Plate profiles use the assembly XY datum, X=0 as their symmetry axis, and lower
 face Z=0. Arms use the motor shaft center X=Y=0, extending toward negative Y.

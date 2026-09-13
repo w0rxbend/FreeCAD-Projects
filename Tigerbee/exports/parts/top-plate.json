@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
-  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
+  "source_revision": "0e4c1db66a64cbea87cea189d2d9d9e3682d5e63",
+  "source_sha256": "ce02b04d138f8808f50f43250878481a49071ab9c14a1d4b80020f988df616c9",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -20,12 +20,17 @@
   ],
   "measurement_reference": "refs/measurements.md",
   "reference_note": "Analytic nominal design informed by the near-1:1 tracing of a part absent from the original FreeCAD document; scan irregularities are not reproduced.",
-  "assumptions": [
+  "reference_assumptions": [
     "Nominal A4 width 210 mm; user confirmed near-1:1 pen tracings",
     "3/5 mm nominal holes",
     "2.5 mm thickness from product photo; physical thickness unmeasured",
     "Convex hull repairs cutout pen gaps",
     "Rear plate missing corner hole mirrored from opposite side"
+  ],
+  "assumptions": [
+    "3.2 mm nominal mounting bores; machining tolerances are not specified",
+    "Symmetric analytic dimensions inferred from Scan_2; physical dimensions unconfirmed",
+    "2.5 mm selected plate thickness; verify against physical stock"
   ],
   "valid": true,
   "solid_count": 1,
@@ -54,11 +59,11 @@
     "top-plate.dxf"
   ],
   "file_sha256": {
-    "top-plate.step": "1d2b4e5b9d8628cc0f18b703d519624d81055bc5e6b0c1223a09811111114dab",
+    "top-plate.step": "9ac94ee3202bc303df5f20e49cebc5212609f888d41a1ffff276d614fb41c89d",
     "top-plate.stl": "7a99d7966d5bc2c42430bcf550b4a3845e9747242be9a2c8119e7fb68833bb05",
-    "top-plate.3mf": "0892cf6211505fdafda97e37c0cf1abfa92a53d25eba0cffb9579d18ab30ee9e",
+    "top-plate.3mf": "3f88aaa68eb079ae2b76d2af94f687df08d1c03db56fd2b1f888e49b0dce9c7d",
     "top-plate.svg": "534775a3814af1ef7f57bdd23390a15082333d503bf54d82c90fca0c35ab4129",
-    "top-plate.dxf": "8ff1f607cd598d8be8be1605ab7400af7abb81b5957aeb9eda7463718a6ddb2f"
+    "top-plate.dxf": "9caf643c8b1a97ea3b24f9239ca24d06a17da279acb6de4058a25e897f2714da"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,

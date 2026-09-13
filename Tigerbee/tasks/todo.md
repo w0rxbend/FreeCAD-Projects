@@ -15,7 +15,7 @@
 - [x] Require passing actual-solid audit before every assembly export.
 - [x] Finish canonical regeneration, native reopen and final export inventory audit.
 - [x] Inspect final exported component and assembly views.
-- [x] Run the full final test suite (108 tests) and package/lint/type checks.
+- [x] Run the full final test suite (110 tests) and package/lint/type checks.
 - [ ] Verify GitHub Actions execution after the branch is pushed.
 
 Physical production release remains a separate unresolved part of the overall

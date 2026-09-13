@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
-  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
+  "source_revision": "0e4c1db66a64cbea87cea189d2d9d9e3682d5e63",
+  "source_sha256": "ce02b04d138f8808f50f43250878481a49071ab9c14a1d4b80020f988df616c9",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -20,7 +20,10 @@
   ],
   "measurement_reference": "refs/measurements.md",
   "reference_note": "FreeCAD and supplied 3MF define the design foundation; symmetry and shared interfaces are engineered in Python. Original reference files are preserved.",
-  "assumptions": [],
+  "reference_assumptions": [],
+  "assumptions": [
+    "3.2 mm nominal mounting bores; machining tolerances are not specified"
+  ],
   "valid": true,
   "solid_count": 1,
   "mesh_validation": {
@@ -48,11 +51,11 @@
     "camera-plate.dxf"
   ],
   "file_sha256": {
-    "camera-plate.step": "b8410e6a079e71f879393e5d5c6e6939fceb326a778308d9889db6662196c9e6",
+    "camera-plate.step": "566c3734b62e10494d3e7fff93bbcf9b3fa4f975938a6377c54370d055f982dc",
     "camera-plate.stl": "c0bc9eb1b86f5cc40b21741aaebb43572d6d7242b70854934909491a6951c8ed",
-    "camera-plate.3mf": "9a07e492cabd1e46aa59a9afc8a0606ba7de4bf4615aa706a89f9590c7b8356c",
+    "camera-plate.3mf": "dde17b6bb4a41e7a4da242e8c4a069cd9dfdc73d078a380a62956586d13e6f40",
     "camera-plate.svg": "670a8a97158c2f64b36478e095296456e076514bbe498dca2761eb121eb17d6f",
-    "camera-plate.dxf": "42bb970c7dc423910eb6152e4738f3231d796b0538987e0e0434bb855d3f4d54"
+    "camera-plate.dxf": "c2c103f12302f32d5eca8d6f9d8e981bd4e419b2392099f490519ef904b5a919"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,

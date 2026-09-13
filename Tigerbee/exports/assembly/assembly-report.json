@@ -965,7 +965,7 @@
     "scope": "CAD fit only; propeller discs assume a shared unobstructed plane. Edge ligaments and propeller gaps meet explicit design minima only. No material strength, manufacturing process, or flight qualification."
   },
   "assumptions": [
-    "Top plate Z=35 mm is a provisional stack choice",
+    "Top plate Z=35 mm is a nominal stack choice",
     "Standoffs represented as 6/3.2 mm tubes; hardware is not yet selected",
     "Saved FreeCAD parts and root 3MFs define arm and camera design intent",
     "Scan_2 supplies design intent for rear and top plates",
@@ -976,15 +976,15 @@
     "Shared mounting axes replace independent imperfect hole fits",
     "CAD fit does not establish carbon laminate strength or flight qualification"
   ],
-  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
-  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
+  "source_revision": "0e4c1db66a64cbea87cea189d2d9d9e3682d5e63",
+  "source_sha256": "ce02b04d138f8808f50f43250878481a49071ab9c14a1d4b80020f988df616c9",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "d52d94a77c92e0fe29ca80c397377734094de3ec0a4d6645e9375aa5ddde35d6",
+    "tigerbee-assembly.step": "80a73e50016b3ecdfe3d0cec92f7441b8a43310b74178bea29e6e0e41954432b",
     "tigerbee-assembly.glb": "84386ff31996e801bd63c62fad0938abdff94c14efc2419094b3700e1fd83584",
     "tigerbee-isometric.svg": "fc9baf1ab4a7fd17b8637153a1ef4b670a2de7779e724a2cfa897bbed180d079",
     "tigerbee-top.svg": "d93b02a87b615c9e2618af0ab833aa1a933705e1de2888ff033ecf9261735331",
     "tigerbee-assembly.stl": "3892338cc18e036c2d7cc9e637d41a22511f8a1eaf3a235857b6674940f21833",
-    "tigerbee-assembly.3mf": "ec48fcec57fa5e139f1f27e179d0219143c6a37de71020a64bee6dc7878a3212"
+    "tigerbee-assembly.3mf": "440073f25769054d06668fbbefebe96057b5d3a88665dda923ac71bf3d387beb"
   }
 }

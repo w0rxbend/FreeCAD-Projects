@@ -57,6 +57,19 @@ def export_component(
     effective = asdict(parameters)
     effective["thickness"] = part.bounding_box().size.Z
     reference = profile_data(name)
+    assumptions = [
+        f"{parameters.mounting_hole_diameter:g} mm nominal mounting bores; "
+        "machining tolerances are not specified"
+    ]
+    if name in ("rear-plate", "top-plate"):
+        assumptions.extend(
+            [
+                "Symmetric analytic dimensions inferred from Scan_2; "
+                "physical dimensions unconfirmed",
+                f"{effective['thickness']:g} mm selected plate thickness; "
+                "verify against physical stock",
+            ]
+        )
     manifest = {
         "part": name,
         "units": "mm",
@@ -77,7 +90,8 @@ def export_component(
             else "Analytic nominal design informed by the near-1:1 tracing of a part "
             "absent from the original FreeCAD document; scan irregularities are not reproduced."
         ),
-        "assumptions": reference.get("assumptions", []),
+        "reference_assumptions": reference.get("assumptions", []),
+        "assumptions": assumptions,
         "valid": part.is_valid,
         "solid_count": len(part.solids()),
         "mesh_validation": mesh_report,
@@ -95,6 +109,10 @@ def export_component(
         from tigerbee.plates import DEFAULT_PLATE_DIMENSIONS
 
         manifest["design_dimensions_mm"] = asdict(DEFAULT_PLATE_DIMENSIONS)
+        if name == "camera-plate" and parameters.center_hole_diameter is not None:
+            manifest["design_dimensions_mm"]["camera_round_diameter"] = (
+                parameters.center_hole_diameter
+            )
         manifest["mounting_hole_centers_mm"] = plate_mounting_holes(name)
         manifest["datum"] = "Frame XY datum; X=0 is the bilateral symmetry axis; lower face Z=0"
     else:

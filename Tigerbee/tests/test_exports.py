@@ -75,3 +75,25 @@ def test_failed_geometry_cannot_be_exported_without_optional_fit_flag(tmp_path, 
     with pytest.raises(ValueError, match="blocked shaft passage"):
         export_frame(tmp_path)
     assert not list(tmp_path.iterdir())
+
+
+def test_scan_provenance_does_not_describe_current_manufacturing_geometry(tmp_path):
+    from tigerbee.models import profile_data
+
+    report = export_component("rear-plate", tmp_path)
+    historical = profile_data("rear-plate")["assumptions"]
+    assert report["reference_assumptions"] == historical
+    assert not set(historical).intersection(report["assumptions"])
+    assert any("3.2 mm" in note for note in report["assumptions"])
+
+
+def test_custom_camera_diameter_is_recorded_in_effective_design_dimensions(tmp_path):
+    from build123d import GeomType
+
+    from tigerbee.models import PartParameters
+
+    report = export_component("camera-plate", tmp_path, PartParameters(center_hole_diameter=19))
+    actual = import_step(tmp_path / "camera-plate.step")
+    circles = actual.edges().filter_by(GeomType.CIRCLE)
+    assert any(edge.radius == pytest.approx(9.5) for edge in circles)
+    assert report["design_dimensions_mm"]["camera_round_diameter"] == 19

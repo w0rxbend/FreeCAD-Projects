@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
-  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
+  "source_revision": "0e4c1db66a64cbea87cea189d2d9d9e3682d5e63",
+  "source_sha256": "ce02b04d138f8808f50f43250878481a49071ab9c14a1d4b80020f988df616c9",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -20,12 +20,17 @@
   ],
   "measurement_reference": "refs/measurements.md",
   "reference_note": "Analytic nominal design informed by the near-1:1 tracing of a part absent from the original FreeCAD document; scan irregularities are not reproduced.",
-  "assumptions": [
+  "reference_assumptions": [
     "Nominal A4 width 210 mm; user confirmed near-1:1 pen tracings",
     "3/5 mm nominal holes",
     "2.5 mm thickness from product photo; physical thickness unmeasured",
     "Convex hull repairs cutout pen gaps",
     "Rear plate missing corner hole mirrored from opposite side"
+  ],
+  "assumptions": [
+    "3.2 mm nominal mounting bores; machining tolerances are not specified",
+    "Symmetric analytic dimensions inferred from Scan_2; physical dimensions unconfirmed",
+    "2.5 mm selected plate thickness; verify against physical stock"
   ],
   "valid": true,
   "solid_count": 1,
@@ -54,11 +59,11 @@
     "rear-plate.dxf"
   ],
   "file_sha256": {
-    "rear-plate.step": "7370664f9b983f0036dec6e8458d7b8cd708b47afb4f8de83db4ca7624b41d6a",
+    "rear-plate.step": "44ddffb9bbf8960bdc8c7d66dee7615e684a706b828a5ef5f70fb617f5beea7f",
     "rear-plate.stl": "1e81321e2a1b44b8bd48ced40301ed07a6f07b14c91f4ed8dbf2001b6e3701e5",
-    "rear-plate.3mf": "acb4c2ba47961f5b21fa52ecc9eb6fe5cf87efcc2c4660c2dfc11c711f52f187",
+    "rear-plate.3mf": "2c2dd1761974da5a0dcf0601460cd80bf25449db71d971e621c74845cc2550ab",
     "rear-plate.svg": "fa31d53fcec3de49c3d15e8129e3a5fc5659c061cbc98c71f6bf5cdbbfadf8ae",
-    "rear-plate.dxf": "d831c9f026d207e0b4e44176f8e257185a58596d372c887b70f706e3f0c6b975"
+    "rear-plate.dxf": "143a078461f4b8ccefad8a3e9cbd54c1def8135ec23c08de7e489513ba680cc1"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,

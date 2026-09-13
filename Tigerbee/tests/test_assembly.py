@@ -123,6 +123,8 @@ def test_top_height_changes_standoff_lengths(frame):
         [length + 5 for length in low["standoff_lengths_mm"]]
     )
     require_final_fit(high)
+    assert any("Z=40 mm" in note for note in high["assumptions"])
+    assert not any("Z=35 mm" in note for note in high["assumptions"])
 
 
 @pytest.mark.parametrize("height", [0, 8, float("nan"), float("inf")])

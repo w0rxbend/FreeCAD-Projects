@@ -259,7 +259,7 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
         "interference_volume_mm3": sum(c["volume_mm3"] for c in audit["interferences"]),
         "geometry_audit": audit,
         "assumptions": [
-            "Top plate Z=35 mm is a provisional stack choice",
+            f"Top plate Z={parameters.top_z:g} mm is a nominal stack choice",
             "Standoffs represented as 6/3.2 mm tubes; hardware is not yet selected",
             "Saved FreeCAD parts and root 3MFs define arm and camera design intent",
             "Scan_2 supplies design intent for rear and top plates",
