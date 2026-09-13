@@ -1,54 +1,32 @@
-# Authoritative references
+# Reference authority and design intent
 
-The user explicitly confirmed that **`Tigerbee.FCStd` is the latest valid source
-of truth**, refined manually from the original scans. Preserve those refinements.
+The user's latest clarification ranks **Tigerbee.FCStd and the three supplied
+3MF files above the pen scans**:
 
-1. `Tigerbee.FCStd`: authoritative geometry, openings, hole positions, and nominal
-   thicknesses for `Body` (camera plate, 3 mm), `Body001` (arm type 1, 5 mm), and
-   `Body002` (arm type 2, 5 mm). Where Scan_1 differs, the FreeCAD geometry wins.
-2. `Scan_2.jpeg`: near-1:1 A4 pen tracings for the rear and top plates, which are
-   absent from the original FreeCAD document. These reconstructions remain provisional.
-3. [Physical measurements](measurements.md): approximately 303–304 mm between
-   opposite motor-hole centers, used to check overall assembly size.
-4. `Scan_1.jpeg` and product photos: supporting historical and visual references.
+1. `Tigerbee.FCStd` and `Tigerbee-Arm (type 1).3mf`,
+   `Tigerbee-Arm (type 2).3mf`, `Tigerbee-Base plate (camera side).3mf` define the
+   arm and camera-plate design foundation. The FreeCAD solids supply analytic
+   curves and nominal thicknesses: arms 5 mm, camera plate 3 mm. The supplied
+   meshes independently carry those same thicknesses and matching overall bounds.
+2. `Scan_2.jpeg` supplies the rear/top plates absent from those CAD files.
+   Its pen irregularities are replaced by analytic, symmetric nominal features.
+3. [Physical measurements](measurements.md) set the approximate 303–304 mm
+   opposite-motor center distance. Neither 330 mm nor 295 mm photo labels override it.
+4. `Scan_1.jpeg` and product photos support interpretation of the design and assembly.
 
-The central approximately 15 × 15 mm rounded rectangular opening in the saved
-camera plate is a valid user refinement. Its absence from the earlier pen trace
-is not a defect to remove. The original FreeCAD document is preserved; build123d
-reconstructs its saved solids and regression tests compare independent STEP baselines.
-Manual 3MF files and `baseline/*.step` are derivative references, not newer authority.
+The user also explicitly requested ideal symmetry, fixed parametric dimensions,
+and exact assembly interfaces. Accordingly the generated design is a refinement
+of these references, not an exact reproduction of their asymmetries. Camera
+openings include the valid 15 × 15 mm R2 central opening added in FreeCAD.
+Arm motor pads, shafts, root-hole geometry and thicknesses remain based on the
+saved CAD; left/right pairs are mirrored and interfering root tips receive a
+small, explicit relief. Shared plate holes derive from the actual placed arm
+bores rather than independent fits to drawings.
 
-## Product photos
+The original FreeCAD, 3MF, scan and baseline STEP files are preserved. Reference
+reconstruction tests still verify the saved FreeCAD geometry independently of the
+refined design. The generated `exports/` files are the current design deliverables.
 
-`product/tiger-beetle-7inch-330mm.png` remains a useful visual reference for the
-assembled frame. Its **330 mm label is superseded by the physical measurement**.
-The same applies to image 06’s 295 mm label. Earlier 5 mm arm / 2.5 mm plate labels
-remain assumptions; image 07 depicts other variants.
-
-The unextended reconstruction measures 302.592 mm and 303.986 mm. It agrees with
-the approximate physical reading, so no arm extension is applied. Remaining
-mounting offsets and root collisions require assembly/interface investigation while
-preserving the authoritative FreeCAD parts.
-
-## Historical placement audit
-
-The [arm-placement audit](analysis/placement-audit.json) tested swaps and face flips
-of the original arms at the current outer clamp-hole pairs. Its six outward-facing
-arrangements measured 302.54–304.04 mm. The audit was made while 330 mm was assumed
-from the product photo; that target is now superseded. The collision findings
-remain relevant: all arrangements had arm-root interference.
-
-Reproduce with `uv run python tools/audit_placements.py`; inspect
-`build/placement-audit.json`. The committed historical report retains its original
-source hash and assumptions rather than being rewritten as current evidence.
-
-## A4 comparison
-
-The [registered scan/CAD comparison](analysis/a4-comparison.md) confirms that the
-saved Scan_1 image plane is effectively A4. It also identifies local feature
-differences, including the user-refined central plate opening absent from the
-earlier pen trace. These differences do not override the latest FreeCAD geometry.
-
-Geometry regression tests also compare each extracted profile's source hash with
-`Tigerbee.FCStd`. Editing the authoritative document makes those checks fail until
-profiles and independent STEP baselines are re-extracted and exports regenerated.
+The historical A4 comparison, registered overlays and old placement audit are
+historical diagnostics, not design authority or acceptance gates. They are not
+required to build or validate the refined frame.

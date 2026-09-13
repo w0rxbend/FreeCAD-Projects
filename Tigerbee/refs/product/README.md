@@ -14,5 +14,7 @@ slotted top plate, standoffs, and end brackets. They do not provide dimensioned
 standoff lengths or bracket drawings. Both scans are near-full-size pen tracings
 of the user’s actual frame parts.
 
-The user-refined `Tigerbee.FCStd` is the latest valid source for the three parts
-it contains; the photos and earlier pen tracings do not override its geometry.
+
+Tigerbee.FCStd and the three supplied arm/camera 3MF files outrank the scans for
+those parts. The current design retains their foundation while correcting
+bilateral symmetry and assembly interfaces.

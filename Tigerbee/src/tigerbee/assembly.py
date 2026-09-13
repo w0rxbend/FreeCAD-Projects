@@ -1,11 +1,18 @@
-"""Locate the reference parts from mounting interfaces and report unresolved fit."""
+"""Assemble bilateral components on one exact shared set of mounting axes."""
 
 from dataclasses import asdict, dataclass
 from itertools import combinations
 from math import atan2, cos, degrees, dist, isfinite, radians, sin
 
-from build123d import Axis, Circle, Color, Compound, Part, Pos, extrude
+from build123d import Axis, Circle, Color, Compound, GeomType, Part, Pos, extrude
 
+from tigerbee.layout import (
+    FRONT_SUPPORTS,
+    REAR_SUPPORTS,
+    frame_arm_layout,
+    plate_mounting_holes,
+    top_support_holes,
+)
 from tigerbee.models import PartParameters, build_part, profile_data
 from tigerbee.references import (
     MEASURED_WHEELBASE_RANGE_MM,
@@ -13,6 +20,7 @@ from tigerbee.references import (
     WHEELBASE_COMPARISON_ALLOWANCE_MM,
     wheelbase_matches_measurement,
 )
+from tigerbee.validation import FastenerAxis, audit_frame, require_frame_fit
 
 Point = tuple[float, float]
 CLAMP_CENTER_Y = -61.4154192768
@@ -70,19 +78,16 @@ class AssemblyParameters:
 DEFAULT_ASSEMBLY = AssemblyParameters()
 
 
-def require_final_fit(report: dict, hole_tolerance: float = 0.1) -> None:
-    """Reject a provisional assembly until its geometry and dimensions are resolved."""
-    issues = []
-    if report["interference_volume_mm3"] > 1e-4:
-        issues.append("arm or plate interference")
-    if max(report["mounting_errors_mm"].values()) > hole_tolerance:
-        issues.append("mounting-hole misalignment")
-    if not wheelbase_matches_measurement(report["diagonal_wheelbases_mm"]):
-        issues.append("wheelbase differs from the approximate 303–304 mm physical measurement")
-    if report["status"] == "provisional-assembly":
-        issues.append("unconfirmed scan dimensions, stack height, and hardware")
-    if issues:
-        raise ValueError("Assembly is not ready: " + "; ".join(issues))
+def require_final_fit(report: dict, hole_tolerance: float = 1e-6) -> None:
+    """Require verified CAD fit; physical qualification is reported separately."""
+    if not isfinite(hole_tolerance) or hole_tolerance < 0:
+        raise ValueError("Hole tolerance must be finite and nonnegative")
+    require_frame_fit(report.get("geometry_audit", {}))
+    errors = list(report.get("mounting_errors_mm", {}).values())
+    if not errors or any(not isfinite(error) or error > hole_tolerance for error in errors):
+        raise ValueError("Assembly is not ready: mounting-hole misalignment")
+    if not wheelbase_matches_measurement(report.get("diagonal_wheelbases_mm", [])):
+        raise ValueError("Assembly differs from the approximate 303–304 mm physical measurement")
 
 
 def mounting_holes(name: str) -> list[Point]:
@@ -124,110 +129,146 @@ def interference_report(parts: list[Part]) -> list[dict]:
     return collisions
 
 
+def _mount_error(parts: dict[str, Part], joint: FastenerAxis) -> float:
+    """Measure axis positions from circular edges in each placed solid."""
+    errors = []
+    for member in joint.members:
+        candidates = [
+            dist(tuple(edge.arc_center)[:2], (joint.x, joint.y))
+            for edge in parts[member].edges().filter_by(GeomType.CIRCLE)
+            if edge.radius >= joint.shaft_diameter / 2 - 1e-6
+        ]
+        errors.append(min(candidates, default=float("inf")))
+    return max(errors)
+
+
 def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[Compound, dict]:
     parameters.validate()
     plate_params = PartParameters(thickness=parameters.plate_thickness)
-    camera_fit = MountFit(0, (0, -CLAMP_CENTER_Y), 0)
-    camera_holes = [camera_fit.apply(p) for p in mounting_holes("camera-plate")]
-    clamp_holes = ordered([p for p in camera_holes if abs(p[0]) > 25])
-    rear_holes = mounting_holes("rear-plate")
-    rear_clamp = ordered([p for p in rear_holes if abs(p[0]) > 25 and abs(p[1]) < 40])
-    rear_fit = fit_mounts(rear_clamp, clamp_holes)
     camera_z = parameters.plate_thickness + parameters.arm_thickness
+    identity = MountFit(0, (0, 0), 0)
     parts = [
-        locate(build_part("rear-plate", plate_params), rear_fit, 0, "rear-plate"),
+        locate(build_part("rear-plate", plate_params), identity, 0, "rear-plate"),
         locate(
             build_part("camera-plate", PartParameters(thickness=parameters.camera_plate_thickness)),
-            camera_fit,
+            identity,
             camera_z,
             "camera-plate",
         ),
     ]
-    errors = {"rear-plate-to-camera-plate": rear_fit.max_error}
     motors = {}
-    for label, name, side, front in (
-        ("front-right-arm", "arm-type-1", 1, True),
-        ("front-left-arm", "arm-type-2", -1, True),
-        ("rear-left-arm", "arm-type-1", -1, False),
-        ("rear-right-arm", "arm-type-2", 1, False),
-    ):
-        target = [p for p in clamp_holes if p[0] * side > 0 and (p[1] > 0) == front]
-        source = mounting_holes(name)
-        fits = [fit_mounts(source, target), fit_mounts(source, target[::-1])]
-        fit = next(
-            f for f in fits if f.translation[0] * side > 0 and (f.translation[1] > 0) == front
+    for placement in frame_arm_layout():
+        part = placement.place(
+            build_part(placement.part_name, PartParameters(thickness=parameters.arm_thickness)),
+            parameters.plate_thickness,
         )
-        parts.append(
-            locate(
-                build_part(name, PartParameters(thickness=parameters.arm_thickness)),
-                fit,
-                parameters.plate_thickness,
-                label,
-            )
-        )
-        motors[label] = fit.translation
-        errors[label] = fit.max_error
-    front_tips = [p for p in camera_holes if p[1] > 100]
-    rear_tips = [rear_fit.apply(p) for p in rear_holes if p[1] < -93]
-    # The top plate's two central mounting rows land at the outer clamp rows.
-    supports = ordered(front_tips + clamp_holes[:2] + clamp_holes[-2:] + rear_tips)
-    top_fit = fit_mounts(ordered(mounting_holes("top-plate")), supports)
+        part.color = Color(0.17, 0.20, 0.23)
+        parts.append(part)
+        motors[placement.label] = placement.motor_center
     parts.append(
-        locate(build_part("top-plate", plate_params), top_fit, parameters.top_z, "top-plate")
+        locate(build_part("top-plate", plate_params), identity, parameters.top_z, "top-plate")
     )
-    errors["top-plate-to-standoffs"] = top_fit.max_error
+    supports = top_support_holes()
+    standoffs = {}
     lengths = []
     for i, (x, y) in enumerate(supports):
         bottom = (
-            parameters.plate_thickness if y < -80 else camera_z + parameters.camera_plate_thickness
+            parameters.plate_thickness
+            if (x, y) in REAR_SUPPORTS
+            else camera_z + parameters.camera_plate_thickness
         )
         length = parameters.top_z - bottom
-        spacer = Pos(x, y, bottom) * extrude(Circle(3) - Circle(1.5), amount=length)
+        spacer = Pos(x, y, bottom) * extrude(Circle(3) - Circle(1.6), amount=length)
         spacer.label = f"standoff-{i + 1:02}"
         spacer.color = Color(0.65, 0.68, 0.72)
         parts.append(spacer)
         lengths.append(length)
-    collisions = interference_report(parts)
+        standoffs[(x, y)] = spacer.label
+    top = parameters.top_z + parameters.plate_thickness
+    camera_top = camera_z + parameters.camera_plate_thickness
+    joints = []
+    for placement in frame_arm_layout():
+        for index, (x, y) in enumerate(placement.root_holes()):
+            members = ["rear-plate", placement.label, "camera-plate"]
+            if (x, y) in standoffs:
+                members.extend([standoffs[(x, y)], "top-plate"])
+            joints.append(
+                FastenerAxis(
+                    f"{placement.label}-root-{index + 1}",
+                    x,
+                    y,
+                    0,
+                    top if (x, y) in standoffs else camera_top,
+                    tuple(members),
+                )
+            )
+    for end, points, member, bottom in (
+        ("front", FRONT_SUPPORTS, "camera-plate", camera_z),
+        ("rear", REAR_SUPPORTS, "rear-plate", 0),
+    ):
+        for i, (x, y) in enumerate(points):
+            joints.append(
+                FastenerAxis(
+                    f"{end}-support-{i + 1}",
+                    x,
+                    y,
+                    bottom,
+                    top,
+                    (member, standoffs[(x, y)], "top-plate"),
+                )
+            )
+    for i, (x, y) in enumerate(
+        point for point in plate_mounting_holes("rear-plate") if abs(point[0]) == 15.25
+    ):
+        joints.append(
+            FastenerAxis(
+                f"electronics-{i + 1}", x, y, 0, camera_top, ("rear-plate", "camera-plate")
+            )
+        )
+    assembly = Compound(label="Tigerbee frame", children=parts)
+    expected_openings = {part.label: 1 for part in parts}
+    expected_openings.update({"camera-plate": 31, "rear-plate": 32, "top-plate": 30})
+    expected_openings.update({placement.label: 8 for placement in frame_arm_layout()})
+    audit = audit_frame(assembly, joints, motors, expected_openings=expected_openings)
+    errors = {joint.name: _mount_error({p.label: p for p in parts}, joint) for joint in joints}
+    diagonals = [
+        dist(motors["front-right-arm"], motors["rear-left-arm"]),
+        dist(motors["front-left-arm"], motors["rear-right-arm"]),
+    ]
     report = {
-        "status": "provisional-assembly",
+        "status": "cad-fit-verified" if audit["passed"] else "cad-fit-failed",
+        "physical_validation_status": "unconfirmed-stack-hardware-and-material",
         "units": "mm",
         "parameters": asdict(parameters),
         "motor_centers_mm": motors,
-        "diagonal_wheelbases_mm": [
-            dist(motors["front-right-arm"], motors["rear-left-arm"]),
-            dist(motors["front-left-arm"], motors["rear-right-arm"]),
-        ],
+        "diagonal_wheelbases_mm": diagonals,
         "measured_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
         "wheelbase_comparison_allowance_mm": WHEELBASE_COMPARISON_ALLOWANCE_MM,
         "wheelbase_reference": MEASUREMENT_REFERENCE,
         "authoritative_geometry_sources": {
-            "arm-type-1": "Tigerbee.FCStd#Body001",
-            "arm-type-2": "Tigerbee.FCStd#Body002",
-            "camera-plate": "Tigerbee.FCStd#Body",
-            "rear-plate": "refs/Scan_2.jpeg",
-            "top-plate": "refs/Scan_2.jpeg",
+            "arm-type-1": "Tigerbee.FCStd#Body001; mirrored pairs with filleted root clearances",
+            "arm-type-2": "Tigerbee.FCStd#Body002; mirrored pairs with filleted root clearances",
+            "camera-plate": "Tigerbee.FCStd#Body; symmetric analytic profile and shared axes",
+            "rear-plate": "refs/Scan_2.jpeg; nominal symmetric analytic design",
+            "top-plate": "refs/Scan_2.jpeg; nominal symmetric analytic design",
         },
-        "wheelbase_matches_measurement": wheelbase_matches_measurement(
-            [
-                dist(motors["front-right-arm"], motors["rear-left-arm"]),
-                dist(motors["front-left-arm"], motors["rear-right-arm"]),
-            ]
-        ),
+        "wheelbase_matches_measurement": wheelbase_matches_measurement(diagonals),
         "mounting_errors_mm": errors,
         "standoff_lengths_mm": lengths,
-        "interferences": collisions,
-        "interference_volume_mm3": sum(c["volume_mm3"] for c in collisions),
+        "interferences": audit["interferences"],
+        "interference_volume_mm3": sum(c["volume_mm3"] for c in audit["interferences"]),
+        "geometry_audit": audit,
         "assumptions": [
-            "Top plate Z=35 mm is provisional",
-            "Standoffs represented as 6/3 mm tubes",
-            "Both scans are near-1:1 A4 pen tracings of the physical frame, with minor errors",
-            "Saved FreeCAD solids are the user's latest valid geometry for its three parts",
-            "Scan_2 supplies the two plates absent from the original FreeCAD document",
+            "Top plate Z=35 mm is a provisional stack choice",
+            "Standoffs represented as 6/3.2 mm tubes; hardware is not yet selected",
+            "Saved FreeCAD parts and root 3MFs define arm and camera design intent",
+            "Scan_2 supplies design intent for rear and top plates",
+            "Original tracings remain reference evidence, not manufacturing outlines",
             "User measured approximately 303–304 mm between opposite motor-hole centers",
-            "Physical measurement supersedes the 330 mm and 295 mm product-photo labels",
-            "0.5 mm comparison allowance reflects approximate reading, not manufacturing tolerance",
-            "Original hole positions preserved; fit errors are not corrected",
-            "Fasteners and end brackets are not yet modeled",
+            "Both nominal diagonals are constrained to 303.5 mm",
+            "Left arms are mirrored matched copies of the right arms",
+            "Shared mounting axes replace independent imperfect hole fits",
+            "CAD fit does not establish carbon laminate strength or flight qualification",
         ],
     }
-    return Compound(label="Tigerbee frame", children=parts), report
+    return assembly, report

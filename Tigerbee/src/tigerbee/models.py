@@ -1,7 +1,7 @@
 """Build independent solids from analytic profiles; original CAD is never imported."""
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from importlib.resources import files
 from math import isfinite
 
@@ -15,7 +15,7 @@ class PartParameters:
     """Dimensions in mm. None preserves the reference part's measured value."""
 
     thickness: float | None = None
-    mounting_hole_diameter: float = 3.0
+    mounting_hole_diameter: float = 3.2
     center_hole_diameter: float | None = None
     length_extension: float = 0.0
 
@@ -35,10 +35,36 @@ def profile_data(name: str) -> dict:
 
 
 DEFAULT_PARAMETERS = PartParameters()
+REFERENCE_PARAMETERS = PartParameters(mounting_hole_diameter=3.0)
 
 
 def build_profile(name: str, parameters: PartParameters = DEFAULT_PARAMETERS) -> Face:
-    """Recreate the outline and each opening using build123d geometry."""
+    """Build the engineered profile: nominal mirrored plates and relieved CAD arms."""
+    parameters.validate()
+    profile_data(name)  # Validate the catalog before selecting the design builder.
+    if name.endswith("-plate"):
+        from tigerbee.layout import plate_mounting_holes
+        from tigerbee.plates import build_plate_profile
+
+        if parameters.length_extension:
+            raise ValueError("length_extension is only supported for arms")
+        if parameters.center_hole_diameter is not None and name != "camera-plate":
+            raise ValueError(f"{name} has no center hole to resize")
+        return build_plate_profile(
+            name,
+            plate_mounting_holes(name),
+            parameters.mounting_hole_diameter,
+            center_hole_diameter=parameters.center_hole_diameter,
+        )
+    from tigerbee.layout import trim_arm_profile
+
+    reference = build_reference_profile(name, replace(parameters, length_extension=0))
+    face = trim_arm_profile(reference, name)
+    return extend_arm(face, parameters.length_extension) if parameters.length_extension else face
+
+
+def build_reference_profile(name: str, parameters: PartParameters = REFERENCE_PARAMETERS) -> Face:
+    """Reconstruct the preserved source for dimensional comparisons and provenance."""
     parameters.validate()
     data = profile_data(name)
     if parameters.center_hole_diameter is not None and not any(
@@ -116,7 +142,7 @@ def extend_arm(profile: Face, extension: float) -> Face:
 
 
 def build_part(name: str, parameters: PartParameters = DEFAULT_PARAMETERS) -> Part:
-    """Build one component at Z=0, with the datum hole at local X=Y=0."""
+    """Build at Z=0: plates use frame XY; arms retain their motor-hole datum."""
     profile = build_profile(name, parameters)
     thickness = parameters.thickness
     if thickness is None:

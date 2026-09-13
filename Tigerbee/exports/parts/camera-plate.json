@@ -3,15 +3,15 @@
   "units": "mm",
   "parameters": {
     "thickness": 3.0,
-    "mounting_hole_diameter": 3.0,
+    "mounting_hole_diameter": 3.2,
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
-  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
+  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
+  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
-  "reference_status": "authoritative-freecad",
+  "reference_status": "symmetric-design-derived-from-reference",
   "authoritative_geometry_source": "Tigerbee.FCStd",
   "reference_body": "Body",
   "measured_frame_wheelbase_range_mm": [
@@ -19,22 +19,22 @@
     304.0
   ],
   "measurement_reference": "refs/measurements.md",
-  "reference_note": "User-refined FreeCAD geometry takes precedence over its original pen tracing",
+  "reference_note": "FreeCAD and supplied 3MF define the design foundation; symmetry and shared interfaces are engineered in Python. Original reference files are preserved.",
   "assumptions": [],
   "valid": true,
   "solid_count": 1,
   "mesh_validation": {
     "valid": true,
-    "triangles": 19616,
+    "triangles": 20208,
     "components": 1,
     "degenerate_faces": 0,
     "boundary_edges": 0,
     "nonmanifold_edges": 0,
     "winding_errors": 0
   },
-  "volume_mm3": 17064.533744001877,
+  "volume_mm3": 17035.022046377886,
   "dimensions_mm": [
-    65.52355399161596,
+    65.59120886742969,
     152.9776504186795,
     3.0
   ],
@@ -48,10 +48,129 @@
     "camera-plate.dxf"
   ],
   "file_sha256": {
-    "camera-plate.step": "bc32de7a645277aabd431d2152a179094cf15ca830135dad14f9c3ed36d193bd",
-    "camera-plate.stl": "2283d17cde9d0085b6179783177c82ce25d2fe40876c6886bf0a0853b6dff906",
-    "camera-plate.3mf": "cdc128d8346b0e2141435e52d064b945ded381b93f6e5664b762dd82a1bde051",
-    "camera-plate.svg": "ae23e65ffc065f98af98e5df6307e86f5e982ad1a349c3ae30003a566aa4b6bd",
-    "camera-plate.dxf": "1f44a762d0bc721fc7b779f8c4ec32ff542a8b6a451b0359fa55e2d87be26f80"
-  }
+    "camera-plate.step": "b8410e6a079e71f879393e5d5c6e6939fceb326a778308d9889db6662196c9e6",
+    "camera-plate.stl": "c0bc9eb1b86f5cc40b21741aaebb43572d6d7242b70854934909491a6951c8ed",
+    "camera-plate.3mf": "9a07e492cabd1e46aa59a9afc8a0606ba7de4bf4615aa706a89f9590c7b8356c",
+    "camera-plate.svg": "670a8a97158c2f64b36478e095296456e076514bbe498dca2761eb121eb17d6f",
+    "camera-plate.dxf": "42bb970c7dc423910eb6152e4738f3231d796b0538987e0e0434bb855d3f4d54"
+  },
+  "design_dimensions_mm": {
+    "corner_radius": 2.0,
+    "transition_radius": 1.0,
+    "top_shoulder_radius": 5.0,
+    "camera_datum_y": 61.25,
+    "camera_round_diameter": 18.5,
+    "camera_square_size": 15.0,
+    "camera_square_radius": 2.0,
+    "camera_slot_width": 11.5,
+    "camera_slot_height": 8.5,
+    "camera_slot_radius": 2.5,
+    "camera_slot_pitch": 42.0,
+    "rear_slot_width": 10.0,
+    "rear_slot_height": 7.0,
+    "rear_slot_radius": 2.0,
+    "rear_slot_pitch": 18.0,
+    "rear_first_slot_y": -47.0,
+    "cross_half_web": 2.0,
+    "cross_extent": 10.0,
+    "cross_corner_radius": 0.6,
+    "chevron_width": 8.0,
+    "chevron_height": 12.0,
+    "chevron_skew": 6.0,
+    "chevron_pitch": 20.0,
+    "chevron_first_y": -68.0,
+    "chevron_x": 9.5,
+    "chevron_corner_radius": 1.0
+  },
+  "mounting_hole_centers_mm": [
+    [
+      26.87126387509413,
+      18.334946158348174
+    ],
+    [
+      28.352110754731285,
+      31.975771603447974
+    ],
+    [
+      -26.87126387509413,
+      18.334946158348174
+    ],
+    [
+      -28.352110754731285,
+      31.975771603447974
+    ],
+    [
+      26.38033256658744,
+      -20.126651635228953
+    ],
+    [
+      25.72370375511555,
+      -33.27707290165941
+    ],
+    [
+      -26.38033256658744,
+      -20.126651635228953
+    ],
+    [
+      -25.72370375511555,
+      -33.27707290165941
+    ],
+    [
+      -15.25,
+      -15.25
+    ],
+    [
+      15.25,
+      -15.25
+    ],
+    [
+      -15.25,
+      15.25
+    ],
+    [
+      15.25,
+      15.25
+    ],
+    [
+      -15.25,
+      45.75
+    ],
+    [
+      15.25,
+      45.75
+    ],
+    [
+      -15.25,
+      76.75
+    ],
+    [
+      15.25,
+      76.75
+    ],
+    [
+      -10.0,
+      51.25
+    ],
+    [
+      10.0,
+      51.25
+    ],
+    [
+      -10.0,
+      71.25
+    ],
+    [
+      10.0,
+      71.25
+    ],
+    [
+      -19.25,
+      108.75
+    ],
+    [
+      19.25,
+      108.75
+    ]
+  ],
+  "datum": "Frame XY datum; X=0 is the bilateral symmetry axis; lower face Z=0"
 }

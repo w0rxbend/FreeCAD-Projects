@@ -65,15 +65,17 @@ def export_component(
         "source_sha256": source_digest(),
         "build123d": version("build123d"),
         "reference_sha256": reference["source_sha256"],
-        "reference_status": reference.get("status", "authoritative-freecad"),
+        "reference_status": "symmetric-design-derived-from-reference",
         "authoritative_geometry_source": reference["source"],
         "reference_body": reference.get("source_body"),
         "measured_frame_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
         "measurement_reference": MEASUREMENT_REFERENCE,
         "reference_note": (
-            "User-refined FreeCAD geometry takes precedence over its original pen tracing"
+            "FreeCAD and supplied 3MF define the design foundation; symmetry and shared "
+            "interfaces are engineered in Python. Original reference files are preserved."
             if reference["source"] == "Tigerbee.FCStd"
-            else "Near-1:1 pen tracing for a part absent from the original FreeCAD document"
+            else "Analytic nominal design informed by the near-1:1 tracing of a part "
+            "absent from the original FreeCAD document; scan irregularities are not reproduced."
         ),
         "assumptions": reference.get("assumptions", []),
         "valid": part.is_valid,
@@ -88,6 +90,17 @@ def export_component(
             name: hashlib.sha256((directory / name).read_bytes()).hexdigest() for name in outputs
         },
     }
+    if name.endswith("-plate"):
+        from tigerbee.layout import plate_mounting_holes
+        from tigerbee.plates import DEFAULT_PLATE_DIMENSIONS
+
+        manifest["design_dimensions_mm"] = asdict(DEFAULT_PLATE_DIMENSIONS)
+        manifest["mounting_hole_centers_mm"] = plate_mounting_holes(name)
+        manifest["datum"] = "Frame XY datum; X=0 is the bilateral symmetry axis; lower face Z=0"
+    else:
+        manifest["datum"] = (
+            "Motor shaft center X=Y=0; shaft extends toward negative Y; lower face Z=0"
+        )
     stem.with_suffix(".json").write_text(json.dumps(manifest, indent=2) + "\n")
     return manifest
 
@@ -95,8 +108,10 @@ def export_component(
 def export_frame(directory: Path, top_z: float = 35, require_fit: bool = False) -> dict:
     """Write a named assembly and its explicit dimensional/fit report."""
     from tigerbee.assembly import AssemblyParameters, build_assembly, require_final_fit
+    from tigerbee.validation import require_frame_fit
 
     assembly, report = build_assembly(AssemblyParameters(top_z=top_z))
+    require_frame_fit(report["geometry_audit"])
     if require_fit:
         require_final_fit(report)
     directory.mkdir(parents=True, exist_ok=True)

@@ -4,9 +4,9 @@ import hashlib
 from pathlib import Path
 
 import pytest
-from build123d import import_step
+from build123d import extrude, import_step
 
-from tigerbee.models import PARTS, PartParameters, build_part, profile_data
+from tigerbee.models import PARTS, PartParameters, build_part, build_reference_profile, profile_data
 
 BASELINE = Path(__file__).resolve().parents[1] / "refs/baseline"
 
@@ -16,9 +16,11 @@ def test_original_matches_freecad_solid(name):
     source = BASELINE.parents[1] / "Tigerbee.FCStd"
     assert profile_data(name)["source_sha256"] == hashlib.sha256(source.read_bytes()).hexdigest(), (
         "Tigerbee.FCStd changed: regenerate the profiles and STEP baselines with "
-        "tools/extract_freecad.py, then rebuild the committed CAD exports"
+        "a separately reviewed extraction, then rebuild the CAD exports"
     )
-    actual = build_part(name)
+    actual = extrude(
+        build_reference_profile(name), amount=profile_data(name)["thickness"], dir=(0, 0, 1)
+    )
     reference = import_step(BASELINE / f"{name}.step")
     assert actual.is_valid
     assert len(actual.solids()) == 1
@@ -54,8 +56,8 @@ def test_part_catalog_includes_original_components():
     assert {"arm-type-1", "arm-type-2", "camera-plate"} <= set(PARTS)
 
 
-@pytest.mark.parametrize("name,openings", [("rear-plate", 31), ("top-plate", 30)])
-def test_scan_plate_has_valid_outline_and_all_openings(name, openings):
+@pytest.mark.parametrize("name,openings", [("rear-plate", 32), ("top-plate", 30)])
+def test_nominal_plate_has_valid_outline_and_all_openings(name, openings):
     from tigerbee.models import build_profile
 
     profile = build_profile(name)
@@ -81,7 +83,7 @@ def test_arm_extension_preserves_motor_and_root_holes(name):
             if segment["kind"] == "circle" and segment["radius"] == 1.5:
                 x, y = segment["center"]
                 assert not longer.is_inside((x, y - 20, 2.5))
-                assert longer.is_inside((x + 1.6, y - 20, 2.5))
+                assert longer.is_inside((x + 1.7, y - 20, 2.5))
 
 
 def test_plate_rejects_arm_only_parameter():

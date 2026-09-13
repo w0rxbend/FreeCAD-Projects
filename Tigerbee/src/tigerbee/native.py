@@ -42,6 +42,11 @@ def write_documents(directory: str) -> None:
         info.Source = "Generated from build123d; edit Python parameters and rebuild."
         info.addProperty("App::PropertyString", "Parameters", "Build123d")
         info.Parameters = json.dumps(data["parameters"], sort_keys=True)
+        if "design_dimensions_mm" in data:
+            info.addProperty("App::PropertyString", "DesignDimensions", "Build123d")
+            info.DesignDimensions = json.dumps(data["design_dimensions_mm"], sort_keys=True)
+            info.addProperty("App::PropertyString", "MountingCoordinates", "Build123d")
+            info.MountingCoordinates = json.dumps(data["mounting_hole_centers_mm"])
         info.addProperty("App::PropertyString", "FitStatus", "Build123d")
         info.FitStatus = data.get("status", data.get("reference_status", "unspecified"))
         document.recompute()

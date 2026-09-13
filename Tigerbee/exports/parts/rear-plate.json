@@ -2,16 +2,16 @@
   "part": "rear-plate",
   "units": "mm",
   "parameters": {
-    "thickness": 2.5000001999999997,
-    "mounting_hole_diameter": 3.0,
+    "thickness": 2.5,
+    "mounting_hole_diameter": 3.2,
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
-  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
+  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
+  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
-  "reference_status": "provisional-scan",
+  "reference_status": "symmetric-design-derived-from-reference",
   "authoritative_geometry_source": "refs/Scan_2.jpeg",
   "reference_body": null,
   "measured_frame_wheelbase_range_mm": [
@@ -19,7 +19,7 @@
     304.0
   ],
   "measurement_reference": "refs/measurements.md",
-  "reference_note": "Near-1:1 pen tracing for a part absent from the original FreeCAD document",
+  "reference_note": "Analytic nominal design informed by the near-1:1 tracing of a part absent from the original FreeCAD document; scan irregularities are not reproduced.",
   "assumptions": [
     "Nominal A4 width 210 mm; user confirmed near-1:1 pen tracings",
     "3/5 mm nominal holes",
@@ -31,18 +31,18 @@
   "solid_count": 1,
   "mesh_validation": {
     "valid": true,
-    "triangles": 48348,
+    "triangles": 19804,
     "components": 1,
     "degenerate_faces": 0,
     "boundary_edges": 0,
     "nonmanifold_edges": 0,
     "winding_errors": 0
   },
-  "volume_mm3": 11604.699924038396,
+  "volume_mm3": 15599.886926570942,
   "dimensions_mm": [
-    67.26275628269306,
-    135.94878978988407,
-    2.5000001999999997
+    68.000000045664,
+    135.7491262185406,
+    2.5
   ],
   "mesh_linear_deflection_mm": 0.01,
   "mesh_angular_deflection_rad": 0.1,
@@ -54,10 +54,97 @@
     "rear-plate.dxf"
   ],
   "file_sha256": {
-    "rear-plate.step": "5903cba5bdc341b408c37c9feb9ee0a8d3fa8cc52ae6f4a5d2e9f75c6b6a4ac1",
-    "rear-plate.stl": "da055d1a3dee7878326c761b7d0dfbecfba13079c7dc0fd91b62eb3b3aa7072f",
-    "rear-plate.3mf": "4226aefdf122ad49bad2ee13061078ec96effa817f09b461fe5ab0c9903ac6ad",
-    "rear-plate.svg": "4800824609e2eaac55da3a515ecc5908b46a9b96defd1fe9df5f9f7d3ba54dd7",
-    "rear-plate.dxf": "679e143fa3a05df655831b5db18d2fa6d38db8dbbae6005c5c490c99f4d6b9f1"
-  }
+    "rear-plate.step": "7370664f9b983f0036dec6e8458d7b8cd708b47afb4f8de83db4ca7624b41d6a",
+    "rear-plate.stl": "1e81321e2a1b44b8bd48ced40301ed07a6f07b14c91f4ed8dbf2001b6e3701e5",
+    "rear-plate.3mf": "acb4c2ba47961f5b21fa52ecc9eb6fe5cf87efcc2c4660c2dfc11c711f52f187",
+    "rear-plate.svg": "fa31d53fcec3de49c3d15e8129e3a5fc5659c061cbc98c71f6bf5cdbbfadf8ae",
+    "rear-plate.dxf": "d831c9f026d207e0b4e44176f8e257185a58596d372c887b70f706e3f0c6b975"
+  },
+  "design_dimensions_mm": {
+    "corner_radius": 2.0,
+    "transition_radius": 1.0,
+    "top_shoulder_radius": 5.0,
+    "camera_datum_y": 61.25,
+    "camera_round_diameter": 18.5,
+    "camera_square_size": 15.0,
+    "camera_square_radius": 2.0,
+    "camera_slot_width": 11.5,
+    "camera_slot_height": 8.5,
+    "camera_slot_radius": 2.5,
+    "camera_slot_pitch": 42.0,
+    "rear_slot_width": 10.0,
+    "rear_slot_height": 7.0,
+    "rear_slot_radius": 2.0,
+    "rear_slot_pitch": 18.0,
+    "rear_first_slot_y": -47.0,
+    "cross_half_web": 2.0,
+    "cross_extent": 10.0,
+    "cross_corner_radius": 0.6,
+    "chevron_width": 8.0,
+    "chevron_height": 12.0,
+    "chevron_skew": 6.0,
+    "chevron_pitch": 20.0,
+    "chevron_first_y": -68.0,
+    "chevron_x": 9.5,
+    "chevron_corner_radius": 1.0
+  },
+  "mounting_hole_centers_mm": [
+    [
+      26.87126387509413,
+      18.334946158348174
+    ],
+    [
+      28.352110754731285,
+      31.975771603447974
+    ],
+    [
+      -26.87126387509413,
+      18.334946158348174
+    ],
+    [
+      -28.352110754731285,
+      31.975771603447974
+    ],
+    [
+      26.38033256658744,
+      -20.126651635228953
+    ],
+    [
+      25.72370375511555,
+      -33.27707290165941
+    ],
+    [
+      -26.38033256658744,
+      -20.126651635228953
+    ],
+    [
+      -25.72370375511555,
+      -33.27707290165941
+    ],
+    [
+      -15.25,
+      -15.25
+    ],
+    [
+      15.25,
+      -15.25
+    ],
+    [
+      -15.25,
+      15.25
+    ],
+    [
+      15.25,
+      15.25
+    ],
+    [
+      -16.5,
+      -94.0
+    ],
+    [
+      16.5,
+      -94.0
+    ]
+  ],
+  "datum": "Frame XY datum; X=0 is the bilateral symmetry axis; lower face Z=0"
 }

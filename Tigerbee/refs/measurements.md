@@ -1,30 +1,22 @@
 # Physical frame measurements
 
-The user has the actual frame and confirmed:
+The user confirmed approximately **303–304 mm between opposite motor-hole
+centers** on the physical frame. Both scans are near-1:1 A4 pen tracings with small
+drawing errors. These statements override 330 mm and 295 mm product-photo labels.
 
-- Opposite motor-hole **center-to-center** distances are approximately **303–304 mm**.
-  These are measurements across the assembled frame, not individual arm lengths.
-- Both scans were made by tracing the actual parts with a pen, approximately
-  1:1 on A4 paper. Small tracing errors are expected.
+The symmetric design specifies **303.5 mm** for both diagonals. This is a nominal
+engineering choice within the measured interval, not a claim of measurement
+precision. The strict audit measures motor bores in the actual solids and checks
+their diagonal lengths and equality. Historical fits used a 0.5 mm comparison
+allowance, which does not relax current structural mounting or symmetry checks.
 
-These statements take precedence over the 330 mm and 295 mm labels on product
-photos. The photos remain useful visual assembly references. Neither photo label
-is a dimension target for this physical frame.
+Tigerbee.FCStd and the supplied arm/camera 3MF files are the higher-priority source
+for those parts, including camera thickness 3 mm and arm thickness 5 mm. The latest
+request authorizes symmetry/interface corrections while retaining that foundation.
+The generated 3.2 mm structural bores, 0.6 mm central root gap and local equipment
+clearance notches are explicit design choices.
 
-The unextended reconstruction gives 302.592 mm and 303.986 mm diagonals. These
-are consistent with the approximate physical reading. Do not lengthen the arms
-to force agreement with a product-photo label.
-
-The automated comparison uses the reported 303–304 mm interval with a **working
-0.5 mm allowance** around its endpoints for the approximate reading. This allowance
-is an implementation assumption, not a user-confirmed instrument accuracy,
-manufacturing tolerance, or permission to alter hole positions by that amount.
-Precise interface fit remains a separate check.
-
-The user subsequently confirmed Tigerbee.FCStd as the latest valid geometry source.
-It defines nominal hole geometry and thicknesses for its three parts (camera plate
-3 mm; arms 5 mm). Physical measurements supplement this authority rather than
-replacing the user’s refinements with pen-trace estimates.
-
-Still unconfirmed for the assembly: the two Scan_2 plate thicknesses, vertical stack
-dimensions, standoff lengths, and bracket dimensions.
+Rear/top thicknesses, vertical stack, purchased standoffs, fasteners and brackets
+remain unconfirmed. The modeled stack assumes 2.5 mm rear/top plates, top underside
+Z=35 mm, six 24.5 mm standoffs and two 32.5 mm standoffs. Actual material, tolerances
+and physical fit must be established before production release.

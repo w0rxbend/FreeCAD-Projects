@@ -3,7 +3,7 @@
 import argparse
 from pathlib import Path
 
-from tigerbee.models import PARTS
+from tigerbee.models import DEFAULT_PARAMETERS, PARTS
 from tigerbee.presets import PRESETS, part_parameters
 
 
@@ -18,7 +18,7 @@ def main() -> None:
     )
     verify.add_argument("--directory", type=Path, default=Path("exports"))
     assembly = commands.add_parser(
-        "assembly", help="Build a provisional frame and report fit errors"
+        "assembly", help="Build the symmetric frame and audit geometric fit"
     )
     assembly.add_argument("--top-z", type=float, default=35.0)
     assembly.add_argument("--output", type=Path, default=Path("exports/assembly"))
@@ -31,7 +31,11 @@ def main() -> None:
     build.add_argument("--preset", choices=PRESETS, default="original")
     build.add_argument("--output", type=Path, default=Path("exports/parts"))
     build.add_argument("--thickness", type=float)
-    build.add_argument("--mounting-hole-diameter", type=float, default=3.0)
+    build.add_argument(
+        "--mounting-hole-diameter",
+        type=float,
+        default=DEFAULT_PARAMETERS.mounting_hole_diameter,
+    )
     build.add_argument("--center-hole-diameter", type=float)
     build.add_argument("--length-extension", type=float, default=0.0)
     arguments = parser.parse_args()
@@ -65,8 +69,8 @@ def main() -> None:
         except (ValueError, RuntimeError) as error:
             parser.exit(1, f"Assembly failed: {error}\n")
         wheelbases = ", ".join(f"{value:.2f}" for value in report["diagonal_wheelbases_mm"])
-        print(f"Built provisional assembly: wheelbases {wheelbases} mm -> {arguments.output}")
-        print("Fit is unresolved; see assembly-report.json before using these components.")
+        print(f"Built assembly: wheelbases {wheelbases} mm -> {arguments.output}")
+        print(f"Fit status: {report['status']}; see assembly-report.json for measured checks.")
         return
     if bool(arguments.part) == arguments.all:
         parser.error("Choose one part or --all")

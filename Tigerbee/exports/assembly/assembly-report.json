@@ -1,5 +1,6 @@
 {
-  "status": "provisional-assembly",
+  "status": "cad-fit-verified",
+  "physical_validation_status": "unconfirmed-stack-hardware-and-material",
   "units": "mm",
   "parameters": {
     "plate_thickness": 2.5,
@@ -9,25 +10,25 @@
   },
   "motor_centers_mm": {
     "front-right-arm": [
-      127.35419309850415,
-      81.73450547098915
+      127.5,
+      82.0
     ],
     "front-left-arm": [
-      -126.84855914926584,
-      83.76939903356858
-    ],
-    "rear-left-arm": [
-      -115.98138001944704,
-      -98.12608607084708
+      -127.5,
+      82.0
     ],
     "rear-right-arm": [
-      114.89360890375556,
-      -100.53465018611692
+      115.0,
+      -100.49931506720785
+    ],
+    "rear-left-arm": [
+      -115.0,
+      -100.49931506720785
     ]
   },
   "diagonal_wheelbases_mm": [
-    302.5921901411552,
-    303.9856219852306
+    303.5,
+    303.5
   ],
   "measured_wheelbase_range_mm": [
     303.0,
@@ -36,20 +37,30 @@
   "wheelbase_comparison_allowance_mm": 0.5,
   "wheelbase_reference": "refs/measurements.md",
   "authoritative_geometry_sources": {
-    "arm-type-1": "Tigerbee.FCStd#Body001",
-    "arm-type-2": "Tigerbee.FCStd#Body002",
-    "camera-plate": "Tigerbee.FCStd#Body",
-    "rear-plate": "refs/Scan_2.jpeg",
-    "top-plate": "refs/Scan_2.jpeg"
+    "arm-type-1": "Tigerbee.FCStd#Body001; mirrored pairs with filleted root clearances",
+    "arm-type-2": "Tigerbee.FCStd#Body002; mirrored pairs with filleted root clearances",
+    "camera-plate": "Tigerbee.FCStd#Body; symmetric analytic profile and shared axes",
+    "rear-plate": "refs/Scan_2.jpeg; nominal symmetric analytic design",
+    "top-plate": "refs/Scan_2.jpeg; nominal symmetric analytic design"
   },
   "wheelbase_matches_measurement": true,
   "mounting_errors_mm": {
-    "rear-plate-to-camera-plate": 0.7243057654253454,
-    "front-right-arm": 0.17957876413106538,
-    "front-left-arm": 0.4566616675171653,
-    "rear-left-arm": 0.3540283330992965,
-    "rear-right-arm": 0.07535103580375775,
-    "top-plate-to-standoffs": 0.7528965696453558
+    "front-right-arm-root-1": 0.0,
+    "front-right-arm-root-2": 0.0,
+    "front-left-arm-root-1": 0.0,
+    "front-left-arm-root-2": 0.0,
+    "rear-right-arm-root-1": 1.4210854715202004e-14,
+    "rear-right-arm-root-2": 0.0,
+    "rear-left-arm-root-1": 1.4210854715202004e-14,
+    "rear-left-arm-root-2": 0.0,
+    "front-support-1": 0.0,
+    "front-support-2": 0.0,
+    "rear-support-1": 0.0,
+    "rear-support-2": 0.0,
+    "electronics-1": 0.0,
+    "electronics-2": 0.0,
+    "electronics-3": 0.0,
+    "electronics-4": 0.0
   },
   "standoff_lengths_mm": [
     24.5,
@@ -61,44 +72,919 @@
     32.5,
     32.5
   ],
-  "interferences": [
-    {
-      "parts": [
-        "front-right-arm",
-        "front-left-arm"
+  "interferences": [],
+  "interference_volume_mm3": 0,
+  "geometry_audit": {
+    "passed": true,
+    "issues": [],
+    "thresholds": {
+      "axis_tolerance_mm": 1e-06,
+      "volume_tolerance_mm3": 1e-06,
+      "propeller_diameter_mm": 177.8,
+      "minimum_propeller_tip_gap_mm": 3.0,
+      "minimum_mounting_ligament_mm": 2.0,
+      "minimum_standoff_wall_mm": 1.0,
+      "wheelbase_range_mm": [
+        303.0,
+        304.0
       ],
-      "volume_mm3": 15.110375509377237
+      "equal_diagonal_tolerance_mm": 1e-06
     },
-    {
-      "parts": [
-        "rear-left-arm",
-        "rear-right-arm"
+    "symmetry_difference_mm3": {
+      "camera-plate/camera-plate": 0,
+      "rear-plate/rear-plate": 0,
+      "top-plate/top-plate": 0,
+      "front-left-arm/front-right-arm": 0,
+      "rear-left-arm/rear-right-arm": 0,
+      "standoff-01/standoff-02": 0,
+      "standoff-03/standoff-04": 0,
+      "standoff-05/standoff-06": 0,
+      "standoff-07/standoff-08": 0
+    },
+    "opening_checks": {
+      "rear-plate": {
+        "expected": 32,
+        "actual_by_face": [
+          32,
+          32
+        ]
+      },
+      "camera-plate": {
+        "expected": 31,
+        "actual_by_face": [
+          31,
+          31
+        ]
+      },
+      "front-right-arm": {
+        "expected": 8,
+        "actual_by_face": [
+          8,
+          8
+        ]
+      },
+      "front-left-arm": {
+        "expected": 8,
+        "actual_by_face": [
+          8,
+          8
+        ]
+      },
+      "rear-right-arm": {
+        "expected": 8,
+        "actual_by_face": [
+          8,
+          8
+        ]
+      },
+      "rear-left-arm": {
+        "expected": 8,
+        "actual_by_face": [
+          8,
+          8
+        ]
+      },
+      "top-plate": {
+        "expected": 30,
+        "actual_by_face": [
+          30,
+          30
+        ]
+      },
+      "standoff-01": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      },
+      "standoff-02": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      },
+      "standoff-03": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      },
+      "standoff-04": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      },
+      "standoff-05": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      },
+      "standoff-06": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      },
+      "standoff-07": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      },
+      "standoff-08": {
+        "expected": 1,
+        "actual_by_face": [
+          1,
+          1
+        ]
+      }
+    },
+    "interferences": [],
+    "fastener_axes": [
+      {
+        "name": "front-right-arm-root-1",
+        "x": 26.87126387509413,
+        "y": 18.334946158348174,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "front-right-arm",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "front-right-arm-root-2",
+        "x": 28.352110754731285,
+        "y": 31.975771603447974,
+        "z_min": 0,
+        "z_max": 37.5,
+        "members": [
+          "rear-plate",
+          "front-right-arm",
+          "camera-plate",
+          "standoff-04",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "front-left-arm-root-1",
+        "x": -26.87126387509413,
+        "y": 18.334946158348174,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "front-left-arm",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "front-left-arm-root-2",
+        "x": -28.352110754731285,
+        "y": 31.975771603447974,
+        "z_min": 0,
+        "z_max": 37.5,
+        "members": [
+          "rear-plate",
+          "front-left-arm",
+          "camera-plate",
+          "standoff-03",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "rear-right-arm-root-1",
+        "x": 26.38033256658744,
+        "y": -20.126651635228953,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "rear-right-arm",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "rear-right-arm-root-2",
+        "x": 25.72370375511555,
+        "y": -33.27707290165941,
+        "z_min": 0,
+        "z_max": 37.5,
+        "members": [
+          "rear-plate",
+          "rear-right-arm",
+          "camera-plate",
+          "standoff-06",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "rear-left-arm-root-1",
+        "x": -26.38033256658744,
+        "y": -20.126651635228953,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "rear-left-arm",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "rear-left-arm-root-2",
+        "x": -25.72370375511555,
+        "y": -33.27707290165941,
+        "z_min": 0,
+        "z_max": 37.5,
+        "members": [
+          "rear-plate",
+          "rear-left-arm",
+          "camera-plate",
+          "standoff-05",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "front-support-1",
+        "x": -19.25,
+        "y": 108.75,
+        "z_min": 7.5,
+        "z_max": 37.5,
+        "members": [
+          "camera-plate",
+          "standoff-01",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "front-support-2",
+        "x": 19.25,
+        "y": 108.75,
+        "z_min": 7.5,
+        "z_max": 37.5,
+        "members": [
+          "camera-plate",
+          "standoff-02",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "rear-support-1",
+        "x": -16.5,
+        "y": -94.0,
+        "z_min": 0,
+        "z_max": 37.5,
+        "members": [
+          "rear-plate",
+          "standoff-07",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "rear-support-2",
+        "x": 16.5,
+        "y": -94.0,
+        "z_min": 0,
+        "z_max": 37.5,
+        "members": [
+          "rear-plate",
+          "standoff-08",
+          "top-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "electronics-1",
+        "x": -15.25,
+        "y": -15.25,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "electronics-2",
+        "x": 15.25,
+        "y": -15.25,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "electronics-3",
+        "x": -15.25,
+        "y": 15.25,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      },
+      {
+        "name": "electronics-4",
+        "x": 15.25,
+        "y": 15.25,
+        "z_min": 0,
+        "z_max": 10.5,
+        "members": [
+          "rear-plate",
+          "camera-plate"
+        ],
+        "shaft_diameter": 3.0
+      }
+    ],
+    "joint_checks": [
+      {
+        "joint": "front-right-arm-root-1",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.976812886027045,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-right-arm-root-1",
+        "member": "front-right-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.3925506092252546,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-right-arm-root-1",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.8362049619930185,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-right-arm-root-2",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.7363377750324567,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-right-arm-root-2",
+        "member": "front-right-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.900000395764879,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-right-arm-root-2",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.504749106120944,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-right-arm-root-2",
+        "member": "standoff-04",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.3999999999999986,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "front-right-arm-root-2",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.047889245268713,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-left-arm-root-1",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.976812886027045,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-left-arm-root-1",
+        "member": "front-left-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.3925506092252546,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-left-arm-root-1",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.8362049619930185,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-left-arm-root-2",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.7363377750324567,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-left-arm-root-2",
+        "member": "front-left-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.900000395764879,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-left-arm-root-2",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.504749106120944,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-left-arm-root-2",
+        "member": "standoff-03",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.3999999999999986,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "front-left-arm-root-2",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.047889245268713,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-right-arm-root-1",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.50056664953286,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-right-arm-root-1",
+        "member": "rear-right-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.512498353952331,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-right-arm-root-1",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.586859005470653,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-right-arm-root-2",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.019251302334033,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-right-arm-root-2",
+        "member": "rear-right-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.004106360416621,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-right-arm-root-2",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.76503574924969,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-right-arm-root-2",
+        "member": "standoff-06",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.3999999999999986,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "rear-right-arm-root-2",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.6762962448844476,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-left-arm-root-1",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.500566649532858,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-left-arm-root-1",
+        "member": "rear-left-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 4.512498353952331,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-left-arm-root-1",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.5868590054706604,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-left-arm-root-2",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.0192513023340304,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-left-arm-root-2",
+        "member": "rear-left-arm",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.004106360416621,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-left-arm-root-2",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.76503574924969,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-left-arm-root-2",
+        "member": "standoff-05",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.3999999999999986,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "rear-left-arm-root-2",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.676296244884444,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-support-1",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.7459656655707043,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-support-1",
+        "member": "standoff-01",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.3999999999999986,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "front-support-1",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.6499999999999986,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-support-2",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.7459656655707043,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "front-support-2",
+        "member": "standoff-02",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.3999999999999986,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "front-support-2",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.6499999999999986,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-support-1",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.4961596025952066,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-support-1",
+        "member": "standoff-07",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.4000000000000004,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "rear-support-1",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.899999999999995,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-support-2",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 2.4961596025952066,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "rear-support-2",
+        "member": "standoff-08",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 1.3999999999999986,
+        "required_edge_ligament_mm": 1.0
+      },
+      {
+        "joint": "rear-support-2",
+        "member": "top-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 3.8999999999999986,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-1",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.951791399387092,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-1",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.951791399387092,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-2",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.951791399387092,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-2",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.951791399387092,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-3",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.823754274538175,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-3",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.823754274538175,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-4",
+        "member": "rear-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.823754274538175,
+        "required_edge_ligament_mm": 2.0
+      },
+      {
+        "joint": "electronics-4",
+        "member": "camera-plate",
+        "coaxial": true,
+        "shaft_interference_mm3": 0.0,
+        "hole_diameter_mm": 3.2,
+        "minimum_edge_ligament_mm": 8.823754274538175,
+        "required_edge_ligament_mm": 2.0
+      }
+    ],
+    "actual_motor_centers_mm": {
+      "front-left-arm": [
+        -127.5,
+        82.0
       ],
-      "volume_mm3": 62.5941920113344
-    }
-  ],
-  "interference_volume_mm3": 77.70456752071163,
+      "front-right-arm": [
+        127.5,
+        82.0
+      ],
+      "rear-left-arm": [
+        -115.0,
+        -100.49931506720785
+      ],
+      "rear-right-arm": [
+        115.0,
+        -100.49931506720785
+      ]
+    },
+    "diagonal_wheelbases_mm": [
+      303.5,
+      303.5
+    ],
+    "propeller_clearances": [
+      {
+        "motors": [
+          "front-left-arm",
+          "front-right-arm"
+        ],
+        "tip_gap_mm": 77.19999999999999
+      },
+      {
+        "motors": [
+          "front-left-arm",
+          "rear-left-arm"
+        ],
+        "tip_gap_mm": 5.1268979674667605
+      },
+      {
+        "motors": [
+          "front-left-arm",
+          "rear-right-arm"
+        ],
+        "tip_gap_mm": 125.69999999999999
+      },
+      {
+        "motors": [
+          "front-right-arm",
+          "rear-left-arm"
+        ],
+        "tip_gap_mm": 125.69999999999999
+      },
+      {
+        "motors": [
+          "front-right-arm",
+          "rear-right-arm"
+        ],
+        "tip_gap_mm": 5.1268979674667605
+      },
+      {
+        "motors": [
+          "rear-left-arm",
+          "rear-right-arm"
+        ],
+        "tip_gap_mm": 52.19999999999999
+      }
+    ],
+    "minimum_edge_ligament_mm": 1.3999999999999986,
+    "minimum_structural_edge_ligament_mm": 2.0192513023340304,
+    "minimum_standoff_wall_mm": 1.3999999999999986,
+    "scope": "CAD fit only; propeller discs assume a shared unobstructed plane. Edge ligaments and propeller gaps meet explicit design minima only. No material strength, manufacturing process, or flight qualification."
+  },
   "assumptions": [
-    "Top plate Z=35 mm is provisional",
-    "Standoffs represented as 6/3 mm tubes",
-    "Both scans are near-1:1 A4 pen tracings of the physical frame, with minor errors",
-    "Saved FreeCAD solids are the user's latest valid geometry for its three parts",
-    "Scan_2 supplies the two plates absent from the original FreeCAD document",
+    "Top plate Z=35 mm is a provisional stack choice",
+    "Standoffs represented as 6/3.2 mm tubes; hardware is not yet selected",
+    "Saved FreeCAD parts and root 3MFs define arm and camera design intent",
+    "Scan_2 supplies design intent for rear and top plates",
+    "Original tracings remain reference evidence, not manufacturing outlines",
     "User measured approximately 303\u2013304 mm between opposite motor-hole centers",
-    "Physical measurement supersedes the 330 mm and 295 mm product-photo labels",
-    "0.5 mm comparison allowance reflects approximate reading, not manufacturing tolerance",
-    "Original hole positions preserved; fit errors are not corrected",
-    "Fasteners and end brackets are not yet modeled"
+    "Both nominal diagonals are constrained to 303.5 mm",
+    "Left arms are mirrored matched copies of the right arms",
+    "Shared mounting axes replace independent imperfect hole fits",
+    "CAD fit does not establish carbon laminate strength or flight qualification"
   ],
-  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
-  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
+  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
+  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "06a5f8bae174996383949b20a184125a619770c2e76627a6c0ae10aebad58731",
-    "tigerbee-assembly.glb": "2a996ab9ada51068b34d2a29a6e52e67c1fdd99bbbb38fadb5d16d73d20115eb",
-    "tigerbee-isometric.svg": "bd6be0bd935f8fe1407905667de6de58f90798f6bf9b94d1661090282a6e4e22",
-    "tigerbee-top.svg": "2acfcd007493cb505fcf1ca65d4decdcf248319bf9ec1e4747884dbce39702c0",
-    "tigerbee-assembly.stl": "380d7542a83e7cb67cb30f7cf67a9660cbfecf36461ad33ceb29a62e5f6002bc",
-    "tigerbee-assembly.3mf": "83ab151cb042f0b3d84b4a4858306b12ce9a16438c935f254ba48f0f85893181"
+    "tigerbee-assembly.step": "d52d94a77c92e0fe29ca80c397377734094de3ec0a4d6645e9375aa5ddde35d6",
+    "tigerbee-assembly.glb": "84386ff31996e801bd63c62fad0938abdff94c14efc2419094b3700e1fd83584",
+    "tigerbee-isometric.svg": "fc9baf1ab4a7fd17b8637153a1ef4b670a2de7779e724a2cfa897bbed180d079",
+    "tigerbee-top.svg": "d93b02a87b615c9e2618af0ab833aa1a933705e1de2888ff033ecf9261735331",
+    "tigerbee-assembly.stl": "3892338cc18e036c2d7cc9e637d41a22511f8a1eaf3a235857b6674940f21833",
+    "tigerbee-assembly.3mf": "ec48fcec57fa5e139f1f27e179d0219143c6a37de71020a64bee6dc7878a3212"
   }
 }

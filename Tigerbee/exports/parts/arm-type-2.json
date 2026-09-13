@@ -3,15 +3,15 @@
   "units": "mm",
   "parameters": {
     "thickness": 5.0,
-    "mounting_hole_diameter": 3.0,
+    "mounting_hole_diameter": 3.2,
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
-  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
+  "source_revision": "ea002f5877e9da8ac576cf86827af71a2354d1d1",
+  "source_sha256": "93f15b2c6a13763c1b5e3069025cde6605942e1147699b03286267d0d20d63a3",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
-  "reference_status": "authoritative-freecad",
+  "reference_status": "symmetric-design-derived-from-reference",
   "authoritative_geometry_source": "Tigerbee.FCStd",
   "reference_body": "Body002",
   "measured_frame_wheelbase_range_mm": [
@@ -19,22 +19,22 @@
     304.0
   ],
   "measurement_reference": "refs/measurements.md",
-  "reference_note": "User-refined FreeCAD geometry takes precedence over its original pen tracing",
+  "reference_note": "FreeCAD and supplied 3MF define the design foundation; symmetry and shared interfaces are engineered in Python. Original reference files are preserved.",
   "assumptions": [],
   "valid": true,
   "solid_count": 1,
   "mesh_validation": {
     "valid": true,
-    "triangles": 7480,
+    "triangles": 7788,
     "components": 1,
     "degenerate_faces": 0,
     "boundary_edges": 0,
     "nonmanifold_edges": 0,
     "winding_errors": 0
   },
-  "volume_mm3": 12916.948433533755,
+  "volume_mm3": 12827.141227707381,
   "dimensions_mm": [
-    36.34665500002886,
+    35.68485420409484,
     170.76240899994482,
     5.0
   ],
@@ -48,10 +48,11 @@
     "arm-type-2.dxf"
   ],
   "file_sha256": {
-    "arm-type-2.step": "ed6e7095384efd224c8427842ab081d9380fc538db1632eb837c38e42b914ade",
-    "arm-type-2.stl": "8ee2f1c15bf92ed9de10ae8d242d9cb9ca1abaa43bccc52f077010c8d219bcd1",
-    "arm-type-2.3mf": "59503bf0a3947a7befe4c8ad6b3ff0765d88f53e9743f8ad910a6ff99de668fb",
-    "arm-type-2.svg": "6cf5bc6a525579ffda72747b40983d0eb2c5c26dcfbe1488e98f63da28eec42b",
-    "arm-type-2.dxf": "81e0006b8e7c6da5078b65b6581f1d73255f981b67331e1b26a04f24c3e05ef0"
-  }
+    "arm-type-2.step": "a095f80742484a832bada7353486e2b026554a30b545126e121b12237d497ca1",
+    "arm-type-2.stl": "2cf6cdea67608f3358bf2d2af761ebb2d7fcc294fd1ad3f94ac76a8f98020c8a",
+    "arm-type-2.3mf": "381891b931aad70faabce548b5197017891ed0a74262d0b484cb4629f4a94b1d",
+    "arm-type-2.svg": "c0f5dd1ae6e1d657484f70371258cd3d050cb77f69d62e5907f9b3b994abe8ac",
+    "arm-type-2.dxf": "01bcb70d2e268b2c7e0bf3e226174d9f1db239513de099282d767d830d3b82ab"
+  },
+  "datum": "Motor shaft center X=Y=0; shaft extends toward negative Y; lower face Z=0"
 }

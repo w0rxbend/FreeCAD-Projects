@@ -30,7 +30,7 @@ def test_exports_reopen_and_record_parameters(tmp_path):
     assert saved["valid"] is True
     assert saved["mesh_validation"]["valid"]
     assert saved["authoritative_geometry_source"] == "Tigerbee.FCStd"
-    assert saved["reference_status"] == "authoritative-freecad"
+    assert saved["reference_status"] == "symmetric-design-derived-from-reference"
 
 
 @pytest.mark.parametrize("name", ["arm-type-2", "camera-plate", "rear-plate", "top-plate"])
@@ -41,3 +41,37 @@ def test_every_component_export_is_valid(name, tmp_path):
     assert len(reopened.solids()) == 1
     assert reopened.volume == pytest.approx(report["volume_mm3"], abs=1e-3)
     assert report["mesh_validation"]["valid"]
+
+
+def test_cli_default_bores_match_assembly_components(tmp_path, monkeypatch):
+    import sys
+
+    from tigerbee.cli import main
+    from tigerbee.models import DEFAULT_PARAMETERS
+
+    monkeypatch.setattr(
+        sys, "argv", ["tigerbee", "build", "camera-plate", "--output", str(tmp_path)]
+    )
+    main()
+    saved = json.loads((tmp_path / "camera-plate.json").read_text())
+    assert (
+        saved["parameters"]["mounting_hole_diameter"] == DEFAULT_PARAMETERS.mounting_hole_diameter
+    )
+    assert saved["parameters"]["mounting_hole_diameter"] == 3.2
+
+
+def test_failed_geometry_cannot_be_exported_without_optional_fit_flag(tmp_path, monkeypatch):
+    from tigerbee import assembly
+    from tigerbee.export import export_frame
+
+    monkeypatch.setattr(
+        assembly,
+        "build_assembly",
+        lambda params: (
+            None,
+            {"geometry_audit": {"passed": False, "issues": ["blocked shaft passage"]}},
+        ),
+    )
+    with pytest.raises(ValueError, match="blocked shaft passage"):
+        export_frame(tmp_path)
+    assert not list(tmp_path.iterdir())

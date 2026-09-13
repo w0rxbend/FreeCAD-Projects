@@ -1,4 +1,4 @@
-"""Named manufacturing dimensions, with original geometry retained by default."""
+"""Thickness presets for the symmetric design; original means source thicknesses."""
 
 from dataclasses import replace
 

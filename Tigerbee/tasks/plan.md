@@ -1,69 +1,50 @@
-# Tigerbee implementation contract
+# Tigerbee symmetric design contract
 
 ## Objective
 
-Recreate each of the five frame components shown in Scan_1 and Scan_2 as separate
-build123d models, then build the final FPV frame assembly. Supply a modern Python
-project, local CLI, parameter presets, geometry tests, and GitHub Actions artifacts.
-Commit generated 3MF, STL, and native FCStd outputs as ordinary repository files.
-The target is the physical 7-inch Tiger Beetle, measured at approximately 303–304 mm
-between opposite motor-hole centers. Product-photo wheelbase labels are superseded.
+Refine all five frame components and their assembly into an analytic, symmetric,
+parametric CAD design. Fix the visible top/rear/camera plate irregularities,
+misaligned bores and protruding arm roots. Preserve the supplied FreeCAD/3MF
+foundation and make every canonical export reflect the same current geometry.
 
-## Capability map
+## Reference and modeling requirements
 
-| Module | Responsibility | Depends on |
-| --- | --- | --- |
-| project-tooling | Locked Python environment and developer checks | — |
-| tigerbee-models | Independent parametric profiles and solids | project-tooling |
-| cad-build | Selection, validation, exports and manifests | tigerbee-models |
-| cad-ci | Automated checks and build artifacts | cad-build |
+- Tigerbee.FCStd and the three supplied arm/camera 3MF files outrank Scan_1/Scan_2.
+- Preserve their design intent, camera central square opening and saved 5/3 mm thicknesses.
+- Use Scan_2 for the missing rear/top plate silhouettes, with nominal analytic features.
+- Do not use compare_a4 as an authority or a completion gate.
+- Every plate and each arm pair must mirror exactly across frame X=0.
+- Rear/top outlines and repeated openings use lines, tangent radii and circles.
+- Shared mounting coordinates must produce coaxial holes through every mating layer.
+- Four arms have equal diagonal wheelbases within the measured 303–304 mm interval.
+- Preserve arm motor and root patterns; relieve colliding root tips deliberately.
+- Keep dimensional parameters in Python, independent of generated CAD files.
+- Reject invalid dimensions, lost holes, split solids or disconnected features.
 
-Build order: arm type 1 end to end, arm type 2, camera-side plate, Scan_2
-plates, assembly. Verification and exports accompany each component.
+## Acceptance evidence
 
-## Modeling requirements
+- Independent Boolean reflection of complete plate solids and arm pairs.
+- Actual circular bore edges and unobstructed shaft passages through all clamp/support layers.
+- No positive-volume interference among any assembly components.
+- Actual mounting-edge ligament and 7-inch motor-to-motor propeller-disc clearances.
+- Exact intended opening counts and only analytic lines/circles in the engineered plates.
+- Source reference regressions, parameter variants, mesh audit and STEP round trips.
+- Regenerate all component and assembly STEP/3MF/STL/SVG/DXF/GLB outputs as applicable.
+- Save and reopen all six generated FCStd documents and verify source/output hashes.
+- Inspect freshly rendered component and assembled SVGs, not just test reports.
+- Run the full pytest suite, Ruff, mypy and package build; exercise strict assembly fit in CI.
 
-- Tigerbee.FCStd is the latest valid geometry source for its three parts.
-- Scan_2 supplies missing parts; physical wheelbase checks assembly size. See refs/SOURCES.md.
-- Geometry consists of lines, arcs, circles, periodic scan splines, and parameters.
-- No FreeCAD runtime or reference-file imports during normal model builds.
-- Existing FreeCAD solids are authoritative for the first three components, including
-  deliberate refinements beyond Scan_1 and their saved nominal thicknesses.
-- Preserve the user-refined saved FreeCAD geometry; do not undo refinements to match pen traces.
-- Millimeters throughout; local component datums and Z=0 lower face.
-- Thickness and selected hole dimensions must be editable independently.
-- Arm length changes must preserve mounting patterns rather than scale hole diameters.
-- Unsupported dimensions must fail before export.
-- Scan_2 profiles remain provisional until measurements establish their scale and fit.
-- Assembly must use confirmed mounting interfaces, quantities, and plate spacing.
-- An exploded layout alone does not satisfy the final assembly requirement.
+## Physical scope
 
-## Verification
-
-Test real CAD solids: validity, solid count, dimensions, hole locations, geometry
-deviation from the reference, parameter variants, and exported file round trips.
-Check tessellated exports independently for invalid indices, degeneracy, and edges.
-Store readable build metadata and visual projections with outputs.
-CI must run headlessly using the lockfile and the same CLI as local development.
-
-## Current assumptions and open measurements
-
-- Reproduce original geometry before redesigning parts.
-- Keep tooling local to Tigerbee until broader repository scope is requested.
-- Existing thicknesses: base plate 3 mm; arms 5 mm.
-- User confirmed both scans are near-1:1 A4 pen tracings with small drawing errors.
-- Scan_2 parts are named rear-plate and top-plate; local interface fit remains provisional.
-- Unextended assembly diagonals are 302.592 and 303.986 mm, consistent with physical readings.
-- Mounting offsets reach 0.753 mm; arm-root intersections total 77.70 mm³.
-- Confirm stacking order, vertical spacing, arm placements, and hardware dimensions.
-- Both 330 mm and 295 mm photo labels are superseded; thickness labels remain assumptions.
-- Material and manufacturing process are not established; geometric validity does
-  not establish mechanical strength or flight readiness.
+The geometry gate establishes nominal CAD fit. The two 2.5 mm plates, top underside
+Z=35 mm and simplified 6/3.2 mm standoffs are explicit design assumptions. Material,
+layup, machining tolerances, purchased hardware and physical fit/load tests remain
+necessary for a physical production release. Do not report those as measured or
+validated. End brackets require dimensions beyond the five supplied plate designs.
 
 ## Boundaries
 
-Preserve manual source files and sibling projects. Canonical CAD outputs go under
-tracked exports/ as regular Git files with source and output hashes checked in CI.
-Temporary variants go under ignored build/. GitHub artifacts supplement committed
-outputs. Workflow files live at the parent Git repository root.
-Do not publish releases or fabricate confirmed measurements.
+Preserve manual reference files and sibling projects. Canonical outputs go in
+tracked exports/ with source and file hashes. Experiments go under ignored build/.
+Do not publish a release or substitute an easier passing geometry for the actual
+requested symmetric, faithful frame.

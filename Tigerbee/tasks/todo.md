@@ -1,23 +1,27 @@
 # Implementation tasks
 
-- [x] Bootstrap locked uv project and smoke-test the CAD kernel.
-- [x] Extract reference profiles and independent regression baselines.
-- [x] Rebuild both arm types and camera plate; test geometry and parameter changes.
-- [x] Reconstruct both Scan_2 plates provisionally; record inferred dimensions.
-- [x] Implement component presets, batch builds, and mesh validation.
-- [x] Add GitHub Actions checks and artifact packaging; validate workflow locally.
-- [x] Generate and reopen native FreeCAD documents for five parts and assembly.
-- [x] Track canonical 3MF/STL/FCStd outputs with CI freshness checks.
-- [x] Build provisional assembly and report alignment and interference errors.
-- [x] Inspect component and assembly visuals; document commands and limits.
-- [x] Record both scans as near-1:1 pen tracings and physical 303–304 mm measurement.
-- [x] Audit arm swaps and face flips at current mounting pairs; retain historical report.
-- [x] Reconcile overall wheelbase with physical measurement; retain unextended arms.
-- [x] Make user-refined Tigerbee.FCStd authoritative for its three saved parts.
-- [x] Preserve the 3 mm FreeCAD camera plate in the default assembly.
-- [ ] Refine Scan_2 tracing errors and verify mounting placement against the FreeCAD parts.
-- [ ] Resolve mounting offsets and root collisions.
-- [ ] Confirm stacking, plate thicknesses, spacing, and hardware dimensions.
-- [ ] Model camera/end brackets and fasteners using confirmed dimensions.
-- [ ] Pass strict final assembly fit checks.
+- [x] Locked Python/build123d project, CLI, presets and export pipeline.
+- [x] Preserve original FreeCAD/3MF sources and independent STEP baselines.
+- [x] Reconstruct the original profiles explicitly for source regression checks.
+- [x] Replace rear/top scan irregularities with nominal analytic geometry.
+- [x] Mirror the camera CAD silhouette and preserve its refined openings.
+- [x] Restore all accessory features with symmetric nominal geometry.
+- [x] Share arm/plate/support coordinates; remove independent hole fitting.
+- [x] Mirror matched arm pairs with equal nominal 303.5 mm motor diagonals.
+- [x] Resolve root collisions and electronics fastener passages with rounded relief.
+- [x] Check actual-solid symmetry, axes, passages, interference and mounting ligaments.
+- [x] Check intended opening counts, tangent plate perimeters and 7-inch disc clearance.
+- [x] Guard invalid parameter variants and mismatched CLI bore defaults.
+- [x] Require passing actual-solid audit before every assembly export.
+- [x] Finish canonical regeneration, native reopen and final export inventory audit.
+- [x] Inspect final exported component and assembly views.
+- [x] Run the full final test suite (108 tests) and package/lint/type checks.
 - [ ] Verify GitHub Actions execution after the branch is pushed.
+
+Physical production release remains a separate unresolved part of the overall
+production-grade frame objective:
+
+- [ ] Confirm rear/top stock thickness, vertical stack and purchased standoffs.
+- [ ] Confirm bolt/nut and camera/end-bracket dimensions; model those accessories.
+- [ ] Establish material/layup and machining tolerances.
+- [ ] Validate manufactured fit and load performance.
