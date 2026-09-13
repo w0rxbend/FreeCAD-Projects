@@ -8,7 +8,9 @@ The target is the physical **Tiger Beetle 7-inch frame**, measured by the user a
 [physical measurements](refs/measurements.md) supersede the 330 mm and 295 mm
 labels on product photos. Both [Scan_1](refs/Scan_1.jpeg) and [Scan_2](refs/Scan_2.jpeg)
 are near-1:1 A4 pen tracings of the actual parts, with minor tracing errors.
-Existing manual FreeCAD solids are prior reconstructions to check against them.
+**`Tigerbee.FCStd` is the latest valid geometry source**, refined by the user from
+those scans. Its three saved parts, including added cutouts and nominal thicknesses,
+take precedence over Scan_1. Scan_2 supplies the two parts absent from that document.
 
 | Component | Current reconstruction | Default thickness |
 | --- | --- | --- |
@@ -69,7 +71,9 @@ are independent parameters. Unsupported parameter changes fail explicitly.
 ## Assembly status
 
 The assembly contains four arms, three plates, and eight simplified standoffs.
-It uses assumed 2.5 mm plates, 5 mm arms, and top-plate underside Z=35 mm.
+It preserves the FreeCAD camera plate at **3 mm** and arms at **5 mm**. The two
+Scan_2 plates remain assumed 2.5 mm, with top-plate underside at Z=35 mm. This gives
+six assumed 24.5 mm standoffs and two 32.5 mm standoffs.
 Its [fit report](exports/assembly/assembly-report.json) currently records:
 
 - Diagonal wheelbases of approximately 302.59 and 303.99 mm, consistent with
@@ -78,12 +82,13 @@ Its [fit report](exports/assembly/assembly-report.json) currently records:
 - Local tracing/fit discrepancies, unconfirmed stacking dimensions, and arm placement;
   end brackets and fasteners still need modeling.
 
-The scans define the intended shapes. The wheelbase comparison uses a documented
+The saved FreeCAD solids define the three existing parts; Scan_2 defines the
+remaining plate outlines. The wheelbase comparison uses a documented
 0.5 mm working allowance for the approximate measurement; this is not a manufacturing
 tolerance. Mounting offsets and interference still prevent a finished assembly.
-Current exports preserve reconstructed outlines and hole positions. A passing
-comparison with the old FreeCAD solids establishes reproduction of that model,
-not agreement with every physical interface.
+Current exports preserve the authoritative FreeCAD outlines, holes, and thicknesses.
+Passing the FreeCAD regression checks establishes reproduction of those parts;
+assembly placement and the two new plates still need separate fit validation.
 
 ## Verification and references
 

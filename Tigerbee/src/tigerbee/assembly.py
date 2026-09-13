@@ -55,14 +55,15 @@ class AssemblyParameters:
     """Stack dimensions in mm. Top height remains inferred from product photos."""
 
     plate_thickness: float = 2.5
+    camera_plate_thickness: float = 3.0
     arm_thickness: float = 5.0
     top_z: float = 35.0
 
     def validate(self) -> None:
-        for field in ("plate_thickness", "arm_thickness", "top_z"):
+        for field in ("plate_thickness", "camera_plate_thickness", "arm_thickness", "top_z"):
             if not isfinite(getattr(self, field)) or getattr(self, field) <= 0:
                 raise ValueError(f"{field} must be positive and finite")
-        if self.top_z <= 2 * self.plate_thickness + self.arm_thickness:
+        if self.top_z <= self.plate_thickness + self.arm_thickness + self.camera_plate_thickness:
             raise ValueError("top_z must be above the lower plates and arms")
 
 
@@ -135,7 +136,12 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
     camera_z = parameters.plate_thickness + parameters.arm_thickness
     parts = [
         locate(build_part("rear-plate", plate_params), rear_fit, 0, "rear-plate"),
-        locate(build_part("camera-plate", plate_params), camera_fit, camera_z, "camera-plate"),
+        locate(
+            build_part("camera-plate", PartParameters(thickness=parameters.camera_plate_thickness)),
+            camera_fit,
+            camera_z,
+            "camera-plate",
+        ),
     ]
     errors = {"rear-plate-to-camera-plate": rear_fit.max_error}
     motors = {}
@@ -172,7 +178,9 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
     errors["top-plate-to-standoffs"] = top_fit.max_error
     lengths = []
     for i, (x, y) in enumerate(supports):
-        bottom = parameters.plate_thickness if y < -80 else camera_z + parameters.plate_thickness
+        bottom = (
+            parameters.plate_thickness if y < -80 else camera_z + parameters.camera_plate_thickness
+        )
         length = parameters.top_z - bottom
         spacer = Pos(x, y, bottom) * extrude(Circle(3) - Circle(1.5), amount=length)
         spacer.label = f"standoff-{i + 1:02}"
@@ -192,7 +200,13 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
         "measured_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
         "wheelbase_comparison_allowance_mm": WHEELBASE_COMPARISON_ALLOWANCE_MM,
         "wheelbase_reference": MEASUREMENT_REFERENCE,
-        "authoritative_blueprints": ["refs/Scan_1.jpeg", "refs/Scan_2.jpeg"],
+        "authoritative_geometry_sources": {
+            "arm-type-1": "Tigerbee.FCStd#Body001",
+            "arm-type-2": "Tigerbee.FCStd#Body002",
+            "camera-plate": "Tigerbee.FCStd#Body",
+            "rear-plate": "refs/Scan_2.jpeg",
+            "top-plate": "refs/Scan_2.jpeg",
+        },
         "wheelbase_matches_measurement": wheelbase_matches_measurement(
             [
                 dist(motors["front-right-arm"], motors["rear-left-arm"]),
@@ -207,7 +221,8 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
             "Top plate Z=35 mm is provisional",
             "Standoffs represented as 6/3 mm tubes",
             "Both scans are near-1:1 A4 pen tracings of the physical frame, with minor errors",
-            "Saved FreeCAD solids are prior reconstructions, subordinate to the scans",
+            "Saved FreeCAD solids are the user's latest valid geometry for its three parts",
+            "Scan_2 supplies the two plates absent from the original FreeCAD document",
             "User measured approximately 303–304 mm between opposite motor-hole centers",
             "Physical measurement supersedes the 330 mm and 295 mm product-photo labels",
             "0.5 mm comparison allowance reflects approximate reading, not manufacturing tolerance",

@@ -3,6 +3,7 @@
   "units": "mm",
   "parameters": {
     "plate_thickness": 2.5,
+    "camera_plate_thickness": 3.0,
     "arm_thickness": 5.0,
     "top_z": 35.0
   },
@@ -34,10 +35,13 @@
   ],
   "wheelbase_comparison_allowance_mm": 0.5,
   "wheelbase_reference": "refs/measurements.md",
-  "authoritative_blueprints": [
-    "refs/Scan_1.jpeg",
-    "refs/Scan_2.jpeg"
-  ],
+  "authoritative_geometry_sources": {
+    "arm-type-1": "Tigerbee.FCStd#Body001",
+    "arm-type-2": "Tigerbee.FCStd#Body002",
+    "camera-plate": "Tigerbee.FCStd#Body",
+    "rear-plate": "refs/Scan_2.jpeg",
+    "top-plate": "refs/Scan_2.jpeg"
+  },
   "wheelbase_matches_measurement": true,
   "mounting_errors_mm": {
     "rear-plate-to-camera-plate": 0.7243057654253454,
@@ -48,12 +52,12 @@
     "top-plate-to-standoffs": 0.7528965696453558
   },
   "standoff_lengths_mm": [
-    25.0,
-    25.0,
-    25.0,
-    25.0,
-    25.0,
-    25.0,
+    24.5,
+    24.5,
+    24.5,
+    24.5,
+    24.5,
+    24.5,
     32.5,
     32.5
   ],
@@ -78,22 +82,23 @@
     "Top plate Z=35 mm is provisional",
     "Standoffs represented as 6/3 mm tubes",
     "Both scans are near-1:1 A4 pen tracings of the physical frame, with minor errors",
-    "Saved FreeCAD solids are prior reconstructions, subordinate to the scans",
+    "Saved FreeCAD solids are the user's latest valid geometry for its three parts",
+    "Scan_2 supplies the two plates absent from the original FreeCAD document",
     "User measured approximately 303\u2013304 mm between opposite motor-hole centers",
     "Physical measurement supersedes the 330 mm and 295 mm product-photo labels",
     "0.5 mm comparison allowance reflects approximate reading, not manufacturing tolerance",
     "Original hole positions preserved; fit errors are not corrected",
     "Fasteners and end brackets are not yet modeled"
   ],
-  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
-  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
+  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
+  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "518ef3dfaa2f2ff730f1716769e745b4e8745b85f7697a60b309aec7f644930f",
-    "tigerbee-assembly.glb": "bc061839d94f68e006ac7d4f171df5a5050533362162c8b9b095567401dc7030",
-    "tigerbee-isometric.svg": "9c7d86a9da87ae6d4194dcef085e34b5e7f89c76bf3aa3208115782517e32670",
+    "tigerbee-assembly.step": "06a5f8bae174996383949b20a184125a619770c2e76627a6c0ae10aebad58731",
+    "tigerbee-assembly.glb": "2a996ab9ada51068b34d2a29a6e52e67c1fdd99bbbb38fadb5d16d73d20115eb",
+    "tigerbee-isometric.svg": "bd6be0bd935f8fe1407905667de6de58f90798f6bf9b94d1661090282a6e4e22",
     "tigerbee-top.svg": "2acfcd007493cb505fcf1ca65d4decdcf248319bf9ec1e4747884dbce39702c0",
-    "tigerbee-assembly.stl": "3a222b6dc277f65340476d651b05405749c82bcc698304403a4597b321d75d8a",
-    "tigerbee-assembly.3mf": "1761857bde992d4b2ed79b02d19a910a403c77136d495b38cc22b5eb24befdba"
+    "tigerbee-assembly.stl": "380d7542a83e7cb67cb30f7cf67a9660cbfecf36461ad33ceb29a62e5f6002bc",
+    "tigerbee-assembly.3mf": "83ab151cb042f0b3d84b4a4858306b12ce9a16438c935f254ba48f0f85893181"
   }
 }

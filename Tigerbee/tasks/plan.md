@@ -23,12 +23,13 @@ plates, assembly. Verification and exports accompany each component.
 
 ## Modeling requirements
 
-- Physical measurements and near-1:1 pen tracings are authoritative; see refs/SOURCES.md.
+- Tigerbee.FCStd is the latest valid geometry source for its three parts.
+- Scan_2 supplies missing parts; physical wheelbase checks assembly size. See refs/SOURCES.md.
 - Geometry consists of lines, arcs, circles, periodic scan splines, and parameters.
 - No FreeCAD runtime or reference-file imports during normal model builds.
-- Existing FreeCAD solids provide a regression baseline for the first three components,
-  subordinate to the authoritative scans and final product photo.
-- Preserve the original saved geometry before addressing underconstraint or changing design.
+- Existing FreeCAD solids are authoritative for the first three components, including
+  deliberate refinements beyond Scan_1 and their saved nominal thicknesses.
+- Preserve the user-refined saved FreeCAD geometry; do not undo refinements to match pen traces.
 - Millimeters throughout; local component datums and Z=0 lower face.
 - Thickness and selected hole dimensions must be editable independently.
 - Arm length changes must preserve mounting patterns rather than scale hole diameters.

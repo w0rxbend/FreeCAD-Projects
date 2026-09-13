@@ -21,7 +21,10 @@ is an implementation assumption, not a user-confirmed instrument accuracy,
 manufacturing tolerance, or permission to alter hole positions by that amount.
 Precise interface fit remains a separate check.
 
-Still unmeasured: individual hole pitches/diameters, plate and arm thicknesses,
-vertical stack dimensions, standoff lengths, and bracket dimensions. Existing
-source geometry and earlier thickness labels remain documented assumptions for
-those details.
+The user subsequently confirmed Tigerbee.FCStd as the latest valid geometry source.
+It defines nominal hole geometry and thicknesses for its three parts (camera plate
+3 mm; arms 5 mm). Physical measurements supplement this authority rather than
+replacing the user’s refinements with pen-trace estimates.
+
+Still unconfirmed for the assembly: the two Scan_2 plate thicknesses, vertical stack
+dimensions, standoff lengths, and bracket dimensions.

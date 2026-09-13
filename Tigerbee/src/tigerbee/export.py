@@ -56,6 +56,7 @@ def export_component(
             raise RuntimeError(f"Missing or empty export: {output}")
     effective = asdict(parameters)
     effective["thickness"] = part.bounding_box().size.Z
+    reference = profile_data(name)
     manifest = {
         "part": name,
         "units": "mm",
@@ -63,17 +64,18 @@ def export_component(
         "source_revision": source_revision(),
         "source_sha256": source_digest(),
         "build123d": version("build123d"),
-        "reference_sha256": profile_data(name)["source_sha256"],
-        "reference_status": profile_data(name).get("status", "saved-freecad"),
-        "authoritative_blueprint": (
-            "refs/Scan_1.jpeg"
-            if name in ("arm-type-1", "arm-type-2", "camera-plate")
-            else "refs/Scan_2.jpeg"
-        ),
+        "reference_sha256": reference["source_sha256"],
+        "reference_status": reference.get("status", "authoritative-freecad"),
+        "authoritative_geometry_source": reference["source"],
+        "reference_body": reference.get("source_body"),
         "measured_frame_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
         "measurement_reference": MEASUREMENT_REFERENCE,
-        "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
-        "assumptions": profile_data(name).get("assumptions", []),
+        "reference_note": (
+            "User-refined FreeCAD geometry takes precedence over its original pen tracing"
+            if reference["source"] == "Tigerbee.FCStd"
+            else "Near-1:1 pen tracing for a part absent from the original FreeCAD document"
+        ),
+        "assumptions": reference.get("assumptions", []),
         "valid": part.is_valid,
         "solid_count": len(part.solids()),
         "mesh_validation": mesh_report,

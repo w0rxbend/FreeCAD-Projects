@@ -13,7 +13,9 @@
 - [x] Record both scans as near-1:1 pen tracings and physical 303–304 mm measurement.
 - [x] Audit arm swaps and face flips at current mounting pairs; retain historical report.
 - [x] Reconcile overall wheelbase with physical measurement; retain unextended arms.
-- [ ] Refine local tracing errors and verify mounting placement.
+- [x] Make user-refined Tigerbee.FCStd authoritative for its three saved parts.
+- [x] Preserve the 3 mm FreeCAD camera plate in the default assembly.
+- [ ] Refine Scan_2 tracing errors and verify mounting placement against the FreeCAD parts.
 - [ ] Resolve mounting offsets and root collisions.
 - [ ] Confirm stacking, plate thicknesses, spacing, and hardware dimensions.
 - [ ] Model camera/end brackets and fasteners using confirmed dimensions.

@@ -32,11 +32,12 @@ boxes. The maximum outer-boundary distance is approximately 1.20 mm on the
 camera-side plate. Scan_2 results describe the fidelity of an image-derived trace;
 they are not an independent validation against a physical part.
 
-## Feature differences
+## Feature differences and authority
 
 - The saved camera-side plate has an approximately **15 × 15 mm central rounded
   rectangular opening** absent from Scan_1. It remains preserved in the original
-  reconstruction; this difference is not a scale error.
+  reconstruction. The user confirmed that FreeCAD is the later, valid revision;
+  this opening is an accepted refinement, not an error to remove.
 - The rear-plate trace includes a **3 mm corner hole inferred by symmetry**, absent
   from Scan_2. Its inferred origin is recorded in the profile metadata.
 - Some motor mounting marks are pen dots or short strokes rather than complete

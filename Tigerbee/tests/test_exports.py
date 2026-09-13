@@ -29,6 +29,8 @@ def test_exports_reopen_and_record_parameters(tmp_path):
     assert saved["units"] == "mm"
     assert saved["valid"] is True
     assert saved["mesh_validation"]["valid"]
+    assert saved["authoritative_geometry_source"] == "Tigerbee.FCStd"
+    assert saved["reference_status"] == "authoritative-freecad"
 
 
 @pytest.mark.parametrize("name", ["arm-type-2", "camera-plate", "rear-plate", "top-plate"])

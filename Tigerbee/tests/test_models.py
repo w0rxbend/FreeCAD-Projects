@@ -1,17 +1,23 @@
 """Compare reconstructed geometry with independent saved FreeCAD STEP solids."""
 
+import hashlib
 from pathlib import Path
 
 import pytest
 from build123d import import_step
 
-from tigerbee.models import PARTS, PartParameters, build_part
+from tigerbee.models import PARTS, PartParameters, build_part, profile_data
 
 BASELINE = Path(__file__).resolve().parents[1] / "refs/baseline"
 
 
 @pytest.mark.parametrize("name", ["arm-type-1", "arm-type-2", "camera-plate"])
 def test_original_matches_freecad_solid(name):
+    source = BASELINE.parents[1] / "Tigerbee.FCStd"
+    assert profile_data(name)["source_sha256"] == hashlib.sha256(source.read_bytes()).hexdigest(), (
+        "Tigerbee.FCStd changed: regenerate the profiles and STEP baselines with "
+        "tools/extract_freecad.py, then rebuild the committed CAD exports"
+    )
     actual = build_part(name)
     reference = import_step(BASELINE / f"{name}.step")
     assert actual.is_valid
@@ -62,8 +68,6 @@ def test_scan_plate_has_valid_outline_and_all_openings(name, openings):
 
 @pytest.mark.parametrize("name", ["arm-type-1", "arm-type-2"])
 def test_arm_extension_preserves_motor_and_root_holes(name):
-    from tigerbee.models import profile_data
-
     original = build_part(name)
     longer = build_part(name, PartParameters(length_extension=20))
     assert longer.is_valid

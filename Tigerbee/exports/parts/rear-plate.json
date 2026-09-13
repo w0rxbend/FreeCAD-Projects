@@ -7,18 +7,19 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
-  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
+  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
+  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
   "reference_status": "provisional-scan",
-  "authoritative_blueprint": "refs/Scan_2.jpeg",
+  "authoritative_geometry_source": "refs/Scan_2.jpeg",
+  "reference_body": null,
   "measured_frame_wheelbase_range_mm": [
     303.0,
     304.0
   ],
   "measurement_reference": "refs/measurements.md",
-  "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
+  "reference_note": "Near-1:1 pen tracing for a part absent from the original FreeCAD document",
   "assumptions": [
     "Nominal A4 width 210 mm; user confirmed near-1:1 pen tracings",
     "3/5 mm nominal holes",
@@ -53,10 +54,10 @@
     "rear-plate.dxf"
   ],
   "file_sha256": {
-    "rear-plate.step": "faa36fdd10c78f2729642071a98b4c63ea4fe6e5f039cf86f26f5fa1b86c4a2e",
+    "rear-plate.step": "5903cba5bdc341b408c37c9feb9ee0a8d3fa8cc52ae6f4a5d2e9f75c6b6a4ac1",
     "rear-plate.stl": "da055d1a3dee7878326c761b7d0dfbecfba13079c7dc0fd91b62eb3b3aa7072f",
-    "rear-plate.3mf": "3708d90bc749220e1e6ea44a1bab1071258f82dd1b9d1c1ab63b9dcd062b126a",
+    "rear-plate.3mf": "4226aefdf122ad49bad2ee13061078ec96effa817f09b461fe5ab0c9903ac6ad",
     "rear-plate.svg": "4800824609e2eaac55da3a515ecc5908b46a9b96defd1fe9df5f9f7d3ba54dd7",
-    "rear-plate.dxf": "fea32553b560a815a1a35cb7e61dec71772704bb10efe9d17b57b32359733e11"
+    "rear-plate.dxf": "679e143fa3a05df655831b5db18d2fa6d38db8dbbae6005c5c490c99f4d6b9f1"
   }
 }

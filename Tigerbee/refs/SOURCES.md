@@ -1,18 +1,22 @@
 # Authoritative references
 
-Use the physical frame as dimension authority:
+The user explicitly confirmed that **`Tigerbee.FCStd` is the latest valid source
+of truth**, refined manually from the original scans. Preserve those refinements.
 
-1. [Physical measurements](measurements.md): approximately **303–304 mm** between
-   opposite motor-hole centers, confirmed by the user with the frame in hand.
-2. `Scan_1.jpeg`: near-1:1 A4 pen tracings of the two arm types and camera-side plate.
-3. `Scan_2.jpeg`: near-1:1 A4 pen tracings of the rear and top plates.
+1. `Tigerbee.FCStd`: authoritative geometry, openings, hole positions, and nominal
+   thicknesses for `Body` (camera plate, 3 mm), `Body001` (arm type 1, 5 mm), and
+   `Body002` (arm type 2, 5 mm). Where Scan_1 differs, the FreeCAD geometry wins.
+2. `Scan_2.jpeg`: near-1:1 A4 pen tracings for the rear and top plates, which are
+   absent from the original FreeCAD document. These reconstructions remain provisional.
+3. [Physical measurements](measurements.md): approximately 303–304 mm between
+   opposite motor-hole centers, used to check overall assembly size.
+4. `Scan_1.jpeg` and product photos: supporting historical and visual references.
 
-The user confirmed that the scans were drawn around the actual parts with a pen;
-minor tracing errors are expected. Exact hole diameters, pitches, thicknesses,
-and vertical spacing require separate measurements. Preserve their provenance.
-
-`Tigerbee.FCStd`, manual 3MF exports, and `baseline/*.step` are prior reconstructions.
-They provide regression baselines subordinate to physical measurements and scans.
+The central approximately 15 × 15 mm rounded rectangular opening in the saved
+camera plate is a valid user refinement. Its absence from the earlier pen trace
+is not a defect to remove. The original FreeCAD document is preserved; build123d
+reconstructs its saved solids and regression tests compare independent STEP baselines.
+Manual 3MF files and `baseline/*.step` are derivative references, not newer authority.
 
 ## Product photos
 
@@ -23,7 +27,8 @@ remain assumptions; image 07 depicts other variants.
 
 The unextended reconstruction measures 302.592 mm and 303.986 mm. It agrees with
 the approximate physical reading, so no arm extension is applied. Remaining
-mounting offsets and root collisions require local interface corrections.
+mounting offsets and root collisions require assembly/interface investigation while
+preserving the authoritative FreeCAD parts.
 
 ## Historical placement audit
 
@@ -41,4 +46,9 @@ source hash and assumptions rather than being rewritten as current evidence.
 
 The [registered scan/CAD comparison](analysis/a4-comparison.md) confirms that the
 saved Scan_1 image plane is effectively A4. It also identifies local feature
-differences, including a central plate opening absent from the original pen trace.
+differences, including the user-refined central plate opening absent from the
+earlier pen trace. These differences do not override the latest FreeCAD geometry.
+
+Geometry regression tests also compare each extracted profile's source hash with
+`Tigerbee.FCStd`. Editing the authoritative document makes those checks fail until
+profiles and independent STEP baselines are re-extracted and exports regenerated.

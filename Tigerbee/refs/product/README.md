@@ -13,3 +13,6 @@ Photos show four arms, overlapping lower plates clamping the roots, a raised
 slotted top plate, standoffs, and end brackets. They do not provide dimensioned
 standoff lengths or bracket drawings. Both scans are near-full-size pen tracings
 of the user’s actual frame parts.
+
+The user-refined `Tigerbee.FCStd` is the latest valid source for the three parts
+it contains; the photos and earlier pen tracings do not override its geometry.

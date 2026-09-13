@@ -7,18 +7,19 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
-  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
+  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
+  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
-  "reference_status": "saved-freecad",
-  "authoritative_blueprint": "refs/Scan_1.jpeg",
+  "reference_status": "authoritative-freecad",
+  "authoritative_geometry_source": "Tigerbee.FCStd",
+  "reference_body": "Body002",
   "measured_frame_wheelbase_range_mm": [
     303.0,
     304.0
   ],
   "measurement_reference": "refs/measurements.md",
-  "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
+  "reference_note": "User-refined FreeCAD geometry takes precedence over its original pen tracing",
   "assumptions": [],
   "valid": true,
   "solid_count": 1,
@@ -47,10 +48,10 @@
     "arm-type-2.dxf"
   ],
   "file_sha256": {
-    "arm-type-2.step": "de30b1c350a3396cee0b2cad4e25174e282f921ddad2e1cd24e359b3fddd4b05",
+    "arm-type-2.step": "ed6e7095384efd224c8427842ab081d9380fc538db1632eb837c38e42b914ade",
     "arm-type-2.stl": "8ee2f1c15bf92ed9de10ae8d242d9cb9ca1abaa43bccc52f077010c8d219bcd1",
-    "arm-type-2.3mf": "7795b38d80c5431397c77cde208b6795fd8b81f930fc23d9097d25ac02a3a9bc",
+    "arm-type-2.3mf": "59503bf0a3947a7befe4c8ad6b3ff0765d88f53e9743f8ad910a6ff99de668fb",
     "arm-type-2.svg": "6cf5bc6a525579ffda72747b40983d0eb2c5c26dcfbe1488e98f63da28eec42b",
-    "arm-type-2.dxf": "9fdca0c82dc77a9f861fa276e280244034d064b5b924a9966cf98a5013eb44ce"
+    "arm-type-2.dxf": "81e0006b8e7c6da5078b65b6581f1d73255f981b67331e1b26a04f24c3e05ef0"
   }
 }

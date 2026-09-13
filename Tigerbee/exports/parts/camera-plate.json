@@ -7,18 +7,19 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
-  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
+  "source_revision": "7e07003aa8c0d9d397a3d87709ca327bd26dde67",
+  "source_sha256": "291f671be37fe6d9f34ac8ec9e87b3c89a86168e77293af95887137d9e1c1fcb",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
-  "reference_status": "saved-freecad",
-  "authoritative_blueprint": "refs/Scan_1.jpeg",
+  "reference_status": "authoritative-freecad",
+  "authoritative_geometry_source": "Tigerbee.FCStd",
+  "reference_body": "Body",
   "measured_frame_wheelbase_range_mm": [
     303.0,
     304.0
   ],
   "measurement_reference": "refs/measurements.md",
-  "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
+  "reference_note": "User-refined FreeCAD geometry takes precedence over its original pen tracing",
   "assumptions": [],
   "valid": true,
   "solid_count": 1,
@@ -47,10 +48,10 @@
     "camera-plate.dxf"
   ],
   "file_sha256": {
-    "camera-plate.step": "758e5019b82aece30ce9f63c9e1b0819675b84d66d8b23bdcdb465839073b4d7",
+    "camera-plate.step": "bc32de7a645277aabd431d2152a179094cf15ca830135dad14f9c3ed36d193bd",
     "camera-plate.stl": "2283d17cde9d0085b6179783177c82ce25d2fe40876c6886bf0a0853b6dff906",
-    "camera-plate.3mf": "037bf16f0821c4773ba1f525b4628e930f92f4f25af73c7d6c5177731cfde80f",
+    "camera-plate.3mf": "cdc128d8346b0e2141435e52d064b945ded381b93f6e5664b762dd82a1bde051",
     "camera-plate.svg": "ae23e65ffc065f98af98e5df6307e86f5e982ad1a349c3ae30003a566aa4b6bd",
-    "camera-plate.dxf": "1c24bbf8634e35421909a244ffe8ae9cb01429ea53133ce8e8ea29a5dc31fb61"
+    "camera-plate.dxf": "1f44a762d0bc721fc7b779f8c4ec32ff542a8b6a451b0359fa55e2d87be26f80"
   }
 }

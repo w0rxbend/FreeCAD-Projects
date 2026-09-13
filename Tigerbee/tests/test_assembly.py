@@ -69,6 +69,25 @@ def test_actual_solid_motor_holes_match_the_physical_wheelbase_reading():
     assert diagonals == pytest.approx(report["diagonal_wheelbases_mm"], abs=1e-7)
 
 
+def test_default_assembly_preserves_authoritative_freecad_solids_and_thickness():
+    from tigerbee.models import build_part
+
+    assembly, report = build_assembly()
+    parts = {part.label: part for part in assembly.children}
+    for label, name in (
+        ("camera-plate", "camera-plate"),
+        ("front-right-arm", "arm-type-1"),
+        ("front-left-arm", "arm-type-2"),
+        ("rear-left-arm", "arm-type-1"),
+        ("rear-right-arm", "arm-type-2"),
+    ):
+        source = build_part(name)
+        assert parts[label].volume == pytest.approx(source.volume, abs=1e-6)
+        assert parts[label].bounding_box().size.Z == pytest.approx(source.bounding_box().size.Z)
+    assert report["parameters"]["camera_plate_thickness"] == 3
+    assert report["standoff_lengths_mm"] == pytest.approx([24.5] * 6 + [32.5] * 2)
+
+
 def test_final_fit_gate_rejects_hole_error_even_without_collision():
     report = {
         "interference_volume_mm3": 0,
