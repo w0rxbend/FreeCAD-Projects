@@ -1,40 +1,34 @@
 # Current state
 
-Updated2026-09-13. Core model/export/review complete. Final source refresh and
-latest hosted checks are in progress; no tagged release has been published.
+Updated2026-09-13. Implementation and verification are complete at release
+candidate d09c1e8d5cb011697d502f8a4fcb4773c7d879b1. Publication decision is pending.
 
-Confirmed evidence: original A4 tracings preserved, arms5mm, all3plates2mm.
-Shared coordinate system+Xright,+Yfront,+Zup; motor-centroidXY. Reference plates
-Z0–2,7–9,34–36mm. H25mm and nominal equipment remain explicit assumptions.
+Authoritative final evidence: artifacts/reports/final-acceptance.json and
+artifacts/reports/clean-rebuild.json. Local clean checkout passed203tests including
+nativeFreeCAD1.1.3, frozen sync, Ruff, strictmypy, build, all5presets, full export,
+drawing, selected-arm subset AND default all-format export, STEP-only export,
+both overlays, complete packaging and finalemptygitstatus. Manifestgit_dirty=false.
 
-Implemented: shared immutable parameters/interfaces; canonical handed arm;
-three symmetric plate builders; independent tubular standoff builder;15named
-parts; actual BREP topology/features/bores/symmetry/interference/clearance gates;
-nominal equipment envelopes; source overlays/fit report; all CLI commands;
-STEP/STL/3MF/SVG/FCStd native reopen; hashed metadata and complete release package.
+Hosted final-commit CI34780669616 and CAD34780669690 both succeeded. Downloaded
+bundle/release checksums verified; local and hosted15named-component volumes agree.
+Finaldeliverables: dist/step/fpv-frame.step, dist/freecad/fpv-frame.FCStd,
+dist/{stl,3mf,svg}, artifacts/overlays, artifacts/package/release-assets.
 
-Evidence:
-- Clean checkout1b9527d:193tests including nativeFreeCAD; frozen sync, Ruff, mypy,
-  build, all5presets, full export/drawing/selectedarm subset, overlays, package,
-  final gitstatusclean. Record:/tmp/tiger-v2-clean-7j5orqnn/summary.json.
-- Hosted same commit: CI34780185009 and CAD34780184980 succeeded; downloadable
-  complete CAD and release archives. CI191passed/2native skips; CAD ran native tests.
-- Later standoff-builder refactor148785a:21geometry/assembly tests pass, all5presets.
-- Independent acceptance review closes all critical geometry findings, including
-  full profile inventory/count and profile-to-solid extrusion checks.
-- Both overlays accepted with explicit root35×29mm departure from traced≈38×31mm.
-  Source marks≤0.70mm hole residual; actual mating bores≤2.85e-14mm alignment error.
+Both scans and all76PLAN sections independently reviewed. All critical findings
+closed, including profileinventory/count/volume gates, independent standoffbuilder,
+and provenance captured before stagingwrites. Original A4tracings unchanged;
+armstock5mm, all3plates2mm. Explicit assumptions remain H25mm, nominal equipment,
+and canonicalroot35×29mm correction versus traced≈38×31mm. See docs/manufacturing.md.
 
-Latest source must get refreshed clean metadata and hostedchecks before final
-acceptance. Exact all-format selected-arm and STEP-only CLI smokes remain to run.
-PLAN audit covers all76sections and named outputs in .agent/handoffs/plan-audit.md.
-Raw historical findings remain preserved; handoff-index.md identifies supersession.
+The coordinator asked one asynchronous final publication question: publish exact
+candidate d09c1e8 as GitHubReleasev0.1.0, or retain files without publication.
+No release/tag exists yet. Do not infer approval from elapsedtime. If approved,
+create annotatedv0.1.0 at that exactcommit, push tag, monitor the taggedworkflow,
+and verify published assetchecksums before completing the goal. If the user waives
+publication, that instruction revises the remaining scope. Fullgoal stays active
+until the requested final state is resolved.
 
-Git root: parent FreeCAD-Projects. Local branchfeature/tigerbee-build123d;
-remote delivery branchfeature/tigerbeetle-v2. Three active parenttigerbeetle-v2-*
-workflows preserve existing tigerbee.yml. No merge or tag has been performed.
-
-Baseline1b9527d export falsely recorded git_dirty=true because its own staging
-directory existed during provenance capture. That metadata defect is now fixed;
-18 export tests pass, including initially clean/dirty state and actualFreeCAD.
-Final clean checkout must explicitly assert git_dirty=false before acceptance.
+Gitroot: parentFreeCAD-Projects. Localfeature/tigerbee-build123d; remote delivery
+feature/tigerbeetle-v2. Three active parenttigerbeetle-v2-* workflows preserve the
+existingtigerbee.yml. Final audit-record updates may be newer than candidate;
+they must not silently change the approved release target.

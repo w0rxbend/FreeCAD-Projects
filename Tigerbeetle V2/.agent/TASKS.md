@@ -11,9 +11,10 @@
 - [x] Required documentation, explicit reconstruction/physical assumptions.
 - [x] Active parent CI/CAD/release workflows; complete inventory packager.
 - [x] Independent geometric review; baseline193test clean suite and all5preset reports.
-- [active] Final-source clean rebuild/export/package after standoff and provenance fixes (baseline passed).
-- [active] Latest-source hosted CI/CAD (baseline1b9527d both passed).
-- [pending] Final PLAN requirement-by-requirement audit and publication state.
+- [x] Finald09c1e8 clean rebuild:203tests, allcommands, completepackage, truthfulgitprovenance.
+- [x] Finald09c1e8 hostedCI34780669616 and CAD34780669690 bothpass; downloadedchecksumsverified.
+- [x] Full76-sectionPLAN audit; all implementation/review findings closed.
+- [pending] Userdecision on publishingv0.1.0 atd09c1e8; then taggedworkflow and assetverification.
 
 Keep inferred hardware and corrected root geometry explicit. No assertion of
 physical stock/process strength or compatibility with unspecified equipment.

@@ -193,3 +193,7 @@ baseline local job does not establish those outcomes or waive verification of
 the later standoff/provenance changes.
 
 Coordinator provenance closure: snapshot now occurs before directory/staging writes; two negative regressions first failed then passed, and all18export tests (actualFreeCAD included) pass. Final cleanmanifest assertion remains in the clean-run acceptance script.
+
+## Final candidate verification
+
+Candidate d09c1e8 passed cleancheckout203tests including nativeFreeCAD1.1.3, all five presets, full export/drawing, exact STEP-only and default all-format selected-arm CLI commands, both overlays, complete package and emptygitstatus. Manifestgit_dirty=false is explicitly asserted. HostedCI34780669616 and CAD34780669690 bothpassed; downloadedchecksums and local/hosted componentvolumes verified. Current machine-readable evidence is artifacts/reports/final-acceptance.json. All implementation/audit defects are closed. Only the userdecision on taggedpublication remains; coordinator asked for approval to publish exactd09c1e8 asv0.1.0. No tag/release is claimed yet.
