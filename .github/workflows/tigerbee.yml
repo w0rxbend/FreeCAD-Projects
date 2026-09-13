@@ -52,18 +52,37 @@ jobs:
         run: uv run --locked tigerbee build --all
       - name: Build symmetric assembly and require geometric fit
         run: uv run --locked tigerbee assembly --require-fit
-      - name: Install native FreeCAD exporter
+      - name: Install FreeCAD 1.1.3 native exporter
+        env:
+          FREECAD_APPIMAGE_SHA256: 3a853eb69ee595f779f2255dbf80a765926981d8ff68903cefee4dfb03a8f5ef
         run: |
-          sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends freecad-python3
+          # Ubuntu 22.04's FreeCAD 0.19 crashes when importing the assembly STEP.
+          # Extract the official bundle so the headless runner does not need FUSE.
+          freecad_dir="$RUNNER_TEMP/freecad-1.1.3"
+          mkdir -p "$freecad_dir/bin"
+          cd "$freecad_dir"
+          curl --fail --location --retry 3 --output FreeCAD.AppImage \
+            https://github.com/FreeCAD/FreeCAD/releases/download/1.1.3/FreeCAD_1.1.3-Linux-x86_64-py311.AppImage
+          printf '%s  FreeCAD.AppImage\n' "$FREECAD_APPIMAGE_SHA256" | sha256sum --check --strict
+          chmod +x FreeCAD.AppImage
+          ./FreeCAD.AppImage --appimage-extract > extract.log
+          cat > bin/FreeCADCmd <<'SH'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          freecad_dir="$(cd "$(dirname "$0")/.." && pwd)"
+          exec "$freecad_dir/squashfs-root/AppRun" freecadcmd "$@"
+          SH
+          chmod +x bin/FreeCADCmd
+          printf '%s\n' "$freecad_dir/bin" >> "$GITHUB_PATH"
       - name: Generate and reopen FreeCAD documents
         run: uv run --locked tigerbee native
       - name: Build Python distribution
         run: uv build
       - name: Upload models and reports
+        if: ${{ always() && !cancelled() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: tigerbee-provisional-${{ github.sha }}
+          name: tigerbee-${{ job.status }}-${{ github.sha }}
           path: |
             Tigerbee/exports/
             Tigerbee/build/tests.xml
