@@ -1,0 +1,1170 @@
+{
+  "schema_version": 1,
+  "analysis": {
+    "role": "Scan 2 independent analyst",
+    "status": "observations_complete_calibration_unresolved",
+    "independent_of_scan_1": true,
+    "coordinate_system": "Original image pixels: origin upper-left; +u right; +v down. These are measurement coordinates, not CAD datums.",
+    "method": "Visual inspection with view_image at original resolution; source dimensions read from JPEG SOF; red-stroke connected components used only to locate feature bounds, never to trace a CAD profile. Color predicate R>G+35, R>B+20, G<190 with 8-neighbor connectivity. Feature IDs assigned by visual inspection. Coordinates rounded to whole pixels; practical selection uncertainty ~5 px, larger for ambiguous marks.",
+    "source_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
+    "original_unchanged": true,
+    "calibration_status": "unresolved",
+    "physical_dimensions_known": false,
+    "precision_policy": "All geometric measurements below are pixels unless explicitly labeled otherwise. Candidate standards are hypotheses only. No absolute CAD scale can be accepted from this scan alone."
+  },
+  "image_dimensions": {
+    "value": [
+      2480,
+      3508
+    ],
+    "unit": "px",
+    "source": [
+      "Scan_2.jpeg"
+    ],
+    "confidence": "known",
+    "method": "direct_measurement",
+    "notes": "JPEG SOF dimensions, width then height; not physical page dimensions."
+  },
+  "physical_scale": {
+    "value": null,
+    "unit": "px/mm",
+    "source": [
+      "Scan_2.jpeg"
+    ],
+    "confidence": "estimated",
+    "method": "estimated",
+    "notes": "No ruler, dimension annotation, known part number, or independently confirmed mechanical standard is visible."
+  },
+  "components": {
+    "broad_plate": {
+      "identity": {
+        "value": "planar plate; candidate bottom/main plate",
+        "unit": "classification",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "estimated",
+        "alternatives": [
+          "top plate",
+          "a subplate of a layered central body"
+        ]
+      },
+      "orientation": {
+        "value": null,
+        "unit": "orientation",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated",
+        "notes": "Broad end is at smaller v; narrow three-slot tail at larger v. Front/rear and top/bottom faces are not identifiable from this scan alone."
+      },
+      "bounds": {
+        "value": [
+          288,
+          1660,
+          1090,
+          3276
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "uncertainty_px": 10
+      },
+      "symmetry_axis": {
+        "value": {
+          "point": [
+            681,
+            2468
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "inferred_from_symmetry",
+        "uncertainty_px": 12,
+        "notes": "Approximate image centerline only. Paired-feature midpoints drift from ~685 near upper end to ~675 near lower end; rectify or fit axis before overlay. Intent appears bilateral, not front/rear symmetric."
+      },
+      "profile_description": "Broad rounded shoulder/head, concave waists around central paired large holes; narrows into a long tail carrying three rounded rectangular axial cutouts; scalloped/forked lower end. Sparse analytical segments and mirrored half-profile should replace handwritten edge irregularities.",
+      "holes": {
+        "upper_left": {
+          "value": {
+            "center": [
+              350,
+              1718
+            ],
+            "stroke_outer_diameter": 28
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "outer_upper_left": {
+          "value": {
+            "center": [
+              370,
+              1878
+            ],
+            "stroke_outer_diameter": 19
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "axis_upper": {
+          "value": {
+            "center": [
+              685,
+              1883
+            ],
+            "stroke_outer_diameter": 29
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "outer_upper_right": {
+          "value": {
+            "center": [
+              1011,
+              1885
+            ],
+            "stroke_outer_diameter": 19
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "square_upper_left": {
+          "value": {
+            "center": [
+              506,
+              1913
+            ],
+            "stroke_outer_diameter": 23
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "square_upper_right": {
+          "value": {
+            "center": [
+              870,
+              1917
+            ],
+            "stroke_outer_diameter": 20
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "large_left": {
+          "value": {
+            "center": [
+              354,
+              2093
+            ],
+            "stroke_outer_diameter": 53
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "extra_left": {
+          "value": {
+            "center": [
+              471,
+              2092
+            ],
+            "stroke_outer_diameter": 28
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "large_right": {
+          "value": {
+            "center": [
+              1016,
+              2101
+            ],
+            "stroke_outer_diameter": 54
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "square_lower_left": {
+          "value": {
+            "center": [
+              507,
+              2275
+            ],
+            "stroke_outer_diameter": 20
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "square_lower_right": {
+          "value": {
+            "center": [
+              865,
+              2280
+            ],
+            "stroke_outer_diameter": 41
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "outer_lower_left": {
+          "value": {
+            "center": [
+              372,
+              2324
+            ],
+            "stroke_outer_diameter": 20
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "axis_lower": {
+          "value": {
+            "center": [
+              686,
+              2310
+            ],
+            "stroke_outer_diameter": 24
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "outer_lower_right": {
+          "value": {
+            "center": [
+              999,
+              2335
+            ],
+            "stroke_outer_diameter": 23
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "shoulder_left": {
+          "value": {
+            "center": [
+              371,
+              2486
+            ],
+            "stroke_outer_diameter": 29
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "shoulder_right": {
+          "value": {
+            "center": [
+              990,
+              2495
+            ],
+            "stroke_outer_diameter": 28
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "tail_inner_left": {
+          "value": {
+            "center": [
+              559,
+              2985
+            ],
+            "stroke_outer_diameter": 27
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "tail_inner_right": {
+          "value": {
+            "center": [
+              794,
+              2988
+            ],
+            "stroke_outer_diameter": 27
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "tail_outer_left": {
+          "value": {
+            "center": [
+              496,
+              3046
+            ],
+            "stroke_outer_diameter": 28
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "tail_outer_right": {
+          "value": {
+            "center": [
+              855,
+              3052
+            ],
+            "stroke_outer_diameter": 30
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "tail_axis": {
+          "value": {
+            "center": [
+              675,
+              3169
+            ],
+            "stroke_outer_diameter": 28
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "tail_tip_left": {
+          "value": {
+            "center": [
+              480,
+              3207
+            ],
+            "stroke_outer_diameter": 29
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "tail_tip_right": {
+          "value": {
+            "center": [
+              869,
+              3212
+            ],
+            "stroke_outer_diameter": 28
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        }
+      },
+      "central_cutouts": {
+        "value": {
+          "count": 4,
+          "bounds": [
+            [
+              570,
+              1979,
+              666,
+              2075
+            ],
+            [
+              707,
+              1982,
+              801,
+              2078
+            ],
+            [
+              570,
+              2114,
+              665,
+              2214
+            ],
+            [
+              702,
+              2117,
+              802,
+              2214
+            ]
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Four curved triangular/quadrant cutouts leave a solid cross between them. Do not interpret as one cross-shaped void; oversketched bottom-right corner is uncertain."
+      },
+      "axial_slots": {
+        "value": {
+          "count": 3,
+          "bounds": [
+            [
+              615,
+              2611,
+              744,
+              2703
+            ],
+            [
+              614,
+              2823,
+              742,
+              2916
+            ],
+            [
+              611,
+              3036,
+              740,
+              3129
+            ]
+          ],
+          "centers": [
+            [
+              680,
+              2657
+            ],
+            [
+              678,
+              2869
+            ],
+            [
+              675,
+              3082
+            ]
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Rounded rectangular cutouts, roughly 129\u00d793 px outer stroke bounds. Their function (strap/access/interface) is unknown; no mating tabs established."
+      },
+      "nominal_hole_mark_count": {
+        "value": 23,
+        "unit": "count",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Counts visible separate circular/C-shaped marks, including partially open marks; not final manufacturing hole count. An upper-right counterpart to upper_left is absent."
+      }
+    },
+    "long_plate": {
+      "identity": {
+        "value": "elongated planar plate; candidate top plate",
+        "unit": "classification",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "estimated",
+        "alternatives": [
+          "bottom plate",
+          "brace or alternate main-body plate"
+        ]
+      },
+      "orientation": {
+        "value": null,
+        "unit": "orientation",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated",
+        "notes": "Wide open fork at smaller v, narrower semicircular fork at larger v. Front/rear and top/bottom face are unconfirmed."
+      },
+      "bounds": {
+        "value": [
+          1393,
+          693,
+          2283,
+          3219
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "uncertainty_px": 10
+      },
+      "symmetry_axis": {
+        "value": {
+          "point": [
+            1846,
+            1956
+          ],
+          "direction": [
+            0,
+            1
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "inferred_from_symmetry",
+        "uncertainty_px": 15,
+        "notes": "Paired midpoints drift from ~1835 at upper tips to ~1860 at lower tips. Expected bilateral symmetry; slight scan rotation/manual skew must not become asymmetric CAD."
+      },
+      "profile_description": "Two open forks of different width, prominent paired lateral lobes carrying holes at several stations, two smaller paired side bumps without clear holes, long narrow central body. Six pairs of diagonal rounded quadrilateral cutouts leave a continuous central spine.",
+      "holes": {
+        "upper_tip_left": {
+          "value": {
+            "center": [
+              1610,
+              755
+            ],
+            "stroke_outer_diameter": 32
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "upper_tip_right": {
+          "value": {
+            "center": [
+              2060,
+              752
+            ],
+            "stroke_outer_diameter": 29
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "upper_large_left": {
+          "value": {
+            "center": [
+              1512,
+              968
+            ],
+            "stroke_outer_diameter": 57
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "upper_large_right": {
+          "value": {
+            "center": [
+              2158,
+              964
+            ],
+            "stroke_outer_diameter": 54
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "upper_lobe_left": {
+          "value": {
+            "center": [
+              1469,
+              1297
+            ],
+            "stroke_outer_diameter": 56
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "upper_lobe_right": {
+          "value": {
+            "center": [
+              2208,
+              1292
+            ],
+            "stroke_outer_diameter": 57
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "axis": {
+          "value": {
+            "center": [
+              1838,
+              1243
+            ],
+            "stroke_outer_diameter": 55
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "middle_lobe_left": {
+          "value": {
+            "center": [
+              1507,
+              1670
+            ],
+            "stroke_outer_diameter": 30
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "middle_lobe_right": {
+          "value": {
+            "center": [
+              2181,
+              1665
+            ],
+            "stroke_outer_diameter": 31
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "lower_lobe_left": {
+          "value": {
+            "center": [
+              1540,
+              2437
+            ],
+            "stroke_outer_diameter": 31
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "lower_lobe_right": {
+          "value": {
+            "center": [
+              2161,
+              2431
+            ],
+            "stroke_outer_diameter": 31
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "lower_tip_left": {
+          "value": {
+            "center": [
+              1665,
+              3156
+            ],
+            "stroke_outer_diameter": 33
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        },
+        "lower_tip_right": {
+          "value": {
+            "center": [
+              2054,
+              3154
+            ],
+            "stroke_outer_diameter": 31
+          },
+          "unit": "px",
+          "source": [
+            "Scan_2.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement",
+          "uncertainty_px": 5,
+          "notes": "Diameter is the bounding extent of the red stroke, not a calibrated physical bore diameter."
+        }
+      },
+      "upper_polygon_cutouts": {
+        "value": {
+          "count": 2,
+          "bounds": [
+            [
+              1632,
+              1176,
+              1756,
+              1283
+            ],
+            [
+              1921,
+              1174,
+              2044,
+              1279
+            ]
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "upper_center_cutout": {
+        "value": {
+          "bounds": [
+            1785,
+            1319,
+            1898,
+            1450
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "low",
+        "method": "direct_measurement",
+        "notes": "Outline resembles a rounded rectangle with indented lower edge, but crossing strokes obscure its true bottom topology. Requires independent review."
+      },
+      "upper_long_slots": {
+        "value": {
+          "count": 2,
+          "bounds": [
+            [
+              1652,
+              1359,
+              1722,
+              1581
+            ],
+            [
+              1959,
+              1356,
+              2030,
+              1580
+            ]
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Longitudinal side cutouts with slanted/rounded ends, not proven mating slots."
+      },
+      "diagonal_cutout_rows": {
+        "value": {
+          "count": 6,
+          "paired_bounds": [
+            [
+              [
+                1662,
+                1621,
+                1784,
+                1811
+              ],
+              [
+                1905,
+                1627,
+                2027,
+                1808
+              ]
+            ],
+            [
+              [
+                1665,
+                1857,
+                1787,
+                2047
+              ],
+              [
+                1906,
+                1860,
+                2029,
+                2045
+              ]
+            ],
+            [
+              [
+                1666,
+                2093,
+                1789,
+                2284
+              ],
+              [
+                1908,
+                2103,
+                2032,
+                2282
+              ]
+            ],
+            [
+              [
+                1716,
+                2313,
+                1809,
+                2474
+              ],
+              [
+                1891,
+                2316,
+                1987,
+                2470
+              ]
+            ],
+            [
+              [
+                1716,
+                2548,
+                1811,
+                2705
+              ],
+              [
+                1894,
+                2542,
+                1989,
+                2702
+              ]
+            ],
+            [
+              [
+                1724,
+                2774,
+                1814,
+                2934
+              ],
+              [
+                1897,
+                2774,
+                1992,
+                2933
+              ]
+            ]
+          ]
+        },
+        "unit": "px",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "First three rows wider/taller than last three. Mirror intended shapes around shared centerline; ignore scratches and small stroke gaps, including open top of first right cutout."
+      },
+      "nominal_hole_mark_count": {
+        "value": 13,
+        "unit": "count",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement",
+        "notes": "Distinct circular marks. Drawing does not establish actual bore sizes or threaded/clearance roles."
+      }
+    }
+  },
+  "calibration_candidates": {
+    "broad_plate_inner_square": {
+      "value": {
+        "centers": [
+          [
+            506,
+            1913
+          ],
+          [
+            870,
+            1917
+          ],
+          [
+            507,
+            2275
+          ],
+          [
+            865,
+            2280
+          ]
+        ],
+        "edge_distances": [
+          364,
+          358,
+          362,
+          363
+        ],
+        "approximate_pitch": 362
+      },
+      "unit": "px",
+      "source": [
+        "Scan_2.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement",
+      "uncertainty_px": 8,
+      "notes": "Strongest candidate square bolt pattern. Candidate 20 mm => ~18.1 px/mm; candidate 30.5 mm => ~11.9 px/mm. Neither confirmed. Oversized lower-right drawn circle demonstrates unreliable diameter inference."
+    },
+    "broad_plate_large_bores": {
+      "value": {
+        "centers": [
+          [
+            354,
+            2093
+          ],
+          [
+            1016,
+            2101
+          ]
+        ],
+        "stroke_outer_diameters": [
+          53,
+          54
+        ]
+      },
+      "unit": "px",
+      "source": [
+        "Scan_2.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement",
+      "notes": "Could test an independently confirmed bore diameter. Do not equate the ink exterior with nominal M3 diameter: stroke thickness and hand tracing dominate."
+    },
+    "long_plate_lobe_spans": {
+      "value": {
+        "upper_tip_pair": 450,
+        "upper_large_pair": 646,
+        "upper_lobe_pair": 739,
+        "middle_lobe_pair": 674,
+        "lower_lobe_pair": 621,
+        "lower_tip_pair": 389
+      },
+      "unit": "px",
+      "source": [
+        "Scan_2.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement",
+      "uncertainty_px": 10,
+      "notes": "Candidate cross-scan matching anchors only; their engineering sizes are unknown. Values are approximate horizontal center separations."
+    },
+    "document_shape": {
+      "value": {
+        "pixel_width": 2480,
+        "pixel_height": 3508
+      },
+      "unit": "px",
+      "source": [
+        "Scan_2.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement",
+      "notes": "Image aspect resembles an A-series page, but neither paper size nor scan resolution nor resize history is known. Do not adopt 300 dpi as calibration evidence."
+    }
+  },
+  "known_standards": {
+    "status": "none_confirmed",
+    "candidate_stack_pitches_mm": [
+      20,
+      30.5
+    ],
+    "candidate_fasteners": [
+      "M2",
+      "M3"
+    ],
+    "notes": "These hypotheses are examples in PLAN sections 6 and 45, not identifications from the scan. Standards agent must provide sources and cross-scan reviewer must assess fit; no correction has been applied."
+  },
+  "unresolved_topology": [
+    "Broad plate upper-left end has a small circular mark; its upper-right mirrored counterpart is not drawn. Cannot decide absent physical hole vs omitted tracing.",
+    "Broad plate extra_left mark at (471,2092) has no corresponding small right mark. Could be intentional asymmetry, omitted counterpart, or another drawing mark.",
+    "Several broad plate hole marks are open C-shapes; square_lower_right is much larger and scribbled. Use center positions cautiously and do not infer multiple physical bore standards from pen size.",
+    "Long plate upper center cutout has crossing strokes along its lower edge; one clean closed nominal contour must be resolved before modeling.",
+    "Three broad plate rectangular cutouts and long plate cutouts may be lightening/access/strap openings, not tab-slot interfaces. Scan provides no evidence for mating tab dimensions.",
+    "No material thickness, vertical spacing, bolt lengths, countersinks, stack order, or side panels are shown; shared holes alone do not prove assembly placement."
+  ],
+  "recommended_reconstruction": [
+    "Reconcile identities/orientations with independent Scan 1 analysis before choosing canonical part names.",
+    "Fit each component image axis from paired holes; map those local observations into one global frame datum through shared mechanical interfaces.",
+    "Resolve square-pattern pitch against multiple independent anchors. If standards remain ambiguous, request one measured hole-center distance rather than invent scale.",
+    "Construct each plate using a canonical half-profile with lines/arcs and derive cutout pairs by reflection; observed coordinates are evidence, never a direct parametric contour.",
+    "Review missing/asymmetric hole marks explicitly and record accepted physical topology before manufacturing exports."
+  ]
+}

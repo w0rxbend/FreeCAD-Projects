@@ -99,3 +99,20 @@ def calibrate(
         details = ", ".join(f"{a.name}={a.pixels_per_mm:.4g} px/mm" for a in anchors)
         raise ValueError(f"Calibration anchors disagree: {details}; residual={residual:.2%}")
     return Calibration(scale, origin_px, rotation_degrees, residual)
+
+
+def calibrate_page(image_size_px: Point, page_size_mm: Point) -> Calibration:
+    """Calibrate a confirmed full-sheet scan from independently checked page axes.
+
+    Callers must establish the actual page size and absence of cropping. The
+    image aspect ratio alone cannot establish either fact. Independent internal
+    feature anchors remain useful checks against printing/scanning scale errors.
+    """
+    _finite_point(image_size_px)
+    _finite_point(page_size_mm)
+    if min(*image_size_px, *page_size_mm) <= 0:
+        raise ValueError("Page and image dimensions must be positive")
+    return calibrate((
+        Anchor("page_width", (0, 0), (image_size_px[0], 0), page_size_mm[0]),
+        Anchor("page_height", (0, 0), (0, image_size_px[1]), page_size_mm[1]),
+    ))

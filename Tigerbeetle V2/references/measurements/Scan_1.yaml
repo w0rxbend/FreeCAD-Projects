@@ -1,0 +1,903 @@
+{
+  "schema_version": 1,
+  "scan": "Scan_1.jpeg",
+  "source_integrity": {
+    "sha256": "bf26be9035026002362046d18933f9032b9989aa3b0f0557132eea178eb3017e",
+    "bytes": 399991,
+    "original_modified": false
+  },
+  "image": {
+    "width": {
+      "value": 2480,
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "known",
+      "method": "direct_measurement"
+    },
+    "height": {
+      "value": 3508,
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "known",
+      "method": "direct_measurement"
+    },
+    "coordinate_convention": "Native image pixels: origin upper left; +u right; +v down; coordinates are not CAD millimeters.",
+    "metadata_resolution": {
+      "value": null,
+      "unit": "dpi",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "estimated",
+      "method": "estimated",
+      "note": "ImageMagick identifies Units: Undefined. Page dimensions resemble A4 at 300 dpi, but this is not an accepted calibration anchor."
+    }
+  },
+  "analysis_status": "Independent Scan 1 observation complete; absolute calibration and semantic part assignment pending reconciliation.",
+  "measurement_method": {
+    "observation": "view_image inspected original Scan_1.jpeg. Native pixel centers measured from bounding boxes of red ink within manually selected feature windows.",
+    "pixel_filter": "ImageMagick decodes RGB; select R > G + 25, R > B + 12, G < 200; center is midpoint of selected min/max pixel coordinates.",
+    "uncertainty_px": 6,
+    "limits": "Bounding-box centers represent manual ink marks, not proven machined feature centers. Broad envelope/contour observations carry +/-12 px. Filled motor/root marks have lower semantic confidence."
+  },
+  "components": [
+    {
+      "id": "arm_a",
+      "location": "left",
+      "interpretation": "Long planar motor arm; motor end toward image top, forked/hooked root toward bottom.",
+      "confidence": "high",
+      "bbox_uv": {
+        "value": [
+          245,
+          471,
+          694,
+          2491
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "nominal_quantity": null,
+      "outline": "Narrow shaft, waisted motor paddle with pointed end and diamond opening; widened split root with curved tabs/notches.",
+      "holes": "One outlined motor-clearance circle, four filled candidate motor-fastener marks, two small filled candidate root-fastener marks.",
+      "symmetry": "Motor paddle is approximately longitudinally symmetric; whole root and diagonal root holes must not be forced longitudinally symmetric."
+    },
+    {
+      "id": "arm_b",
+      "location": "middle",
+      "interpretation": "Second long motor arm laid opposite to arm_a; motor end toward image bottom, irregular root toward top.",
+      "confidence": "high",
+      "bbox_uv": {
+        "value": [
+          820,
+          1001,
+          1263,
+          3037
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "nominal_quantity": null,
+      "outline": "Similar waisted pointed motor paddle and diamond opening; slender shaft, asymmetric split/finger root.",
+      "holes": "One outlined motor-clearance circle, four outlined/overdrawn candidate motor holes, two filled root marks.",
+      "symmetry": "Possible mirrored/handed version of arm_a. Rotation alone does not align the slope of the root-hole pair."
+    },
+    {
+      "id": "main_plate",
+      "location": "right",
+      "interpretation": "Longitudinal body plate, upper/lower identity not established by this scan.",
+      "confidence": "high",
+      "bbox_uv": {
+        "value": [
+          1472,
+          217,
+          2267,
+          2045
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "nominal_quantity": null,
+      "outline": "Bilateral plate with narrow rounded three-lobe end, long narrow neck, wider shoulder wings, concave sides and two lower lobes.",
+      "holes": "22 small outlined circles; five larger circular openings; two rounded rectangular openings; one diamond/teardrop opening. Count excludes ambiguous pen strokes.",
+      "symmetry": "Strong left/right bilateral intent about near-vertical centerline; no front/rear symmetry."
+    }
+  ],
+  "orientation": {
+    "front_rear": "Unknown: no labels or camera identity. Narrow plate end is candidate front only; no accepted mapping to +Y.",
+    "top_bottom": "Unknown: planar outlines have no thickness or face labels.",
+    "scan_layout": "Exploded collection of separate profiles, not an assembly position map.",
+    "main_plate_centerline": {
+      "value": [
+        [
+          1862,
+          303
+        ],
+        [
+          1872,
+          1982
+        ]
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "inferred_from_symmetry",
+      "note": "Approximate paired-hole midpoints imply slight ink/page tilt; use one reconciled datum, not this noise as intended asymmetry."
+    },
+    "arm_a_motor_axis_u": {
+      "value": 490,
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "inferred_from_symmetry"
+    },
+    "arm_b_motor_axis_u": {
+      "value": 1050,
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "inferred_from_symmetry"
+    }
+  },
+  "feature_centers": {
+    "arm_a_motor_clearance": {
+      "value": [
+        490,
+        767
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "arm_a_motor_1": {
+      "value": [
+        404,
+        682
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_a_motor_2": {
+      "value": [
+        567,
+        682
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_a_motor_3": {
+      "value": [
+        406,
+        838
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_a_motor_4": {
+      "value": [
+        567,
+        839
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_a_root_1": {
+      "value": [
+        404,
+        2072
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_a_root_2": {
+      "value": [
+        528,
+        2170
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_b_motor_clearance": {
+      "value": [
+        1050,
+        2735
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "arm_b_motor_1": {
+      "value": [
+        972,
+        2653
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "arm_b_motor_2": {
+      "value": [
+        1132,
+        2655
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "arm_b_motor_3": {
+      "value": [
+        972,
+        2814
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "arm_b_motor_4": {
+      "value": [
+        1128,
+        2812
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "arm_b_root_1": {
+      "value": [
+        968,
+        1418
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_b_root_2": {
+      "value": [
+        1094,
+        1322
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "plate_tip_left": {
+      "value": [
+        1638,
+        303
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_tip_right": {
+      "value": [
+        2086,
+        302
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_inner_tl": {
+      "value": [
+        1746,
+        744
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_inner_tr": {
+      "value": [
+        1982,
+        743
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_inner_bl": {
+      "value": [
+        1749,
+        980
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_inner_br": {
+      "value": [
+        1984,
+        979
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_outer_tl": {
+      "value": [
+        1684,
+        682
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_outer_tr": {
+      "value": [
+        2045,
+        681
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_outer_bl": {
+      "value": [
+        1688,
+        1042
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_outer_br": {
+      "value": [
+        2047,
+        1041
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_inner_tl": {
+      "value": [
+        1690,
+        1408
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_inner_tr": {
+      "value": [
+        2049,
+        1408
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_inner_bl": {
+      "value": [
+        1691,
+        1770
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_inner_br": {
+      "value": [
+        2052,
+        1769
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_center_top": {
+      "value": [
+        1871,
+        1376
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_center_bottom": {
+      "value": [
+        1872,
+        1802
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_large_left": {
+      "value": [
+        1656,
+        1590
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_lower_large_right": {
+      "value": [
+        2081,
+        1590
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_tl": {
+      "value": [
+        1530,
+        1214
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_tr": {
+      "value": [
+        2205,
+        1212
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_ml": {
+      "value": [
+        1550,
+        1375
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_mr": {
+      "value": [
+        2188,
+        1374
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_ll": {
+      "value": [
+        1559,
+        1819
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_lr": {
+      "value": [
+        2185,
+        1820
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_bl": {
+      "value": [
+        1564,
+        1982
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_wing_br": {
+      "value": [
+        2182,
+        1982
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    }
+  },
+  "additional_features": {
+    "plate_large_center": {
+      "value": [
+        1865,
+        865
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement",
+      "note": "Visual center only; nearby holes can contaminate a large ink bounding-box window."
+    },
+    "plate_large_diameter": {
+      "value": 207,
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement",
+      "note": "Approximate contour diameter excluding ink width."
+    },
+    "plate_neck_slot_1_center": {
+      "value": [
+        1865,
+        615
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_neck_slot_2_center": {
+      "value": [
+        1867,
+        1112
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "direct_measurement"
+    },
+    "plate_neck_slot_envelope": {
+      "value": [
+        126,
+        92
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement",
+      "note": "Approximate outer ink bounding dimensions; rounded corners, purpose unknown."
+    },
+    "plate_diamond_center": {
+      "value": [
+        1863,
+        376
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_a_diamond_center": {
+      "value": [
+        490,
+        584
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    },
+    "arm_b_diamond_center": {
+      "value": [
+        1050,
+        2920
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "low",
+      "method": "direct_measurement"
+    }
+  },
+  "calibration_candidates": {
+    "nested_stack_patterns": {
+      "confidence": "medium",
+      "method": "estimated",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "observed_inner_pitch": {
+        "value": 236,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "observed_outer_pitch": {
+        "value": 360,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "observed_ratio": {
+        "value": 1.5254,
+        "unit": "ratio",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "hypothesis": "Inner is 20 x 20 mm and outer is 30.5 x 30.5 mm mounting pattern. Standards are candidates, not measured physical dimensions.",
+      "implied_scale_inner": {
+        "value": 11.8,
+        "unit": "px/mm",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated"
+      },
+      "implied_scale_outer": {
+        "value": 11.803,
+        "unit": "px/mm",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated"
+      },
+      "acceptance": "Require standards agent and independent calibration review; confirm with physical dimension where possible."
+    },
+    "lower_plate_repeat": {
+      "observed_pitch": {
+        "value": 360,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "confidence": "medium",
+      "method": "direct_measurement",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "hypothesis": "Lower square repeats upper outer pattern; useful internal consistency check, not an independent absolute length."
+    },
+    "arm_motor_pattern": {
+      "observed_pitch": {
+        "value": 160,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "low",
+        "method": "direct_measurement"
+      },
+      "observed_center_opening_diameter": {
+        "value": 77,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "low",
+        "method": "direct_measurement"
+      },
+      "confidence": "low",
+      "method": "estimated",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "conflict": "At candidate plate scale, motor square pitch is about 13.6 mm, unlike an assumed 16 or 19 mm square. Could be another pattern, diagonal interpretation, incorrect marks, or differing source scale; investigate before assigning a standard."
+    },
+    "small_plate_holes": {
+      "observed_ink_outer_diameter": {
+        "value": 32,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "confidence": "low",
+      "method": "estimated",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "hypothesis": "Possible fastener holes. At candidate scale ink outer diameter is about 2.7 mm; cannot establish M2/M3 nominal or clearance from handwritten outlines."
+    }
+  },
+  "known_physical_dimensions": {
+    "value": null,
+    "unit": "mm",
+    "source": [
+      "Scan_1.jpeg"
+    ],
+    "confidence": "estimated",
+    "method": "estimated",
+    "note": "None provided by labelled drawing, ruler, or reliable resolution metadata."
+  },
+  "physical_dimensions_not_recoverable_from_scan": [
+    "Carbon thickness",
+    "Actual hole diameters/fit",
+    "Standoff height",
+    "Material/layup",
+    "Bolt length/thread",
+    "Tab-slot through-thickness fit",
+    "Camera dimensions"
+  ],
+  "possible_interfaces": [
+    "Two candidate diagonal arm root fastening marks per arm must reconcile with body plate mounting positions.",
+    "Complex root fingers/notches may interlock adjacent arms; purpose needs combined-scan review.",
+    "Repeated plate bolt squares may carry FC/ESC or arm fixings; purpose is unproven.",
+    "Two neck rounded rectangles may be strap passages or tab/slot receivers; cannot choose independently of mating parts."
+  ],
+  "raster_or_manual_inaccuracies": [
+    "3-10 px variation in paired-hole midpoints; slight tilt and hand drawing noise.",
+    "Filled versus outlined motor holes have inconsistent apparent diameter.",
+    "Short overshoot strokes at corners and contour starts should not become CAD features.",
+    "Root profiles differ visibly; investigate intended handedness before averaging.",
+    "No scale bar or physical labels; page pixel dimensions alone do not prove scale."
+  ],
+  "unresolved_questions": [
+    "Which plate face/part is shown and which end is front?",
+    "Are the two arms handed instances of one canonical arm, distinct front/rear arm designs, or outline inaccuracies?",
+    "Are filled root dots actual holes?",
+    "What verified dimension establishes each source scale?",
+    "What are thickness, target fasteners, stack pattern, motor pattern and standoff height?",
+    "Do plate rectangular openings mate tabs or serve straps?"
+  ],
+  "gate_1_blockers": [
+    "Absolute calibration is conditional, not verified.",
+    "Assembly orientation and arm-root mating topology unresolved."
+  ]
+}

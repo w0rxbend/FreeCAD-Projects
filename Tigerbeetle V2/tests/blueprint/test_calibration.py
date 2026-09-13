@@ -4,7 +4,7 @@ import math
 
 import pytest
 
-from fpv_frame.blueprint.calibration import Anchor, Calibration, calibrate
+from fpv_frame.blueprint.calibration import Anchor, Calibration, calibrate, calibrate_page
 
 
 def test_consistent_independent_anchors_recover_scale() -> None:
@@ -52,3 +52,15 @@ def test_duplicate_anchor_not_independent() -> None:
     anchor = Anchor("stack", (0, 0), (200, 0), 20)
     with pytest.raises(ValueError, match="distinct"):
         calibrate((anchor, anchor))
+
+
+def test_user_confirmed_a4_page_agrees_with_independent_stack_pitch() -> None:
+    result = calibrate_page((2480, 3508), (210, 297))
+    assert result.pixels_per_mm == pytest.approx(11.810486, abs=1e-6)
+    assert result.maximum_relative_residual < 0.0001
+    assert 360 / result.pixels_per_mm == pytest.approx(30.5, abs=0.03)
+
+
+def test_cropped_or_distorted_page_does_not_silently_set_scale() -> None:
+    with pytest.raises(ValueError, match="disagree"):
+        calibrate_page((2000, 3508), (210, 297))
