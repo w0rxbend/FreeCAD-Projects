@@ -50,8 +50,8 @@ jobs:
           uv run --locked pip-audit --no-deps --disable-pip -r build/requirements.txt
       - name: Build every component
         run: uv run --locked tigerbee build --all
-      - name: Build provisional assembly and fit report
-        run: uv run --locked tigerbee assembly
+      - name: Build symmetric assembly and require geometric fit
+        run: uv run --locked tigerbee assembly --require-fit
       - name: Install native FreeCAD exporter
         run: |
           sudo apt-get update
