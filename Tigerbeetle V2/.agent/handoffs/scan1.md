@@ -39,3 +39,16 @@ FOLLOW-UP TASKS:
 3. Resolve arm handedness, root interlock and which plate features receive those fasteners.
 4. Obtain a physical anchor if independent evidence cannot establish absolute scale. Do not pass manufacturing calibration with estimated scale alone.
 5. Resolve thickness/clearances and front/up orientation before dependent detailed geometry.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+Later user confirmation of A4 tracing paper and 5/2 mm stock supersedes the original scale/thickness uncertainty. Native pixel observations remain unchanged.

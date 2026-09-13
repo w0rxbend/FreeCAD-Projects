@@ -80,3 +80,15 @@ FreeCAD integration reports maximum save/reopen volume change 2.18e-11 mm³, con
 VALIDATION EXECUTED: Read-only source/test/document/report inspection; all supplied generated overlay images and photo viewed; bounded empty-profile-inventory reproduction; independent all-five report/current-parameter comparison; export manifest/report and all 84 artifact size/hash verification. Did not duplicate the root's full test suite or export specialist's full model export job.
 
 FOLLOW-UP: Root must refresh report/manifest provenance, and obtain the separately owned clean-checkout and release-workflow evidence before the full-goal completion claim.
+
+## Structured handoff index
+
+RESULT: No unresolved critical geometric defect remains within the reviewed reconstruction. All four required findings have verified production corrections; three new negative regressions pass independently.
+
+MEASUREMENTS/DECISIONS: Actual overlay residuals, hashes, 88-bore/105-pair mechanical evidence and 84-artifact integrity checks are detailed above. The 35 × 29 mm root is an explicit engineering departure.
+
+ASSUMPTIONS: User-confirmed A4 tracing and 5/2 mm stock; provisional H=25 mm, hardware and equipment envelopes remain as documented above and in `.agent/ASSUMPTIONS.md`.
+
+KNOWN LIMITATIONS: Geometry review does not prove clean-checkout, hosted CI or tag publication. Parameter metadata changed after reviewed artifact generation and requires refresh. Physical material strength and exact unmeasured hardware compatibility remain unqualified.
+
+FOLLOW-UP TASKS: Coordinator refreshes committed-source artifacts and completes clean-checkout/hosted/release verification. `plan-audit.md` extends this review to all76 PLAN sections and tracks additional responsibility/state requirements.

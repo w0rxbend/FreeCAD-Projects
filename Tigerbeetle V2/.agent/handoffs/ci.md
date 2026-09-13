@@ -32,3 +32,45 @@ Official action interfaces verified via web: checkout v7, setup-uv pinned SHA
 bec219d24cd3e171d82865faccec33120bb574f4 (v10.1.0), upload v7, download v8.
 Local uv used UV_CACHE_DIR=/tmp/fpv-ci-uv-cache to keep cache writes in writable
 temporary storage. No package dependencies added.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+STATUS: Original CI/packaging slice completed; release-audit.md supersedes its
+initial workflow-location, packaging-test-count and FreeCAD-runtime limitations.
+
+FILES CHANGED: `.github/workflows/{ci,cad,release}.yml`,
+`tools/package_release.py`, `tests/exports/test_packaging.py`, `docs/ci.md` and this
+handoff were the original owned files. Later parent workflow installation belongs
+to the release audit, not to this original slice.
+
+RESULT: Implemented quality/CAD/tagged-release workflow definitions and strict
+artifact packaging. Subsequent work strengthened parameter/report freshness,
+native inventory checks and the pinned FreeCAD runtime.
+
+MEASUREMENTS/DECISIONS: Actual Git root is the parent FreeCAD-Projects repository.
+The later release audit installed uniquely named active parent workflows while
+preserving the sibling workflow; nested files remain standalone templates.
+
+ASSUMPTIONS: Hosted execution requires the workflows to exist on the remote
+revision under test. Local verification alone does not establish branch protection,
+a successful hosted run or publication of a tagged release.
+
+VALIDATION EXECUTED: Original slice passed 11 packaging tests, scoped Ruff/mypy and
+YAML parsing. Later actionlint, expanded packaging tests and exact headless pinned
+AppImage tests are recorded by release-audit.md. This audit ran no workflow job.
+
+KNOWN LIMITATIONS: The original statement that parent workflows were uninstalled
+is historical. Current hosted/build/release disposition is owned by STATE.md and
+the release audit; no remote result is inferred from local file existence.
+
+FOLLOW-UP TASKS: Consult current state and release/plan audits for clean-checkout,
+artifact provenance and hosted execution requirements still awaiting evidence.

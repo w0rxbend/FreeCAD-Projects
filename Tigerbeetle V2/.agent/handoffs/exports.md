@@ -52,3 +52,23 @@ revision; geometry smoke evidence remains valid. STEP/3MF can contain runtime UU
 model geometry is reproducible, byte-for-byte archive identity is not claimed.
 
 Root owns CLI, final dist/release packaging, workflow activation and documentation.
+
+## Contract index (integration addendum)
+
+STATUS: Completed export implementation and native verification; final integrated provenance refresh is coordinator-owned.
+
+FILES CHANGED: export/, drawing/, tools/export_freecad.py, tests/exports/test_artifacts.py and test_freecad.py, as detailed above.
+
+RESULT: All five formats, 84 full-frame artifacts, and native15-solid save/reopen verified.
+
+MEASUREMENTS/DECISIONS: Preserve nominal millimeter BREP and named components; explicit native-volume tolerance handles2.18e-11mm³ roundoff.
+
+ASSUMPTIONS: See source parameter evidence and ../ASSUMPTIONS.md; no new measured hardware dimensions asserted.
+
+VALIDATION EXECUTED:16 export tests with FreeCAD1.1.3, Ruff, strict mypy, actual full-frame file/hash/import/render audit described above.
+
+KNOWN LIMITATIONS: STEP/3MF container byte identity is not promised; geometry and declared checksums are verified per build.
+
+FOLLOW-UP TASKS: Coordinator's clean-checkout and hosted publication state is authoritative in ../STATE.md and plan-audit.md.
+
+Provenance follow-up: Git state is captured before any output/staging mutation. Both initially clean and dirty states are regression-tested; all18export tests including actualFreeCAD pass after correction.

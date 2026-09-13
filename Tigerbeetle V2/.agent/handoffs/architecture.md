@@ -43,3 +43,16 @@ FOLLOW-UP TASKS:
 3. Geometry specialists populate ArmProfileParameters / PlateProfileParameters from named reconciled observations, with minimal analytical geometry; no raw raster contour fallback. Extend profile fields if the actual outline requires semantic transitions.
 4. Test shared interfaces under changed primary dimensions; add collision/clearance checks to establish supported parameter ranges.
 5. Implement profiles/parts/assembly/exporters downstream and verify full PLAN gates.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+The original foundation-stage `None` profile/placement statements describe that earlier implementation. The concrete model now builds named shared layouts and manufacturing profiles; see current state and acceptance review. The legacy `assembly` override remains unused, distinct from the implemented derived layout.

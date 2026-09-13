@@ -57,3 +57,24 @@ FOLLOW-UP TASKS:
 
 - Root: fix three required findings, add targeted regression for increased required arm gap, rerun assembly/preset gates.
 - Root: complete regeneration and overlay review, full-frame all-format export/reopen, source manifest and clean-checkout CI/release validation before claiming PLAN completion.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+ASSUMPTIONS: This initial review used the then-current explicit reconstruction
+assumptions recorded above. Later nominal equipment envelopes are engineering
+design inputs, not measurements of the user's FC, ESC or camera.
+
+KNOWN LIMITATIONS: The three original required findings were historical defects.
+Their closure and the later profile-inventory gate correction are independently
+recorded in acceptance-review.md. This addendum does not rerun those checks;
+release freshness and clean-checkout evidence belong to the current integration
+and release records.

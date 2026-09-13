@@ -69,3 +69,16 @@ The screenshot alone is insufficient to verify exact central contact order at ev
 3. Confirm or document a provisional H; expose it in parameters and dimensional drawings. Independent mechanical reviewer should check actual bracket/electronics clearance against the chosen value.
 4. Continue canonical-arm/root assembly review and collision checking. Do not create independent front/rear root coordinates or shift parts by eye.
 5. Treat exact brackets/accessory geometry as additional evidence-dependent work; identify primary frame completion separately from compatibility with unspecified devices.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+The user image is now preserved at `references/assembly/user-assembly.png` relative to the project root. The adopted layer order follows this review; H=25 mm remains a provisional parameter, not a photo measurement. Exact accessory geometry remains outside the supplied dimensioned tracings.

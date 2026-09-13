@@ -15,3 +15,16 @@ VALIDATION EXECUTED: Inspected Scan_2.jpeg with view_image at default and origin
 KNOWN LIMITATIONS: Absolute calibration cannot be accepted from Scan 2 alone. Source aspect ratio does not prove A4 paper or 300 dpi. A missing upper-right broad-plate hole, unmatched small left-center mark, oversketched lower-right square-pattern bore, and crossing strokes in long-plate upper axial cutout need independent review. No visible thickness or stack order. These observations cannot yet establish a manufacturing-safe assembly.
 
 FOLLOW-UP TASKS: Reconcile with Scan 1; compare standard hypotheses against independent anchors; identify actual plate roles/orientation; resolve missing/asymmetric hole marks and central cutout topology. If no independent anchor resolves scale, obtain a measured distance between the broad plate square-pattern hole centers and required material thicknesses. Keep physical dimension fields unknown until evidence is accepted by integration.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+Later A4 provenance, cross-scan registration and photo review supersede the initial unresolved scale and plate-role status. Missing/asymmetric ink marks remain preserved evidence.

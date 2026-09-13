@@ -31,3 +31,42 @@ passed. Root runs final full integration suite.
 
 Collision tests use FC 80×80 and camera 50×40 footprints. Width-only enlargement
 does not reach longitudinal standoffs and can legitimately fit the open frame.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+STATUS: Equipment-envelope slice completed; the root integration noted above
+was subsequently implemented, as inspected in acceptance-review.md.
+
+FILES CHANGED: `src/fpv_frame/parameters/equipment.py`,
+`src/fpv_frame/validation/equipment.py`, `tests/assembly/test_equipment.py`,
+`docs/equipment.md` and this historical handoff. This addendum is an audit update.
+
+RESULT: Configurable nominal equipment proxies follow shared axes and plate
+faces, including PCB mounting keepouts and stack-hardware envelopes.
+
+MEASUREMENTS/DECISIONS: Baseline FC/ESC envelopes are 40 × 40 × 8 mm, camera is
+20 × 20 × 20 mm, stack hardware outside diameter is 5 mm and PCB keepouts are
+6 mm. These are selected design bounds, not measured user hardware dimensions.
+
+ASSUMPTIONS: Nominal envelope placement and required gaps are engineering inputs.
+Side panels are not applicable to the supplied dimensioned three-plate model;
+photo-visible accessory details are not inferred as manufactured profiles.
+
+VALIDATION EXECUTED: Original slice passed 12 equipment tests in 11.55 seconds,
+scoped Ruff and strict mypy. The later acceptance review inspected integrated
+equipment collision/clearance checks. This audit ran no additional equipment tests.
+
+KNOWN LIMITATIONS: Passing these solids does not establish fit of connectors,
+wiring, exact camera mounts or other unspecified purchased equipment.
+
+FOLLOW-UP TASKS: Use current integrated reports and STATE.md for release evidence;
+replace nominal envelopes with measured geometry when specific equipment is chosen.

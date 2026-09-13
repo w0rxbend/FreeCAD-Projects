@@ -73,3 +73,20 @@ The minimal decisive physical information is: (1) one named long hole-center dis
 3. Arm specialist should solve candidate two-hole attachments and inspect reflected canonical roots and possible collisions. Review root interlocks using profiles before freezing placements.
 4. Overlay reviewer must evaluate actual generated curves against all component contours; the registration residuals here are not an overlay acceptance shortcut.
 5. Obtain the listed physical information before asserting original-frame fit or treating manufacturing assumptions as verified specifications.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+KNOWN LIMITATIONS: The original limitations section above combines historical
+scale uncertainty with enduring physical limits. Later user-confirmed A4 tracing
+provenance resolves the independent page-scale anchor under full-page assumptions;
+photo interpretation resolves a provisional layer order. Pen uncertainty, exact
+motor compatibility, accessories and physical qualification remain separate limits.

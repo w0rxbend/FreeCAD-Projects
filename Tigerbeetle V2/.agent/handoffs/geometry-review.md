@@ -22,3 +22,43 @@ This root envelope is an engineering reconstruction that prioritizes shared inte
 - Combined final arm/plate suite: **54 passed** in 15.19 s. Scoped Ruff check passed; strict mypy passed for all three changed/reviewed implementation modules.
 - Parent should regenerate published overlays, STEP/STL/DXF/SVG and assembly/deviation reports from current source. Root scan deviation will increase locally and must remain visible in the report. Physical root fit, motor pattern assumptions and photo-inferred standoff heights still require explicit evidence status.
 - No CLI/export implementation or Git operations were performed by this specialist.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+STATUS: Bounded geometry corrections completed and reviewed; final integration
+and provenance regeneration remained with the coordinator at handoff time.
+
+FILES CHANGED: `src/fpv_frame/parts/plates.py`,
+`src/fpv_frame/parameters/arms.py`, and arm/plate geometry regression tests were
+reported for this slice. This audit adds only this retrospective summary and index.
+
+RESULT: Improved analytical contour/aperture fit, shared-datum deformation and
+actual material ligaments; corrected canonical root geometry to avoid overlap.
+
+MEASUREMENTS/DECISIONS: Preserved the traced approximately 38 × 31 mm root evidence
+while selecting 35 × 29 mm for the analytical reconstruction. The original slice
+measured zero arm overlap and approximately 0.291 mm minimum gap; later independent
+acceptance retains this explicit departure.
+
+ASSUMPTIONS: The local root reduction needs physical confirmation. Height, motor
+pattern and purchased hardware retain their separate provisional evidence.
+
+VALIDATION EXECUTED: Original slice inspected both revised overlays, passed 44
+plate tests and then 54 combined arm/plate tests, with scoped Ruff/mypy passing.
+This audit inspected those results; it did not rerun geometry validation.
+
+KNOWN LIMITATIONS: Overlay agreement is not exact replacement-part identity.
+The historical mention of DXF in follow-ups was not an implemented or required
+release format; the supported five formats are STEP, STL, 3MF, SVG and FreeCAD.
+
+FOLLOW-UP TASKS: Use acceptance-review.md for subsequent visual/mechanical closure
+and STATE.md for current artifact regeneration and release evidence.

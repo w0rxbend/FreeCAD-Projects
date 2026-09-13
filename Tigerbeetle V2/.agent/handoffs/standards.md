@@ -64,3 +64,28 @@ FOLLOW-UP TASKS:
 2. Obtain at least one long physical center-to-center distance or actual board/motor specification matching these parts.
 3. Confirm individual material thicknesses and assembled plate separation/arm sandwich order, ideally from a side-view photograph with measurements.
 4. Preserve provisional parameters and manufacturing assumptions explicitly until confirmed; passing CAD geometry tests cannot prove those assumptions describe the source frame.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+MEASUREMENTS/DECISIONS: The original manufacturer and coarse visual observations
+above established candidate patterns only. Later native-pixel fitting superseded
+the reversal hypothesis: the three plates register in the same longitudinal
+direction. Later A4 user evidence superseded the standard-only scale hypothesis.
+
+ASSUMPTIONS: Catalogue dimensions identify candidate conventions, not this frame's
+purchased components. H, motor compatibility and hardware remain explicitly
+provisional; user-confirmed 5 mm arms and 2 mm plates supersede unknown thickness.
+
+VALIDATION EXECUTED: Original reviewer visually inspected both scans, checked JPEG
+metadata, and consulted the primary manufacturer pages listed above. This audit
+read those records and checked their status links; it did not repeat web research
+or convert historical hypotheses into measurements.

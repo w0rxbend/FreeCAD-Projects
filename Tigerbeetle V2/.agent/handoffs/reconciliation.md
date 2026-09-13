@@ -37,3 +37,16 @@ FOLLOW-UP TASKS:
 ## Subsequent user A4 provenance update (supersedes standard-only scale above)
 
 User confirmed both scans were made from A4 tracing paper placed against actual frame parts. The sheet is an independent physical anchor. Horizontal scale is 2480/210 = 11.80952381 px/mm; vertical scale is 3508/297 = 11.81144781 px/mm. Selected isotropic geometric mean is 11.81048577130682 px/mm. Axis mismatch is only 0.0163 percent, and all independent nested/repeated pattern checks agree within pen uncertainty. `calibration.selected_scale` is now authoritative; the earlier standard-only scale is retained as historical evidence. Full-page extent, no material crop/padding and no component resize are explicit high-confidence assumptions. Manufacturing calibration flag is true for accepted XY reference scale; overall manufacturing readiness remains unproven. All dependent calibrated motor measurements and anchor residuals were recomputed. No additional physical XY dimension is needed to start calibrated geometry.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+The explicit A4 update above supersedes the initial standards-only scale. Later analytical layout, root correction and full overlay review are recorded in the linked reconstruction and acceptance documents.

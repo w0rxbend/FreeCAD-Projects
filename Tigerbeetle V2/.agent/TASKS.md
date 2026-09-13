@@ -10,10 +10,36 @@
 - [x] CLI build/validate/overlay/export/drawing and parameter metadata.
 - [x] Required documentation, explicit reconstruction/physical assumptions.
 - [x] Active parent CI/CAD/release workflows; complete inventory packager.
-- [active] Full suite, updated all5preset reports and independent final review.
-- [pending] Clean-checkout frozen dependency rebuild, full export and package.
-- [pending] Hosted CI/CAD execution and reviewable release candidate.
+- [x] Independent geometric review; baseline193test clean suite and all5preset reports.
+- [active] Final-source clean rebuild/export/package after standoff and provenance fixes (baseline passed).
+- [active] Latest-source hosted CI/CAD (baseline1b9527d both passed).
 - [pending] Final PLAN requirement-by-requirement audit and publication state.
 
 Keep inferred hardware and corrected root geometry explicit. No assertion of
 physical stock/process strength or compatibility with unspecified equipment.
+
+## Dependency graph
+
+```mermaid
+flowchart TD
+  scan1[Scan 1 analysis and A4 calibration] --> reconcile[Cross-scan reconciliation]
+  scan2[Scan 2 analysis and A4 calibration] --> reconcile
+  physical[User thicknesses and assembly photo] --> reconcile
+  reconcile --> datums[Parameters and shared datums]
+  datums --> interfaces[Root, stack and support interfaces]
+  interfaces --> profiles[Canonical arm, three plates and standoff builders]
+  profiles --> overlays[Both CAD/source overlays and fit review]
+  profiles --> assembly[Named assembly with derived placements]
+  assembly --> gates[Topology, features, symmetry, interfaces, collisions and clearances]
+  overlays --> acceptance[Independent geometric acceptance]
+  gates --> acceptance
+  acceptance --> export[STEP, STL, 3MF, SVG and native FreeCAD reopen]
+  export --> clean[Clean-checkout rebuild and complete package]
+  clean --> hosted[Hosted quality and CAD workflows]
+  hosted --> release[Verified tagged artifact publication]
+```
+
+Geometry source changes invalidate overlays, mechanical gates and downstream
+exports. Metadata-only changes require refreshed provenance; packaging changes
+require package regressions and a new complete inventory check. Historical
+handoffs preserve prior evidence, while current report hashes identify snapshots.

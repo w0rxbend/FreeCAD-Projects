@@ -51,3 +51,47 @@ export owner must derive each arm's handed local profile via placement mirror
 from the built standoff or shared diameter parameters. Profiles map has NOT
 been expanded silently because existing tests/export builder consume this
 canonical contract. Parent explicitly permitted documenting this limitation.
+
+
+## Retrospective handoff audit — 2026-09-13
+
+This addendum was written after the original task. It preserves the observations
+and test results above; it does not attribute later knowledge to the original
+reviewer. Current disposition is indexed in [handoff-index.md](handoff-index.md).
+Later evidence is in [acceptance-review.md](acceptance-review.md), the maintained
+[reconstruction guide](../../docs/blueprint-reconstruction.md), and
+[current state](../STATE.md). Historical follow-ups are not automatically current
+blockers; use those records to determine which were completed or remain open.
+
+STATUS: Historical assembly slice completed with the failures recorded above;
+later geometry and integration work superseded those failure/status statements.
+
+FILES CHANGED: The original record identifies `validation/manufacturing.py`,
+`validation/clearances.py`, assembly validation integration, bore validation and
+`tests/assembly/test_mechanical_gates.py` under `src/fpv_frame` / `tests` as
+applicable. It did not enumerate a complete per-agent diff. This audit appends
+only to this handoff and creates the index.
+
+RESULT: Added measured assembly manufacturing, equipment-clearance and bore gates.
+The then-failing root collisions and top-plate ligament were passed to the
+geometry owner rather than excused by placement offsets or overlap exceptions.
+
+MEASUREMENTS/DECISIONS: The original slice measured 88 bores and nine symmetry
+comparisons. The later model provides 15 physical profiles matching its 15 parts;
+the four-canonical-alias contract above is historical and superseded.
+
+ASSUMPTIONS: Plate stock is user-confirmed 2 mm and arm stock 5 mm. H=25 mm and
+purchased hardware details remain provisional. Nominal equipment envelopes were
+integrated later and retain their engineering-assumption qualification.
+
+VALIDATION EXECUTED: Original results were five focused tests passing, then seven
+passing/eight failing assembly tests, plus scoped Ruff. Those failures are retained
+above. Acceptance-review.md records subsequent closure; this audit ran no CAD tests.
+
+KNOWN LIMITATIONS: This original slice did not prove a passing complete assembly;
+its profile inventory contract and missing-equipment status were later changed.
+No exact per-agent edit history is inferred from the current combined worktree.
+
+FOLLOW-UP TASKS: Read acceptance-review.md for closed geometric defects and
+STATE.md for remaining current integration/release work. Do not reopen the old
+collision failures without reproducing them against the current model.
