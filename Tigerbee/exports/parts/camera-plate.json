@@ -7,15 +7,18 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
-  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
+  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
   "reference_status": "saved-freecad",
   "authoritative_blueprint": "refs/Scan_1.jpeg",
-  "target_wheelbase_mm": 330.0,
-  "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
-  "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+  "measured_frame_wheelbase_range_mm": [
+    303.0,
+    304.0
+  ],
+  "measurement_reference": "refs/measurements.md",
+  "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
   "assumptions": [],
   "valid": true,
   "solid_count": 1,
@@ -44,10 +47,10 @@
     "camera-plate.dxf"
   ],
   "file_sha256": {
-    "camera-plate.step": "dc89110565f4767312368c1b1a3f08a49079263efe78d7b32e296d01ea2b2860",
+    "camera-plate.step": "758e5019b82aece30ce9f63c9e1b0819675b84d66d8b23bdcdb465839073b4d7",
     "camera-plate.stl": "2283d17cde9d0085b6179783177c82ce25d2fe40876c6886bf0a0853b6dff906",
-    "camera-plate.3mf": "4a325f6bb735535452cd2e0922b7f6737399e015f52d31cc5e39ec014a573e1d",
+    "camera-plate.3mf": "037bf16f0821c4773ba1f525b4628e930f92f4f25af73c7d6c5177731cfde80f",
     "camera-plate.svg": "ae23e65ffc065f98af98e5df6307e86f5e982ad1a349c3ae30003a566aa4b6bd",
-    "camera-plate.dxf": "2edcb5381a00d64c2293675292fa7c6e9592de6763c372c66d9625831f9eaf62"
+    "camera-plate.dxf": "1c24bbf8634e35421909a244ffe8ae9cb01429ea53133ce8e8ea29a5dc31fb61"
   }
 }

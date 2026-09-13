@@ -28,16 +28,17 @@
     302.5921901411552,
     303.9856219852306
   ],
-  "advertised_wheelbase_mm": 330.0,
-  "wheelbase_reference": "refs/product/tiger-beetle-7inch-330mm.png",
+  "measured_wheelbase_range_mm": [
+    303.0,
+    304.0
+  ],
+  "wheelbase_comparison_allowance_mm": 0.5,
+  "wheelbase_reference": "refs/measurements.md",
   "authoritative_blueprints": [
     "refs/Scan_1.jpeg",
     "refs/Scan_2.jpeg"
   ],
-  "wheelbase_errors_mm": [
-    -27.407809858844814,
-    -26.01437801476942
-  ],
+  "wheelbase_matches_measurement": true,
   "mounting_errors_mm": {
     "rear-plate-to-camera-plate": 0.7243057654253454,
     "front-right-arm": 0.17957876413106538,
@@ -76,21 +77,23 @@
   "assumptions": [
     "Top plate Z=35 mm is provisional",
     "Standoffs represented as 6/3 mm tubes",
-    "Both scans are authoritative outlines; metric calibration requires confirmation",
+    "Both scans are near-1:1 A4 pen tracings of the physical frame, with minor errors",
     "Saved FreeCAD solids are prior reconstructions, subordinate to the scans",
-    "330 mm diagonal wheelbase confirmed by user; earlier 295 mm photo superseded",
+    "User measured approximately 303\u2013304 mm between opposite motor-hole centers",
+    "Physical measurement supersedes the 330 mm and 295 mm product-photo labels",
+    "0.5 mm comparison allowance reflects approximate reading, not manufacturing tolerance",
     "Original hole positions preserved; fit errors are not corrected",
     "Fasteners and end brackets are not yet modeled"
   ],
-  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
-  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
+  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "5cb8437f0b5b51c5143d4ad34e1e15bd1b68761a8a030a70940511d85a45fd95",
+    "tigerbee-assembly.step": "518ef3dfaa2f2ff730f1716769e745b4e8745b85f7697a60b309aec7f644930f",
     "tigerbee-assembly.glb": "bc061839d94f68e006ac7d4f171df5a5050533362162c8b9b095567401dc7030",
     "tigerbee-isometric.svg": "9c7d86a9da87ae6d4194dcef085e34b5e7f89c76bf3aa3208115782517e32670",
     "tigerbee-top.svg": "2acfcd007493cb505fcf1ca65d4decdcf248319bf9ec1e4747884dbce39702c0",
     "tigerbee-assembly.stl": "3a222b6dc277f65340476d651b05405749c82bcc698304403a4597b321d75d8a",
-    "tigerbee-assembly.3mf": "26d0d186a431d2cd68530d5136a8b7c9cb74e24c794d365528b62b328477e9a9"
+    "tigerbee-assembly.3mf": "1761857bde992d4b2ed79b02d19a910a403c77136d495b38cc22b5eb24befdba"
   }
 }

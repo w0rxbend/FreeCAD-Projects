@@ -88,9 +88,9 @@ def trace() -> None:
             "scan_mm_per_pixel": scale,
             "scan_origin_px": origin,
             "assumptions": [
-                "A4 width 210 mm; scale unverified",
+                "Nominal A4 width 210 mm; user confirmed near-1:1 pen tracings",
                 "3/5 mm nominal holes",
-                "2.5 mm thickness inferred from earlier variant; unconfirmed for 330 mm frame",
+                "2.5 mm thickness from product photo; physical thickness unmeasured",
                 "Convex hull repairs cutout pen gaps",
                 "Rear plate missing corner hole mirrored from opposite side",
             ],

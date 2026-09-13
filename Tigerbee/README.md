@@ -3,19 +3,20 @@
 Five individually buildable build123d frame components and a provisional assembly,
 managed as a locked Python 3.13 / uv project inside FreeCAD-Projects.
 
-The target is the **Tiger Beetle 7-inch frame with a 330 mm diagonal wheelbase**.
-The user-confirmed [final product photo](refs/product/tiger-beetle-7inch-330mm.png)
-and both [Scan_1](refs/Scan_1.jpeg) and [Scan_2](refs/Scan_2.jpeg) are the sources
-of truth. The earlier 295 mm product photo is superseded. Existing manual FreeCAD
-solids are prior reconstructions to check against these references.
+The target is the physical **Tiger Beetle 7-inch frame**, measured by the user at
+**approximately 303–304 mm between opposite motor-hole centers**. These
+[physical measurements](refs/measurements.md) supersede the 330 mm and 295 mm
+labels on product photos. Both [Scan_1](refs/Scan_1.jpeg) and [Scan_2](refs/Scan_2.jpeg)
+are near-1:1 A4 pen tracings of the actual parts, with minor tracing errors.
+Existing manual FreeCAD solids are prior reconstructions to check against them.
 
 | Component | Current reconstruction | Default thickness |
 | --- | --- | --- |
 | `arm-type-1` | Saved FreeCAD solid corresponding to Scan_1 | 5 mm |
 | `arm-type-2` | Saved FreeCAD solid corresponding to Scan_1 | 5 mm |
 | `camera-plate` | Saved FreeCAD solid corresponding to Scan_1 | 3 mm |
-| `rear-plate` | Scan_2 trace; metric calibration provisional | 2.5 mm |
-| `top-plate` | Scan_2 trace; metric calibration provisional | 2.5 mm |
+| `rear-plate` | Near-1:1 Scan_2 trace; local fit provisional | 2.5 mm |
+| `top-plate` | Near-1:1 Scan_2 trace; local fit provisional | 2.5 mm |
 
 ## Committed CAD files
 
@@ -71,17 +72,18 @@ The assembly contains four arms, three plates, and eight simplified standoffs.
 It uses assumed 2.5 mm plates, 5 mm arms, and top-plate underside Z=35 mm.
 Its [fit report](exports/assembly/assembly-report.json) currently records:
 
-- Diagonal wheelbases of approximately 302.59 and 303.99 mm, falling short of the
-  confirmed 330 mm target by approximately 27.41 and 26.01 mm.
+- Diagonal wheelbases of approximately 302.59 and 303.99 mm, consistent with
+  the user’s approximate 303–304 mm center-to-center measurement. Arms are unextended.
 - Mounting offsets up to 0.753 mm and arm-root intersections totaling 77.70 mm³.
-- Unconfirmed scan metric calibration, stacking dimensions, and arm placement;
+- Local tracing/fit discrepancies, unconfirmed stacking dimensions, and arm placement;
   end brackets and fasteners still need modeling.
 
-The scans define the intended shapes, but their physical scale and the assembly
-placement must be reconciled with the confirmed wheelbase. Current exports preserve
-reconstructed outlines; they are not yet a completed 330 mm frame. A passing
+The scans define the intended shapes. The wheelbase comparison uses a documented
+0.5 mm working allowance for the approximate measurement; this is not a manufacturing
+tolerance. Mounting offsets and interference still prevent a finished assembly.
+Current exports preserve reconstructed outlines and hole positions. A passing
 comparison with the old FreeCAD solids establishes reproduction of that model,
-not agreement with all authoritative references.
+not agreement with every physical interface.
 
 ## Verification and references
 
@@ -102,7 +104,10 @@ dependencies and exports native FreeCAD documents headlessly.
 and periodic spline profiles traced from Scan_2. `tools/extract_freecad.py` is a
 one-time migration tool run inside FreeCADCmd; normal builds never import the
 reference document. `uv run --group tracing python tools/trace_scan.py` regenerates
-the provisional scan profiles, recording the inferred A4 scale and nominal holes.
+the provisional scan profiles, using nominal A4 dimensions and recording hole assumptions.
 
 See [reference authority](refs/SOURCES.md), [the implementation contract](tasks/plan.md),
 and [remaining tasks](tasks/todo.md).
+
+The [A4 comparison and overlays](refs/analysis/a4-comparison.md) show the original
+scans registered with the CAD, including documented differences in individual openings.

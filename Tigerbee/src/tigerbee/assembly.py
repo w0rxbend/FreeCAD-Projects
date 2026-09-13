@@ -7,10 +7,15 @@ from math import atan2, cos, degrees, dist, isfinite, radians, sin
 from build123d import Axis, Circle, Color, Compound, Part, Pos, extrude
 
 from tigerbee.models import PartParameters, build_part, profile_data
+from tigerbee.references import (
+    MEASURED_WHEELBASE_RANGE_MM,
+    MEASUREMENT_REFERENCE,
+    WHEELBASE_COMPARISON_ALLOWANCE_MM,
+    wheelbase_matches_measurement,
+)
 
 Point = tuple[float, float]
 CLAMP_CENTER_Y = -61.4154192768
-TARGET_WHEELBASE_MM = 330.0
 
 
 @dataclass(frozen=True)
@@ -71,10 +76,8 @@ def require_final_fit(report: dict, hole_tolerance: float = 0.1) -> None:
         issues.append("arm or plate interference")
     if max(report["mounting_errors_mm"].values()) > hole_tolerance:
         issues.append("mounting-hole misalignment")
-    if any(
-        abs(w - report["advertised_wheelbase_mm"]) > 0.5 for w in report["diagonal_wheelbases_mm"]
-    ):
-        issues.append(f"wheelbase differs from {report['advertised_wheelbase_mm']:g} mm reference")
+    if not wheelbase_matches_measurement(report["diagonal_wheelbases_mm"]):
+        issues.append("wheelbase differs from the approximate 303–304 mm physical measurement")
     if report["status"] == "provisional-assembly":
         issues.append("unconfirmed scan dimensions, stack height, and hardware")
     if issues:
@@ -186,13 +189,16 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
             dist(motors["front-right-arm"], motors["rear-left-arm"]),
             dist(motors["front-left-arm"], motors["rear-right-arm"]),
         ],
-        "advertised_wheelbase_mm": TARGET_WHEELBASE_MM,
-        "wheelbase_reference": "refs/product/tiger-beetle-7inch-330mm.png",
+        "measured_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
+        "wheelbase_comparison_allowance_mm": WHEELBASE_COMPARISON_ALLOWANCE_MM,
+        "wheelbase_reference": MEASUREMENT_REFERENCE,
         "authoritative_blueprints": ["refs/Scan_1.jpeg", "refs/Scan_2.jpeg"],
-        "wheelbase_errors_mm": [
-            dist(motors["front-right-arm"], motors["rear-left-arm"]) - TARGET_WHEELBASE_MM,
-            dist(motors["front-left-arm"], motors["rear-right-arm"]) - TARGET_WHEELBASE_MM,
-        ],
+        "wheelbase_matches_measurement": wheelbase_matches_measurement(
+            [
+                dist(motors["front-right-arm"], motors["rear-left-arm"]),
+                dist(motors["front-left-arm"], motors["rear-right-arm"]),
+            ]
+        ),
         "mounting_errors_mm": errors,
         "standoff_lengths_mm": lengths,
         "interferences": collisions,
@@ -200,9 +206,11 @@ def build_assembly(parameters: AssemblyParameters = DEFAULT_ASSEMBLY) -> tuple[C
         "assumptions": [
             "Top plate Z=35 mm is provisional",
             "Standoffs represented as 6/3 mm tubes",
-            "Both scans are authoritative outlines; metric calibration requires confirmation",
+            "Both scans are near-1:1 A4 pen tracings of the physical frame, with minor errors",
             "Saved FreeCAD solids are prior reconstructions, subordinate to the scans",
-            "330 mm diagonal wheelbase confirmed by user; earlier 295 mm photo superseded",
+            "User measured approximately 303–304 mm between opposite motor-hole centers",
+            "Physical measurement supersedes the 330 mm and 295 mm product-photo labels",
+            "0.5 mm comparison allowance reflects approximate reading, not manufacturing tolerance",
             "Original hole positions preserved; fit errors are not corrected",
             "Fasteners and end brackets are not yet modeled",
         ],

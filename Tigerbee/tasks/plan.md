@@ -6,7 +6,8 @@ Recreate each of the five frame components shown in Scan_1 and Scan_2 as separat
 build123d models, then build the final FPV frame assembly. Supply a modern Python
 project, local CLI, parameter presets, geometry tests, and GitHub Actions artifacts.
 Commit generated 3MF, STL, and native FCStd outputs as ordinary repository files.
-The confirmed target is the 7-inch Tiger Beetle with a 330 mm diagonal wheelbase.
+The target is the physical 7-inch Tiger Beetle, measured at approximately 303–304 mm
+between opposite motor-hole centers. Product-photo wheelbase labels are superseded.
 
 ## Capability map
 
@@ -22,7 +23,7 @@ plates, assembly. Verification and exports accompany each component.
 
 ## Modeling requirements
 
-- Both scans and the final 330 mm product photo are authoritative; see refs/SOURCES.md.
+- Physical measurements and near-1:1 pen tracings are authoritative; see refs/SOURCES.md.
 - Geometry consists of lines, arcs, circles, periodic scan splines, and parameters.
 - No FreeCAD runtime or reference-file imports during normal model builds.
 - Existing FreeCAD solids provide a regression baseline for the first three components,
@@ -49,12 +50,12 @@ CI must run headlessly using the lockfile and the same CLI as local development.
 - Reproduce original geometry before redesigning parts.
 - Keep tooling local to Tigerbee until broader repository scope is requested.
 - Existing thicknesses: base plate 3 mm; arms 5 mm.
-- Scan_1 is placed at 210 × 297.04 mm in FreeCAD; Scan_2 scale is unconfirmed.
-- Scan_2 parts are named rear-plate and top-plate, with provisional metric calibration.
-- Four-arm assembly currently measures about 303 mm versus the confirmed 330 mm.
+- User confirmed both scans are near-1:1 A4 pen tracings with small drawing errors.
+- Scan_2 parts are named rear-plate and top-plate; local interface fit remains provisional.
+- Unextended assembly diagonals are 302.592 and 303.986 mm, consistent with physical readings.
 - Mounting offsets reach 0.753 mm; arm-root intersections total 77.70 mm³.
 - Confirm stacking order, vertical spacing, arm placements, and hardware dimensions.
-- Earlier 295 mm product photo is superseded; its thickness labels remain assumptions.
+- Both 330 mm and 295 mm photo labels are superseded; thickness labels remain assumptions.
 - Material and manufacturing process are not established; geometric validity does
   not establish mechanical strength or flight readiness.
 

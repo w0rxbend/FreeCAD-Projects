@@ -7,19 +7,22 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
-  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
+  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
   "reference_status": "provisional-scan",
   "authoritative_blueprint": "refs/Scan_2.jpeg",
-  "target_wheelbase_mm": 330.0,
-  "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
-  "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+  "measured_frame_wheelbase_range_mm": [
+    303.0,
+    304.0
+  ],
+  "measurement_reference": "refs/measurements.md",
+  "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
   "assumptions": [
-    "A4 width 210 mm; scale unverified",
+    "Nominal A4 width 210 mm; user confirmed near-1:1 pen tracings",
     "3/5 mm nominal holes",
-    "2.5 mm thickness inferred from earlier variant; unconfirmed for 330 mm frame",
+    "2.5 mm thickness from product photo; physical thickness unmeasured",
     "Convex hull repairs cutout pen gaps",
     "Rear plate missing corner hole mirrored from opposite side"
   ],
@@ -50,10 +53,10 @@
     "top-plate.dxf"
   ],
   "file_sha256": {
-    "top-plate.step": "0657425a37529e3e7bfecd748d7c4e3cc1a37307a50badcf64df9598f258f2c5",
+    "top-plate.step": "dd0695bb324a7eeed39824560264457789fcd53d52e2210a1372b7c65e0f3720",
     "top-plate.stl": "89b659c6549bde19207ce3c92ece9f7744da87c612da15232bd902b137c4c735",
-    "top-plate.3mf": "bc7096cbc122695f0027f35370da8847f12b5283d6fbb3ea1e0b7b0c51bb5102",
+    "top-plate.3mf": "026122db86e2be650885045cac92e5145aa457ddcc19889a6760f3d1497a3065",
     "top-plate.svg": "84b73fd728fe63bc2aed6a8e14bc4a98833d67b7f6a2463e309d39f1c04944e5",
-    "top-plate.dxf": "5e883dbd69a573e10b21af633be40be5af60997ff8815a908e53aea6ab8f8659"
+    "top-plate.dxf": "83da2464e02a47fa9f58cdd46fe61480b234367393fd53f8727b2d50d7f7691c"
   }
 }

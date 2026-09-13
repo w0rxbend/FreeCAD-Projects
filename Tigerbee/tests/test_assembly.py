@@ -1,6 +1,7 @@
 import math
 
 import pytest
+from build123d import GeomType
 
 from tigerbee.assembly import AssemblyParameters, build_assembly, fit_mounts, require_final_fit
 
@@ -29,11 +30,9 @@ def test_frame_contains_four_arms_three_plates_and_eight_standoffs():
     assert report["status"] == "provisional-assembly"
     assert len(report["motor_centers_mm"]) == 4
     assert all(math.isfinite(value) for value in report["diagonal_wheelbases_mm"])
-    assert max(report["diagonal_wheelbases_mm"]) < 330
-    assert report["advertised_wheelbase_mm"] == 330
-    assert report["wheelbase_errors_mm"] == pytest.approx(
-        [value - 330 for value in report["diagonal_wheelbases_mm"]]
-    )
+    assert report["diagonal_wheelbases_mm"] == pytest.approx([302.592190141, 303.985621985])
+    assert report["measured_wheelbase_range_mm"] == [303, 304]
+    assert report["wheelbase_matches_measurement"]
     assert report["mounting_errors_mm"]
     # Preserving the supplied geometry exposes root collisions; the final-fit
     # gate must reject them rather than treating valid individual solids as fit.
@@ -46,30 +45,59 @@ def test_frame_contains_four_arms_three_plates_and_eight_standoffs():
         require_final_fit(report)
 
 
+def test_actual_solid_motor_holes_match_the_physical_wheelbase_reading():
+    from tigerbee.references import wheelbase_matches_measurement
+
+    assembly, report = build_assembly()
+    centers = {}
+    for part in assembly.children:
+        if "arm" not in part.label:
+            continue
+        radius = 3.5 if part.label in ("front-right-arm", "rear-left-arm") else 3.62
+        holes = [
+            edge
+            for edge in part.edges().filter_by(GeomType.CIRCLE)
+            if abs(edge.radius - radius) < 1e-7 and abs(edge.length - 2 * math.pi * radius) < 1e-6
+        ]
+        assert len(holes) == 2
+        centers[part.label] = tuple(holes[0].arc_center)[:2]
+    diagonals = [
+        math.dist(centers[a], centers[b])
+        for a, b in (("front-right-arm", "rear-left-arm"), ("front-left-arm", "rear-right-arm"))
+    ]
+    assert wheelbase_matches_measurement(diagonals)
+    assert diagonals == pytest.approx(report["diagonal_wheelbases_mm"], abs=1e-7)
+
+
 def test_final_fit_gate_rejects_hole_error_even_without_collision():
     report = {
         "interference_volume_mm3": 0,
         "mounting_errors_mm": {"arm": 0.2},
-        "diagonal_wheelbases_mm": [330, 330],
-        "advertised_wheelbase_mm": 330,
+        "diagonal_wheelbases_mm": [303, 304],
         "status": "verified",
     }
     with pytest.raises(ValueError, match="misalignment"):
         require_final_fit(report)
 
 
-def test_final_fit_gate_uses_confirmed_330_mm_wheelbase():
+def test_final_fit_gate_uses_physical_measurement_instead_of_product_photo():
     report = {
         "interference_volume_mm3": 0,
         "mounting_errors_mm": {"arm": 0},
-        "diagonal_wheelbases_mm": [330, 330],
-        "advertised_wheelbase_mm": 330,
+        "diagonal_wheelbases_mm": [302.592190141, 303.985621985],
         "status": "verified",
     }
     require_final_fit(report)
-    report["diagonal_wheelbases_mm"] = [303, 304]
-    with pytest.raises(ValueError, match="330 mm"):
+    report["diagonal_wheelbases_mm"] = [330, 330]
+    with pytest.raises(ValueError, match="physical measurement"):
         require_final_fit(report)
+
+
+@pytest.mark.parametrize("diagonals", [[295, 295], [330, 330], [float("nan"), 304], [303]])
+def test_wheelbase_check_rejects_wrong_or_incomplete_measurements(diagonals):
+    from tigerbee.references import wheelbase_matches_measurement
+
+    assert not wheelbase_matches_measurement(diagonals)
 
 
 def test_top_height_changes_standoff_lengths():

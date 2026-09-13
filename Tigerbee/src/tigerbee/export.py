@@ -18,6 +18,7 @@ from tigerbee.models import (
     build_profile,
     profile_data,
 )
+from tigerbee.references import MEASURED_WHEELBASE_RANGE_MM, MEASUREMENT_REFERENCE
 
 
 def source_revision() -> str | None:
@@ -69,9 +70,9 @@ def export_component(
             if name in ("arm-type-1", "arm-type-2", "camera-plate")
             else "refs/Scan_2.jpeg"
         ),
-        "target_wheelbase_mm": 330.0,
-        "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
-        "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+        "measured_frame_wheelbase_range_mm": list(MEASURED_WHEELBASE_RANGE_MM),
+        "measurement_reference": MEASUREMENT_REFERENCE,
+        "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
         "assumptions": profile_data(name).get("assumptions", []),
         "valid": part.is_valid,
         "solid_count": len(part.solids()),

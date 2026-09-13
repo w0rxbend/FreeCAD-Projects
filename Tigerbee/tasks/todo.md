@@ -10,10 +10,11 @@
 - [x] Track canonical 3MF/STL/FCStd outputs with CI freshness checks.
 - [x] Build provisional assembly and report alignment and interference errors.
 - [x] Inspect component and assembly visuals; document commands and limits.
-- [x] Make both scans and final 330 mm photo authoritative; supersede 295 mm target.
-- [x] Audit arm swaps and face flips at current mounting pairs; none reaches 330 mm.
-- [ ] Confirm metric scan calibration and reconcile reconstructed arm placement.
-- [ ] Resolve mounting offsets, root collisions, and 330 mm wheelbase mismatch.
+- [x] Record both scans as near-1:1 pen tracings and physical 303–304 mm measurement.
+- [x] Audit arm swaps and face flips at current mounting pairs; retain historical report.
+- [x] Reconcile overall wheelbase with physical measurement; retain unextended arms.
+- [ ] Refine local tracing errors and verify mounting placement.
+- [ ] Resolve mounting offsets and root collisions.
 - [ ] Confirm stacking, plate thicknesses, spacing, and hardware dimensions.
 - [ ] Model camera/end brackets and fasteners using confirmed dimensions.
 - [ ] Pass strict final assembly fit checks.

@@ -1,0 +1,1440 @@
+{
+  "freecad_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
+  "freecad_bodies": [
+    "Body",
+    "Body001",
+    "Body002"
+  ],
+  "embedded_scan_1_matches_reference": true,
+  "nominal_a4_mm": [
+    210,
+    297
+  ],
+  "freecad_scan_1_size_mm": [
+    210.0,
+    297.04
+  ],
+  "freecad_scan_1_center_mm": [
+    109.27602741707544,
+    155.10883221771283
+  ],
+  "freecad_scan_1_rotation_deg": -0.46999999999711223,
+  "method": "Project unmodified CAD outlines into scan pixels. Scan_1 registration uses the exact saved FreeCAD image-plane placement; Scan_2 uses its tracing origin. Distances are from sampled CAD outer boundaries to the original red ink.",
+  "limitations": "Ink is a band, not an exact engineering boundary. CAD-to-ink distances are one-directional and do not validate every opening, physical hole diameter, thickness, or assembly fit. Scan_2 is a trace comparison, not independent CAD evidence.",
+  "scans": [
+    {
+      "source": "refs/Scan_1.jpeg",
+      "sha256": "bf26be9035026002362046d18933f9032b9989aa3b0f0557132eea178eb3017e",
+      "pixels": [
+        2480,
+        3508
+      ],
+      "nominal_mm_per_pixel": [
+        0.0846774193548387,
+        0.0846636259977195
+      ],
+      "parts": [
+        {
+          "part": "arm-type-1",
+          "cad_sheet_aligned_bounds_mm": [
+            36.229723081394155,
+            169.55488650817617
+          ],
+          "ink_sheet_aligned_bounds_mm": [
+            38.443548387096776,
+            170.6818700114025
+          ],
+          "cad_outer_to_ink_distance_mm": {
+            "median": 0.18934446573257446,
+            "p95": 0.3786889314651489,
+            "max": 0.6613517999649048
+          },
+          "openings": [
+            {
+              "index": 1,
+              "cad_sheet_aligned_bounds_mm": [
+                7.559522611635995,
+                10.760421762376769
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.33870968222618103,
+                "max": 0.8382636904716492
+              }
+            },
+            {
+              "index": 2,
+              "cad_sheet_aligned_bounds_mm": [
+                6.999764486362547,
+                6.9984369734353065
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.1197519525885582,
+                "p95": 0.2540322542190552,
+                "max": 0.33870968222618103
+              }
+            },
+            {
+              "index": 3,
+              "cad_sheet_aligned_bounds_mm": [
+                3.7168521719829406,
+                3.6941964642236447
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 1.019651174545288,
+                "p95": 1.4395161867141724,
+                "max": 1.4494439363479614
+              }
+            },
+            {
+              "index": 4,
+              "cad_sheet_aligned_bounds_mm": [
+                3.7168521720000567,
+                3.6941964642884795
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 1.0844000577926636,
+                "p95": 1.404329538345337,
+                "max": 1.4494439363479614
+              }
+            },
+            {
+              "index": 5,
+              "cad_sheet_aligned_bounds_mm": [
+                3.7184413487647094,
+                3.6923604241948818
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.9893118143081665,
+                "p95": 1.6269304752349854,
+                "max": 1.644138216972351
+              }
+            },
+            {
+              "index": 6,
+              "cad_sheet_aligned_bounds_mm": [
+                3.71844134873555,
+                3.692360424163225
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.9911237359046936,
+                "p95": 1.66827392578125,
+                "max": 1.7041001319885254
+              }
+            },
+            {
+              "index": 7,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254113
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.8718074560165405,
+                "p95": 1.2464619874954224,
+                "max": 1.3388675451278687
+              }
+            },
+            {
+              "index": 8,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9998990655839437,
+                2.9968915135254495
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.8840582370758057,
+                "p95": 1.1504855155944824,
+                "max": 1.179419994354248
+              }
+            }
+          ]
+        },
+        {
+          "part": "arm-type-2",
+          "cad_sheet_aligned_bounds_mm": [
+            36.388028983297275,
+            170.71071451839413
+          ],
+          "ink_sheet_aligned_bounds_mm": [
+            37.42741935483871,
+            172.45980615735462
+          ],
+          "cad_outer_to_ink_distance_mm": {
+            "median": 0.16935484111309052,
+            "p95": 0.359255850315094,
+            "max": 0.5080645084381104
+          },
+          "openings": [
+            {
+              "index": 1,
+              "cad_sheet_aligned_bounds_mm": [
+                7.968197037446529,
+                10.682800039255126
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.4463098347187042,
+                "max": 0.8635436296463013
+              }
+            },
+            {
+              "index": 2,
+              "cad_sheet_aligned_bounds_mm": [
+                7.239590753568199,
+                7.2383898241523585
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.33870968222618103,
+                "max": 0.359255850315094
+              }
+            },
+            {
+              "index": 3,
+              "cad_sheet_aligned_bounds_mm": [
+                3.693443551049049,
+                3.717437268741323
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.5365449786186218,
+                "max": 0.5987597703933716
+              }
+            },
+            {
+              "index": 4,
+              "cad_sheet_aligned_bounds_mm": [
+                3.693443551049049,
+                3.7174372687413615
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.08467742055654526,
+                "p95": 0.7242249250411987,
+                "max": 0.7806872129440308
+              }
+            },
+            {
+              "index": 5,
+              "cad_sheet_aligned_bounds_mm": [
+                3.70284653380038,
+                3.708877533576147
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.14455339312553406,
+                "p95": 0.5355470180511475,
+                "max": 0.6448840498924255
+              }
+            },
+            {
+              "index": 6,
+              "cad_sheet_aligned_bounds_mm": [
+                3.7028465338343337,
+                3.7088775335612856
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.7988451719284058,
+                "max": 0.8339758515357971
+              }
+            },
+            {
+              "index": 7,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.996891513525469
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.718511700630188,
+                "p95": 0.9155341386795044,
+                "max": 0.9580156207084656
+              }
+            },
+            {
+              "index": 8,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.7988451719284058,
+                "p95": 1.019651174545288,
+                "max": 1.0777676105499268
+              }
+            }
+          ]
+        },
+        {
+          "part": "camera-plate",
+          "cad_sheet_aligned_bounds_mm": [
+            65.52104682608257,
+            153.16156411977133
+          ],
+          "ink_sheet_aligned_bounds_mm": [
+            67.65725806451613,
+            154.5957810718358
+          ],
+          "cad_outer_to_ink_distance_mm": {
+            "median": 0.3053087890148163,
+            "p95": 0.9314516186714172,
+            "max": 1.203492283821106
+          },
+          "openings": [
+            {
+              "index": 1,
+              "cad_sheet_aligned_bounds_mm": [
+                18.499701552658678,
+                18.49735631548206
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.4233871102333069,
+                "p95": 0.5150726437568665,
+                "max": 0.5927419662475586
+              }
+            },
+            {
+              "index": 2,
+              "cad_sheet_aligned_bounds_mm": [
+                15.089727838281949,
+                15.087695825376123
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 8.291902542114258,
+                "p95": 9.884234428405762,
+                "max": 10.346596717834473
+              }
+            },
+            {
+              "index": 3,
+              "cad_sheet_aligned_bounds_mm": [
+                8.999580551631293,
+                14.694827065067742
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.1197519525885582
+              }
+            },
+            {
+              "index": 4,
+              "cad_sheet_aligned_bounds_mm": [
+                11.528323428944608,
+                8.551881461276107
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.33870968222618103,
+                "p95": 0.5422000288963318,
+                "max": 0.7806872129440308
+              }
+            },
+            {
+              "index": 5,
+              "cad_sheet_aligned_bounds_mm": [
+                11.528323428944608,
+                8.551881461276116
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.33870968222618103,
+                "p95": 0.5059173107147217,
+                "max": 0.5680333971977234
+              }
+            },
+            {
+              "index": 6,
+              "cad_sheet_aligned_bounds_mm": [
+                5.9994691540569,
+                5.99851653131513
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.4233871102333069,
+                "max": 0.4937499463558197
+              }
+            },
+            {
+              "index": 7,
+              "cad_sheet_aligned_bounds_mm": [
+                5.9994691540569,
+                5.998516531315188
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.5927419662475586,
+                "max": 0.6774193644523621
+              }
+            },
+            {
+              "index": 8,
+              "cad_sheet_aligned_bounds_mm": [
+                5.999469154056938,
+                5.998516531315188
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.5927419662475586,
+                "max": 0.682691216468811
+              }
+            },
+            {
+              "index": 9,
+              "cad_sheet_aligned_bounds_mm": [
+                5.999469154056938,
+                5.998516531315168
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.08467742055654526,
+                "p95": 0.26777350902557373,
+                "max": 0.33870968222618103
+              }
+            },
+            {
+              "index": 10,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.996891513525474
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.6420417428016663,
+                "max": 0.718511700630188
+              }
+            },
+            {
+              "index": 11,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.99689151352544
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.4233871102333069,
+                "max": 0.4790078103542328
+              }
+            },
+            {
+              "index": 12,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.4790078103542328,
+                "p95": 0.9001333713531494,
+                "max": 0.9580156207084656
+              }
+            },
+            {
+              "index": 13,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.6448840498924255,
+                "p95": 1.4985638856887817,
+                "max": 1.556775450706482
+              }
+            },
+            {
+              "index": 14,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254495
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.26777350902557373,
+                "p95": 1.0192989110946655,
+                "max": 1.0474019050598145
+              }
+            },
+            {
+              "index": 15,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254113
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.6597050428390503,
+                "max": 0.6982678771018982
+              }
+            },
+            {
+              "index": 16,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.9968915135254113
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.5334995985031128,
+                "max": 0.5680333971977234
+              }
+            },
+            {
+              "index": 17,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.3053087890148163,
+                "p95": 0.8467742204666138,
+                "max": 0.9120036959648132
+              }
+            },
+            {
+              "index": 18,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.9968915135254495
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.5981580018997192,
+                "max": 0.616460919380188
+              }
+            },
+            {
+              "index": 19,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.26777350902557373,
+                "p95": 0.4233871102333069,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 20,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254113
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.4233871102333069,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 21,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9998990655839197,
+                2.9968915135254113
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.26777350902557373,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 22,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.4233871102333069,
+                "max": 0.4560018479824066
+              }
+            },
+            {
+              "index": 23,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254113
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.3767456114292145,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 24,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2540322542190552,
+                "p95": 0.6420417428016663,
+                "max": 0.6774193644523621
+              }
+            },
+            {
+              "index": 25,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.9968915135254304
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.359255850315094,
+                "p95": 0.9455793499946594,
+                "max": 0.9911237359046936
+              }
+            },
+            {
+              "index": 26,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135253917
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.5902711153030396,
+                "max": 0.6106175780296326
+              }
+            },
+            {
+              "index": 27,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9998990655839775,
+                2.9968915135254015
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.6967102289199829,
+                "max": 0.7620967626571655
+              }
+            },
+            {
+              "index": 28,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.99689151352544
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.26777350902557373,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 29,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.99689151352544
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.1197519525885582,
+                "p95": 0.2540322542190552,
+                "max": 0.26777350902557373
+              }
+            },
+            {
+              "index": 30,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583939,
+                2.9968915135254015
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.2540322542190552,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 31,
+              "cad_sheet_aligned_bounds_mm": [
+                2.999899065583958,
+                2.9968915135253824
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.3582436442375183,
+                "max": 0.4233871102333069
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "refs/Scan_2.jpeg",
+      "sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
+      "pixels": [
+        2480,
+        3508
+      ],
+      "nominal_mm_per_pixel": [
+        0.0846774193548387,
+        0.0846636259977195
+      ],
+      "parts": [
+        {
+          "part": "rear-plate",
+          "cad_sheet_aligned_bounds_mm": [
+            67.26254661969449,
+            135.92458356199037
+          ],
+          "ink_sheet_aligned_bounds_mm": [
+            67.99596774193549,
+            136.81641961231472
+          ],
+          "cad_outer_to_ink_distance_mm": {
+            "median": 0.0,
+            "p95": 0.16935484111309052,
+            "max": 0.2540322542190552
+          },
+          "openings": [
+            {
+              "index": 1,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.33870968222618103,
+                "p95": 0.359255850315094,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 2,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.995661469791105
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.3053087890148163,
+                "p95": 0.3786889314651489,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 3,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.995661469791105
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.33870968222618103,
+                "p95": 0.359255850315094,
+                "max": 0.3786889314651489
+              }
+            },
+            {
+              "index": 4,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.995661469791105
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2540322542190552,
+                "p95": 0.3053087890148163,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 5,
+              "cad_sheet_aligned_bounds_mm": [
+                10.88681514956847,
+                7.994360345530075
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.16935484111309052,
+                "max": 0.2540322542190552
+              }
+            },
+            {
+              "index": 6,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.33870968222618103,
+                "p95": 0.3786889314651489,
+                "max": 0.3786889314651489
+              }
+            },
+            {
+              "index": 7,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.3053087890148163,
+                "p95": 0.3786889314651489,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 8,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.33870968222618103,
+                "p95": 0.4233871102333069,
+                "max": 0.4560018479824066
+              }
+            },
+            {
+              "index": 9,
+              "cad_sheet_aligned_bounds_mm": [
+                10.975802318680326,
+                7.9055459523354505
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.16935484111309052
+              }
+            },
+            {
+              "index": 10,
+              "cad_sheet_aligned_bounds_mm": [
+                11.016808102984214,
+                7.817074437473253
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.1197519525885582
+              }
+            },
+            {
+              "index": 11,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.3053087890148163,
+                "p95": 0.4790078103542328,
+                "max": 0.5080645084381104
+              }
+            },
+            {
+              "index": 12,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2540322542190552,
+                "p95": 0.33870968222618103,
+                "max": 0.3491339385509491
+              }
+            },
+            {
+              "index": 13,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.995661469791105
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.4937499463558197,
+                "p95": 0.718511700630188,
+                "max": 0.7620967626571655
+              }
+            },
+            {
+              "index": 14,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.6106175780296326,
+                "p95": 0.7783562541007996,
+                "max": 0.8509975075721741
+              }
+            },
+            {
+              "index": 15,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.5355470180511475,
+                "p95": 0.8459231853485107,
+                "max": 0.9874998927116394
+              }
+            },
+            {
+              "index": 16,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.6613517999649048,
+                "p95": 0.8033205270767212,
+                "max": 0.9001333713531494
+              }
+            },
+            {
+              "index": 17,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.08467742055654526
+              }
+            },
+            {
+              "index": 18,
+              "cad_sheet_aligned_bounds_mm": [
+                8.422745369846732,
+                8.372396458236013
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.08467742055654526,
+                "p95": 1.309853434562683,
+                "max": 1.4093130826950073
+              }
+            },
+            {
+              "index": 19,
+              "cad_sheet_aligned_bounds_mm": [
+                8.17306946441942,
+                8.469863183837301
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.08467742055654526,
+                "p95": 1.2925447225570679,
+                "max": 1.437023401260376
+              }
+            },
+            {
+              "index": 20,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999964,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.3053087890148163,
+                "p95": 0.359255850315094,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 21,
+              "cad_sheet_aligned_bounds_mm": [
+                4.999999999999999,
+                4.9991855351034555
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.3786889314651489,
+                "max": 0.43177181482315063
+              }
+            },
+            {
+              "index": 22,
+              "cad_sheet_aligned_bounds_mm": [
+                5.0000000000000036,
+                4.9991855351034165
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.3053087890148163,
+                "max": 0.33870968222618103
+              }
+            },
+            {
+              "index": 23,
+              "cad_sheet_aligned_bounds_mm": [
+                8.08719786090324,
+                8.20188028067237
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 1.2512428760528564,
+                "max": 1.378448486328125
+              }
+            },
+            {
+              "index": 24,
+              "cad_sheet_aligned_bounds_mm": [
+                8.376962832368536,
+                8.20170328949946
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.08467742055654526,
+                "p95": 1.3998469114303589,
+                "max": 1.4980965852737427
+              }
+            },
+            {
+              "index": 25,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911244
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.682691216468811,
+                "p95": 0.7788281440734863,
+                "max": 0.7988451719284058
+              }
+            },
+            {
+              "index": 26,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911244
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.4937499463558197,
+                "p95": 0.6821640133857727,
+                "max": 0.7234841585159302
+              }
+            },
+            {
+              "index": 27,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.9956614697911244
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.718511700630188,
+                "p95": 0.8033205270767212,
+                "max": 0.8509975075721741
+              }
+            },
+            {
+              "index": 28,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.3053087890148163,
+                "p95": 0.41891729831695557,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 29,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999964,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.682691216468811,
+                "p95": 0.830910325050354,
+                "max": 0.8635436296463013
+              }
+            },
+            {
+              "index": 30,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000013,
+                2.9956614697911244
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.3053087890148163,
+                "p95": 0.41891729831695557,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 31,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000107,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 3.2333028316497803,
+                "p95": 4.959753036499023,
+                "max": 5.137484550476074
+              }
+            }
+          ]
+        },
+        {
+          "part": "top-plate",
+          "cad_sheet_aligned_bounds_mm": [
+            74.0275470777744,
+            213.252903018735
+          ],
+          "ink_sheet_aligned_bounds_mm": [
+            75.53225806451613,
+            213.86031927023944
+          ],
+          "cad_outer_to_ink_distance_mm": {
+            "median": 0.0,
+            "p95": 0.1197519525885582,
+            "max": 0.2540322542190552
+          },
+          "openings": [
+            {
+              "index": 1,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.08467742055654526,
+                "p95": 0.2525794208049774,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 2,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.2540322542190552,
+                "max": 0.26777350902557373
+              }
+            },
+            {
+              "index": 3,
+              "cad_sheet_aligned_bounds_mm": [
+                8.027051464414434,
+                13.550839538232312
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.16935484111309052,
+                "max": 0.2395039051771164
+              }
+            },
+            {
+              "index": 4,
+              "cad_sheet_aligned_bounds_mm": [
+                7.5727467135706314,
+                13.68235311183391
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.1197519525885582
+              }
+            },
+            {
+              "index": 5,
+              "cad_sheet_aligned_bounds_mm": [
+                8.067623398711818,
+                13.373268412190843
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.18934446573257446
+              }
+            },
+            {
+              "index": 6,
+              "cad_sheet_aligned_bounds_mm": [
+                8.07330137313767,
+                13.703353019318515
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.18934446573257446
+              }
+            },
+            {
+              "index": 7,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.2540322542190552,
+                "max": 0.2540322542190552
+              }
+            },
+            {
+              "index": 8,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000107,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2395039051771164,
+                "p95": 0.3053087890148163,
+                "max": 0.3786889314651489
+              }
+            },
+            {
+              "index": 9,
+              "cad_sheet_aligned_bounds_mm": [
+                8.207308194610084,
+                12.963387109898242
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.18934446573257446
+              }
+            },
+            {
+              "index": 10,
+              "cad_sheet_aligned_bounds_mm": [
+                7.875222556221786,
+                13.666394514263228
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.16935484111309052,
+                "max": 0.2395039051771164
+              }
+            },
+            {
+              "index": 11,
+              "cad_sheet_aligned_bounds_mm": [
+                10.595095895669163,
+                15.23837127528066
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.2395039051771164
+              }
+            },
+            {
+              "index": 12,
+              "cad_sheet_aligned_bounds_mm": [
+                10.425507394644443,
+                16.317213054727
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.16935484111309052
+              }
+            },
+            {
+              "index": 13,
+              "cad_sheet_aligned_bounds_mm": [
+                10.495972586513208,
+                15.820228981311582
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.2395039051771164
+              }
+            },
+            {
+              "index": 14,
+              "cad_sheet_aligned_bounds_mm": [
+                10.230165796266231,
+                16.003680285834236
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.18934446573257446
+              }
+            },
+            {
+              "index": 15,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.9956614697911244
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.26777350902557373,
+                "p95": 0.41891729831695557,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 16,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000107,
+                2.9956614697911244
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.18934446573257446,
+                "p95": 0.26777350902557373,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 17,
+              "cad_sheet_aligned_bounds_mm": [
+                10.376875673129392,
+                15.353403475961617
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.1197519525885582,
+                "max": 0.718511700630188
+              }
+            },
+            {
+              "index": 18,
+              "cad_sheet_aligned_bounds_mm": [
+                10.395746116674058,
+                16.137069102036413
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.16935484111309052
+              }
+            },
+            {
+              "index": 19,
+              "cad_sheet_aligned_bounds_mm": [
+                5.8879258476440635,
+                18.949105248259116
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.18934446573257446
+              }
+            },
+            {
+              "index": 20,
+              "cad_sheet_aligned_bounds_mm": [
+                6.151008676851947,
+                18.989043288999042
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.08467742055654526,
+                "p95": 0.1197519525885582,
+                "max": 0.16935484111309052
+              }
+            },
+            {
+              "index": 21,
+              "cad_sheet_aligned_bounds_mm": [
+                9.656210821912182,
+                11.198494134948948
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 1.3195093870162964,
+                "max": 2.035783290863037
+              }
+            },
+            {
+              "index": 22,
+              "cad_sheet_aligned_bounds_mm": [
+                4.999999999999999,
+                4.999185535103436
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.26502525806427,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 23,
+              "cad_sheet_aligned_bounds_mm": [
+                4.99999999999998,
+                4.999185535103436
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.2540322542190552,
+                "max": 0.3053087890148163
+              }
+            },
+            {
+              "index": 24,
+              "cad_sheet_aligned_bounds_mm": [
+                5.000000000000018,
+                4.9991855351034555
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.3053087890148163,
+                "max": 0.359255850315094
+              }
+            },
+            {
+              "index": 25,
+              "cad_sheet_aligned_bounds_mm": [
+                10.383188423715866,
+                9.090588210467326
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.08467742055654526,
+                "max": 0.16935484111309052
+              }
+            },
+            {
+              "index": 26,
+              "cad_sheet_aligned_bounds_mm": [
+                10.31853158308567,
+                9.023905818072674
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.0,
+                "p95": 0.11799822747707367,
+                "max": 0.26777350902557373
+              }
+            },
+            {
+              "index": 27,
+              "cad_sheet_aligned_bounds_mm": [
+                4.999999999999999,
+                4.999185535103436
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.2540322542190552,
+                "max": 0.33870968222618103
+              }
+            },
+            {
+              "index": 28,
+              "cad_sheet_aligned_bounds_mm": [
+                5.000000000000018,
+                4.999185535103436
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2540322542190552,
+                "p95": 0.3470490872859955,
+                "max": 0.4233871102333069
+              }
+            },
+            {
+              "index": 29,
+              "cad_sheet_aligned_bounds_mm": [
+                2.9999999999999916,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.16935484111309052,
+                "p95": 0.2525794208049774,
+                "max": 0.26777350902557373
+              }
+            },
+            {
+              "index": 30,
+              "cad_sheet_aligned_bounds_mm": [
+                3.0000000000000107,
+                2.9956614697911434
+              ],
+              "cad_to_ink_distance_mm": {
+                "median": 0.2540322542190552,
+                "p95": 0.3491339385509491,
+                "max": 0.359255850315094
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

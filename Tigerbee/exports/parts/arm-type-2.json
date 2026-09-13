@@ -7,15 +7,18 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
-  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "source_revision": "a95c135703a16a2a8d5bbcec779019deed34be70",
+  "source_sha256": "6e131749848c208363bb79f11b8328ef61af36ac1511d3679043d368cc19b8bc",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
   "reference_status": "saved-freecad",
   "authoritative_blueprint": "refs/Scan_1.jpeg",
-  "target_wheelbase_mm": 330.0,
-  "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
-  "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+  "measured_frame_wheelbase_range_mm": [
+    303.0,
+    304.0
+  ],
+  "measurement_reference": "refs/measurements.md",
+  "reference_note": "Near-1:1 pen-traced outlines; detailed mounting fit remains unresolved",
   "assumptions": [],
   "valid": true,
   "solid_count": 1,
@@ -44,10 +47,10 @@
     "arm-type-2.dxf"
   ],
   "file_sha256": {
-    "arm-type-2.step": "1a46bf8bf39f185412d61cb45169d15d9c801d4ff95430858b6bafc204fe4b0f",
+    "arm-type-2.step": "de30b1c350a3396cee0b2cad4e25174e282f921ddad2e1cd24e359b3fddd4b05",
     "arm-type-2.stl": "8ee2f1c15bf92ed9de10ae8d242d9cb9ca1abaa43bccc52f077010c8d219bcd1",
-    "arm-type-2.3mf": "b4c79982c2a157d9a3cff88892610b1d396d331181d0e128c43c2bffc5313d72",
+    "arm-type-2.3mf": "7795b38d80c5431397c77cde208b6795fd8b81f930fc23d9097d25ac02a3a9bc",
     "arm-type-2.svg": "6cf5bc6a525579ffda72747b40983d0eb2c5c26dcfbe1488e98f63da28eec42b",
-    "arm-type-2.dxf": "09d6816dea797887609566322d1aead61529a5682ad8afbcf29bf3234770b4ea"
+    "arm-type-2.dxf": "9fdca0c82dc77a9f861fa276e280244034d064b5b924a9966cf98a5013eb44ce"
   }
 }
