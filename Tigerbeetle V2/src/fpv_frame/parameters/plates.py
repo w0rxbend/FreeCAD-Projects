@@ -40,7 +40,7 @@ class PlateProfileParameters:
 
 @dataclass(frozen=True)
 class PlateParameters:
-    """Source identity is stable while physical top/bottom roles remain unresolved."""
+    """Stable source identity with thickness and optional semantic contour overrides."""
 
     component_id: PlateId
     thickness: float

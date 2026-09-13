@@ -2,7 +2,7 @@
 
 from dataclasses import replace
 
-from .arms import ArmParameters, ArmProfileParameters
+from .arms import ArmParameters, reference_arm_profile
 from .evidence import PROVISIONAL, USER_THICKNESS, ParameterEvidence
 from .frame import FrameParameters
 from .plates import PLATE_IDS, PlateParameters
@@ -31,17 +31,7 @@ def get_preset(name: str = "default") -> FrameParameters:
         arm=ArmParameters(
             thickness=5.0,
             thickness_evidence=USER_THICKNESS,
-            profile=ArmProfileParameters(
-                root_to_motor=115.0,
-                root_width=37.0,
-                shaft_width=15.0,
-                motor_paddle_width=24.0,
-                root_hole_spacing=13.75,
-                evidence=ParameterEvidence(
-                    reason="A4 calibrated nominal arm dimensions; contour overlay review pending",
-                    sources=("references/measurements/combined.yaml",),
-                ),
-            ),
+            profile=reference_arm_profile(),
         ),
         plates=tuple(
             PlateParameters(identity, thickness=2.0, thickness_evidence=USER_THICKNESS)

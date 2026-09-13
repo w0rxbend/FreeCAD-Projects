@@ -4,8 +4,10 @@ from fpv_frame.geometry.datums import ComponentPlacement
 
 from ._validation import positive
 from .arms import ArmParameters
+from .equipment import EquipmentParameters
 from .evidence import PROVISIONAL, ParameterEvidence
 from .hardware import HardwareParameters
+from .layout import LayoutParameters
 from .manufacturing import ManufacturingParameters
 from .mounting import MotorMountParameters, StackParameters
 from .plates import PLATE_IDS, PlateParameters
@@ -44,8 +46,10 @@ class FrameParameters:
     stack: StackParameters = field(default_factory=StackParameters)
     motor: MotorMountParameters = field(default_factory=MotorMountParameters)
     hardware: HardwareParameters = field(default_factory=HardwareParameters)
+    layout: LayoutParameters = field(default_factory=LayoutParameters)
     manufacturing: ManufacturingParameters = field(default_factory=ManufacturingParameters)
     vertical: VerticalStackParameters = field(default_factory=VerticalStackParameters)
+    equipment: EquipmentParameters = field(default_factory=EquipmentParameters)
     assembly: AssemblyLayout | None = None
     evidence: ParameterEvidence = PROVISIONAL
 

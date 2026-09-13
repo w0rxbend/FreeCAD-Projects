@@ -14,6 +14,7 @@ class ManufacturingParameters:
     press_fit_clearance: float = -0.05
     printed_part_clearance: float = 0.3
     edge_minimum: float = 1.5
+    hardware_wall_minimum: float = 1.0
     fillet_radius: float = 1.0
     linear_tolerance: float = 0.05
     angular_tolerance: float = 0.1
@@ -28,5 +29,8 @@ class ManufacturingParameters:
         ):
             nonnegative(name, getattr(self, name))
         finite("press_fit_clearance", self.press_fit_clearance)
-        for name in ("edge_minimum", "fillet_radius", "linear_tolerance", "angular_tolerance"):
+        for name in (
+            "edge_minimum", "hardware_wall_minimum", "fillet_radius",
+            "linear_tolerance", "angular_tolerance",
+        ):
             positive(name, getattr(self, name))
