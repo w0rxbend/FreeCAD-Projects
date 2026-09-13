@@ -7,7 +7,7 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
   "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
@@ -53,11 +53,11 @@
     "camera-plate.dxf"
   ],
   "file_sha256": {
-    "camera-plate.step": "ffefbde44169be222018d1d2820506f4b6cf825751f8c7a87a77e4049fbe7eb8",
+    "camera-plate.step": "897f0a0dcee63fbdbdde45ea913c368be4936d64f2b8640c8b96af565053c330",
     "camera-plate.stl": "396264aae580342716063506ceb1c1980fd9e395b481408ee5d9f3d37b9a21c3",
-    "camera-plate.3mf": "bdf25b5ec20b63bdddf0b2ac989539ac10382a60b72c0e14080b3966d6116b9c",
+    "camera-plate.3mf": "a686ba86ab463d0ecd67ca2dbe88d46e09a2cdaa6992ff1dde10afdf914587cf",
     "camera-plate.svg": "89a0d6eb7bad9c59a97c986b31ddbb0ca1068befa58957f499472fbe46426a15",
-    "camera-plate.dxf": "2079e3762fa7d672a97cfcbdd47732911788d3249f79035a00b1d3fc1df755a4"
+    "camera-plate.dxf": "e651f4a234415ae64535e756d5d46cbc4d9affec24b6cf0ee83862ca6b21c0f3"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,

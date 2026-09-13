@@ -87,11 +87,11 @@
     304.99999999999994,
     304.99999999999994
   ],
-  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
   "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "units": "mm",
   "file_sha256": {
-    "tigerbee-with-protectors.step": "e714fddaee4d6eb0ff95719c7188433cefd2ffccaf355238dfaed50b88215f7a",
+    "tigerbee-with-protectors.step": "8b0e6fad0ec5e99c75d268cce860723522b2737bad1acde156ac6cc97c701f87",
     "tigerbee-with-protectors.glb": "ca43c14625c0002eebc43641b211644800a868b23f732a5df5fb4b04851f7de4",
     "tigerbee-with-protectors-isometric.svg": "8df66a7ad96fbd151df8b7d453c4a0b29f6d3cad911e679ce6146e2c8ddfd095",
     "tigerbee-with-protectors-side.svg": "3fc7f3e5f7f38ecf970a3c9e457a090801ec92fdcc5cb062a26dd725eb718aab"

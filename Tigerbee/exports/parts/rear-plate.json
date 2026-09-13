@@ -7,7 +7,7 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
   "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
@@ -60,11 +60,11 @@
     "rear-plate.dxf"
   ],
   "file_sha256": {
-    "rear-plate.step": "8d402edfe4cd2a56eff7abe31622b5d2399b62577bc43c3be0f6e18b917f68aa",
+    "rear-plate.step": "0a986f0271ab63c705607ac845ed480ad40524a08b373a94adb8a69d633d0270",
     "rear-plate.stl": "3149e3274db93531b6c65c767adbfcc017348a223de11d69d357513367c40402",
-    "rear-plate.3mf": "873a74461ab8adb58b0ac858dfd36dd50de6650035d0bd05796c988b7b37397b",
+    "rear-plate.3mf": "c4e7783f323400666f80118974f4a1bdd302db879eee1653107239650a436fe7",
     "rear-plate.svg": "f169c66ddea885ac7ae51f9e699117f512b71e6e9e2ab3cf913342c679528dc3",
-    "rear-plate.dxf": "fa9574f2a6f6b650fcb291fab16ad80b623c4a00c018fbe0941ac53dcfd476c0"
+    "rear-plate.dxf": "9a75866e376aa44960c89bad967db77b4ba6aac0e11874afc29799e5014f8d9b"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,

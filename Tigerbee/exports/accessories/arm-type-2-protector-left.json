@@ -42,13 +42,13 @@
     "arm-type-2-protector-left.3mf",
     "arm-type-2-protector-left.svg"
   ],
-  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
   "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "units": "mm",
   "file_sha256": {
-    "arm-type-2-protector-left.step": "01e5f73b5844fabc5bfac774d79208be181e7dcf26f9e0e7cc8dcbf13f441c41",
+    "arm-type-2-protector-left.step": "876a95f283ffddd72931bf41d9427278a60c2153c59c55986f44047cdc7ce1f0",
     "arm-type-2-protector-left.stl": "68b5e6dc3647da03eea7ba2d94b28db3cebf7e31dc45a1fdb503ee2d480c7db6",
-    "arm-type-2-protector-left.3mf": "25239d93b40188a825d4a4f3938f8c8ee6307e7909be2f9d261f0161d7b5b942",
+    "arm-type-2-protector-left.3mf": "b4770fd3651a2e39e4787186252b0d671294e38c768a18d43c70e9deca9667f6",
     "arm-type-2-protector-left.svg": "50d7384d23710e42e11a668e2d3bd9c89c298130c6ed9be5223461ef861a2963"
   }
 }

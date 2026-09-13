@@ -42,13 +42,13 @@
     "arm-type-1-protector-right.3mf",
     "arm-type-1-protector-right.svg"
   ],
-  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
   "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "units": "mm",
   "file_sha256": {
-    "arm-type-1-protector-right.step": "e3bfb0ca20ede08757bec8a96099c40a6eeeb35e30161aa5eee2e8f9f6a06c22",
+    "arm-type-1-protector-right.step": "284e49d48785cc4410bbabaa51e969f12cda9c907ecb6af8d296ed6a103ebfcf",
     "arm-type-1-protector-right.stl": "7b361e6d26b8531ac8570f54acff2d1e1ff9d507cfd770b54bbbcaf9d9936328",
-    "arm-type-1-protector-right.3mf": "c566c663cfd01bffa56e859d8ae84c704d847866b6ae772d38aa41c77a2e27fd",
+    "arm-type-1-protector-right.3mf": "e122a1b433a7763b3143e692255f0fdfd7cd3c68c9b066dcffe563760567b8a4",
     "arm-type-1-protector-right.svg": "8fc93251da295d1c43b537b82c464f766c60462fa690bf3325f656275561b71c"
   }
 }
