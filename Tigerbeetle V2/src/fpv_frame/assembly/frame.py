@@ -2,12 +2,13 @@
 
 from dataclasses import dataclass
 
-from build123d import Axis, Compound, Face, Part, Plane, Vector, Wire, extrude
+from build123d import Axis, Compound, Face, Part, Plane, Vector
 
 from fpv_frame.geometry.layout import FrameLayout, build_layout
 from fpv_frame.parameters.frame import FrameParameters
 from fpv_frame.parts.arm import arm_profile, build_arm
 from fpv_frame.parts.plates import build_plate, plate_profile
+from fpv_frame.parts.standoff import build_standoff, standoff_profile
 
 
 @dataclass(frozen=True)
@@ -43,16 +44,10 @@ def build_assembly(params: FrameParameters) -> FrameAssembly:
         )
         parts[placement.name] = arm
     for datum in layout.standoffs:
-        profiles[datum.name] = Face(
-            Wire.make_circle(params.hardware.standoff_outer_diameter / 2),
-            [Wire.make_circle(params.hardware.bolt_diameter / 2)],
+        profiles[datum.name] = standoff_profile(params.hardware)
+        parts[datum.name] = build_standoff(params.hardware, datum.height).translate(
+            Vector(datum.center.x, datum.center.y, datum.lower_z)
         )
-        plane = Plane(origin=(datum.center.x, datum.center.y, datum.lower_z))
-        annulus = Face(
-            Wire.make_circle(params.hardware.standoff_outer_diameter / 2, plane),
-            [Wire.make_circle(params.hardware.bolt_diameter / 2, plane)],
-        )
-        parts[datum.name] = extrude(annulus, amount=datum.height, dir=(0, 0, 1))
     for name, part in parts.items():
         part.label = name
     compound = Compound(children=list(parts.values()), label="Tigerbeetle_frame")
