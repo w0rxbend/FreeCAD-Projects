@@ -36,3 +36,10 @@ production-grade frame objective:
 - [x] Add 12 mm feet, flat coplanar supports and recessed motor screw access.
 - [x] Add CLI, separate STEP/STL/3MF, fit reports and assembled preview.
 - [x] Complete native reopening, visual review, 158 tests, lint/types and 75-output inventory.
+
+## Top-plate GoPro holder
+
+- [x] Inspect three inspiration images and actual front top-plate holes.
+- [x] Model registered M3 base and adjustable M5 three-finger interface.
+- [x] Verify carbon, bolt/tool access, mating finger sweep and captive nut fit.
+- [x] Complete separate exports, native reopen, visual review, 175 tests and 87-output inventory.

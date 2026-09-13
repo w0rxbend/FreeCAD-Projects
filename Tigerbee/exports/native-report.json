@@ -60,9 +60,21 @@
     "volume_mm3": 8988.578843451663
   },
   {
+    "file": "accessories/tigerbee-with-gopro-holder.FCStd",
+    "valid": true,
+    "solids": 20,
+    "volume_mm3": 169893.84499949618
+  },
+  {
     "file": "accessories/tigerbee-with-protectors.FCStd",
     "valid": true,
     "solids": 19,
     "volume_mm3": 153821.53983952425
+  },
+  {
+    "file": "accessories/top-plate-gopro-holder.FCStd",
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 16072.305159971951
   }
 ]

@@ -6,6 +6,7 @@ import json
 import pytest
 
 from tigerbee import inventory
+from tigerbee.gopro import GOPRO_HOLDER
 from tigerbee.models import PARTS
 from tigerbee.protectors import PROTECTORS
 
@@ -44,12 +45,14 @@ def test_verify_detects_stale_or_incomplete_deliverables(tmp_path, monkeypatch, 
     names += [f"assembly/tigerbee-assembly.{suffix}" for suffix in ("3mf", "stl", "FCStd")]
     names += [
         f"accessories/{name}.{suffix}"
-        for name in PROTECTORS
+        for name in (*PROTECTORS, GOPRO_HOLDER)
         for suffix in ("step", "stl", "3mf", "FCStd", "svg", "json")
     ]
     names += [
         "accessories/tigerbee-with-protectors.step",
         "accessories/tigerbee-with-protectors.FCStd",
+        "accessories/tigerbee-with-gopro-holder.step",
+        "accessories/tigerbee-with-gopro-holder.FCStd",
     ]
     hashes = {}
     for name in names:

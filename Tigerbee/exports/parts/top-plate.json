@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "a784932cc862888ee1b3b2d8acff4bf451b626b5",
-  "source_sha256": "c6bbd0a3053ab9a3326d62f5bb33f40da7950fb23a42d1edbd6aa0ce11c9cfea",
+  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
+  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -60,11 +60,11 @@
     "top-plate.dxf"
   ],
   "file_sha256": {
-    "top-plate.step": "464c5500fcb494e75c83e173230e6e861ba2e8f53f9d511287a8f21e9e4869b8",
+    "top-plate.step": "da1d5e0896a94dd0357bedc376539878e4135a3051e9281e27ff68f64fc50563",
     "top-plate.stl": "d0c2b9f3a6cc1948e04b4bccea1de3a1dc4002f32671320f87a5b47e3a5afd76",
-    "top-plate.3mf": "6d837e665f7a37304f579265d506b6db29e516f30d06298b123f1f34c5ee59c0",
+    "top-plate.3mf": "fcde5019eba7f793320eab26c235e6e1be024e42a93e2f3499a25a58c5436d44",
     "top-plate.svg": "01bafb5f72ae2051c8d2fd69dabc0ba53f2b197ce6df11a188f527b86a5ae1a7",
-    "top-plate.dxf": "02b02c2908e9ac3cdc7c420c379b6f40855bbd1420c35e03f17856eac81dc0f2"
+    "top-plate.dxf": "452457240b95dd6d78b64671bc83895c56eb4e7d29255dcb2a89b990cb697d65"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,

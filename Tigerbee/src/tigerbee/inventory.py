@@ -41,6 +41,7 @@ def write_inventory(directory: Path) -> None:
 
 
 def verify_inventory(directory: Path) -> int:
+    from tigerbee.gopro import GOPRO_HOLDER
     from tigerbee.models import PARTS
     from tigerbee.protectors import PROTECTORS
 
@@ -51,12 +52,14 @@ def verify_inventory(directory: Path) -> int:
     required += [f"assembly/tigerbee-assembly.{suffix}" for suffix in ("3mf", "stl", "FCStd")]
     required += [
         f"accessories/{name}.{suffix}"
-        for name in PROTECTORS
+        for name in (*PROTECTORS, GOPRO_HOLDER)
         for suffix in ("step", "stl", "3mf", "FCStd", "svg", "json")
     ]
     required += [
         "accessories/tigerbee-with-protectors.step",
         "accessories/tigerbee-with-protectors.FCStd",
+        "accessories/tigerbee-with-gopro-holder.step",
+        "accessories/tigerbee-with-gopro-holder.FCStd",
     ]
     for name in required:
         if name not in manifest["files"]:

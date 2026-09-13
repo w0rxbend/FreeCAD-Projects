@@ -11,6 +11,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("list", help="List implemented components")
+    gopro = commands.add_parser("gopro-holder", help="Build the front top-plate GoPro adapter")
+    gopro.add_argument("--output", type=Path, default=Path("exports/accessories"))
+    gopro.add_argument("--axle-height", type=float, default=18.0)
     protectors = commands.add_parser("protectors", help="Build four separate arm protector feet")
     protectors.add_argument("--output", type=Path, default=Path("exports/accessories"))
     protectors.add_argument("--drop", type=float, default=12.0)
@@ -43,6 +46,18 @@ def main() -> None:
     build.add_argument("--center-hole-diameter", type=float)
     build.add_argument("--length-extension", type=float, default=0.0)
     arguments = parser.parse_args()
+    if arguments.command == "gopro-holder":
+        from tigerbee.gopro import GoProParameters
+        from tigerbee.gopro_export import export_gopro_holder
+
+        try:
+            export_gopro_holder(
+                arguments.output, GoProParameters(axle_height=arguments.axle_height)
+            )
+        except (ValueError, RuntimeError) as error:
+            parser.exit(1, f"GoPro holder build failed: {error}\n")
+        print(f"Built separate GoPro holder and assembly preview -> {arguments.output}")
+        return
     if arguments.command == "protectors":
         from tigerbee.protector_export import export_protectors
         from tigerbee.protectors import ProtectorParameters
@@ -58,9 +73,10 @@ def main() -> None:
         print(f"Lower plate clearance: {report['lower_plate_ground_clearance_mm']:.2f} mm")
         return
     if arguments.command == "list":
+        from tigerbee.gopro import GOPRO_HOLDER
         from tigerbee.protectors import PROTECTORS
 
-        print("\n".join((*PARTS, *PROTECTORS)))
+        print("\n".join((*PARTS, *PROTECTORS, GOPRO_HOLDER)))
         return
     if arguments.command == "native":
         from tigerbee.native import export_native

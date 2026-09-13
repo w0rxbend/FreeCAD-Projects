@@ -1,7 +1,5 @@
 """Separate printable accessories, actual-solid fit checks and assembly previews."""
 
-import hashlib
-import json
 from dataclasses import asdict
 from itertools import combinations
 from pathlib import Path
@@ -9,7 +7,6 @@ from pathlib import Path
 from build123d import (
     Color,
     Compound,
-    ExportSVG,
     Face,
     Mesher,
     Plane,
@@ -22,8 +19,7 @@ from build123d import (
     offset,
 )
 
-from tigerbee.export import source_revision
-from tigerbee.inventory import source_digest
+from tigerbee.export import export_view, write_build_report
 from tigerbee.layout import frame_arm_layout
 from tigerbee.mesh import audit_3mf
 from tigerbee.models import build_part
@@ -79,19 +75,6 @@ def audit_protector(part: Shape, arm: Shape, drop: float, flange: float) -> dict
     return result
 
 
-def _view(shape: Shape, path: Path, view: tuple) -> None:
-    visible, _ = shape.project_to_viewport(view, viewport_up=(0, 0, 1), look_at=(0, 0, 0))
-    svg = ExportSVG(scale=3, margin=5, line_weight=0.2)
-    svg.add_shape(visible)
-    svg.write(path)
-
-
-def _report(path: Path, report: dict, outputs: list[Path]) -> None:
-    report.update(source_revision=source_revision(), source_sha256=source_digest(), units="mm")
-    report["file_sha256"] = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in outputs}
-    path.write_text(json.dumps(report, indent=2) + "\n")
-
-
 def export_protector(
     arm: str, mirror: bool, directory: Path, parameters: ProtectorParameters = DEFAULT_PROTECTOR
 ) -> dict:
@@ -118,7 +101,7 @@ def export_protector(
         raise ValueError(f"STEP round trip failed: {name}")
     if (reopened - printable).volume + (printable - reopened).volume > 1e-4:
         raise ValueError(f"STEP geometry changed: {name}")
-    _view(printable, paths[3], (80, -120, 90))
+    export_view(printable, paths[3], (80, -120, 90))
     report = {
         "part": name,
         "arm": arm,
@@ -135,7 +118,7 @@ def export_protector(
         "additional_bolt_grip_mm": parameters.flange,
         "files": [p.name for p in paths],
     }
-    _report(directory / f"{name}.json", report, paths)
+    write_build_report(directory / f"{name}.json", report, paths)
     return report
 
 
@@ -174,7 +157,7 @@ def export_protectors(directory: Path, parameters: ProtectorParameters = DEFAULT
     outputs = [stem.with_suffix(".step"), stem.with_suffix(".glb")]
     for suffix, view in (("isometric", (300, -400, 250)), ("side", (0, -500, 0))):
         path = directory / f"tigerbee-with-protectors-{suffix}.svg"
-        _view(combined, path, view)
+        export_view(combined, path, view)
         outputs.append(path)
     report = {
         "parameters": asdict(parameters),
@@ -186,5 +169,5 @@ def export_protectors(directory: Path, parameters: ProtectorParameters = DEFAULT
         "frame_geometry_audit_passed": frame_report["geometry_audit"]["passed"],
         "diagonal_wheelbases_mm": frame_report["diagonal_wheelbases_mm"],
     }
-    _report(stem.with_suffix(".json"), report, outputs)
+    write_build_report(stem.with_suffix(".json"), report, outputs)
     return report

@@ -64,3 +64,12 @@ The carbon frame geometry, 305 mm layout and original assembly export remain
 independent. `tigerbee protectors` generates four printable components and a
 19-solid assembly preview, with actual-solid fit and mesh checks. Canonical
 rebuilds now include this command before native export and inventory verification.
+
+## Additive accessories: top-plate GoPro holder
+
+The [GoPro holder design](gopro-holder.md) uses the existing four front accessory
+bores and a standard-style three-finger pivot. `tigerbee gopro-holder` exports the
+separate component and a 20-solid preview including the four protector feet.
+Run it before native conversion during canonical rebuilds. The exact camera
+bodies remain outside the existing frame CAD; interface fit and camera-body
+clearance are reported separately.

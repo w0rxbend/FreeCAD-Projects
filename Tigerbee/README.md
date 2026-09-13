@@ -1,7 +1,7 @@
 # Tigerbee CAD
 
-Five independently buildable carbon components, four arm protector feet and a
-symmetric 7-inch FPV frame assembly, in a locked Python 3.13 / uv project.
+Five independently buildable carbon components, four arm protector feet, a GoPro
+holder and a symmetric 7-inch FPV frame assembly, in a locked Python 3.13 / uv project.
 
 **Tigerbee.FCStd and the three supplied arm/camera 3MF files outrank the scans.**
 The generated design preserves their foundation while correcting symmetry and
@@ -53,6 +53,7 @@ uv sync --locked
 uv run tigerbee build --all
 uv run tigerbee assembly --require-fit
 uv run tigerbee protectors
+uv run tigerbee gopro-holder
 uv run tigerbee native
 uv run tigerbee verify-exports
 ```
@@ -70,7 +71,7 @@ inventory verifies source and output hashes.
 
 Native conversion requires FreeCADCmd or the FreeCAD Flatpak. Normal component
 and assembly builds do not import FreeCAD or the original reference document.
-Regenerate all five build steps after source changes and commit their exports
+Regenerate all six build steps after source changes and commit their exports
 together. CI checks freshness before rebuilding and applies strict fit validation.
 
 ```sh
@@ -129,6 +130,51 @@ uv run tigerbee protectors --drop 15 --clearance 0.35 --output build/custom-prot
 wall and mounting-floor thickness. [Design and verification](tasks/arm-protectors.md)
 records the scope and measurements. The geometry uses build123d's
 [face offset and loft operations](https://build123d.readthedocs.io/en/stable/operations.html).
+
+## Top-plate GoPro holder
+
+![Actual CAD GoPro holder](refs/analysis/gopro-holder-preview.png)
+
+The [separate holder](exports/accessories/top-plate-gopro-holder.3mf) sits on the
+front top plate, above the FPV-camera region. Its four mounting axes come directly
+from the current Ø5 mm carbon bores: X=±28 at Y=58 and X=±27 at Y=91 mm.
+Four Ø4.8 × 2 mm locating bosses register in those holes; use four M3 bolts with
+washers and nuts underneath. Ø3.3 bores and Ø6.6 counterbores provide clearance.
+The 5 mm base leaves a 2 mm floor beneath the 3 mm deep counterbores. M3 screw
+length must suit that floor, the 3 mm carbon, washer and nut engagement.
+
+Three GoPro-style fingers receive the camera's two fingers. A transverse M5 bolt
+controls pitch; a metal M5 hex nut fits the right-side captive seat (8.4 mm across
+flats, 4.2 mm deep). The other fingers are 3 mm thick with 3.2 mm gaps, R7.5 crowns
+and a Ø5.5 axle bore. These nominal dimensions follow
+[the author's compatible interface drawing](https://jackw01.github.io/assets/projects/modularmounts-GoPro%20Profile.pdf),
+not an official GoPro tolerance specification. A nominal two-finger coupon clears
+the holder at 5° intervals from −15° to 60°. Exact GoPro-body and FPV-camera-body
+clearances are not established because those bodies are absent from the source CAD.
+
+The low version places the axle **18 mm above the top plate**, at frame
+(0, 74.5, 56) mm. The height is adjustable from 18 to 30 mm. Print exports put the
+boss tips at Z=0 and the base seating plane at Z=2; support is needed under the
+raised base and horizontal bores, with support removed from all mating surfaces.
+Confirm printed finger fit, nut seating and fastener engagement on a sample before
+mounting a camera. Geometry validation does not establish material strength or
+impact retention; no material-specific load qualification has been performed.
+
+[STEP](exports/accessories/top-plate-gopro-holder.step),
+[STL](exports/accessories/top-plate-gopro-holder.stl),
+[FreeCAD](exports/accessories/top-plate-gopro-holder.FCStd) and
+[SVG](exports/accessories/top-plate-gopro-holder.svg) are separate component files.
+The [assembled FreeCAD preview](exports/accessories/tigerbee-with-gopro-holder.FCStd)
+contains 20 solids: the frame, four protector feet and the holder. Its matching
+STEP, GLB and side/isometric SVGs are in the same directory.
+
+```sh
+uv run tigerbee gopro-holder
+uv run tigerbee gopro-holder --axle-height 28 --output build/raised-gopro
+```
+
+See [design and validation](tasks/gopro-holder.md) and the editable
+[GoProParameters](src/tigerbee/gopro.py).
 
 ## Verification and physical scope
 

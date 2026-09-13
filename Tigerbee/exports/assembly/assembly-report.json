@@ -1192,16 +1192,16 @@
     "Shared mounting axes replace independent imperfect hole fits",
     "CAD fit does not establish carbon laminate strength or flight qualification"
   ],
-  "source_revision": "a784932cc862888ee1b3b2d8acff4bf451b626b5",
-  "source_sha256": "c6bbd0a3053ab9a3326d62f5bb33f40da7950fb23a42d1edbd6aa0ce11c9cfea",
+  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
+  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "5f738fd298d4c460697531faaf6454fe6b8d65a0b946fff2db19152e278362dd",
+    "tigerbee-assembly.step": "dd28b45a9c7331fc002a606323eaa29b2436b9ebae6d823986eca5c64033f2f0",
     "tigerbee-assembly.glb": "8ffdbdf94686cfb711fda78079d483f309cce438970734114677f736483d032f",
     "tigerbee-isometric.svg": "ce4583879e24f827b3988823e1c0c3632401f532b9676e2611fa4422ea86060d",
     "tigerbee-top.svg": "bfeac23d50a76c217ac73e57bb66769f670cf9c24f1249bdb63b22237c3b4aef",
     "tigerbee-assembly.stl": "4ea36170a7180f0ab50839bd07b81d9c93df09637ef1f366449a8c6ad93e0933",
-    "tigerbee-assembly.3mf": "dce5df55d6eb81967dbd9b1a95581b3731eed41281a692a7046fe532f8c9e573",
+    "tigerbee-assembly.3mf": "67354492d70415319abcdee181d4bb37a0833b52ee27446ce5b297ae4a51ec3d",
     "tigerbee-motor-layout.svg": "10d75a1eb904402a459da7ba8b56d1fdb38fc06431878f61af1a33c79c1f0b99"
   }
 }

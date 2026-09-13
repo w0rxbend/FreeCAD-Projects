@@ -1,0 +1,42 @@
+{
+  "stl": {
+    "valid": true,
+    "triangles": 11008,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "base_reflection_difference_mm3": 0,
+  "existing_frame_and_feet_difference_mm3": 0,
+  "existing_assembly_solid_differences_mm3": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "assembled_holder_difference_mm3": 0,
+  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "file_sha256": {
+    "exports/accessories/top-plate-gopro-holder.stl": "5900b62de85e61ced9ae8427f5f675a43f7e8d30391c9df55311ac016c94cdc8",
+    "exports/accessories/top-plate-gopro-holder.step": "c4e9212d40f46a8d5d943c4c1587c48a00f379c4ffe9122d06b1245126267b87",
+    "exports/accessories/tigerbee-with-gopro-holder.step": "30913d1489f6b58a03b759d57be9d6101020fea0467bb88e3327025349a938a6",
+    "exports/accessories/tigerbee-with-protectors.step": "b5f452927711923bd7eda20b7fd352dc191b00422b4473808964fde5f3215a3f"
+  }
+}

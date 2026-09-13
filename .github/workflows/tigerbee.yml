@@ -54,6 +54,8 @@ jobs:
         run: uv run --locked tigerbee assembly --require-fit
       - name: Build separate arm protectors and verify assembly fit
         run: uv run --locked tigerbee protectors
+      - name: Build top-plate GoPro holder and verify interfaces
+        run: uv run --locked tigerbee gopro-holder
       - name: Install FreeCAD 1.1.3 native exporter
         env:
           FREECAD_APPIMAGE_SHA256: 3a853eb69ee595f779f2255dbf80a765926981d8ff68903cefee4dfb03a8f5ef

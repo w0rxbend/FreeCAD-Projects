@@ -9,7 +9,7 @@ from importlib.metadata import version
 from math import dist
 from pathlib import Path
 
-from build123d import ExportDXF, ExportSVG, Mesher, export_gltf, export_step, export_stl
+from build123d import ExportDXF, ExportSVG, Mesher, Shape, export_gltf, export_step, export_stl
 
 from tigerbee.inventory import source_digest
 from tigerbee.mesh import audit_3mf
@@ -249,3 +249,16 @@ def export_frame(directory: Path, top_z: float = 35, require_fit: bool = False) 
     }
     (directory / "assembly-report.json").write_text(json.dumps(report, indent=2) + "\n")
     return report
+
+
+def export_view(shape: Shape, path: Path, view: tuple) -> None:
+    visible, _ = shape.project_to_viewport(view, viewport_up=(0, 0, 1), look_at=(0, 0, 0))
+    svg = ExportSVG(scale=3, margin=5, line_weight=0.2)
+    svg.add_shape(visible)
+    svg.write(path)
+
+
+def write_build_report(path: Path, report: dict, outputs: list[Path]) -> None:
+    report.update(source_revision=source_revision(), source_sha256=source_digest(), units="mm")
+    report["file_sha256"] = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in outputs}
+    path.write_text(json.dumps(report, indent=2) + "\n")
