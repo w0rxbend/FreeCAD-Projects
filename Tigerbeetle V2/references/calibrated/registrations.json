@@ -1,0 +1,51 @@
+{
+  "Scan_1": {
+    "scan1_body": {
+      "pixels_per_mm": 11.810485810485812,
+      "origin_px": [
+        1871.0293513827423,
+        1675.4049224386533
+      ],
+      "rotation_degrees": -0.35,
+      "maximum_relative_residual": 0
+    },
+    "arm_a": {
+      "pixels_per_mm": 11.810485810485812,
+      "origin_px": [
+        466.0,
+        2121.0
+      ],
+      "rotation_degrees": 1.0154761623018007,
+      "maximum_relative_residual": 0
+    },
+    "arm_b": {
+      "pixels_per_mm": 11.810485810485812,
+      "origin_px": [
+        1031.0,
+        1370.0
+      ],
+      "rotation_degrees": 179.20252782989448,
+      "maximum_relative_residual": 0
+    }
+  },
+  "Scan_2": {
+    "scan2_broad": {
+      "pixels_per_mm": 11.842369601212395,
+      "origin_px": [
+        685.608485862258,
+        2183.418845115174
+      ],
+      "rotation_degrees": 0.49455572461198827,
+      "maximum_relative_residual": 0
+    },
+    "scan2_long": {
+      "pixels_per_mm": 11.82132526660454,
+      "origin_px": [
+        1848.3709624185137,
+        2128.358280197732
+      ],
+      "rotation_degrees": -0.5377953230747445,
+      "maximum_relative_residual": 0
+    }
+  }
+}
