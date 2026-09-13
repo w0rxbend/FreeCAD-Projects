@@ -186,6 +186,8 @@ def export_artifacts(
     for name in profiles:
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", name):
             raise ValueError(f"Unsafe profile name: {name!r}")
+    # Snapshot the input revision before our output/staging files can affect Git status.
+    provenance = _provenance()
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".fpv-export-", dir=output.parent) as temporary:
@@ -225,7 +227,7 @@ def export_artifacts(
                 "stl_binary": True,
             },
             "components": list(named),
-            "metadata": {**_provenance(), **details},
+            "metadata": {**provenance, **details},
             "artifacts": artifacts,
         }
         (stage / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

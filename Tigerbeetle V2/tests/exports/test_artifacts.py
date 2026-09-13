@@ -168,3 +168,26 @@ def test_failed_generation_preserves_existing_exports(tmp_path, fixture_frame, m
         if path.is_file()
     }
     assert after == before
+
+
+@pytest.mark.parametrize("source_dirty", [False, True])
+def test_source_provenance_precedes_export_writes(
+    tmp_path, fixture_frame, monkeypatch, source_dirty
+):
+    """Generated staging files must not turn a clean source revision into a dirty one."""
+    import fpv_frame.export.artifacts as module
+
+    output = tmp_path / "new-parent" / "dist"
+    snapshots = []
+
+    def snapshot():
+        assert not output.parent.exists()
+        snapshots.append(source_dirty)
+        return {"git_commit": "source-revision", "git_dirty": source_dirty}
+
+    monkeypatch.setattr(module, "_provenance", snapshot)
+    export_artifacts(*fixture_frame, output, ("step",))
+    manifest = json.loads((output / "manifest.json").read_text())
+    assert manifest["metadata"]["git_commit"] == "source-revision"
+    assert manifest["metadata"]["git_dirty"] is source_dirty
+    assert snapshots == [source_dirty]
