@@ -20,3 +20,15 @@
 - 2026-09-13: Git metadata is writable in current environment; bootstrap committed
   in parent feature branch, restricted to V2 files. Earlier metadata blocker is
   superseded by successful git add/commit evidence.
+- 2026-09-13: A4 tracing provenance supersedes the earlier unknown-scale status.
+  Retain independent raw observations while using full-page calibration.
+- 2026-09-13: One shared layout owns all four handed arm placements, structural
+  holes and eight support axes. Bottom Z0; reference plate ranges 0–2, 7–9, 34–36.
+- 2026-09-13: Canonical root envelope35×29mm is an explicit engineering change
+  from traced≈38×31mm; original dimensions remain in measurement evidence.
+- 2026-09-13: Purchased standoffs use hardware_wall_minimum1.0mm; carbon profiles
+  retain edge_minimum1.5mm. Runtime enforces actual arm-to-arm general clearance.
+- 2026-09-13: Default assembly validation includes parameterized nominal equipment
+  solids; categories and their evidence remain explicit, with side panels N/A.
+- 2026-09-13: Drawing and selected-part CLI defaults use separate output directories
+  to preserve a prior complete export. Manifest snapshots include parameter hashes.

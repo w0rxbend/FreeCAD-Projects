@@ -25,7 +25,7 @@ There are three observed body plates, identified without changing source identit
 The scan drawings show handed root geometry. Arm reflection is necessary; arbitrary
 rotation alone cannot make the two handed roots identical. No vertical side panel,
 separate carbon camera plate or matching tab part is invented from the cutouts.
-The photograph also shows accessories, whose geometry is outside this foundation.
+The photograph also shows flexible camera/accessory mounts. Their unmeasured geometry is not a carbon component; nominal camera clearance is checked using a configurable solid envelope.
 
 ## Coordinates and vertical datums
 
@@ -41,8 +41,7 @@ an exported coordinate system is subsequently centered vertically.
 `ComponentPlacement`. A transform reflects local X first, rotates about +Z second,
 and translates last. The canonical arm local origin is its root-hole midpoint and
 its +Y axis points toward the motor. Its contour, holes and mounting interface must
-all receive the same transform. The mechanical interface specialist owns acceptance
-of the four actual root placements, using reconciled feature pairs.
+all receive the same transform. `geometry/layout.py` derives all four root placements from reconciled feature pairs and the shared canonical root pattern.
 
 The photo-supported vertical stack is derived, not stored as unrelated offsets:
 
@@ -58,8 +57,7 @@ Reference thicknesses are user-confirmed: arms 5 mm, all three plates 2 mm.
 height. Six short supports have length H. Two rear supports have length
 H + main-plate thickness + arm thickness (H + 7 mm for the reference).
 `FrameParameters.plate_elevations`, `arm_elevation`, `short_standoff_height` and
-`rear_standoff_height` derive these relationships on every access. Full assembly
-placements remain `None` until XY root placement and shared interfaces are accepted.
+`rear_standoff_height` derive these relationships on every access. `build_layout()` derives XY placements on each build; explicit `FrameParameters.assembly` overrides are rejected to prevent conflicting placement authorities.
 
 ## Parameter contracts
 
@@ -68,14 +66,12 @@ constructors reject NaN, infinities, booleans, zero where a positive dimension i
 required, and negative ordinary clearances. Signed press-fit allowance is supported.
 
 - `FrameParameters` composes three `PlateParameters`, one `ArmParameters`, stack,
-  motor, hardware, manufacturing, vertical stack and optional assembly layout.
+  motor, hardware, manufacturing, vertical stack, nominal equipment envelopes and semantic layout dimensions.
 - `ArmProfileParameters` contains semantic root-to-motor length, root width, shaft
-  width, motor-paddle width and root-hole spacing. The canonical profile builder
-  will derive contour transitions from these dimensions and reconciled evidence.
+  width, motor-paddle width and root-hole spacing. The canonical profile builder derives contour transitions from these dimensions and reconciled evidence.
 - `PlateProfileParameters` supplies named, ordered longitudinal `OutlineStation`
   values with half-widths. A canonical half-profile generates both plate sides.
-- Unresolved profiles are `None`, not placeholder rectangles. Geometry work must
-  populate those profile contracts from reconciled measurements before building.
+- An unresolved arm profile is rejected. Reference plate contours use sparse semantic landmarks and shared layout deformation; explicit plate station profiles are also supported.
 - There is no independent per-part profile scale. Outline dimensions may change,
   but all mating-feature locations must continue to come from shared interfaces.
 - `StackParameters` distinguishes candidate 30.5 and 20 mm pitches from an actual
@@ -115,23 +111,35 @@ nominal dimension, therefore 0.2 mm clearance means 0.1 mm on either side when
 centered. It is an available interface primitive; no current plate aperture has
 been classified as a tab joint solely because it is rectangular.
 
-## Remaining implementation boundaries
+## Implemented build and validation pipeline
 
-1. Mechanical specialist accepts shared XY interface patterns and derives arm
-   placements from the reconciled root-pair and body-hole observations. The existing
-   primitive interfaces deliberately do not assert unverified hole correspondences.
-2. Geometry specialists populate semantic profile parameters, build analytical
-   canonical 2D profiles and derive all manufacturing outlines from those profiles.
-   Symmetric halves cannot be traced independently. Profile builders take parameters
-   and shared interfaces, return valid faces, and perform no export I/O.
-3. Part builders extrude those exact profiles. Assembly uses named components and
-   accepted placements; it cannot correct mismatched interfaces by moving parts.
-4. Validation owns topology, expected feature counts, exact symmetry, mating axes,
-   thickness changes, interference, edge distance and board/fastener clearances.
-5. Exporters consume validated parts, assemblies and the same profiles for SVG;
-   STEP is canonical interchange, with FreeCAD conversion downstream.
+`build_assembly()` returns 15 named physical parts: three carbon plates, four
+instances of the canonical arm, and eight tubular standoffs. Its profile mapping
+has the same inventory. Each manufacturing face lies at local Z=0; plate profiles
+retain global XY, while arm and standoff profiles use their component coordinates.
+The assembled solids carry their derived placements. Exporters copy solids before
+building export assemblies so the original parent/child topology is preserved.
 
-These foundation tests prove immutability, dimension rejection, handed transforms,
-bolt-circle semantics, shared hole axes, paired tab/slot clearance and vertical
-stack derivation. They do not prove profile fidelity, motor compatibility, actual
-assembly fit or manufacturing readiness. Those remain later integration gates.
+Validation checks actual BREP topology and material, not only matching parameter
+values. It measures 88 interface bores at both surfaces and checks cylindrical
+witness volumes for internal plugs. Bilateral comparisons use differences of
+mirrored solids. Interference checks reject unintended positive-volume overlap;
+intended plate/support contacts are explicit. Arm pair distances enforce the
+configured clearance. Profile wire distances enforce carbon ligaments separately
+from purchased standoff walls. Configurable FC, ESC, camera and stack hardware
+solids must clear both frame material and each other. No separate side panels are
+identified, so that category is explicitly not applicable.
+
+The CLI validates before export, records the complete parameter snapshot and its
+canonical SHA-256 hash, and writes all deliverables from the same model. SVG uses
+the extrusion profiles; STEP is the CAD interchange source for FreeCAD documents.
+Native FreeCAD conversion and reopening are separate checks. The release packager
+checks inventory, checksums, validation reports and parameter consistency before
+creating format-specific archives.
+
+Scan overlays are diagnostic raster/curve comparisons, separate from exact CAD
+interface checks. `blueprint-fit.json` reports the directed distance to source ink
+and observed hole residuals, with its limitations. Physical load strength, exact
+unmeasured equipment compatibility and stock/process qualification remain outside
+what these geometric tests can establish; reconstruction departures and inferred
+hardware dimensions are recorded in the manufacturing and reconstruction docs.
