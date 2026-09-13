@@ -1,0 +1,106 @@
+name: CAD build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  cad:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Locate project
+        id: project
+        shell: bash
+        run: |
+          if [[ -f pyproject.toml && -f src/fpv_frame/cli.py ]]; then
+            echo 'dir=.' >> "$GITHUB_OUTPUT"
+          elif [[ -f 'Tigerbeetle V2/pyproject.toml' ]]; then
+            echo 'dir=Tigerbeetle V2' >> "$GITHUB_OUTPUT"
+          else
+            echo 'Cannot locate fpv-frame project' >&2
+            exit 1
+          fi
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          version: '0.12.11'
+          enable-cache: true
+          cache-dependency-glob: '**/uv.lock'
+      - name: Install checksum-pinned FreeCAD 1.1.3
+        env:
+          FREECAD_APPIMAGE_SHA256: 3a853eb69ee595f779f2255dbf80a765926981d8ff68903cefee4dfb03a8f5ef
+        run: |
+          freecad_dir="$RUNNER_TEMP/freecad-1.1.3"
+          mkdir -p "$freecad_dir/bin"
+          cd "$freecad_dir"
+          curl --fail --location --retry 3 --output FreeCAD.AppImage \
+            https://github.com/FreeCAD/FreeCAD/releases/download/1.1.3/FreeCAD_1.1.3-Linux-x86_64-py311.AppImage
+          printf '%s  FreeCAD.AppImage\n' "$FREECAD_APPIMAGE_SHA256" | sha256sum --check --strict
+          chmod +x FreeCAD.AppImage
+          ./FreeCAD.AppImage --appimage-extract > extract.log
+          cat > bin/FreeCADCmd <<'SH'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          freecad_dir="$(cd "$(dirname "$0")/.." && pwd)"
+          exec "$freecad_dir/squashfs-root/AppRun" freecadcmd "$@"
+          SH
+          chmod +x bin/FreeCADCmd
+          printf '%s\n' "$freecad_dir/bin" >> "$GITHUB_PATH"
+      - name: Frozen dependencies
+        working-directory: ${{ steps.project.outputs.dir }}
+        run: uv sync --frozen
+      - name: Native FreeCAD conversion and curved-geometry regression
+        working-directory: ${{ steps.project.outputs.dir }}
+        env:
+          FPV_TEST_FREECAD: '1'
+        run: uv run --frozen pytest tests/exports/test_freecad.py
+      - name: Build and validate every preset
+        working-directory: ${{ steps.project.outputs.dir }}
+        shell: bash
+        run: |
+          mkdir -p artifacts/reports
+          uv run --frozen fpv-frame build > artifacts/reports/build.json
+          for preset in reference default minimum_supported maximum_supported tolerance_test; do
+            uv run --frozen fpv-frame --preset "$preset" validate > "artifacts/reports/validate-$preset.json"
+          done
+      - name: Export all formats and independently generate drawings
+        working-directory: ${{ steps.project.outputs.dir }}
+        run: |
+          uv run --frozen fpv-frame export > artifacts/reports/export.json
+          uv run --frozen fpv-frame drawing --output artifacts/drawing-check > artifacts/reports/drawing.json
+          uv run --frozen fpv-frame parameters > artifacts/parameters.json
+      - name: Generate source overlays
+        working-directory: ${{ steps.project.outputs.dir }}
+        run: |
+          uv run --frozen fpv-frame overlay scan-1 > artifacts/reports/overlay-scan-1.json
+          uv run --frozen fpv-frame overlay scan-2 > artifacts/reports/overlay-scan-2.json
+      - name: Validate release inventory and package
+        working-directory: ${{ steps.project.outputs.dir }}
+        run: uv run --frozen python tools/package_release.py --output artifacts/package
+      - uses: actions/upload-artifact@v7
+        with:
+          name: cad-artifacts
+          path: ${{ steps.project.outputs.dir }}/artifacts/package/cad-artifacts/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        with:
+          name: release-assets
+          path: ${{ steps.project.outputs.dir }}/artifacts/package/release-assets/
+          if-no-files-found: error
+      - name: Preserve failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cad-failure-reports
+          path: ${{ steps.project.outputs.dir }}/artifacts/reports/
+          if-no-files-found: warn
