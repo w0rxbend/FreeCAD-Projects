@@ -1,0 +1,54 @@
+{
+  "part": "arm-type-2-protector-left",
+  "arm": "arm-type-2",
+  "mirror": true,
+  "parameters": {
+    "drop": 12.0,
+    "clearance": 0.25,
+    "wall": 2.0,
+    "flange": 2.0
+  },
+  "solid_count": 1,
+  "status": "nominal-cad-fit-verified",
+  "material_intent": "TPU; physical print fit unverified",
+  "datum": "Print bed Z=0; motor XY=(0,0); arm underside Z=drop; root toward -Y",
+  "volume_mm3": 8988.578843488416,
+  "dimensions_mm": [
+    27.791482064769923,
+    45.787651199990535,
+    16.800000100000002
+  ],
+  "fit": {
+    "passed": true,
+    "carbon_intersection_mm3": 0,
+    "opening_obstruction_mm3": 0.0,
+    "head_access_obstruction_mm3": 0.0,
+    "contact_area_mm2": 492.3966654291717,
+    "ground_z_in_arm_datum_mm": -12.0000001
+  },
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 8774,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "additional_bolt_grip_mm": 2.0,
+  "files": [
+    "arm-type-2-protector-left.step",
+    "arm-type-2-protector-left.stl",
+    "arm-type-2-protector-left.3mf",
+    "arm-type-2-protector-left.svg"
+  ],
+  "source_revision": "a784932cc862888ee1b3b2d8acff4bf451b626b5",
+  "source_sha256": "c6bbd0a3053ab9a3326d62f5bb33f40da7950fb23a42d1edbd6aa0ce11c9cfea",
+  "units": "mm",
+  "file_sha256": {
+    "arm-type-2-protector-left.step": "1c9977d08a300a56e29a76b09f7a417bc14114a01ca674bd28e45bc14aac9a5d",
+    "arm-type-2-protector-left.stl": "68b5e6dc3647da03eea7ba2d94b28db3cebf7e31dc45a1fdb503ee2d480c7db6",
+    "arm-type-2-protector-left.3mf": "bfa6df8fa30679c05a04319c20e360e8f3eb6b73e3ced3a84f691f5b7ddfed49",
+    "arm-type-2-protector-left.svg": "50d7384d23710e42e11a668e2d3bd9c89c298130c6ed9be5223461ef861a2963"
+  }
+}

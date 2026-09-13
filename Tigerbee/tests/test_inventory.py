@@ -7,6 +7,7 @@ import pytest
 
 from tigerbee import inventory
 from tigerbee.models import PARTS
+from tigerbee.protectors import PROTECTORS
 
 
 def test_reject_stale_source_before_recording_native_outputs(tmp_path, monkeypatch):
@@ -41,6 +42,15 @@ def test_verify_detects_stale_or_incomplete_deliverables(tmp_path, monkeypatch, 
     monkeypatch.setattr(inventory, "source_digest", lambda: "current")
     names = [f"parts/{name}.{suffix}" for name in PARTS for suffix in ("3mf", "stl", "FCStd")]
     names += [f"assembly/tigerbee-assembly.{suffix}" for suffix in ("3mf", "stl", "FCStd")]
+    names += [
+        f"accessories/{name}.{suffix}"
+        for name in PROTECTORS
+        for suffix in ("step", "stl", "3mf", "FCStd", "svg", "json")
+    ]
+    names += [
+        "accessories/tigerbee-with-protectors.step",
+        "accessories/tigerbee-with-protectors.FCStd",
+    ]
     hashes = {}
     for name in names:
         path = tmp_path / name
@@ -50,7 +60,7 @@ def test_verify_detects_stale_or_incomplete_deliverables(tmp_path, monkeypatch, 
     manifest = {"source_sha256": "current", "files": hashes}
     manifest_path = tmp_path / "manifest.json"
     manifest_path.write_text(json.dumps(manifest))
-    assert inventory.verify_inventory(tmp_path) == 18
+    assert inventory.verify_inventory(tmp_path) == len(names)
     if failure == "missing":
         (tmp_path / names[0]).unlink()
     elif failure == "modified":

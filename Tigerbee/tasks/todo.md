@@ -28,3 +28,11 @@ production-grade frame objective:
 - [ ] Confirm bolt/nut and camera/end-bracket dimensions; model those accessories.
 - [ ] Establish material/layup and machining tolerances.
 - [ ] Validate manufactured fit and load performance.
+
+## Arm protector / landing feet
+
+- [x] Review five inspiration images and use actual current motor pads for fit.
+- [x] Model separate type 1 / type 2 protectors and mirrored left copies.
+- [x] Add 12 mm feet, flat coplanar supports and recessed motor screw access.
+- [x] Add CLI, separate STEP/STL/3MF, fit reports and assembled preview.
+- [x] Complete native reopening, visual review, 158 tests, lint/types and 75-output inventory.

@@ -55,3 +55,12 @@ Preserve manual reference files and sibling projects. Canonical outputs go in
 tracked exports/ with source and file hashes. Experiments go under ignored build/.
 Do not publish a release or substitute an easier passing geometry for the actual
 requested symmetric, faithful frame.
+
+## Additive accessories: arm protector feet
+
+The [arm-protector design](arm-protectors.md) adds separately exported TPU-intent
+motor-pad bumpers and 12 mm landing feet for both source arm types and both hands.
+The carbon frame geometry, 305 mm layout and original assembly export remain
+independent. `tigerbee protectors` generates four printable components and a
+19-solid assembly preview, with actual-solid fit and mesh checks. Canonical
+rebuilds now include this command before native export and inventory verification.

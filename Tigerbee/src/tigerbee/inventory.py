@@ -19,6 +19,7 @@ def source_digest() -> str:
 def write_inventory(directory: Path) -> None:
     current_source = source_digest()
     reports = list((directory / "parts").glob("*.json"))
+    reports += list((directory / "accessories").glob("*.json"))
     reports.append(directory / "assembly/assembly-report.json")
     for path in reports:
         report = json.loads(path.read_text())
@@ -41,12 +42,22 @@ def write_inventory(directory: Path) -> None:
 
 def verify_inventory(directory: Path) -> int:
     from tigerbee.models import PARTS
+    from tigerbee.protectors import PROTECTORS
 
     manifest = json.loads((directory / "manifest.json").read_text())
     if manifest["source_sha256"] != source_digest():
         raise ValueError("CAD sources changed; regenerate and commit the exports")
     required = [f"parts/{name}.{suffix}" for name in PARTS for suffix in ("3mf", "stl", "FCStd")]
     required += [f"assembly/tigerbee-assembly.{suffix}" for suffix in ("3mf", "stl", "FCStd")]
+    required += [
+        f"accessories/{name}.{suffix}"
+        for name in PROTECTORS
+        for suffix in ("step", "stl", "3mf", "FCStd", "svg", "json")
+    ]
+    required += [
+        "accessories/tigerbee-with-protectors.step",
+        "accessories/tigerbee-with-protectors.FCStd",
+    ]
     for name in required:
         if name not in manifest["files"]:
             raise ValueError(f"Required committed export missing from manifest: {name}")

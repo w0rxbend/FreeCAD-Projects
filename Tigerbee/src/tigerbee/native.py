@@ -21,6 +21,7 @@ def write_documents(directory: str) -> None:
     results = []
     sources = sorted((root / "parts").glob("*.step"))
     sources += sorted((root / "assembly").glob("*.step"))
+    sources += sorted((root / "accessories").glob("*.step"))
     if not sources:
         raise ValueError(f"No STEP builds found in {root}")
     for source in sources:
@@ -29,6 +30,7 @@ def write_documents(directory: str) -> None:
             "assembly-report.json" if is_assembly else f"{source.stem}.json"
         )
         data = json.loads(metadata.read_text())
+        is_assembly = is_assembly or data.get("solid_count", 1) > 1
         document = app.newDocument("TigerbeeExport")
         document.Label = source.stem
         if is_assembly:
@@ -61,7 +63,7 @@ def write_documents(directory: str) -> None:
         ]
         valid = bool(shapes) and all(shape.isValid() for shape in shapes)
         solids = sum(len(shape.Solids) for shape in shapes)
-        expected = 15 if is_assembly else 1
+        expected = data.get("solid_count", 15 if is_assembly else 1)
         if not valid or solids != expected:
             raise ValueError(f"FreeCAD verification failed: {destination}, solids={solids}")
         results.append(

@@ -34,5 +34,35 @@
     "valid": true,
     "solids": 15,
     "volume_mm3": 117499.87203806217
+  },
+  {
+    "file": "accessories/arm-type-1-protector-left.FCStd",
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 9172.25505723552
+  },
+  {
+    "file": "accessories/arm-type-1-protector-right.FCStd",
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 9172.255057282835
+  },
+  {
+    "file": "accessories/arm-type-2-protector-left.FCStd",
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 8988.578843492023
+  },
+  {
+    "file": "accessories/arm-type-2-protector-right.FCStd",
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 8988.578843451663
+  },
+  {
+    "file": "accessories/tigerbee-with-protectors.FCStd",
+    "valid": true,
+    "solids": 19,
+    "volume_mm3": 153821.53983952425
   }
 ]
