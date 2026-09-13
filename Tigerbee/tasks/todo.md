@@ -11,6 +11,7 @@
 - [x] Build provisional assembly and report alignment and interference errors.
 - [x] Inspect component and assembly visuals; document commands and limits.
 - [x] Make both scans and final 330 mm photo authoritative; supersede 295 mm target.
+- [x] Audit arm swaps and face flips at current mounting pairs; none reaches 330 mm.
 - [ ] Confirm metric scan calibration and reconcile reconstructed arm placement.
 - [ ] Resolve mounting offsets, root collisions, and 330 mm wheelbase mismatch.
 - [ ] Confirm stacking, plate thicknesses, spacing, and hardware dimensions.
