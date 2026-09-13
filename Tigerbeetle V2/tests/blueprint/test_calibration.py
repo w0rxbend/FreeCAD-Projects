@@ -8,16 +8,16 @@ from fpv_frame.blueprint.calibration import Anchor, Calibration, calibrate, cali
 
 
 def test_consistent_independent_anchors_recover_scale() -> None:
-    result = calibrate((Anchor("stack20", (0, 0), (200, 0), 20),
-                        Anchor("stack30", (0, 0), (0, 305), 30.5)))
+    result = calibrate(
+        (Anchor("stack20", (0, 0), (200, 0), 20), Anchor("stack30", (0, 0), (0, 305), 30.5))
+    )
     assert result.pixels_per_mm == pytest.approx(10)
     assert result.maximum_relative_residual == pytest.approx(0)
 
 
 def test_inconsistent_anchors_are_rejected_instead_of_averaged() -> None:
     with pytest.raises(ValueError, match="disagree"):
-        calibrate((Anchor("stack", (0, 0), (200, 0), 20),
-                   Anchor("motor", (0, 0), (160, 0), 19)))
+        calibrate((Anchor("stack", (0, 0), (200, 0), 20), Anchor("motor", (0, 0), (160, 0), 19)))
 
 
 def test_one_anchor_cannot_masquerade_as_independent_calibration() -> None:

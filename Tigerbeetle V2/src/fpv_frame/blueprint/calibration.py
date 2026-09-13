@@ -68,8 +68,10 @@ class Calibration:
         angle = radians(-self.rotation_degrees)
         x = point[0] * cos(angle) - point[1] * sin(angle)
         y = point[0] * sin(angle) + point[1] * cos(angle)
-        return (self.origin_px[0] + x * self.pixels_per_mm,
-                self.origin_px[1] - y * self.pixels_per_mm)
+        return (
+            self.origin_px[0] + x * self.pixels_per_mm,
+            self.origin_px[1] - y * self.pixels_per_mm,
+        )
 
 
 def calibrate(
@@ -112,7 +114,9 @@ def calibrate_page(image_size_px: Point, page_size_mm: Point) -> Calibration:
     _finite_point(page_size_mm)
     if min(*image_size_px, *page_size_mm) <= 0:
         raise ValueError("Page and image dimensions must be positive")
-    return calibrate((
-        Anchor("page_width", (0, 0), (image_size_px[0], 0), page_size_mm[0]),
-        Anchor("page_height", (0, 0), (0, image_size_px[1]), page_size_mm[1]),
-    ))
+    return calibrate(
+        (
+            Anchor("page_width", (0, 0), (image_size_px[0], 0), page_size_mm[0]),
+            Anchor("page_height", (0, 0), (0, image_size_px[1]), page_size_mm[1]),
+        )
+    )

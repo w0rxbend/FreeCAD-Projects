@@ -34,8 +34,7 @@ class Registration:
 
 
 def _center(points: tuple[Point, ...]) -> Point:
-    return (sum(x for x, _ in points) / len(points),
-            sum(y for _, y in points) / len(points))
+    return (sum(x for x, _ in points) / len(points), sum(y for _, y in points) / len(points))
 
 
 def _check_spread(points: tuple[Point, ...]) -> None:
@@ -47,9 +46,7 @@ def _check_spread(points: tuple[Point, ...]) -> None:
         raise ValueError("Registration features must not be coincident or collinear")
 
 
-def register(
-    features: tuple[Correspondence, ...], *, maximum_error_mm: float
-) -> Registration:
+def register(features: tuple[Correspondence, ...], *, maximum_error_mm: float) -> Registration:
     """Least-squares similarity fit of pixels to shared engineering datums.
 
     Targets must be independently justified. This fit measures agreement and
@@ -69,18 +66,27 @@ def register(
     sx, sy = _center(source)
     tx, ty = _center(target)
     denominator = sum((x - sx) ** 2 + (y - sy) ** 2 for x, y in source)
-    a = sum((x - sx) * (u - tx) + (y - sy) * (v - ty)
-            for (x, y), (u, v) in zip(source, target, strict=True)) / denominator
-    b = sum((x - sx) * (v - ty) - (y - sy) * (u - tx)
-            for (x, y), (u, v) in zip(source, target, strict=True)) / denominator
+    a = (
+        sum(
+            (x - sx) * (u - tx) + (y - sy) * (v - ty)
+            for (x, y), (u, v) in zip(source, target, strict=True)
+        )
+        / denominator
+    )
+    b = (
+        sum(
+            (x - sx) * (v - ty) - (y - sy) * (u - tx)
+            for (x, y), (u, v) in zip(source, target, strict=True)
+        )
+        / denominator
+    )
     scale = hypot(a, b)
     if scale <= 1e-12:
         raise ValueError("Registration has no nondegenerate similarity transform")
     ox = sx - (a * tx + b * ty) / scale**2
     oy = sy - (-b * tx + a * ty) / scale**2
     calibration = Calibration(1 / scale, (ox, -oy), degrees(atan2(b, a)))
-    residuals = tuple((f.name, dist(calibration.to_mm(f.pixel), f.datum_mm))
-                      for f in features)
+    residuals = tuple((f.name, dist(calibration.to_mm(f.pixel), f.datum_mm)) for f in features)
     result = Registration(calibration, residuals)
     if result.maximum_error_mm > maximum_error_mm:
         raise ValueError(
