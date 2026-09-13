@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from build123d import Shape
+from build123d import GeomType, Shape
 
 GEOMETRY_TOLERANCE = 1e-7
 
@@ -12,8 +12,16 @@ def validate_profile(shape: Shape[Any], *, expected_holes: int | None = None) ->
         raise ValueError("A physical plate profile must contain exactly one face")
     if not shape.is_valid or shape.area <= GEOMETRY_TOLERANCE:
         raise ValueError("Profile must have valid topology and nonzero area")
-    bounds = shape.bounding_box()
-    if abs(bounds.min.Z) > GEOMETRY_TOLERANCE or abs(bounds.max.Z) > GEOMETRY_TOLERANCE:
+    face = shape.faces()[0]
+    # OCCT bounding boxes include a tolerance margin around spline edges. Check
+    # the actual supporting plane instead of interpreting that padding as stock.
+    if (
+        face.geom_type != GeomType.PLANE
+        or abs(face.center().Z) > GEOMETRY_TOLERANCE
+        or abs(face.normal_at().X) > GEOMETRY_TOLERANCE
+        or abs(face.normal_at().Y) > GEOMETRY_TOLERANCE
+        or abs(abs(face.normal_at().Z) - 1) > GEOMETRY_TOLERANCE
+    ):
         raise ValueError("Manufacturing profile must lie in the XY plane at Z=0")
     if any(not wire.is_valid or not wire.is_closed for wire in shape.wires()):
         raise ValueError("Profile wires must be valid and closed")
