@@ -5,6 +5,8 @@
 Recreate each of the five frame components shown in Scan_1 and Scan_2 as separate
 build123d models, then build the final FPV frame assembly. Supply a modern Python
 project, local CLI, parameter presets, geometry tests, and GitHub Actions artifacts.
+Commit generated 3MF, STL, and native FCStd outputs as ordinary repository files.
+The confirmed target is the 7-inch Tiger Beetle with a 330 mm diagonal wheelbase.
 
 ## Capability map
 
@@ -20,9 +22,11 @@ plates, assembly. Verification and exports accompany each component.
 
 ## Modeling requirements
 
-- Source geometry consists of lines, analytic arcs, circles, and explicit parameters.
+- Both scans and the final 330 mm product photo are authoritative; see refs/SOURCES.md.
+- Geometry consists of lines, arcs, circles, periodic scan splines, and parameters.
 - No FreeCAD runtime or reference-file imports during normal model builds.
-- Existing FreeCAD solids provide the baseline for the first three components.
+- Existing FreeCAD solids provide a regression baseline for the first three components,
+  subordinate to the authoritative scans and final product photo.
 - Preserve the original saved geometry before addressing underconstraint or changing design.
 - Millimeters throughout; local component datums and Z=0 lower face.
 - Thickness and selected hole dimensions must be editable independently.
@@ -46,13 +50,18 @@ CI must run headlessly using the lockfile and the same CLI as local development.
 - Keep tooling local to Tigerbee until broader repository scope is requested.
 - Existing thicknesses: base plate 3 mm; arms 5 mm.
 - Scan_1 is placed at 210 × 297.04 mm in FreeCAD; Scan_2 scale is unconfirmed.
-- Need names, dimensions, and thicknesses for Scan_2 plates.
-- Need stacking order, vertical spacing, arm quantities/positions, and hardware dimensions.
+- Scan_2 parts are named rear-plate and top-plate, with provisional metric calibration.
+- Four-arm assembly currently measures about 303 mm versus the confirmed 330 mm.
+- Mounting offsets reach 0.753 mm; arm-root intersections total 77.70 mm³.
+- Confirm stacking order, vertical spacing, arm placements, and hardware dimensions.
+- Earlier 295 mm product photo is superseded; its thickness labels remain assumptions.
 - Material and manufacturing process are not established; geometric validity does
   not establish mechanical strength or flight readiness.
 
 ## Boundaries
 
-Preserve manual source files and sibling projects. Generated CAD outputs go under
-ignored build/. GitHub workflow files live at the parent Git repository root.
+Preserve manual source files and sibling projects. Canonical CAD outputs go under
+tracked exports/ as regular Git files with source and output hashes checked in CI.
+Temporary variants go under ignored build/. GitHub artifacts supplement committed
+outputs. Workflow files live at the parent Git repository root.
 Do not publish releases or fabricate confirmed measurements.

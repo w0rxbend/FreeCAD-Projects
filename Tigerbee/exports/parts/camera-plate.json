@@ -1,0 +1,53 @@
+{
+  "part": "camera-plate",
+  "units": "mm",
+  "parameters": {
+    "thickness": 3.0,
+    "mounting_hole_diameter": 3.0,
+    "center_hole_diameter": null,
+    "length_extension": 0.0
+  },
+  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
+  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "build123d": "0.11.1",
+  "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
+  "reference_status": "saved-freecad",
+  "authoritative_blueprint": "refs/Scan_1.jpeg",
+  "target_wheelbase_mm": 330.0,
+  "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
+  "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+  "assumptions": [],
+  "valid": true,
+  "solid_count": 1,
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 19616,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "volume_mm3": 17064.533744001877,
+  "dimensions_mm": [
+    65.52355399161596,
+    152.9776504186795,
+    3.0
+  ],
+  "mesh_linear_deflection_mm": 0.01,
+  "mesh_angular_deflection_rad": 0.1,
+  "files": [
+    "camera-plate.step",
+    "camera-plate.stl",
+    "camera-plate.3mf",
+    "camera-plate.svg",
+    "camera-plate.dxf"
+  ],
+  "file_sha256": {
+    "camera-plate.step": "dc89110565f4767312368c1b1a3f08a49079263efe78d7b32e296d01ea2b2860",
+    "camera-plate.stl": "2283d17cde9d0085b6179783177c82ce25d2fe40876c6886bf0a0853b6dff906",
+    "camera-plate.3mf": "4a325f6bb735535452cd2e0922b7f6737399e015f52d31cc5e39ec014a573e1d",
+    "camera-plate.svg": "ae23e65ffc065f98af98e5df6307e86f5e982ad1a349c3ae30003a566aa4b6bd",
+    "camera-plate.dxf": "2edcb5381a00d64c2293675292fa7c6e9592de6763c372c66d9625831f9eaf62"
+  }
+}

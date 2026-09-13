@@ -1,0 +1,96 @@
+{
+  "status": "provisional-assembly",
+  "units": "mm",
+  "parameters": {
+    "plate_thickness": 2.5,
+    "arm_thickness": 5.0,
+    "top_z": 35.0
+  },
+  "motor_centers_mm": {
+    "front-right-arm": [
+      127.35419309850415,
+      81.73450547098915
+    ],
+    "front-left-arm": [
+      -126.84855914926584,
+      83.76939903356858
+    ],
+    "rear-left-arm": [
+      -115.98138001944704,
+      -98.12608607084708
+    ],
+    "rear-right-arm": [
+      114.89360890375556,
+      -100.53465018611692
+    ]
+  },
+  "diagonal_wheelbases_mm": [
+    302.5921901411552,
+    303.9856219852306
+  ],
+  "advertised_wheelbase_mm": 330.0,
+  "wheelbase_reference": "refs/product/tiger-beetle-7inch-330mm.png",
+  "authoritative_blueprints": [
+    "refs/Scan_1.jpeg",
+    "refs/Scan_2.jpeg"
+  ],
+  "wheelbase_errors_mm": [
+    -27.407809858844814,
+    -26.01437801476942
+  ],
+  "mounting_errors_mm": {
+    "rear-plate-to-camera-plate": 0.7243057654253454,
+    "front-right-arm": 0.17957876413106538,
+    "front-left-arm": 0.4566616675171653,
+    "rear-left-arm": 0.3540283330992965,
+    "rear-right-arm": 0.07535103580375775,
+    "top-plate-to-standoffs": 0.7528965696453558
+  },
+  "standoff_lengths_mm": [
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    25.0,
+    32.5,
+    32.5
+  ],
+  "interferences": [
+    {
+      "parts": [
+        "front-right-arm",
+        "front-left-arm"
+      ],
+      "volume_mm3": 15.110375509377237
+    },
+    {
+      "parts": [
+        "rear-left-arm",
+        "rear-right-arm"
+      ],
+      "volume_mm3": 62.5941920113344
+    }
+  ],
+  "interference_volume_mm3": 77.70456752071163,
+  "assumptions": [
+    "Top plate Z=35 mm is provisional",
+    "Standoffs represented as 6/3 mm tubes",
+    "Both scans are authoritative outlines; metric calibration requires confirmation",
+    "Saved FreeCAD solids are prior reconstructions, subordinate to the scans",
+    "330 mm diagonal wheelbase confirmed by user; earlier 295 mm photo superseded",
+    "Original hole positions preserved; fit errors are not corrected",
+    "Fasteners and end brackets are not yet modeled"
+  ],
+  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
+  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "build123d": "0.11.1",
+  "file_sha256": {
+    "tigerbee-assembly.step": "5cb8437f0b5b51c5143d4ad34e1e15bd1b68761a8a030a70940511d85a45fd95",
+    "tigerbee-assembly.glb": "bc061839d94f68e006ac7d4f171df5a5050533362162c8b9b095567401dc7030",
+    "tigerbee-isometric.svg": "9c7d86a9da87ae6d4194dcef085e34b5e7f89c76bf3aa3208115782517e32670",
+    "tigerbee-top.svg": "2acfcd007493cb505fcf1ca65d4decdcf248319bf9ec1e4747884dbce39702c0",
+    "tigerbee-assembly.stl": "3a222b6dc277f65340476d651b05405749c82bcc698304403a4597b321d75d8a",
+    "tigerbee-assembly.3mf": "26d0d186a431d2cd68530d5136a8b7c9cb74e24c794d365528b62b328477e9a9"
+  }
+}

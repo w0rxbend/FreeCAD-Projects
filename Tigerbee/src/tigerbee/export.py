@@ -1,13 +1,16 @@
 """Manufacturing exports and build provenance."""
 
+import hashlib
 import json
 import subprocess
 from dataclasses import asdict
 from importlib.metadata import version
 from pathlib import Path
 
-from build123d import ExportDXF, ExportSVG, Mesher, export_step, export_stl
+from build123d import ExportDXF, ExportSVG, Mesher, export_gltf, export_step, export_stl
 
+from tigerbee.inventory import source_digest
+from tigerbee.mesh import audit_3mf
 from tigerbee.models import (
     DEFAULT_PARAMETERS,
     PartParameters,
@@ -39,7 +42,8 @@ def export_component(
     mesh = Mesher()
     mesh.add_shape(part, linear_deflection=0.01, angular_deflection=0.1, part_number=name)
     mesh.write(stem.with_suffix(".3mf"))
-    svg = ExportSVG(scale=3)
+    mesh_report = audit_3mf(stem.with_suffix(".3mf"))
+    svg = ExportSVG(scale=3, margin=3, line_weight=0.25)
     svg.add_shape(profile)
     svg.write(stem.with_suffix(".svg"))
     dxf = ExportDXF()
@@ -56,15 +60,66 @@ def export_component(
         "units": "mm",
         "parameters": effective,
         "source_revision": source_revision(),
+        "source_sha256": source_digest(),
         "build123d": version("build123d"),
         "reference_sha256": profile_data(name)["source_sha256"],
+        "reference_status": profile_data(name).get("status", "saved-freecad"),
+        "authoritative_blueprint": (
+            "refs/Scan_1.jpeg"
+            if name in ("arm-type-1", "arm-type-2", "camera-plate")
+            else "refs/Scan_2.jpeg"
+        ),
+        "target_wheelbase_mm": 330.0,
+        "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
+        "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+        "assumptions": profile_data(name).get("assumptions", []),
         "valid": part.is_valid,
         "solid_count": len(part.solids()),
+        "mesh_validation": mesh_report,
         "volume_mm3": part.volume,
         "dimensions_mm": list(part.bounding_box().size),
         "mesh_linear_deflection_mm": 0.01,
         "mesh_angular_deflection_rad": 0.1,
         "files": outputs,
+        "file_sha256": {
+            name: hashlib.sha256((directory / name).read_bytes()).hexdigest() for name in outputs
+        },
     }
     stem.with_suffix(".json").write_text(json.dumps(manifest, indent=2) + "\n")
     return manifest
+
+
+def export_frame(directory: Path, top_z: float = 35, require_fit: bool = False) -> dict:
+    """Write a named assembly and its explicit dimensional/fit report."""
+    from tigerbee.assembly import AssemblyParameters, build_assembly, require_final_fit
+
+    assembly, report = build_assembly(AssemblyParameters(top_z=top_z))
+    if require_fit:
+        require_final_fit(report)
+    directory.mkdir(parents=True, exist_ok=True)
+    if not export_step(assembly, directory / "tigerbee-assembly.step"):
+        raise RuntimeError("Assembly STEP export failed")
+    if not export_stl(assembly, directory / "tigerbee-assembly.stl", tolerance=0.01):
+        raise RuntimeError("Assembly STL export failed")
+    mesh = Mesher()
+    for child in assembly.children:
+        mesh.add_shape(child, linear_deflection=0.01, part_number=child.label)
+    mesh.write(directory / "tigerbee-assembly.3mf")
+    if not export_gltf(assembly, directory / "tigerbee-assembly.glb", binary=True):
+        raise RuntimeError("Assembly GLB export failed")
+    for name, view in (("isometric", (300, -400, 350)), ("top", (0, 0, 500))):
+        up = (0, 1, 0) if name == "top" else (0, 0, 1)
+        visible, _ = assembly.project_to_viewport(view, viewport_up=up, look_at=(0, 0, 0))
+        svg = ExportSVG(scale=2, margin=5, line_weight=0.25)
+        svg.add_shape(visible)
+        svg.write(directory / f"tigerbee-{name}.svg")
+    report["source_revision"] = source_revision()
+    report["source_sha256"] = source_digest()
+    report["build123d"] = version("build123d")
+    report["file_sha256"] = {
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in directory.iterdir()
+        if path.suffix in (".step", ".stl", ".3mf", ".glb", ".svg")
+    }
+    (directory / "assembly-report.json").write_text(json.dumps(report, indent=2) + "\n")
+    return report

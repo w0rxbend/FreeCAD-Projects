@@ -1,0 +1,53 @@
+{
+  "part": "arm-type-1",
+  "units": "mm",
+  "parameters": {
+    "thickness": 5.0,
+    "mounting_hole_diameter": 3.0,
+    "center_hole_diameter": null,
+    "length_extension": 0.0
+  },
+  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
+  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "build123d": "0.11.1",
+  "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
+  "reference_status": "saved-freecad",
+  "authoritative_blueprint": "refs/Scan_1.jpeg",
+  "target_wheelbase_mm": 330.0,
+  "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
+  "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+  "assumptions": [],
+  "valid": true,
+  "solid_count": 1,
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 7052,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "volume_mm3": 12948.205613321488,
+  "dimensions_mm": [
+    36.227997506443074,
+    169.5189611243008,
+    5.0
+  ],
+  "mesh_linear_deflection_mm": 0.01,
+  "mesh_angular_deflection_rad": 0.1,
+  "files": [
+    "arm-type-1.step",
+    "arm-type-1.stl",
+    "arm-type-1.3mf",
+    "arm-type-1.svg",
+    "arm-type-1.dxf"
+  ],
+  "file_sha256": {
+    "arm-type-1.step": "747f9fdbaa8809007b613c20f0f5c1eaa5848a0c425124971f6453be110fa396",
+    "arm-type-1.stl": "57eb430862b40a7f6e84b342667a346c09055d34247c6b70ed0ecc7bdd33fe99",
+    "arm-type-1.3mf": "17269d988b6eec4a70cc47d6172c074d0c164de761a8aa5767b2206897dbda3a",
+    "arm-type-1.svg": "02edceba5d4966fa941fbeed5140c11b8119fba5878933132524b1ad0b10d943",
+    "arm-type-1.dxf": "6215070a6e04a6e41a39d153981918a48185e315e13ffb08868e250ad1998663"
+  }
+}

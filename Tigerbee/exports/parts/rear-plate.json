@@ -1,0 +1,59 @@
+{
+  "part": "rear-plate",
+  "units": "mm",
+  "parameters": {
+    "thickness": 2.5000001999999997,
+    "mounting_hole_diameter": 3.0,
+    "center_hole_diameter": null,
+    "length_extension": 0.0
+  },
+  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
+  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "build123d": "0.11.1",
+  "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
+  "reference_status": "provisional-scan",
+  "authoritative_blueprint": "refs/Scan_2.jpeg",
+  "target_wheelbase_mm": 330.0,
+  "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
+  "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+  "assumptions": [
+    "A4 width 210 mm; scale unverified",
+    "3/5 mm nominal holes",
+    "2.5 mm thickness inferred from earlier variant; unconfirmed for 330 mm frame",
+    "Convex hull repairs cutout pen gaps",
+    "Rear plate missing corner hole mirrored from opposite side"
+  ],
+  "valid": true,
+  "solid_count": 1,
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 48348,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "volume_mm3": 11604.699924038396,
+  "dimensions_mm": [
+    67.26275628269306,
+    135.94878978988407,
+    2.5000001999999997
+  ],
+  "mesh_linear_deflection_mm": 0.01,
+  "mesh_angular_deflection_rad": 0.1,
+  "files": [
+    "rear-plate.step",
+    "rear-plate.stl",
+    "rear-plate.3mf",
+    "rear-plate.svg",
+    "rear-plate.dxf"
+  ],
+  "file_sha256": {
+    "rear-plate.step": "6b13d1873fe2c0b55dbf12a253d6f7af840ebf890365334897fdd3742d8e9663",
+    "rear-plate.stl": "da055d1a3dee7878326c761b7d0dfbecfba13079c7dc0fd91b62eb3b3aa7072f",
+    "rear-plate.3mf": "6a6fb58a98fbc4ba0d1c9c1c5457d0ee7d95b108ec916e212e4e0fa4ecd45bc0",
+    "rear-plate.svg": "4800824609e2eaac55da3a515ecc5908b46a9b96defd1fe9df5f9f7d3ba54dd7",
+    "rear-plate.dxf": "b999c75e1c1904bf3b035405cfdb3bfde0c09a09040ec2a5fc81ed6b036976df"
+  }
+}

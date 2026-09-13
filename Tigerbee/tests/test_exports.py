@@ -28,3 +28,14 @@ def test_exports_reopen_and_record_parameters(tmp_path):
     assert saved["parameters"]["thickness"] == 5
     assert saved["units"] == "mm"
     assert saved["valid"] is True
+    assert saved["mesh_validation"]["valid"]
+
+
+@pytest.mark.parametrize("name", ["arm-type-2", "camera-plate", "rear-plate", "top-plate"])
+def test_every_component_export_is_valid(name, tmp_path):
+    report = export_component(name, tmp_path)
+    reopened = import_step(tmp_path / f"{name}.step")
+    assert reopened.is_valid
+    assert len(reopened.solids()) == 1
+    assert reopened.volume == pytest.approx(report["volume_mm3"], abs=1e-3)
+    assert report["mesh_validation"]["valid"]

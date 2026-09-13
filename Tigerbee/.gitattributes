@@ -1,0 +1,8 @@
+# Preserve CAD exporter bytes and avoid line-oriented diffs/merges of CAD files.
+# These remain ordinary Git blobs, without LFS filters.
+*.step binary
+*.dxf binary
+*.stl binary
+*.3mf binary
+*.FCStd binary
+exports/** linguist-generated=true

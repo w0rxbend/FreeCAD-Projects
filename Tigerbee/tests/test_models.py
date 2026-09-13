@@ -46,3 +46,40 @@ def test_unknown_part_fails():
 
 def test_part_catalog_includes_original_components():
     assert {"arm-type-1", "arm-type-2", "camera-plate"} <= set(PARTS)
+
+
+@pytest.mark.parametrize("name,openings", [("rear-plate", 31), ("top-plate", 30)])
+def test_scan_plate_has_valid_outline_and_all_openings(name, openings):
+    from tigerbee.models import build_profile
+
+    profile = build_profile(name)
+    assert len(profile.inner_wires()) == openings
+    part = build_part(name)
+    assert part.is_valid
+    assert len(part.solids()) == 1
+    assert part.bounding_box().size.Z == pytest.approx(2.5)
+
+
+@pytest.mark.parametrize("name", ["arm-type-1", "arm-type-2"])
+def test_arm_extension_preserves_motor_and_root_holes(name):
+    from tigerbee.models import profile_data
+
+    original = build_part(name)
+    longer = build_part(name, PartParameters(length_extension=20))
+    assert longer.is_valid
+    assert len(longer.solids()) == 1
+    assert longer.bounding_box().size.Y == pytest.approx(original.bounding_box().size.Y + 20)
+    assert longer.bounding_box().max.Y == pytest.approx(original.bounding_box().max.Y)
+    assert not longer.is_inside((0, 0, 2.5))
+    assert longer.is_inside((5, 0, 2.5))
+    for loop in profile_data(name)["loops"]:
+        for segment in loop["segments"]:
+            if segment["kind"] == "circle" and segment["radius"] == 1.5:
+                x, y = segment["center"]
+                assert not longer.is_inside((x, y - 20, 2.5))
+                assert longer.is_inside((x + 1.6, y - 20, 2.5))
+
+
+def test_plate_rejects_arm_only_parameter():
+    with pytest.raises(ValueError, match="only supported for arms"):
+        build_part("camera-plate", PartParameters(length_extension=10))

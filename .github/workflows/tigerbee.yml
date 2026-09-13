@@ -1,0 +1,73 @@
+name: Tigerbee CAD
+
+on:
+  pull_request:
+    paths: ["Tigerbee/**", ".github/workflows/tigerbee.yml"]
+  push:
+    branches: [main, "feature/tigerbee-build123d"]
+    paths: ["Tigerbee/**", ".github/workflows/tigerbee.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tigerbee-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: Tigerbee
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
+        with:
+          version: "0.12.11"
+          enable-cache: true
+          cache-dependency-glob: Tigerbee/uv.lock
+      - name: Install locked environment
+        run: uv sync --locked
+      - name: Check formatting and lint
+        run: |
+          uv run --locked ruff format --check .
+          uv run --locked ruff check .
+      - name: Check types
+        run: uv run --locked mypy src/tigerbee
+      - name: Check committed CAD output freshness
+        run: uv run --locked tigerbee verify-exports
+      - name: Test geometry and exports
+        run: uv run --locked pytest -q --junitxml=build/tests.xml
+      - name: Audit runtime dependencies
+        run: |
+          uv export --locked --no-dev --no-emit-project --format requirements-txt --output-file build/requirements.txt
+          uv run --locked pip-audit --no-deps --disable-pip -r build/requirements.txt
+      - name: Build every component
+        run: uv run --locked tigerbee build --all
+      - name: Build provisional assembly and fit report
+        run: uv run --locked tigerbee assembly
+      - name: Install native FreeCAD exporter
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends freecad-python3
+      - name: Generate and reopen FreeCAD documents
+        run: uv run --locked tigerbee native
+      - name: Build Python distribution
+        run: uv build
+      - name: Upload models and reports
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: tigerbee-provisional-${{ github.sha }}
+          path: |
+            Tigerbee/exports/
+            Tigerbee/build/tests.xml
+            Tigerbee/dist/
+            !Tigerbee/exports/**/*.FCBak
+          if-no-files-found: error
+          retention-days: 14

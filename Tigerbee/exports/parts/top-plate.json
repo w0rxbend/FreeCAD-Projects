@@ -1,0 +1,59 @@
+{
+  "part": "top-plate",
+  "units": "mm",
+  "parameters": {
+    "thickness": 2.5000001999999997,
+    "mounting_hole_diameter": 3.0,
+    "center_hole_diameter": null,
+    "length_extension": 0.0
+  },
+  "source_revision": "6e0e3322f7302f090c50e3bc17b656b6d4c0b8e7",
+  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "build123d": "0.11.1",
+  "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
+  "reference_status": "provisional-scan",
+  "authoritative_blueprint": "refs/Scan_2.jpeg",
+  "target_wheelbase_mm": 330.0,
+  "target_photo": "refs/product/tiger-beetle-7inch-330mm.png",
+  "reference_note": "Prior reconstruction; metric calibration and assembly fit unresolved",
+  "assumptions": [
+    "A4 width 210 mm; scale unverified",
+    "3/5 mm nominal holes",
+    "2.5 mm thickness inferred from earlier variant; unconfirmed for 330 mm frame",
+    "Convex hull repairs cutout pen gaps",
+    "Rear plate missing corner hole mirrored from opposite side"
+  ],
+  "valid": true,
+  "solid_count": 1,
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 80566,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "volume_mm3": 22486.103485035634,
+  "dimensions_mm": [
+    74.02812473739331,
+    213.28923148521216,
+    2.5000001999999997
+  ],
+  "mesh_linear_deflection_mm": 0.01,
+  "mesh_angular_deflection_rad": 0.1,
+  "files": [
+    "top-plate.step",
+    "top-plate.stl",
+    "top-plate.3mf",
+    "top-plate.svg",
+    "top-plate.dxf"
+  ],
+  "file_sha256": {
+    "top-plate.step": "0657425a37529e3e7bfecd748d7c4e3cc1a37307a50badcf64df9598f258f2c5",
+    "top-plate.stl": "89b659c6549bde19207ce3c92ece9f7744da87c612da15232bd902b137c4c735",
+    "top-plate.3mf": "bc7096cbc122695f0027f35370da8847f12b5283d6fbb3ea1e0b7b0c51bb5102",
+    "top-plate.svg": "84b73fd728fe63bc2aed6a8e14bc4a98833d67b7f6a2463e309d39f1c04944e5",
+    "top-plate.dxf": "5e883dbd69a573e10b21af633be40be5af60997ff8815a908e53aea6ab8f8659"
+  }
+}
