@@ -26,6 +26,7 @@ production-grade frame objective:
 - [x] Apply user-confirmed plate stock 3 mm, arm stock 5 mm and standoff outside diameter 6 mm.
 - [x] Retain top underside Z=35 mm and derive six 24 mm/two 32 mm standoffs.
 - [ ] Confirm bolt/nut and camera/end-bracket dimensions; model those accessories.
+- [x] Record current mounting axes, Z stacks and equipment dimensions needed for hardware selection.
 - [ ] Establish material/layup and machining tolerances.
 - [ ] Validate manufactured fit and load performance.
 

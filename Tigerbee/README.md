@@ -212,4 +212,5 @@ purchased hardware and physical fit/load tests remain necessary for a production
 release; passing the geometry audit establishes nominal CAD fit.
 
 See [reference authority](refs/SOURCES.md), [physical measurements](refs/measurements.md),
+[mounting interfaces and equipment handoff](refs/mounting-interfaces.md),
 [design contract](tasks/plan.md) and [remaining tasks](tasks/todo.md).
