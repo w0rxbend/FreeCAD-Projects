@@ -1,6 +1,7 @@
 """Printable GoPro holder exports and measured interface checks."""
 
 from dataclasses import asdict
+from math import sqrt
 from pathlib import Path
 
 from build123d import (
@@ -14,6 +15,7 @@ from build123d import (
     Plane,
     Pos,
     Rectangle,
+    RegularPolygon,
     Shape,
     export_gltf,
     export_step,
@@ -50,8 +52,27 @@ def audit_holder(holder: Part, parameters: GoProParameters) -> dict:
         overlaps[f"mount-{index}-shaft"] = _overlap(holder, shaft)
         overlaps[f"mount-{index}-driver"] = _overlap(holder, driver)
     cy = holder_center_y()
-    axle = extrude(Plane.YZ * Pos(cy, parameters.axle_height) * Circle(2.6), amount=40, both=True)
+    axle_plane = Plane.YZ * Pos(cy, parameters.axle_height)
+    axle = extrude(axle_plane * Circle(2.6), amount=40, both=True)
     overlaps["M5-axle"] = _overlap(holder, axle)
+    nut = Pos(7.1, 0, 0) * extrude(
+        axle_plane * RegularPolygon(8 / sqrt(3), 6, rotation=30), amount=4, dir=(1, 0, 0)
+    )
+    overlaps["M5-nut-seat"] = _overlap(holder, nut)
+    # Empty space is insufficient: require actual bearing material at each
+    # interface and around the captive nut. R7 stays within the R7.5 crown and
+    # its rounded shoulder transitions. The right bearing stops at the nut seat.
+    missing_material = {}
+    for name, x, width, inner_radius in (
+        ("left-finger", -7.7, 3, 2.75),
+        ("middle-finger", -1.5, 3, 2.75),
+        ("right-finger", 4.7, 2.3, 2.75),
+        ("nut-seat-wall", 7, 4.2, 5),
+    ):
+        bearing = Pos(x, 0, 0) * extrude(
+            axle_plane * (Circle(7) - Circle(inner_radius)), amount=width, dir=(1, 0, 0)
+        )
+        missing_material[name] = (bearing - holder).volume
     face = (Circle(7.5) + Pos(0, 5.75) * Rectangle(15, 11.5)).faces()[0]
     fingers = [
         Pos(x, cy, parameters.axle_height) * extrude(Plane.YZ * face, amount=3, dir=(1, 0, 0))
@@ -74,10 +95,12 @@ def audit_holder(holder: Part, parameters: GoProParameters) -> dict:
         and min(walls) >= 0.7
         and len(holder.solids()) == 1
         and max([*overlaps.values(), *pitch.values()]) < 1e-6
+        and max(missing_material.values()) < 1e-6
     )
     report = {
         "passed": passed,
         "obstructions_mm3": overlaps,
+        "pivot_missing_material_mm3": missing_material,
         "nominal_finger_pitch_sweep_interference_mm3": pitch,
         "mounting_hole_centers_mm": mounting_centers(),
         "registration_radial_clearance_mm": 0.1,

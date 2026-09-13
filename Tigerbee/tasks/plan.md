@@ -15,6 +15,8 @@ foundation and make every canonical export reflect the same current geometry.
 - Do not use compare_a4 as an authority or a completion gate.
 - Every plate and each arm pair must mirror exactly across frame X=0.
 - Rear/top outlines and repeated openings use lines, tangent radii and circles.
+- Preserve both paired small top-plate side tabs visible in Scan_2: nominal
+  centers Y=−15/12 mm, 3 mm projection with R2 crowns and R1 tangent roots.
 - Shared mounting coordinates must produce coaxial holes through every mating layer.
 - Four actual motor centers form a square X with both diagonals exactly 305 mm,
   perpendicular at frame (0,0), superseding the historical 303–304 mm estimate.
@@ -36,7 +38,8 @@ foundation and make every canonical export reflect the same current geometry.
 - Exact intended opening counts and only analytic lines/circles in the engineered plates.
 - Source reference regressions, parameter variants, mesh audit and STEP round trips.
 - Regenerate all component and assembly STEP/3MF/STL/SVG/DXF/GLB outputs as applicable.
-- Save and reopen all six generated FCStd documents and verify source/output hashes.
+- Require the full 87-file canonical export set, including files absent from a manifest.
+- Save and reopen all 13 generated FCStd documents and verify source/output hashes.
 - Inspect freshly rendered component and assembled SVGs, not just test reports.
 - Run the full pytest suite, Ruff, mypy and package build; exercise strict assembly fit in CI.
 
@@ -73,3 +76,5 @@ separate component and a 20-solid preview including the four protector feet.
 Run it before native conversion during canonical rebuilds. The exact camera
 bodies remain outside the existing frame CAD; interface fit and camera-body
 clearance are reported separately.
+The holder audit must require positive bearing material in all three fingers
+and around the captive nut, in addition to shaft, nut and mating-finger clearance.

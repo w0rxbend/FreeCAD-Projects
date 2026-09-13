@@ -33,13 +33,13 @@
   ],
   "frame_geometry_audit_passed": true,
   "camera_body_fit": "Exact GoPro and FPV-camera bodies are not modeled",
-  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
-  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "units": "mm",
   "file_sha256": {
-    "tigerbee-with-gopro-holder.step": "30913d1489f6b58a03b759d57be9d6101020fea0467bb88e3327025349a938a6",
-    "tigerbee-with-gopro-holder.glb": "8721f1efd8bc9262b83158e37efc27a8215a074bcd996cded0b34286729a02a3",
-    "tigerbee-with-gopro-holder-isometric.svg": "aa13962ee8adcfc367b25246930d4fc7a9fb7d6f757da52e5100bee8a978ab07",
-    "tigerbee-with-gopro-holder-side.svg": "26808a9288b8fcd8d02e50d8a2c34cec5da3393f65d9f333379335630474d054"
+    "tigerbee-with-gopro-holder.step": "96ae92672b0517995685d7542df0e0a68cb49d265a970ed99848f42db04e130d",
+    "tigerbee-with-gopro-holder.glb": "6b971aaf5f59f07e30394206a15017137a0d6eda75dead31d35fdbcd3473f668",
+    "tigerbee-with-gopro-holder-isometric.svg": "120c04a33bf9f6e9dd29859d70c59d96be169ab2dd73e004a1d069a1dd159428",
+    "tigerbee-with-gopro-holder-side.svg": "8972f6080cc8f52b55bba90f85cbf496ea04145e5e5f1aa3cb067f4ae5e12c06"
   }
 }

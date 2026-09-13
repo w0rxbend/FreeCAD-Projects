@@ -1,0 +1,76 @@
+{
+  "before_step_sha256": "da1d5e0896a94dd0357bedc376539878e4135a3051e9281e27ff68f64fc50563",
+  "removed_volume_mm3": 0,
+  "added_component_count": 4,
+  "added_volume_mm3": 128.54866776461625,
+  "old_openings": 30,
+  "new_openings": 30,
+  "max_hole_symmetric_difference_mm2": 0.0,
+  "whole_solid_reflection_difference_mm3": 0,
+  "added_components": [
+    {
+      "bounds_mm": {
+        "min": [
+          -25.0,
+          -18.0,
+          0.0
+        ],
+        "max": [
+          -21.999999999999996,
+          -12.0,
+          3.0
+        ]
+      },
+      "volume_mm3": 32.137166941154064
+    },
+    {
+      "bounds_mm": {
+        "min": [
+          -25.0,
+          9.0,
+          0.0
+        ],
+        "max": [
+          -21.999999999999996,
+          15.0,
+          3.0
+        ]
+      },
+      "volume_mm3": 32.137166941154064
+    },
+    {
+      "bounds_mm": {
+        "min": [
+          22.0,
+          9.0,
+          0.0
+        ],
+        "max": [
+          25.0,
+          15.0,
+          3.0
+        ]
+      },
+      "volume_mm3": 32.137166941154064
+    },
+    {
+      "bounds_mm": {
+        "min": [
+          22.0,
+          -18.0,
+          0.0
+        ],
+        "max": [
+          25.0,
+          -12.0,
+          3.0
+        ]
+      },
+      "volume_mm3": 32.137166941154064
+    }
+  ],
+  "baseline_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "baseline_path": "Tigerbee/exports/parts/top-plate.step",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
+  "current_step_sha256": "aefa0a422fc109ab214e0d224c723d5357142aebe136ac7b2a6c907301703b06"
+}

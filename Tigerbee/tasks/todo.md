@@ -43,3 +43,16 @@ production-grade frame objective:
 - [x] Model registered M3 base and adjustable M5 three-finger interface.
 - [x] Verify carbon, bolt/tool access, mating finger sweep and captive nut fit.
 - [x] Complete separate exports, native reopen, visual review, 175 tests and 87-output inventory.
+
+## Reference fidelity and independent acceptance review
+
+- [x] Compare the original four user images, saved tracing and current CAD with independent agents.
+- [x] Restore both paired top side tabs with tangent R2/R1 geometry and nominal scan dimensions.
+- [x] Verify four additions, zero removed material, all 30 openings retained and exact reflection.
+- [x] Reject incomplete canonical delivery sets even when omitted files are absent from the manifest.
+- [x] Require actual GoPro pivot bearing material and an unobstructed captive nut seat.
+- [x] Finish 270 tests, canonical rebuild, 13 native reopen checks and the 20-solid exported assembly audit.
+
+See the [current fidelity review](../refs/analysis/fidelity-review.md) for evidence
+and the remaining equipment-dependent work. The full physical frame objective
+remains open; this review verifies the current CAD deliverables.

@@ -22,6 +22,10 @@ class PlateDimensions:
     corner_radius: float = 2.0
     transition_radius: float = 1.0
     top_shoulder_radius: float = 5.0
+    top_tab_radius: float = 2.0
+    top_tab_blend_radius: float = 1.0
+    top_tab_first_y: float = -15.0
+    top_tab_pitch: float = 27.0
     camera_datum_y: float = 61.25
     camera_clamp_shoulder_extension: float = 5.0
     rear_front_shoulder_extension: float = 5.0
@@ -62,6 +66,13 @@ class PlateDimensions:
             raise ValueError("chevron_pitch must exceed chevron_height")
         if self.rear_slot_pitch <= self.rear_slot_height:
             raise ValueError("rear_slot_pitch must exceed rear_slot_height")
+        tab_half_height = self.top_tab_radius + self.top_tab_blend_radius
+        if (
+            self.top_tab_first_y - tab_half_height <= -21
+            or self.top_tab_first_y + self.top_tab_pitch + tab_half_height >= 18
+            or self.top_tab_pitch <= 2 * tab_half_height
+        ):
+            raise ValueError("Top tabs must remain separate and within the straight waist")
 
 
 DEFAULT_PLATE_DIMENSIONS = PlateDimensions()
@@ -259,6 +270,31 @@ def _rear_openings(dimensions: PlateDimensions) -> list[Face]:
     return openings
 
 
+def _top_side_tab(y: float, dimensions: PlateDimensions) -> Face:
+    """Scan_2 side projection: circular crown and tangent concave root arcs."""
+    radius, blend = dimensions.top_tab_radius, dimensions.top_tab_blend_radius
+    x, height, diagonal = 22 + blend, radius + blend, blend / sqrt(2)
+    tab = Face(
+        Wire(
+            [
+                ThreePointArc(
+                    (22, y + height),
+                    (x - diagonal, y + height - diagonal),
+                    (x, y + radius),
+                ).edge(),
+                ThreePointArc((x, y + radius), (x + radius, y), (x, y - radius)).edge(),
+                ThreePointArc(
+                    (x, y - radius),
+                    (x - diagonal, y - height + diagonal),
+                    (22, y - height),
+                ).edge(),
+                Edge.make_line((22, y - height), (22, y + height)),
+            ]
+        )
+    )
+    return -tab if tab.normal_at().Z < 0 else tab
+
+
 def _top_outline(dimensions: PlateDimensions) -> Face:
     # Nominal shoulders envelop the four support rows without fused bosses.
     right = [
@@ -292,6 +328,11 @@ def _top_outline(dimensions: PlateDimensions) -> Face:
     shoulders = [v for v in outline.vertices() if abs(v.X) > 30 and -42 < v.Y < 100]
     outline = outline.fillet_2d(dimensions.top_shoulder_radius, shoulders)
     outline = _smooth_outline(outline, dimensions.corner_radius)
+    for index in range(2):
+        tab = _top_side_tab(
+            dimensions.top_tab_first_y + index * dimensions.top_tab_pitch, dimensions
+        )
+        outline = _one_face(outline.fuse(tab, tab.mirror(Plane.YZ)).clean())
     front = _circle(0, 92, 14).fuse(
         Face(Wire.make_polygon([(-14, 92), (14, 92), (14, 125), (-14, 125)], close=True))
     )

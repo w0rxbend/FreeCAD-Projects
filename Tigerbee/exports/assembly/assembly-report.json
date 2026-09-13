@@ -738,7 +738,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.50363614056161,
+        "minimum_edge_ligament_mm": 4.503636140561611,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -882,7 +882,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 4.643984408372081,
+        "minimum_edge_ligament_mm": 4.643984408372084,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -963,7 +963,7 @@
         "coaxial": true,
         "shaft_interference_mm3": 0.0,
         "hole_diameter_mm": 3.2,
-        "minimum_edge_ligament_mm": 3.899999999999995,
+        "minimum_edge_ligament_mm": 3.8999999999999986,
         "required_edge_ligament_mm": 2.0
       },
       {
@@ -1192,16 +1192,16 @@
     "Shared mounting axes replace independent imperfect hole fits",
     "CAD fit does not establish carbon laminate strength or flight qualification"
   ],
-  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
-  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "build123d": "0.11.1",
   "file_sha256": {
-    "tigerbee-assembly.step": "dd28b45a9c7331fc002a606323eaa29b2436b9ebae6d823986eca5c64033f2f0",
-    "tigerbee-assembly.glb": "8ffdbdf94686cfb711fda78079d483f309cce438970734114677f736483d032f",
-    "tigerbee-isometric.svg": "ce4583879e24f827b3988823e1c0c3632401f532b9676e2611fa4422ea86060d",
-    "tigerbee-top.svg": "bfeac23d50a76c217ac73e57bb66769f670cf9c24f1249bdb63b22237c3b4aef",
-    "tigerbee-assembly.stl": "4ea36170a7180f0ab50839bd07b81d9c93df09637ef1f366449a8c6ad93e0933",
-    "tigerbee-assembly.3mf": "67354492d70415319abcdee181d4bb37a0833b52ee27446ce5b297ae4a51ec3d",
+    "tigerbee-assembly.step": "1a748b0d2acc827e48a3c57b25e848286e99167b951d612f68349e01b2468467",
+    "tigerbee-assembly.glb": "3ed92c3b3ce3e6bc246047ff3f1dcb780bcaf9912d68a9aeb875044bb7da8a6e",
+    "tigerbee-isometric.svg": "ab3727ca1a84a17caae1cf4b0e30b632010e222c2e89c5297844f270bcfc0d3b",
+    "tigerbee-top.svg": "c5ac06a33b6a1369cef5f53a1e9958030315efc40a3d108073cd7f1e3e17696e",
+    "tigerbee-assembly.stl": "cea487289c37da108ca7f18d8ea601316041d3b25eac2027bbe9d37e50c2972e",
+    "tigerbee-assembly.3mf": "3f2cb4f631066e9cccc4f911636eb398de0500b2ffa24baed8090eb52b536497",
     "tigerbee-motor-layout.svg": "10d75a1eb904402a459da7ba8b56d1fdb38fc06431878f61af1a33c79c1f0b99"
   }
 }

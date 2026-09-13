@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
-  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -53,11 +53,11 @@
     "arm-type-2.dxf"
   ],
   "file_sha256": {
-    "arm-type-2.step": "5821fd6551ff8c7c8d31ef600e813f22f58b8471aa88dae528e135290a584512",
+    "arm-type-2.step": "705a8717f5b998a1dfcdc8e538675bc860f66316564c5b11b803edd3253141ab",
     "arm-type-2.stl": "2eeb0d4069777ce8c6f6cd142a56a4eca86be46168a31bcd0d93b15c0af93a18",
-    "arm-type-2.3mf": "33554cbea1c232dc8102e17aeeb3b422502c1fa653802525558280cabb5330e3",
+    "arm-type-2.3mf": "802b309f84b8f805befe87f2cc5e95d6df5fc7e1d7dbd62e30a40f57414647b8",
     "arm-type-2.svg": "614337cb51b808ace30e2f1cbd6667f46fa4bd04bd85a19ae0a3554ac266977d",
-    "arm-type-2.dxf": "0b60ac6ac89772a1db3d988a51ea737eb7942ca5c96c96f1539be2ae98b3587c"
+    "arm-type-2.dxf": "092ff31e67ed21b989cc7234ceb98186917b8a43eda1292601cf93557d20eb73"
   },
   "datum": "Motor shaft center X=Y=0; shaft extends toward negative Y; lower face Z=0",
   "root_clamp_relief_mm": {

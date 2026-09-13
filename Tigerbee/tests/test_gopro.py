@@ -98,3 +98,41 @@ def test_registration_bosses_have_printable_wall_thickness():
     for face in feet:
         radii = [e.radius for e in face.edges() if e.geom_type == GeomType.CIRCLE]
         assert max(radii) - min(radii) >= 0.7
+
+
+@pytest.mark.parametrize("removed", ["all-fingers", "middle-finger"])
+def test_fit_audit_requires_actual_pivot_bearings(removed):
+    from build123d import Box
+
+    from tigerbee.gopro_export import audit_holder
+
+    holder = build_gopro_holder()
+    width = 100 if removed == "all-fingers" else 3
+    holder -= Pos(0, 74.5, 55) * Box(width, 100, 100)
+    assert holder.is_valid and len(holder.solids()) == 1
+    with pytest.raises(ValueError, match="Holder fit failed"):
+        audit_holder(holder, GoProParameters())
+
+
+def test_fit_audit_requires_clear_captive_nut_seat():
+    from math import sqrt
+
+    from build123d import RegularPolygon
+
+    from tigerbee.gopro_export import audit_holder
+
+    holder = build_gopro_holder()
+    # Close the hex pocket while retaining the original clear M5 axle passage.
+    plug = RegularPolygon(8.4 / sqrt(3), 6, rotation=30) - Circle(2.75)
+    holder += Pos(7, 74.5, 18) * extrude(Plane.YZ * plug, amount=4.2, dir=(1, 0, 0))
+    assert holder.is_valid and len(holder.solids()) == 1
+    with pytest.raises(ValueError, match="Holder fit failed"):
+        audit_holder(holder, GoProParameters())
+
+
+@pytest.mark.parametrize("height", [18, 30])
+def test_pivot_audit_accepts_both_supported_height_limits(height):
+    from tigerbee.gopro_export import audit_holder
+
+    parameters = GoProParameters(axle_height=height)
+    assert audit_holder(build_gopro_holder(parameters), parameters)["passed"]

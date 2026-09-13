@@ -48,18 +48,35 @@ def verify_inventory(directory: Path) -> int:
     manifest = json.loads((directory / "manifest.json").read_text())
     if manifest["source_sha256"] != source_digest():
         raise ValueError("CAD sources changed; regenerate and commit the exports")
-    required = [f"parts/{name}.{suffix}" for name in PARTS for suffix in ("3mf", "stl", "FCStd")]
-    required += [f"assembly/tigerbee-assembly.{suffix}" for suffix in ("3mf", "stl", "FCStd")]
+    required = [
+        f"parts/{name}.{suffix}"
+        for name in PARTS
+        for suffix in ("step", "stl", "3mf", "FCStd", "svg", "dxf", "json")
+    ]
+    required += [
+        f"assembly/tigerbee-assembly.{suffix}" for suffix in ("step", "stl", "3mf", "FCStd", "glb")
+    ]
+    required += [
+        "assembly/assembly-report.json",
+        "assembly/tigerbee-isometric.svg",
+        "assembly/tigerbee-top.svg",
+        "assembly/tigerbee-motor-layout.svg",
+        "native-report.json",
+    ]
     required += [
         f"accessories/{name}.{suffix}"
         for name in (*PROTECTORS, GOPRO_HOLDER)
         for suffix in ("step", "stl", "3mf", "FCStd", "svg", "json")
     ]
     required += [
-        "accessories/tigerbee-with-protectors.step",
-        "accessories/tigerbee-with-protectors.FCStd",
-        "accessories/tigerbee-with-gopro-holder.step",
-        "accessories/tigerbee-with-gopro-holder.FCStd",
+        f"accessories/tigerbee-with-{accessory}.{suffix}"
+        for accessory in ("protectors", "gopro-holder")
+        for suffix in ("step", "FCStd", "glb", "json")
+    ]
+    required += [
+        f"accessories/tigerbee-with-{accessory}-{view}.svg"
+        for accessory in ("protectors", "gopro-holder")
+        for view in ("isometric", "side")
     ]
     for name in required:
         if name not in manifest["files"]:

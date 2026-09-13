@@ -17,7 +17,14 @@
       "mount-2-driver": 0,
       "mount-3-shaft": 0,
       "mount-3-driver": 0,
-      "M5-axle": 0
+      "M5-axle": 0,
+      "M5-nut-seat": 0
+    },
+    "pivot_missing_material_mm3": {
+      "left-finger": 0,
+      "middle-finger": 0,
+      "right-finger": 0,
+      "nut-seat-wall": 0
     },
     "nominal_finger_pitch_sweep_interference_mm3": {
       "-15": 0,
@@ -87,13 +94,13 @@
     "nonmanifold_edges": 0,
     "winding_errors": 0
   },
-  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
-  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "units": "mm",
   "file_sha256": {
-    "top-plate-gopro-holder.step": "c4e9212d40f46a8d5d943c4c1587c48a00f379c4ffe9122d06b1245126267b87",
+    "top-plate-gopro-holder.step": "7c9c59de9fd7acd5b1e565e30a1954b4cea6f43c90a2c5a55c133c4981821053",
     "top-plate-gopro-holder.stl": "5900b62de85e61ced9ae8427f5f675a43f7e8d30391c9df55311ac016c94cdc8",
-    "top-plate-gopro-holder.3mf": "8358f02721679168e56b28bb2bd19b6dfab354cb7acc657c3b762127afefe45f",
+    "top-plate-gopro-holder.3mf": "fb6fb54a67be03a378d76130420aed32a6d564baa0043ba5cb1f17aecba53a42",
     "top-plate-gopro-holder.svg": "4917f1df190cdcc1c06db585f7a8323de1ff7f9596afbef4ebb37464defbf958"
   }
 }

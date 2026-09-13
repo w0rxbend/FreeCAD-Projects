@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
-  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "build123d": "0.11.1",
   "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -53,16 +53,20 @@
     "camera-plate.dxf"
   ],
   "file_sha256": {
-    "camera-plate.step": "4c6dddb532f2e394e8149b250d853fc4d7a0a74679a62a6ed0045f39a3075814",
+    "camera-plate.step": "ffefbde44169be222018d1d2820506f4b6cf825751f8c7a87a77e4049fbe7eb8",
     "camera-plate.stl": "396264aae580342716063506ceb1c1980fd9e395b481408ee5d9f3d37b9a21c3",
-    "camera-plate.3mf": "6f59c9e5611c775a7ff6a5c6a3a138ccac20feb2822a73632d5cd7e19128a0f0",
+    "camera-plate.3mf": "bdf25b5ec20b63bdddf0b2ac989539ac10382a60b72c0e14080b3966d6116b9c",
     "camera-plate.svg": "89a0d6eb7bad9c59a97c986b31ddbb0ca1068befa58957f499472fbe46426a15",
-    "camera-plate.dxf": "94124fc953733483b330ac0517f463da9d8fd02b25c93feefd007af4295bcde1"
+    "camera-plate.dxf": "2079e3762fa7d672a97cfcbdd47732911788d3249f79035a00b1d3fc1df755a4"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,
     "transition_radius": 1.0,
     "top_shoulder_radius": 5.0,
+    "top_tab_radius": 2.0,
+    "top_tab_blend_radius": 1.0,
+    "top_tab_first_y": -15.0,
+    "top_tab_pitch": 27.0,
     "camera_datum_y": 61.25,
     "camera_clamp_shoulder_extension": 5.0,
     "rear_front_shoulder_extension": 5.0,

@@ -76,6 +76,38 @@ def test_top_has_six_identical_chevrons_on_each_side():
         assert second.size.Y == pytest.approx(first.size.Y)
 
 
+def test_top_retains_two_pairs_of_rounded_side_tabs_from_scan():
+    from build123d import Edge
+
+    from tigerbee.models import build_profile
+
+    profile = build_profile("top-plate")
+    perimeter = profile.outer_wire()
+    # Scan_2 has small paired projections between the large clamp shoulders.
+    # Probe the actual boundary, including the straight waist between the tabs.
+    for y, half_width in [(-15, 25.0), (12, 25.0), (0, 22.0)]:
+        section = perimeter & Edge.make_line((-40, y), (40, y))
+        xs = sorted(vertex.X for vertex in section.vertices())
+        assert xs == pytest.approx([-half_width, half_width], abs=1e-6)
+    crowns = [
+        edge
+        for edge in perimeter.edges()
+        if edge.geom_type == GeomType.CIRCLE
+        and abs(abs(edge.arc_center.X) - 23) < 1e-6
+        and any(abs(edge.arc_center.Y - y) < 1e-6 for y in (-15, 12))
+    ]
+    assert len(crowns) == 4
+    assert all(edge.radius == pytest.approx(2) for edge in crowns)
+
+
+@pytest.mark.parametrize("changes", [{"top_tab_pitch": 5}, {"top_tab_first_y": -22}])
+def test_top_tabs_cannot_merge_or_reach_the_clamp_shoulders(changes):
+    with pytest.raises(ValueError, match="Top tabs"):
+        build_plate_profile(
+            "top-plate", paired(SUPPORT_ROWS), dimensions=replace(PlateDimensions(), **changes)
+        )
+
+
 def test_dimensions_change_slot_geometry_without_moving_mounts():
     original = build_plate_profile("rear-plate", paired(REAR_ROWS))
     wider = build_plate_profile(

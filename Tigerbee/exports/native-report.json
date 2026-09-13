@@ -27,13 +27,13 @@
     "file": "parts/top-plate.FCStd",
     "valid": true,
     "solids": 1,
-    "volume_mm3": 25567.501920711256
+    "volume_mm3": 25696.050588151193
   },
   {
     "file": "assembly/tigerbee-assembly.FCStd",
     "valid": true,
     "solids": 15,
-    "volume_mm3": 117499.87203806217
+    "volume_mm3": 117628.42070550208
   },
   {
     "file": "accessories/arm-type-1-protector-left.FCStd",
@@ -63,13 +63,13 @@
     "file": "accessories/tigerbee-with-gopro-holder.FCStd",
     "valid": true,
     "solids": 20,
-    "volume_mm3": 169893.84499949618
+    "volume_mm3": 170022.39366693608
   },
   {
     "file": "accessories/tigerbee-with-protectors.FCStd",
     "valid": true,
     "solids": 19,
-    "volume_mm3": 153821.53983952425
+    "volume_mm3": 153950.08850696412
   },
   {
     "file": "accessories/top-plate-gopro-holder.FCStd",

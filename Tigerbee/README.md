@@ -36,6 +36,10 @@ longer used. [PlateDimensions](src/tigerbee/plates.py) controls repeated opening
 sizes, pitches and radii. Camera features retain the 15 × 15 mm R2 square,
 18.5 mm round opening and 11.5 × 8.5 mm R2.5 slots from the CAD foundation.
 Plate contours use only lines and circular arcs, with tangent perimeter joins.
+The top plate retains the scan's two pairs of small side tabs: Y=−15/12 mm,
+3 mm projection from X=±22 mm, R2 crowns and R1 tangent root arcs.
+These are symmetric nominal dimensions from the tracing, not measured tolerances.
+See the [tab comparison](refs/analysis/top-tabs-comparison.svg).
 Export reports keep historical tracing assumptions in `reference_assumptions`;
 `assumptions` and effective dimensions describe the current generated design.
 
@@ -68,6 +72,8 @@ Every assembly export requires the actual-solid geometry audit to pass, includin
 when `--require-fit` is omitted. The explicit flag additionally enforces report
 consistency. Native export saves and reopens every FCStd document; the final
 inventory verifies source and output hashes.
+It requires every one of the 87 canonical deliverables, including STEP, DXF,
+preview and report files even if an incomplete manifest omits them.
 
 Native conversion requires FreeCADCmd or the FreeCAD Flatpak. Normal component
 and assembly builds do not import FreeCAD or the original reference document.
@@ -151,6 +157,8 @@ and a Ø5.5 axle bore. These nominal dimensions follow
 not an official GoPro tolerance specification. A nominal two-finger coupon clears
 the holder at 5° intervals from −15° to 60°. Exact GoPro-body and FPV-camera-body
 clearances are not established because those bodies are absent from the source CAD.
+The export audit also requires actual bearing material in all three fingers and
+around the captive nut, and checks clearance for the metal nut itself.
 
 The low version places the axle **18 mm above the top plate**, at frame
 (0, 74.5, 56) mm. The height is adjustable from 18 to 30 mm. Print exports put the

@@ -7,8 +7,8 @@
     "center_hole_diameter": null,
     "length_extension": 0.0
   },
-  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
-  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "build123d": "0.11.1",
   "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
   "reference_status": "symmetric-design-derived-from-reference",
@@ -37,17 +37,17 @@
   "solid_count": 1,
   "mesh_validation": {
     "valid": true,
-    "triangles": 19920,
+    "triangles": 21968,
     "components": 1,
     "degenerate_faces": 0,
     "boundary_edges": 0,
     "nonmanifold_edges": 0,
     "winding_errors": 0
   },
-  "volume_mm3": 25567.501920710096,
+  "volume_mm3": 25696.050588148857,
   "dimensions_mm": [
     68.0,
-    214.5000000000037,
+    214.50000000000009,
     3.0
   ],
   "mesh_linear_deflection_mm": 0.01,
@@ -60,16 +60,20 @@
     "top-plate.dxf"
   ],
   "file_sha256": {
-    "top-plate.step": "da1d5e0896a94dd0357bedc376539878e4135a3051e9281e27ff68f64fc50563",
-    "top-plate.stl": "d0c2b9f3a6cc1948e04b4bccea1de3a1dc4002f32671320f87a5b47e3a5afd76",
-    "top-plate.3mf": "fcde5019eba7f793320eab26c235e6e1be024e42a93e2f3499a25a58c5436d44",
-    "top-plate.svg": "01bafb5f72ae2051c8d2fd69dabc0ba53f2b197ce6df11a188f527b86a5ae1a7",
-    "top-plate.dxf": "452457240b95dd6d78b64671bc83895c56eb4e7d29255dcb2a89b990cb697d65"
+    "top-plate.step": "aefa0a422fc109ab214e0d224c723d5357142aebe136ac7b2a6c907301703b06",
+    "top-plate.stl": "b427ff38441909f1fc5085bd6c138d72eb14e1d4d1c6b5fc57333bc43dee2328",
+    "top-plate.3mf": "fd3620c07b62aef4109b5047affa208c2c718856e293d249a074709c525d1a8c",
+    "top-plate.svg": "d1ade4f4da16d7f243af8b154971398b1df16ae147df2678fb5fd0a179a27dca",
+    "top-plate.dxf": "fb7591cdc80eb69fb5aaf51a40dfc91fd699dede1b376f44390d2e0a5627bfde"
   },
   "design_dimensions_mm": {
     "corner_radius": 2.0,
     "transition_radius": 1.0,
     "top_shoulder_radius": 5.0,
+    "top_tab_radius": 2.0,
+    "top_tab_blend_radius": 1.0,
+    "top_tab_first_y": -15.0,
+    "top_tab_pitch": 27.0,
     "camera_datum_y": 61.25,
     "camera_clamp_shoulder_extension": 5.0,
     "rear_front_shoulder_extension": 5.0,

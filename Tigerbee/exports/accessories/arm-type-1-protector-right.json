@@ -42,13 +42,13 @@
     "arm-type-1-protector-right.3mf",
     "arm-type-1-protector-right.svg"
   ],
-  "source_revision": "af105896fd8b425144cbabd57426e982642984a8",
-  "source_sha256": "e45c28928924ec9436187826ececb53279cbbc377f3e6e05ef6d39b8c6d9d8e0",
+  "source_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
   "units": "mm",
   "file_sha256": {
-    "arm-type-1-protector-right.step": "33bf5a8fba6272256ad1e224b39df36eaaf9cd8d1ebf64fec518b30199ddced0",
+    "arm-type-1-protector-right.step": "e3bfb0ca20ede08757bec8a96099c40a6eeeb35e30161aa5eee2e8f9f6a06c22",
     "arm-type-1-protector-right.stl": "7b361e6d26b8531ac8570f54acff2d1e1ff9d507cfd770b54bbbcaf9d9936328",
-    "arm-type-1-protector-right.3mf": "411c0801eb5a80a593ac8831968b5293824a71c7ba1e1bf39ad56d2517f026f5",
+    "arm-type-1-protector-right.3mf": "c566c663cfd01bffa56e859d8ae84c704d847866b6ae772d38aa41c77a2e27fd",
     "arm-type-1-protector-right.svg": "8fc93251da295d1c43b537b82c464f766c60462fa690bf3325f656275561b71c"
   }
 }
