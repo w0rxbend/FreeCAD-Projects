@@ -197,3 +197,11 @@ Coordinator provenance closure: snapshot now occurs before directory/staging wri
 ## Final candidate verification
 
 Candidate d09c1e8 passed cleancheckout203tests including nativeFreeCAD1.1.3, all five presets, full export/drawing, exact STEP-only and default all-format selected-arm CLI commands, both overlays, complete package and emptygitstatus. Manifestgit_dirty=false is explicitly asserted. HostedCI34780669616 and CAD34780669690 bothpassed; downloadedchecksums and local/hosted componentvolumes verified. Current machine-readable evidence is artifacts/reports/final-acceptance.json. All implementation/audit defects are closed. Only the userdecision on taggedpublication remains; coordinator asked for approval to publish exactd09c1e8 asv0.1.0. No tag/release is claimed yet.
+
+## Publication and final acceptance — 2026-09-14
+
+The user explicitly approved publishing v0.1.0 at d09c1e8. The annotated remote tag peels to d09c1e8d5cb011697d502f8a4fcb4773c7d879b1. Tagged workflow34821227842 completed successfully (quality, CAD and publication). The public release is https://github.com/w0rxbend/FreeCAD-Projects/releases/tag/v0.1.0 and is neither a draft nor a prerelease.
+
+All10 published assets were downloaded. Release SHA256SUMS and101 archive payload files were verified against their manifests; all required formats, overlays, reports and parameters are present. Native reopen evidence enumerates15solids; allfivepreset reports pass; metadata is clean and identifies the approved commit and version0.1.0. Published notes explicitly retain stock dimensions and reconstruction assumptions.
+
+Evidence: artifacts/reports/published-release.json, published-release-api.json and final-acceptance.json. The final publication requirement is now closed; no implementation or publication work remains. Physical assumptions remain documented engineering scope rather than newly asserted measurements.

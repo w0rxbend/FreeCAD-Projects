@@ -14,7 +14,7 @@
 - [x] Finald09c1e8 clean rebuild:203tests, allcommands, completepackage, truthfulgitprovenance.
 - [x] Finald09c1e8 hostedCI34780669616 and CAD34780669690 bothpass; downloadedchecksumsverified.
 - [x] Full76-sectionPLAN audit; all implementation/review findings closed.
-- [pending] Userdecision on publishingv0.1.0 atd09c1e8; then taggedworkflow and assetverification.
+- [x] Userapproved v0.1.0 atd09c1e8; taggedworkflow34821227842 passed, publicrelease and allassets verified.
 
 Keep inferred hardware and corrected root geometry explicit. No assertion of
 physical stock/process strength or compatibility with unspecified equipment.
