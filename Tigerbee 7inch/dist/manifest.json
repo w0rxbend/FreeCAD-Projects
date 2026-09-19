@@ -1,0 +1,1130 @@
+{
+ "name": "tigerbee",
+ "wheelbase_mm": 303.0,
+ "root_to_motor_mm": 114.8041543,
+ "datum": "origin = centre of the central 30.5 stack square; +X right, +Y front, +Z up; Z=0 lower face of plate_bottom",
+ "motor_centers": {
+  "front_right": [
+   126.3622,
+   83.7846
+  ],
+  "front_left": [
+   -126.3622,
+   83.7846
+  ],
+  "rear_right": [
+   115.7212,
+   -98.4367
+  ],
+  "rear_left": [
+   -115.7212,
+   -98.4367
+  ]
+ },
+ "stackup_z": {
+  "plate_bottom": [
+   0,
+   2.0
+  ],
+  "arms": [
+   2.0,
+   7.0
+  ],
+  "plate_mid": [
+   7.0,
+   9.0
+  ],
+  "plate_top": [
+   34.0,
+   36.0
+  ]
+ },
+ "mesh": {
+  "linear_deflection_mm": 0.02,
+  "angular_deflection_rad": 0.1
+ },
+ "assembly": {
+  "files": {
+   "step": "step/tigerbee.step",
+   "stl": "stl/tigerbee.stl",
+   "3mf": "3mf/tigerbee.3mf",
+   "freecad": "freecad/tigerbee.FCStd"
+  }
+ },
+ "parts": [
+  {
+   "name": "plate_bottom",
+   "volume_mm3": 12180.504,
+   "bbox": [
+    [
+     -34.488,
+     -100.172,
+     0.0
+    ],
+    [
+     34.488,
+     37.323,
+     2.0
+    ]
+   ],
+   "files": {
+    "step": "step/plate_bottom.step",
+    "stl": "stl/plate_bottom.stl",
+    "3mf": "3mf/plate_bottom.3mf",
+    "freecad": "freecad/plate_bottom.FCStd"
+   }
+  },
+  {
+   "name": "plate_mid",
+   "volume_mm3": 12426.035,
+   "bbox": [
+    [
+     -33.5,
+     -38.916,
+     7.0
+    ],
+    [
+     33.5,
+     116.0,
+     9.0
+    ]
+   ],
+   "files": {
+    "step": "step/plate_mid.step",
+    "stl": "stl/plate_mid.stl",
+    "3mf": "3mf/plate_mid.3mf",
+    "freecad": "freecad/plate_mid.FCStd"
+   }
+  },
+  {
+   "name": "plate_top",
+   "volume_mm3": 14249.657,
+   "bbox": [
+    [
+     -38.5,
+     -100.0,
+     34.0
+    ],
+    [
+     38.5,
+     114.416,
+     36.0
+    ]
+   ],
+   "files": {
+    "step": "step/plate_top.step",
+    "stl": "stl/plate_top.stl",
+    "3mf": "3mf/plate_top.3mf",
+    "freecad": "freecad/plate_top.FCStd"
+   }
+  },
+  {
+   "name": "arm_front_left",
+   "volume_mm3": 13270.081,
+   "bbox": [
+    [
+     -148.589,
+     -0.339,
+     2.0
+    ],
+    [
+     -0.145,
+     99.191,
+     7.0
+    ]
+   ],
+   "files": {
+    "step": "step/arm_front_left.step",
+    "stl": "stl/arm_front_left.stl",
+    "3mf": "3mf/arm_front_left.3mf",
+    "freecad": "freecad/arm_front_left.FCStd"
+   }
+  },
+  {
+   "name": "arm_front_right",
+   "volume_mm3": 13270.081,
+   "bbox": [
+    [
+     0.145,
+     -0.339,
+     2.0
+    ],
+    [
+     148.589,
+     99.191,
+     7.0
+    ]
+   ],
+   "files": {
+    "step": "step/arm_front_right.step",
+    "stl": "stl/arm_front_right.stl",
+    "3mf": "3mf/arm_front_right.3mf",
+    "freecad": "freecad/arm_front_right.FCStd"
+   }
+  },
+  {
+   "name": "arm_rear_left",
+   "volume_mm3": 13270.081,
+   "bbox": [
+    [
+     -136.383,
+     -116.096,
+     2.0
+    ],
+    [
+     -0.214,
+     -0.21,
+     7.0
+    ]
+   ],
+   "files": {
+    "step": "step/arm_rear_left.step",
+    "stl": "stl/arm_rear_left.stl",
+    "3mf": "3mf/arm_rear_left.3mf",
+    "freecad": "freecad/arm_rear_left.FCStd"
+   }
+  },
+  {
+   "name": "arm_rear_right",
+   "volume_mm3": 13270.081,
+   "bbox": [
+    [
+     0.214,
+     -116.096,
+     2.0
+    ],
+    [
+     136.383,
+     -0.21,
+     7.0
+    ]
+   ],
+   "files": {
+    "step": "step/arm_rear_right.step",
+    "stl": "stl/arm_rear_right.stl",
+    "3mf": "3mf/arm_rear_right.3mf",
+    "freecad": "freecad/arm_rear_right.FCStd"
+   }
+  },
+  {
+   "name": "standoff_front_tip_left",
+   "volume_mm3": 314.159,
+   "bbox": [
+    [
+     -21.5,
+     106.5,
+     9.0
+    ],
+    [
+     -16.5,
+     111.5,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_front_tip_left.step",
+    "stl": "stl/standoff_front_tip_left.stl",
+    "3mf": "3mf/standoff_front_tip_left.3mf",
+    "freecad": "freecad/standoff_front_tip_left.FCStd"
+   }
+  },
+  {
+   "name": "standoff_front_tip_right",
+   "volume_mm3": 314.159,
+   "bbox": [
+    [
+     16.5,
+     106.5,
+     9.0
+    ],
+    [
+     21.5,
+     111.5,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_front_tip_right.step",
+    "stl": "stl/standoff_front_tip_right.stl",
+    "3mf": "3mf/standoff_front_tip_right.3mf",
+    "freecad": "freecad/standoff_front_tip_right.FCStd"
+   }
+  },
+  {
+   "name": "standoff_front_arm_left",
+   "volume_mm3": 314.159,
+   "bbox": [
+    [
+     -31.028,
+     29.331,
+     9.0
+    ],
+    [
+     -26.028,
+     34.331,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_front_arm_left.step",
+    "stl": "stl/standoff_front_arm_left.stl",
+    "3mf": "3mf/standoff_front_arm_left.3mf",
+    "freecad": "freecad/standoff_front_arm_left.FCStd"
+   }
+  },
+  {
+   "name": "standoff_front_arm_right",
+   "volume_mm3": 314.159,
+   "bbox": [
+    [
+     26.028,
+     29.331,
+     9.0
+    ],
+    [
+     31.028,
+     34.331,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_front_arm_right.step",
+    "stl": "stl/standoff_front_arm_right.stl",
+    "3mf": "3mf/standoff_front_arm_right.3mf",
+    "freecad": "freecad/standoff_front_arm_right.FCStd"
+   }
+  },
+  {
+   "name": "standoff_rear_arm_left",
+   "volume_mm3": 314.159,
+   "bbox": [
+    [
+     -28.57,
+     -35.873,
+     9.0
+    ],
+    [
+     -23.57,
+     -30.873,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_rear_arm_left.step",
+    "stl": "stl/standoff_rear_arm_left.stl",
+    "3mf": "3mf/standoff_rear_arm_left.3mf",
+    "freecad": "freecad/standoff_rear_arm_left.FCStd"
+   }
+  },
+  {
+   "name": "standoff_rear_arm_right",
+   "volume_mm3": 314.159,
+   "bbox": [
+    [
+     23.57,
+     -35.873,
+     9.0
+    ],
+    [
+     28.57,
+     -30.873,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_rear_arm_right.step",
+    "stl": "stl/standoff_rear_arm_right.stl",
+    "3mf": "3mf/standoff_rear_arm_right.3mf",
+    "freecad": "freecad/standoff_rear_arm_right.FCStd"
+   }
+  },
+  {
+   "name": "standoff_rear_tip_left",
+   "volume_mm3": 402.124,
+   "bbox": [
+    [
+     -19.0,
+     -96.5,
+     2.0
+    ],
+    [
+     -14.0,
+     -91.5,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_rear_tip_left.step",
+    "stl": "stl/standoff_rear_tip_left.stl",
+    "3mf": "3mf/standoff_rear_tip_left.3mf",
+    "freecad": "freecad/standoff_rear_tip_left.FCStd"
+   }
+  },
+  {
+   "name": "standoff_rear_tip_right",
+   "volume_mm3": 402.124,
+   "bbox": [
+    [
+     14.0,
+     -96.5,
+     2.0
+    ],
+    [
+     19.0,
+     -91.5,
+     34.0
+    ]
+   ],
+   "files": {
+    "step": "step/standoff_rear_tip_right.step",
+    "stl": "stl/standoff_rear_tip_right.stl",
+    "3mf": "3mf/standoff_rear_tip_right.3mf",
+    "freecad": "freecad/standoff_rear_tip_right.FCStd"
+   }
+  }
+ ],
+ "holes": [
+  {
+   "name": "front_arm_outer",
+   "purpose": "front arm clamp bolt + standoff",
+   "x": -28.5283,
+   "y": 31.8308,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid",
+    "plate_top"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "front_arm_outer",
+   "purpose": "front arm clamp bolt + standoff",
+   "x": 28.5283,
+   "y": 31.8308,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid",
+    "plate_top"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "front_arm_inner",
+   "purpose": "front arm clamp bolt",
+   "x": -26.9717,
+   "y": 18.1692,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "front_arm_inner",
+   "purpose": "front arm clamp bolt",
+   "x": 26.9717,
+   "y": 18.1692,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "rear_arm_outer",
+   "purpose": "rear arm clamp bolt + standoff",
+   "x": -26.07,
+   "y": -33.3726,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid",
+    "plate_top"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "rear_arm_outer",
+   "purpose": "rear arm clamp bolt + standoff",
+   "x": 26.07,
+   "y": -33.3726,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid",
+    "plate_top"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "rear_arm_inner",
+   "purpose": "rear arm clamp bolt",
+   "x": -26.43,
+   "y": -19.6274,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "rear_arm_inner",
+   "purpose": "rear arm clamp bolt",
+   "x": 26.43,
+   "y": -19.6274,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "stack_30p5",
+   "purpose": "FC/ESC 30.5x30.5 M3",
+   "x": -15.25,
+   "y": -15.25,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "stack_30p5",
+   "purpose": "FC/ESC 30.5x30.5 M3",
+   "x": 15.25,
+   "y": -15.25,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "stack_30p5",
+   "purpose": "FC/ESC 30.5x30.5 M3",
+   "x": 15.25,
+   "y": 15.25,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "stack_30p5",
+   "purpose": "FC/ESC 30.5x30.5 M3",
+   "x": -15.25,
+   "y": 15.25,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_mid"
+   ],
+   "through_arm": true,
+   "new": false
+  },
+  {
+   "name": "front_tip_standoff",
+   "purpose": "25 mm standoff, camera fork",
+   "x": -19.0,
+   "y": 109.0,
+   "d": 3.2,
+   "plates": [
+    "plate_mid",
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "front_tip_standoff",
+   "purpose": "25 mm standoff, camera fork",
+   "x": 19.0,
+   "y": 109.0,
+   "d": 3.2,
+   "plates": [
+    "plate_mid",
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "rear_tip_standoff",
+   "purpose": "32 mm standoff, tail",
+   "x": -16.5,
+   "y": -94.0,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "rear_tip_standoff",
+   "purpose": "32 mm standoff, tail",
+   "x": 16.5,
+   "y": -94.0,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom",
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "25.5 diamond / sandwich bolt",
+   "x": 0,
+   "y": 18,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "25.5 diamond / sandwich bolt",
+   "x": 0,
+   "y": -18,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "25.5 diamond / sandwich bolt",
+   "x": 18,
+   "y": 0,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "25.5 diamond / sandwich bolt",
+   "x": -18,
+   "y": 0,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "relief over the bottom-plate bolt",
+   "x": 0,
+   "y": 18,
+   "d": 5.5,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "relief over the bottom-plate bolt",
+   "x": 0,
+   "y": -18,
+   "d": 5.5,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "relief over the bottom-plate bolt",
+   "x": 18,
+   "y": 0,
+   "d": 5.5,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "center_25p5_diamond",
+   "purpose": "relief over the bottom-plate bolt",
+   "x": -18,
+   "y": 0,
+   "d": 5.5,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "waist_accessory",
+   "purpose": "accessory",
+   "x": -28.0,
+   "y": 0,
+   "d": 4.5,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "waist_accessory",
+   "purpose": "accessory",
+   "x": 28.0,
+   "y": 0,
+   "d": 4.5,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "rear_20",
+   "purpose": "VTX 20x20 M2 (rear row)",
+   "x": -10.0,
+   "y": -75.5,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "rear_20",
+   "purpose": "VTX 20x20 M2 (rear row)",
+   "x": 10.0,
+   "y": -75.5,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "rear_20",
+   "purpose": "VTX 20x20 M2 (front row)",
+   "x": -10.0,
+   "y": -55.5,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "rear_20",
+   "purpose": "VTX 20x20 M2 (front row)",
+   "x": 10.0,
+   "y": -55.5,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "rear_25p5",
+   "purpose": "VTX 25.5x25.5 M2 (O4/Avatar)",
+   "x": -12.75,
+   "y": -85.75,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "rear_25p5",
+   "purpose": "VTX 25.5x25.5 M2 (O4/Avatar)",
+   "x": 12.75,
+   "y": -85.75,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "rear_25p5",
+   "purpose": "VTX 25.5x25.5 M2 (O4/Avatar)",
+   "x": 12.75,
+   "y": -60.25,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "rear_25p5",
+   "purpose": "VTX 25.5x25.5 M2 (O4/Avatar)",
+   "x": -12.75,
+   "y": -60.25,
+   "d": 2.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "rear_30p5_row",
+   "purpose": "accessory row (TPU antenna/LED mount)",
+   "x": -15.25,
+   "y": -81.0,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "rear_30p5_row",
+   "purpose": "accessory row (TPU antenna/LED mount)",
+   "x": 15.25,
+   "y": -81.0,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "rear_tail_axis",
+   "purpose": "accessory",
+   "x": 0,
+   "y": -91.0,
+   "d": 3.2,
+   "plates": [
+    "plate_bottom"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_30p5",
+   "purpose": "FC 30.5 alt / analog VTX / RX carrier",
+   "x": -15.25,
+   "y": 46.25,
+   "d": 3.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_30p5",
+   "purpose": "FC 30.5 alt / analog VTX / RX carrier",
+   "x": 15.25,
+   "y": 46.25,
+   "d": 3.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_30p5",
+   "purpose": "FC 30.5 alt / analog VTX / RX carrier",
+   "x": 15.25,
+   "y": 76.75,
+   "d": 3.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_30p5",
+   "purpose": "FC 30.5 alt / analog VTX / RX carrier",
+   "x": -15.25,
+   "y": 76.75,
+   "d": 3.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_20",
+   "purpose": "FC 20x20 M2 (also 20x20 VTX)",
+   "x": -10.0,
+   "y": 51.5,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_20",
+   "purpose": "FC 20x20 M2 (also 20x20 VTX)",
+   "x": 10.0,
+   "y": 51.5,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_20",
+   "purpose": "FC 20x20 M2 (also 20x20 VTX)",
+   "x": 10.0,
+   "y": 71.5,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_20",
+   "purpose": "FC 20x20 M2 (also 20x20 VTX)",
+   "x": -10.0,
+   "y": 71.5,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "fwd_25p5",
+   "purpose": "VTX 25.5x25.5 M2 alternate",
+   "x": -12.75,
+   "y": 56.0,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "fwd_25p5",
+   "purpose": "VTX 25.5x25.5 M2 alternate",
+   "x": 12.75,
+   "y": 56.0,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "fwd_25p5",
+   "purpose": "VTX 25.5x25.5 M2 alternate",
+   "x": 12.75,
+   "y": 81.5,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "fwd_25p5",
+   "purpose": "VTX 25.5x25.5 M2 alternate",
+   "x": -12.75,
+   "y": 81.5,
+   "d": 2.2,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": true
+  },
+  {
+   "name": "fwd_bore",
+   "purpose": "cable/connector relief",
+   "x": 0,
+   "y": 61.5,
+   "d": 17.5,
+   "plates": [
+    "plate_mid"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "top_accessory",
+   "purpose": "GPS/antenna/TPU",
+   "x": 0,
+   "y": 68.0,
+   "d": 4.6,
+   "plates": [
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "top_accessory",
+   "purpose": "GPS/antenna/TPU",
+   "x": -27.3,
+   "y": 91.0,
+   "d": 4.6,
+   "plates": [
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "top_accessory",
+   "purpose": "GPS/antenna/TPU",
+   "x": 27.3,
+   "y": 91.0,
+   "d": 4.6,
+   "plates": [
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "top_accessory",
+   "purpose": "GPS/antenna/TPU",
+   "x": -31.3,
+   "y": 63.5,
+   "d": 4.6,
+   "plates": [
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "top_accessory",
+   "purpose": "GPS/antenna/TPU",
+   "x": 31.3,
+   "y": 63.5,
+   "d": 4.6,
+   "plates": [
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": false
+  },
+  {
+   "name": "sma",
+   "purpose": "SMA/RP-SMA bulkhead above the rear VTX bay",
+   "x": 0.0,
+   "y": -56.5,
+   "d": 6.5,
+   "plates": [
+    "plate_top"
+   ],
+   "through_arm": false,
+   "new": true
+  }
+ ],
+ "patterns": {
+  "stack_30p5": {
+   "center": [
+    0,
+    0
+   ],
+   "pitch": 30.5,
+   "screw": "M3"
+  },
+  "fwd_30p5": {
+   "center": [
+    0,
+    61.5
+   ],
+   "pitch": 30.5,
+   "screw": "M3"
+  },
+  "fwd_20": {
+   "center": [
+    0,
+    61.5
+   ],
+   "pitch": 20.0,
+   "screw": "M2"
+  },
+  "fwd_25p5": {
+   "center": [
+    0,
+    68.75
+   ],
+   "pitch": 25.5,
+   "screw": "M2"
+  },
+  "rear_20": {
+   "center": [
+    0,
+    -65.5
+   ],
+   "pitch": 20.0,
+   "screw": "M2"
+  },
+  "rear_25p5": {
+   "center": [
+    0,
+    -73.0
+   ],
+   "pitch": 25.5,
+   "screw": "M2"
+  }
+ }
+}

@@ -1,0 +1,284 @@
+{
+ "name": "tigerbee accessories",
+ "datum": "frame coordinates as installed; exported files are in PRINT orientation (bed face on Z 0, bbox centred in XY)",
+ "mesh": {
+  "linear_deflection_mm": 0.02,
+  "angular_deflection_rad": 0.1
+ },
+ "accessories": {
+  "gps_mount": {
+   "title": "GPS mast and platform (front)",
+   "material": "PETG",
+   "labels": [
+    "gps_mount"
+   ],
+   "exclusive": [
+    "gopro_mount"
+   ],
+   "passed": true,
+   "checks": [
+    {
+     "name": "gps_mount: one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 9916.2 mm\u00b3, valid=True"
+    },
+    {
+     "name": "gps_mount: no interference with the frame",
+     "passed": true,
+     "detail": "overlaps none"
+    },
+    {
+     "name": "gps_mount: clear of the \u00d86.0 standoffs",
+     "passed": true,
+     "detail": "overlaps none"
+    },
+    {
+     "name": "gps_mount: >= 0.2 mm to every \u00d86.0 standoff",
+     "passed": true,
+     "detail": "gaps none nearby"
+    },
+    {
+     "name": "gps_mount: outside the prop keep-out discs above Z 7.0",
+     "passed": true,
+     "detail": "0.000 mm\u00b3 in neighbouring discs, 0.000 mm\u00b3 in own disc above Z 22.0"
+    },
+    {
+     "name": "gps_mount: above the landing plane Z -3.0",
+     "passed": true,
+     "detail": "min Z 36.000"
+    },
+    {
+     "name": "gps_mount: outside the battery envelope",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "gps_mount: prints on a flat face at Z 0",
+     "passed": true,
+     "detail": "bed contact 980.3 mm\u00b2, printed bbox 70.4 x 25.0 x 34.0"
+    },
+    {
+     "name": "gps_mount: no unsupported overhangs in print orientation",
+     "passed": true,
+     "detail": "none"
+    },
+    {
+     "name": "no frame interference",
+     "passed": true,
+     "detail": "none"
+    },
+    {
+     "name": "bore coaxial with top_accessory (-31.3, 63.5)",
+     "passed": true,
+     "detail": "\u00d83.4 at (-31.300, 63.500) Z 36.05-37.45: 0.000 mm\u00b3 in bore, 10.8 mm\u00b3 round it"
+    },
+    {
+     "name": "M3 \u00d83.2 probe clear at (-31.3, 63.5)",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "driver \u00d86.6 column clear above Z 37.5 at (-31.3, 63.5)",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "head bears on the seat floor at (-31.3, 63.5)",
+     "passed": true,
+     "detail": "24.7 mm\u00b3 of floor under the head"
+    },
+    {
+     "name": "bore coaxial with top_accessory (31.3, 63.5)",
+     "passed": true,
+     "detail": "\u00d83.4 at (31.300, 63.500) Z 36.05-37.45: 0.000 mm\u00b3 in bore, 10.8 mm\u00b3 round it"
+    },
+    {
+     "name": "M3 \u00d83.2 probe clear at (31.3, 63.5)",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "driver \u00d86.6 column clear above Z 37.5 at (31.3, 63.5)",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "head bears on the seat floor at (31.3, 63.5)",
+     "passed": true,
+     "detail": "24.7 mm\u00b3 of floor under the head"
+    },
+    {
+     "name": "bridge seated on plate_top at Z 36.000",
+     "passed": true,
+     "detail": "832.022 mm\u00b2 contact"
+    },
+    {
+     "name": "bridge underside stays on the carbon",
+     "passed": true,
+     "detail": "0.00 mm\u00b2 outboard of the plate outline"
+    },
+    {
+     "name": "|x| <= 36.4 at y 65",
+     "passed": true,
+     "detail": "max |x| 35.200"
+    },
+    {
+     "name": "outline inside the prop keep-out envelope (sampled every 0.25 mm)",
+     "passed": true,
+     "detail": "tightest margin 0.832 mm at y 67.02; the plate itself is 2 mm further out there"
+    },
+    {
+     "name": "prop discs clear",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "outside the battery envelope",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "distance to battery_pad >= 2.0",
+     "passed": true,
+     "detail": "3.000 mm"
+    },
+    {
+     "name": "camera envelope 0/10/20/30/40 deg clear",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "camera tilt sweep clear",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "camera FOV wedge 15-40 deg clear",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "no unsupported overhangs",
+     "passed": true,
+     "detail": "none"
+    },
+    {
+     "name": "platform underside fully supported (no downward face above Z 40)",
+     "passed": true,
+     "detail": "none"
+    },
+    {
+     "name": "puck 22.5 x 22.5 x 13 fits on the platform",
+     "passed": true,
+     "detail": "0.000 mm\u00b3 vs mount, 0.000 mm\u00b3 vs the pack"
+    },
+    {
+     "name": "every M2 hole is a blind bore (>= 3 mm of thread)",
+     "passed": true,
+     "detail": "shortest 3.60 mm"
+    },
+    {
+     "name": "mast root blended with 1 mm fillets on all four sides",
+     "passed": true,
+     "detail": "5 blend face(s)"
+    },
+    {
+     "name": "min wall >= 1.5",
+     "passed": true,
+     "detail": "ray sampling (offset unavailable): 2449 rays, none thinner than 1.5 mm (rays cannot see knife-edge tips)"
+    }
+   ]
+  }
+ },
+ "parts": [
+  {
+   "label": "gps_mount",
+   "module": "gps_mount",
+   "material": "PETG",
+   "volume_mm3": 9916.179,
+   "bbox_installed": [
+    [
+     -35.2,
+     55.5,
+     36.0
+    ],
+    [
+     35.2,
+     80.5,
+     70.0
+    ]
+   ],
+   "bbox_printed": [
+    [
+     -35.2,
+     -12.5,
+     0.0
+    ],
+    [
+     35.2,
+     12.5,
+     34.0
+    ]
+   ],
+   "print_bed_normal": [
+    0,
+    0,
+    -1
+   ],
+   "notes": "Bridge Z 36-40 on plate_top, two M3 x 8 buttons with nyloc nuts through the \u00d84.6 accessory holes at (\u00b131.3, 63.5). The bridge outline is the plate_top outline inset 1 mm, also held off the prop keep-out by 0.4 and capped at |x| 35.2, so no PETG stands proud of the carbon (832 mm\u00b2 of it bears on the plate). It is 4 mm thick inboard of |x| 21 and steps down to a 1.5 mm bolt-head seat outboard of that, each wing carrying a rib: the \u00d86.6 driver column has to be clear above Z 37.5, and the plate's tab neck (y 60-68) is too short to carry a 1.5 mm ring round a counterbore, so the seat is a step that runs the full length of the bridge instead of a pocket (a pocket wall would graze the outline at y 60 and leave a knife-edge sliver). Mast 10 x 12 at (0, 66) Z 40-55 on a 45 deg skirt (18 x 12 at the bridge: the gussets), flare to 25 x 25 at Z 66, platform 25 x 25 x 4 Z 66-70, puck Z 70-83. 1 mm fillets blend the skirt into the bridge on all four roots. The GPS cable drops the 6 x 8 slot, leaves through the gabled window in the mast's rear wall and falls through the notch behind it into the plate_top slot at (0, 55.5). Deviations from the spec, each forced by a check: platform 25 not 24 (a 20x20 M2 hole 2.5 mm from the edge of a 24 mm platform leaves 1.15 mm of wall); platform 4 thick not 3 (below Z 66 the flare has tapered in, so an M2 hole deeper than the platform runs out of wall); FLARE_Z 55 not 59 (a 45.0 deg flare face is exactly on the overhang limit); platform centred y 68, mast 12 deep centred y 66 (at y 65 with a 25 mm platform the rear corner sits inside the BATTERY box, which reaches y 55 up to Z 83.5; 12 deep leaves 2 mm of bridge fore and aft for the root fillets); bridge y 58-74.5 and |x| <= 35.2 rather than 58-72 / 33.5 (an M3 head at x 31.3 is 34.15 wide on its own, and the extra bearing length ahead of the two-bolt hinge line is what stiffens the mount - the widest point is still 1.5 mm inside the prop keep-out and 3.3 mm inboard of the plate edge, which itself pokes into that margin). The (0, 68) hole is unused: the mast stands on it and no driver reaches it through the 6 mm cable slot. Each platform corner carries both M2 holes (18 x 18 and 20 x 20); at 1.4 mm apart they break into each other, which leaves each screw about 250 deg of thread-forming arc.",
+   "checks": [
+    {
+     "name": "gps_mount: one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 9916.2 mm\u00b3, valid=True"
+    },
+    {
+     "name": "gps_mount: no interference with the frame",
+     "passed": true,
+     "detail": "overlaps none"
+    },
+    {
+     "name": "gps_mount: clear of the \u00d86.0 standoffs",
+     "passed": true,
+     "detail": "overlaps none"
+    },
+    {
+     "name": "gps_mount: >= 0.2 mm to every \u00d86.0 standoff",
+     "passed": true,
+     "detail": "gaps none nearby"
+    },
+    {
+     "name": "gps_mount: outside the prop keep-out discs above Z 7.0",
+     "passed": true,
+     "detail": "0.000 mm\u00b3 in neighbouring discs, 0.000 mm\u00b3 in own disc above Z 22.0"
+    },
+    {
+     "name": "gps_mount: above the landing plane Z -3.0",
+     "passed": true,
+     "detail": "min Z 36.000"
+    },
+    {
+     "name": "gps_mount: outside the battery envelope",
+     "passed": true,
+     "detail": "0.000 mm\u00b3"
+    },
+    {
+     "name": "gps_mount: prints on a flat face at Z 0",
+     "passed": true,
+     "detail": "bed contact 980.3 mm\u00b2, printed bbox 70.4 x 25.0 x 34.0"
+    },
+    {
+     "name": "gps_mount: no unsupported overhangs in print orientation",
+     "passed": true,
+     "detail": "none"
+    }
+   ],
+   "files": {
+    "step": "step/gps_mount.step",
+    "stl": "stl/gps_mount.stl",
+    "3mf": "3mf/gps_mount.3mf",
+    "freecad": "freecad/gps_mount.FCStd"
+   }
+  }
+ ]
+}

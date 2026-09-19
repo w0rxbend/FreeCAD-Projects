@@ -1,0 +1,175 @@
+{
+  "source_sha256": "b7611f880a179ff32dbe1c39dbef1bc0b82325d1011c44928957da7b1ce66ecd",
+  "target_wheelbase_mm": 330,
+  "slot_order": [
+    "FR",
+    "FL",
+    "RL",
+    "RR"
+  ],
+  "assignment_fields": [
+    "arm_type",
+    "mirrored_about_YZ"
+  ],
+  "scope": "Two of each saved arm type, either face up, fixed existing outer clamp-hole pairs, motors facing outward in their assigned quadrant",
+  "limitation": "Does not establish scan scale or test different mounting-hole pairs, plate placements, or modified profiles",
+  "scan_metadata": "Both JPEGs are 2480 x 3508 pixels with 72 DPI tags; those tags do not establish physical scale",
+  "candidates": [
+    {
+      "assignment": [
+        [
+          "arm-type-1",
+          false
+        ],
+        [
+          "arm-type-2",
+          false
+        ],
+        [
+          "arm-type-1",
+          false
+        ],
+        [
+          "arm-type-2",
+          false
+        ]
+      ],
+      "interference_mm3": 77.70456752071163,
+      "wheelbases_mm": [
+        302.5921901411552,
+        303.9856219852306
+      ],
+      "max_hole_error_mm": 0.4566616675171653
+    },
+    {
+      "assignment": [
+        [
+          "arm-type-2",
+          true
+        ],
+        [
+          "arm-type-1",
+          true
+        ],
+        [
+          "arm-type-1",
+          false
+        ],
+        [
+          "arm-type-2",
+          false
+        ]
+      ],
+      "interference_mm3": 77.70456752071199,
+      "wheelbases_mm": [
+        303.4554476261444,
+        303.1060355158703
+      ],
+      "max_hole_error_mm": 0.4566616675171642
+    },
+    {
+      "assignment": [
+        [
+          "arm-type-1",
+          false
+        ],
+        [
+          "arm-type-2",
+          false
+        ],
+        [
+          "arm-type-2",
+          true
+        ],
+        [
+          "arm-type-1",
+          true
+        ]
+      ],
+      "interference_mm3": 80.82983276513586,
+      "wheelbases_mm": [
+        303.16048925578286,
+        303.4111603374777
+      ],
+      "max_hole_error_mm": 0.4566616675171653
+    },
+    {
+      "assignment": [
+        [
+          "arm-type-2",
+          true
+        ],
+        [
+          "arm-type-1",
+          true
+        ],
+        [
+          "arm-type-2",
+          true
+        ],
+        [
+          "arm-type-1",
+          true
+        ]
+      ],
+      "interference_mm3": 80.82983276513622,
+      "wheelbases_mm": [
+        304.036220970054,
+        302.5440496344888
+      ],
+      "max_hole_error_mm": 0.4566616675171642
+    },
+    {
+      "assignment": [
+        [
+          "arm-type-2",
+          true
+        ],
+        [
+          "arm-type-2",
+          false
+        ],
+        [
+          "arm-type-1",
+          false
+        ],
+        [
+          "arm-type-1",
+          true
+        ]
+      ],
+      "interference_mm3": 95.29644727582298,
+      "wheelbases_mm": [
+        303.4554476261444,
+        303.4111603374777
+      ],
+      "max_hole_error_mm": 0.4566616675171653
+    },
+    {
+      "assignment": [
+        [
+          "arm-type-1",
+          false
+        ],
+        [
+          "arm-type-1",
+          true
+        ],
+        [
+          "arm-type-2",
+          true
+        ],
+        [
+          "arm-type-2",
+          false
+        ]
+      ],
+      "interference_mm3": 140.62822455071577,
+      "wheelbases_mm": [
+        303.16048925578286,
+        303.1060355158703
+      ],
+      "max_hole_error_mm": 0.17957876413106538
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "part": "arm-type-1",
+  "units": "mm",
+  "parameters": {
+    "thickness": 5.0,
+    "mounting_hole_diameter": 3.2,
+    "center_hole_diameter": null,
+    "length_extension": 0.0
+  },
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
+  "build123d": "0.11.1",
+  "reference_sha256": "032f6bab564f82dc4069179b11ea1b65f9c2cf866067cd9463a0e6188f39c1c5",
+  "reference_status": "symmetric-design-derived-from-reference",
+  "authoritative_geometry_source": "Tigerbee.FCStd",
+  "reference_body": "Body001",
+  "nominal_frame_wheelbase_mm": 305.0,
+  "nominal_thickness_mm": 5.0,
+  "measured_frame_wheelbase_range_mm": [
+    303.0,
+    304.0
+  ],
+  "measurement_reference": "refs/measurements.md",
+  "reference_note": "FreeCAD and supplied 3MF define the design foundation; symmetry and shared interfaces are engineered in Python. Original reference files are preserved.",
+  "reference_assumptions": [],
+  "assumptions": [
+    "3.2 mm nominal mounting bores; machining tolerances are not specified"
+  ],
+  "valid": true,
+  "solid_count": 1,
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 7280,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "volume_mm3": 12801.793621969224,
+  "dimensions_mm": [
+    35.10774587811598,
+    169.36617105721203,
+    5.0
+  ],
+  "mesh_linear_deflection_mm": 0.01,
+  "mesh_angular_deflection_rad": 0.1,
+  "files": [
+    "arm-type-1.step",
+    "arm-type-1.stl",
+    "arm-type-1.3mf",
+    "arm-type-1.svg",
+    "arm-type-1.dxf"
+  ],
+  "file_sha256": {
+    "arm-type-1.step": "9cd5a248239445df95f5a292776f9bc002efc2a8f06f21e653ec27c8236b25e0",
+    "arm-type-1.stl": "9e07435df0957b6296a4afba6f6b436dc9acfc508c91db2c94340920349896ce",
+    "arm-type-1.3mf": "968cd61bf5ac34a8652ec0429e4c2f40950b20000014e4d9f4ff7c0b2e56921a",
+    "arm-type-1.svg": "cc7641a867fdb8b4188804d187cabdd8d582cb2ac83f68836209f0324913b079",
+    "arm-type-1.dxf": "484dd30e73c0e615a2ddf67006e15bdad7542d5137c769adbb8c52fb8aced534"
+  },
+  "datum": "Motor shaft center X=Y=0; shaft extends toward negative Y; lower face Z=0"
+}

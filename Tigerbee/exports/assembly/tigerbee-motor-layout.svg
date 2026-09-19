@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-175 -175 350 350" width="900" height="900">
+  <title>Tigerbee motor axes: measured from CAD bores</title>
+  <rect x="-175" y="-175" width="350" height="350" fill="white" />
+  <g transform="scale(1,-1)" fill="none" stroke="#2563eb" stroke-width="0.7">
+    <line x1="-107.83378413094849" y1="107.83378413094849" x2="107.83378413094849" y2="-107.83378413094849" />
+    <line x1="107.83378413094849" y1="107.83378413094849" x2="-107.83378413094849" y2="-107.83378413094849" />
+    <circle cx="-107.83378413094849" cy="107.83378413094849" r="3" />
+    <circle cx="107.83378413094849" cy="107.83378413094849" r="3" />
+    <circle cx="-107.83378413094849" cy="-107.83378413094849" r="3" />
+    <circle cx="107.83378413094849" cy="-107.83378413094849" r="3" />
+    <circle cx="0" cy="0" r="1.5" />
+  </g>
+  <text x="-107.83378413094849" y="-121.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">FRONT-LEFT</text>
+  <text x="-107.83378413094849" y="-114.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">(-107.834, 107.834) mm</text>
+  <text x="107.83378413094849" y="-121.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">FRONT-RIGHT</text>
+  <text x="107.83378413094849" y="-114.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">(107.834, 107.834) mm</text>
+  <text x="-107.83378413094849" y="119.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">REAR-LEFT</text>
+  <text x="-107.83378413094849" y="126.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">(-107.834, -107.834) mm</text>
+  <text x="107.83378413094849" y="119.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">REAR-RIGHT</text>
+  <text x="107.83378413094849" y="126.83378413094849" text-anchor="middle" font-family="sans-serif" font-size="5">(107.834, -107.834) mm</text>
+  <text x="0" y="-153" text-anchor="middle" font-family="sans-serif" font-size="6">Motor centers · frame XY datum</text>
+  <text x="0" y="145" text-anchor="middle" font-family="sans-serif" font-size="6">Diagonals: 305.000 / 305.000 mm</text>
+  <text x="0" y="157" text-anchor="middle" font-family="sans-serif" font-size="6">True X · perpendicular diagonals · common center (0, 0)</text>
+</svg>

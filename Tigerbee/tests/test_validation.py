@@ -1,0 +1,367 @@
+from math import sqrt
+
+import pytest
+from build123d import Axis, Box, Circle, Compound, Face, Plane, Pos, Rectangle, Wire, extrude
+
+from tigerbee.validation import FastenerAxis, audit_frame, require_frame_fit
+
+
+def fixture_frame():
+    parts = []
+    profile = Rectangle(60, 70)
+    for x in (-20, 20):
+        profile -= Pos(x, 10) * Circle(1.6)
+    for name, z in (("rear-plate", 0), ("camera-plate", 10), ("top-plate", 35)):
+        part = Pos(0, 0, z) * extrude(profile, amount=3)
+        part.label = name
+        parts.append(part)
+    motors = {}
+    half_span = 305 / (2 * sqrt(2))
+    for end, y in (("front", half_span), ("rear", -half_span)):
+        for side, x in (("left", -half_span), ("right", half_span)):
+            name = f"{end}-{side}-arm"
+            direction = 1 if end == "front" else -1
+            side_sign = 1 if side == "right" else -1
+            shaft = (Pos(0, 83) * Rectangle(10, 144)).rotate(Axis.Z, -45)
+            if side_sign < 0:
+                shaft = shaft.mirror(Plane.YZ)
+            if direction < 0:
+                shaft = shaft.mirror(Plane.XZ)
+            profile = shaft.fuse(Pos(x, y) * Rectangle(20, 20))
+            profile = profile.cut(Pos(x, y) * Circle(3.5))
+            for coordinate in (12, 20):
+                profile = profile.cut(
+                    Pos(side_sign * coordinate, direction * coordinate) * Circle(1.6)
+                )
+            part = Pos(0, 0, 5) * extrude(profile, amount=5)
+            part.label = name
+            parts.append(part)
+            motors[name] = (x, y)
+    joints = [
+        FastenerAxis(f"joint-{x}", x, 10, 0, 38, ("rear-plate", "camera-plate", "top-plate"))
+        for x in (-20, 20)
+    ]
+    return parts, joints, motors
+
+
+def test_actual_solids_pass_symmetry_bores_and_propeller_clearance():
+    parts, joints, motors = fixture_frame()
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["issues"] == []
+    require_frame_fit(report)
+    assert len(report["joint_checks"]) == 6
+    assert all(check["coaxial"] for check in report["joint_checks"])
+    assert report["minimum_edge_ligament_mm"] == pytest.approx(8.4)
+    assert report["motor_layout"]["passed"]
+    assert report["motor_layout"]["centroid_mm"] == pytest.approx([0, 0])
+    assert report["motor_layout"]["diagonal_cosine"] == pytest.approx(0)
+    for midpoint in report["motor_layout"]["diagonal_midpoints_mm"]:
+        assert midpoint == pytest.approx([0, 0])
+    for span in ("front_span_mm", "rear_span_mm", "left_span_mm", "right_span_mm"):
+        assert report["motor_layout"][span] == pytest.approx(305 / sqrt(2))
+    assert min(c["tip_gap_mm"] for c in report["propeller_clearances"]) == pytest.approx(
+        305 / sqrt(2) - 177.8
+    )
+
+
+def test_displaced_plate_is_rejected_from_actual_geometry():
+    parts, joints, motors = fixture_frame()
+    parts[1] = parts[1].translate((0.2, 0, 0))
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert any("asymmetry" in issue for issue in report["issues"])
+    assert any("noncoaxial" in issue for issue in report["issues"])
+    with pytest.raises(ValueError, match="Frame geometry failed"):
+        require_frame_fit(report)
+
+
+def test_hidden_bore_obstruction_rejected_even_with_both_circular_rims():
+    parts, joints, motors = fixture_frame()
+    # Fill only the middle of one bore. Its two surface circles remain intact.
+    plugged = parts[1].fuse(Pos(20, 10, 10.75) * extrude(Circle(1.7), amount=0.5))
+    plugged.label = parts[1].label
+    parts[1] = plugged
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert any("blocked shaft passage" in issue for issue in report["issues"])
+    with pytest.raises(ValueError, match="blocked shaft"):
+        require_frame_fit(report)
+
+
+def test_interference_between_other_components_is_rejected():
+    parts, joints, motors = fixture_frame()
+    obstruction = Pos(0, 0, 1) * Box(2, 2, 2)
+    obstruction.label = "obstruction"
+    parts.append(obstruction)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["interferences"]
+    with pytest.raises(ValueError, match="component interference"):
+        require_frame_fit(report)
+
+
+def test_reported_motor_coordinates_cannot_hide_actual_bore_position():
+    parts, joints, motors = fixture_frame()
+    motors["front-right-arm"] = (111, 105)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    with pytest.raises(ValueError, match="motor center differs"):
+        require_frame_fit(report)
+
+
+def test_fastener_span_must_reach_both_faces_of_all_members():
+    parts, joints, motors = fixture_frame()
+    joints[0] = FastenerAxis("short", -20, 10, 0.5, 37, joints[0].members)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    with pytest.raises(ValueError, match="incomplete bore"):
+        require_frame_fit(report)
+
+
+def test_symmetric_layout_still_rejects_overlapping_propeller_discs():
+    parts, joints, motors = fixture_frame()
+    for i, part in enumerate(parts):
+        if "arm" not in part.label:
+            continue
+        delta_y = -25 if "front" in part.label else 25
+        parts[i] = part.translate((0, delta_y, 0))
+        x, y = motors[part.label]
+        motors[part.label] = (x, y + delta_y)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert all(v == pytest.approx(0) for v in report["symmetry_difference_mm3"].values())
+    with pytest.raises(ValueError, match="overlapping 7-inch"):
+        require_frame_fit(report)
+
+
+def test_nonfinite_motor_coordinates_do_not_bypass_comparison():
+    parts, joints, motors = fixture_frame()
+    motors["front-right-arm"] = (float("nan"), 105)
+    with pytest.raises(ValueError, match="invalid nominal motor"):
+        require_frame_fit(audit_frame(Compound(children=parts), joints, motors))
+
+
+def test_thin_mounting_ligament_is_rejected_even_when_bore_is_clear():
+    parts, joints, motors = fixture_frame()
+    for x in (-25, 25):
+        parts[1] = parts[1].cut(Pos(x, 10, 10) * extrude(Rectangle(4, 4), amount=2))
+    parts[1].label = "camera-plate"
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert all(c["coaxial"] for c in report["joint_checks"])
+    assert report["minimum_edge_ligament_mm"] == pytest.approx(1.4)
+    with pytest.raises(ValueError, match="insufficient mounting material"):
+        require_frame_fit(report)
+
+
+def test_equal_diagonals_differing_from_nominal_design_are_rejected():
+    parts, joints, motors = fixture_frame()
+    for index, part in enumerate(parts):
+        if "arm" not in part.label:
+            continue
+        delta_x = -5 if "left" in part.label else 5
+        parts[index] = part.translate((delta_x, 0, 0))
+        x, y = motors[part.label]
+        motors[part.label] = (x + delta_x, y)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["diagonal_wheelbases_mm"][0] == pytest.approx(report["diagonal_wheelbases_mm"][1])
+    with pytest.raises(ValueError, match="305 mm design target"):
+        require_frame_fit(report)
+
+
+def test_extra_opening_cannot_pass_declared_topology_contract():
+    parts, joints, motors = fixture_frame()
+    expected = {part.label: (3 if "arm" in part.label else 2) for part in parts}
+    report = audit_frame(Compound(children=parts), joints, motors, expected_openings=expected)
+    require_frame_fit(report)
+    extra = parts[1].cut(Pos(0, 0, 10) * extrude(Circle(2), amount=2))
+    extra.label = parts[1].label
+    parts[1] = extra
+    report = audit_frame(Compound(children=parts), joints, motors, expected_openings=expected)
+    with pytest.raises(ValueError, match="unexpected openings"):
+        require_frame_fit(report)
+
+
+def test_shaft_cannot_pass_through_an_undeclared_component():
+    parts, joints, motors = fixture_frame()
+    # This solid does not touch the listed plates, but obstructs their shared screw.
+    obstruction = Pos(20, 10, 20) * Box(4, 4, 2)
+    obstruction.label = "forgotten-spacer"
+    parts.append(obstruction)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["interferences"] == []
+    with pytest.raises(ValueError, match="blocked shaft passage"):
+        require_frame_fit(report)
+
+
+def test_positive_but_insufficient_propeller_gap_is_rejected():
+    parts, joints, motors = fixture_frame()
+    for index, part in enumerate(parts):
+        if "arm" not in part.label:
+            continue
+        x, y = motors[part.label]
+        new_y = 89.9 if y > 0 else -89.9
+        parts[index] = part.translate((0, new_y - y, 0))
+        motors[part.label] = (x, new_y)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert min(c["tip_gap_mm"] for c in report["propeller_clearances"]) == pytest.approx(2)
+    with pytest.raises(ValueError, match="insufficient tip gap"):
+        require_frame_fit(report)
+
+
+def test_opening_contract_cannot_silently_skip_a_component():
+    parts, joints, motors = fixture_frame()
+    report = audit_frame(
+        Compound(children=parts), joints, motors, expected_openings={"top-plate": 2}
+    )
+    with pytest.raises(ValueError, match="cover every component"):
+        require_frame_fit(report)
+
+
+def test_standoff_exteriors_must_also_be_mirror_symmetric():
+    parts, joints, motors = fixture_frame()
+    for index, x in enumerate((-20, 20), start=1):
+        outside_x = x + (0.2 if x > 0 else 0)
+        profile = Pos(outside_x, 10) * Circle(3) - Pos(x, 10) * Circle(1.6)
+        tube = Pos(0, 0, 20) * extrude(profile, amount=5)
+        tube.label = f"standoff-{index:02}"
+        parts.append(tube)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["interferences"] == []
+    with pytest.raises(ValueError, match="asymmetry: standoff"):
+        require_frame_fit(report)
+
+
+@pytest.mark.parametrize("layout", ["trapezoid", "rectangle", "translated_square"])
+def test_equal_305_diagonals_do_not_prove_a_true_centered_x(layout):
+    parts, joints, motors = fixture_frame()
+    half_span = 305 / (2 * sqrt(2))
+    for index, part in enumerate(parts):
+        if "arm" not in part.label:
+            continue
+        old_x, old_y = motors[part.label]
+        side = -1 if "left" in part.label else 1
+        front = "front" in part.label
+        if layout == "trapezoid":
+            x = side * (127.5 if front else 115.0)
+            y = (1 if front else -1) * sqrt(305**2 - 242.5**2) / 2
+        elif layout == "rectangle":
+            x = side * 115.0
+            y = (1 if front else -1) * sqrt((305 / 2) ** 2 - 115**2)
+        else:
+            x = side * half_span
+            y = (1 if front else -1) * half_span + 2
+        parts[index] = part.translate((x - old_x, y - old_y, 0))
+        motors[part.label] = (x, y)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["diagonal_wheelbases_mm"] == pytest.approx([305, 305])
+    assert all(error == pytest.approx(0) for error in report["symmetry_difference_mm3"].values())
+    with pytest.raises(ValueError, match="true symmetric X"):
+        require_frame_fit(report)
+
+
+def test_nominal_target_does_not_overwrite_the_historical_measurement():
+    from tigerbee.references import (
+        MEASURED_WHEELBASE_RANGE_MM,
+        NOMINAL_WHEELBASE_MM,
+        wheelbase_matches_measurement,
+        wheelbase_matches_nominal,
+    )
+
+    assert MEASURED_WHEELBASE_RANGE_MM == (303, 304)
+    assert NOMINAL_WHEELBASE_MM == 305
+    assert wheelbase_matches_measurement([303.5, 303.5])
+    assert not wheelbase_matches_nominal([303.5, 303.5])
+    assert wheelbase_matches_nominal([305, 305])
+    assert not wheelbase_matches_measurement([305, 305])
+    assert not wheelbase_matches_nominal([float("nan"), 305])
+
+
+@pytest.mark.parametrize("member,thickness", [("top-plate", 2.5), ("front-right-arm", 6.0)])
+def test_wrong_actual_stock_thickness_rejected(member, thickness):
+    parts, joints, motors = fixture_frame()
+    index = next(i for i, part in enumerate(parts) if part.label == member)
+    if "arm" in member:
+        x, y = motors[member]
+        replacement = Pos(x, y, 5) * extrude(Rectangle(20, 20) - Circle(3.5), amount=thickness)
+    else:
+        profile = Rectangle(60, 70)
+        for x in (-20, 20):
+            profile -= Pos(x, 10) * Circle(1.6)
+        replacement = Pos(0, 0, 35) * extrude(profile, amount=thickness)
+    replacement.label = member
+    parts[index] = replacement
+    report = audit_frame(Compound(children=parts), joints, motors)
+    with pytest.raises(ValueError, match="stock thickness"):
+        require_frame_fit(report)
+
+
+def test_symmetric_tubes_of_wrong_outer_diameter_are_rejected():
+    parts, joints, motors = fixture_frame()
+    for index, x in enumerate((-20, 20), start=1):
+        tube = Pos(x, 10, 20) * extrude(Circle(3.5) - Circle(1.6), amount=5)
+        tube.label = f"standoff-{index:02}"
+        parts.append(tube)
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert all(error == pytest.approx(0) for error in report["symmetry_difference_mm3"].values())
+    with pytest.raises(ValueError, match="standoff outer diameter"):
+        require_frame_fit(report)
+
+
+def test_symmetric_root_tabs_outside_clamp_plates_are_rejected():
+    parts, joints, motors = fixture_frame()
+    for index, part in enumerate(parts):
+        if not part.label.startswith("front-"):
+            continue
+        sign = -1 if "left" in part.label else 1
+        footprint = Face(
+            Wire.make_polygon(
+                [(sign * x, y) for x, y in ((8, 10), (12, 14), (39, -13), (35, -17))],
+                close=True,
+            )
+        )
+        tab = Pos(0, 0, 5) * extrude(footprint, amount=5, dir=(0, 0, 1))
+        extended = part.fuse(tab)
+        for coordinate in (12, 20):
+            extended = extended.cut(
+                Pos(sign * coordinate, coordinate, 5) * extrude(Circle(1.6), amount=5)
+            )
+        extended.label = part.label
+        parts[index] = extended
+    report = audit_frame(Compound(children=parts), joints, motors)
+    assert report["interferences"] == []
+    assert all(error == pytest.approx(0) for error in report["symmetry_difference_mm3"].values())
+    with pytest.raises(ValueError, match="root protrudes beyond clamp"):
+        require_frame_fit(report)
+
+
+def test_clamp_openings_are_not_mistaken_for_outer_root_protrusions():
+    parts, joints, motors = fixture_frame()
+    # An internal service opening lies above/below a root. Its outer contour is unchanged.
+    parts[0] = parts[0].cut(Pos(14, 18, 0) * extrude(Circle(1), amount=3))
+    parts[0].label = "rear-plate"
+    parts[1] = parts[1].cut(Pos(14, 18, 10) * extrude(Circle(1), amount=3))
+    parts[1].label = "camera-plate"
+    # Mirror the service opening so the independent plate symmetry gate still holds.
+    parts[0] = parts[0].cut(Pos(-14, 18, 0) * extrude(Circle(1), amount=3))
+    parts[0].label = "rear-plate"
+    parts[1] = parts[1].cut(Pos(-14, 18, 10) * extrude(Circle(1), amount=3))
+    parts[1].label = "camera-plate"
+    report = audit_frame(Compound(children=parts), joints, motors)
+    require_frame_fit(report)
+    assert all(check["outside_clamp_area_mm2"] < 1e-6 for check in report["root_checks"].values())
+
+
+@pytest.mark.parametrize("name", ["arm-type-1", "arm-type-2"])
+def test_root_correction_preserves_complete_outward_mount_pad_and_shaft(name):
+    from build123d import GeomType, Keep, split
+
+    from tigerbee.models import PartParameters, build_profile, build_reference_profile
+
+    reference = build_reference_profile(name, PartParameters(mounting_hole_diameter=3.2))
+    actual = build_profile(name)
+    bores = [
+        edge
+        for edge in reference.edges().filter_by(GeomType.CIRCLE)
+        if abs(edge.radius - 1.6) < 1e-6
+    ]
+    # Preserve the whole source beyond the base region's 2 mm blending allowance.
+    protected_y = min(edge.arc_center.Y for edge in bores) + 1.6 + 2 + 2
+    plane = Plane(origin=(0, protected_y, 0), z_dir=(0, 1, 0))
+    original_shaft = split(reference, plane, keep=Keep.TOP)
+    actual_shaft = split(actual, plane, keep=Keep.TOP)
+    assert original_shaft.cut(actual_shaft).area < 1e-6
+    assert actual_shaft.cut(original_shaft).area < 1e-6

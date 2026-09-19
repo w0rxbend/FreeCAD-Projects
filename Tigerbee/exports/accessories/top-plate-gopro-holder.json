@@ -1,0 +1,106 @@
+{
+  "part": "top-plate-gopro-holder",
+  "parameters": {
+    "axle_height": 18.0
+  },
+  "solid_count": 1,
+  "status": "nominal-interface-fit-verified",
+  "fit": {
+    "passed": true,
+    "obstructions_mm3": {
+      "carbon": 0,
+      "mount-0-shaft": 0,
+      "mount-0-driver": 0,
+      "mount-1-shaft": 0,
+      "mount-1-driver": 0,
+      "mount-2-shaft": 0,
+      "mount-2-driver": 0,
+      "mount-3-shaft": 0,
+      "mount-3-driver": 0,
+      "M5-axle": 0,
+      "M5-nut-seat": 0
+    },
+    "pivot_missing_material_mm3": {
+      "left-finger": 0,
+      "middle-finger": 0,
+      "right-finger": 0,
+      "nut-seat-wall": 0
+    },
+    "nominal_finger_pitch_sweep_interference_mm3": {
+      "-15": 0,
+      "-10": 0,
+      "-5": 0,
+      "0": 0,
+      "5": 0,
+      "10": 0,
+      "15": 0,
+      "20": 0,
+      "25": 0,
+      "30": 0,
+      "35": 0,
+      "40": 0,
+      "45": 0,
+      "50": 0,
+      "55": 0,
+      "60": 0
+    },
+    "mounting_hole_centers_mm": [
+      [
+        -28.0,
+        58.0
+      ],
+      [
+        -27.0,
+        91.0
+      ],
+      [
+        27.0,
+        91.0
+      ],
+      [
+        28.0,
+        58.0
+      ]
+    ],
+    "registration_radial_clearance_mm": 0.1,
+    "registration_wall_thickness_mm": [
+      0.75,
+      0.75,
+      0.75,
+      0.75
+    ],
+    "camera_body_fit": "Not assessed: exact GoPro and FPV-camera body CAD are unavailable"
+  },
+  "datum": "Print bed Z=0; top-plate seating surface Z=2; XY retains the frame datum",
+  "volume_mm3": 16072.305159971607,
+  "dimensions_mm": [
+    68.00000000000028,
+    45.000000000002906,
+    27.5
+  ],
+  "hardware": "4 M3 bolts, underside washers/nuts; M5 pivot bolt and 8 mm AF hex nut",
+  "finger_dimensions_mm": {
+    "thickness": 3,
+    "gap": 3.2,
+    "axle_bore": 5.5,
+    "crown_radius": 7.5
+  },
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 11008,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
+  "units": "mm",
+  "file_sha256": {
+    "top-plate-gopro-holder.step": "56c04639bb2be0560c10d9900f7b039bbe6e9be5d59bb7eea0a8600f9173fd43",
+    "top-plate-gopro-holder.stl": "5900b62de85e61ced9ae8427f5f675a43f7e8d30391c9df55311ac016c94cdc8",
+    "top-plate-gopro-holder.3mf": "1c50dba9798cf3eeb5e07df20efc2385f7933ee86baa3f0635691afe01c5f155",
+    "top-plate-gopro-holder.svg": "4917f1df190cdcc1c06db585f7a8323de1ff7f9596afbef4ebb37464defbf958"
+  }
+}

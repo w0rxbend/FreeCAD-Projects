@@ -1,0 +1,45 @@
+{
+  "parameters": {
+    "axle_height": 18.0
+  },
+  "solid_count": 20,
+  "status": "nominal-interface-fit-verified",
+  "holder_intersections_mm3": {
+    "rear-plate": 0,
+    "camera-plate": 0,
+    "front-right-arm": 0,
+    "front-left-arm": 0,
+    "rear-right-arm": 0,
+    "rear-left-arm": 0,
+    "top-plate": 0,
+    "standoff-01": 0,
+    "standoff-02": 0,
+    "standoff-03": 0,
+    "standoff-04": 0,
+    "standoff-05": 0,
+    "standoff-06": 0,
+    "standoff-07": 0,
+    "standoff-08": 0,
+    "front-right-protector": 0,
+    "front-left-protector": 0,
+    "rear-right-protector": 0,
+    "rear-left-protector": 0
+  },
+  "top_plate_surface_z_mm": 38.0,
+  "pivot_frame_xyz_mm": [
+    0,
+    74.5,
+    56.0
+  ],
+  "frame_geometry_audit_passed": true,
+  "camera_body_fit": "Exact GoPro and FPV-camera bodies are not modeled",
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
+  "units": "mm",
+  "file_sha256": {
+    "tigerbee-with-gopro-holder.step": "50b7d88fda2a7f1228159dcf944d07426be99527883f2c3ab8513e0a0a1c66f4",
+    "tigerbee-with-gopro-holder.glb": "6b971aaf5f59f07e30394206a15017137a0d6eda75dead31d35fdbcd3473f668",
+    "tigerbee-with-gopro-holder-isometric.svg": "120c04a33bf9f6e9dd29859d70c59d96be169ab2dd73e004a1d069a1dd159428",
+    "tigerbee-with-gopro-holder-side.svg": "8972f6080cc8f52b55bba90f85cbf496ea04145e5e5f1aa3cb067f4ae5e12c06"
+  }
+}

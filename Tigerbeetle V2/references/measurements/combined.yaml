@@ -1,0 +1,3599 @@
+{
+  "schema_version": 1,
+  "status": "reconciled_observations_A4_physical_trace_calibration",
+  "manufacturing_calibration_accepted": true,
+  "source_integrity": {
+    "Scan_1.jpeg": "bf26be9035026002362046d18933f9032b9989aa3b0f0557132eea178eb3017e",
+    "Scan_2.jpeg": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556"
+  },
+  "precision_policy": "Raw observations retain original per-scan records. Numerical fit digits enable deterministic overlays, not subpixel or physical manufacturing accuracy. Typical centers +/-5 to 8 px, contours +/-12 px. Estimated mm values are conditional on the selected standard hypothesis. User subsequently identified A4 tracing sheets against actual parts. XY scale is now accepted at high confidence under explicit full-sheet/no-resize assumptions; geometric manufacturing acceptance still requires unresolved dimensions and fit checks.",
+  "sources": {
+    "independent_measurements": [
+      "references/measurements/Scan_1.yaml",
+      "references/measurements/Scan_2.yaml"
+    ],
+    "standards": ".agent/handoffs/standards.md"
+  },
+  "coordinate_system": {
+    "image": "Native u right and v down; each laid-out component has its own rigid page placement. A whole-scan transform is invalid.",
+    "master": "Scan 1 body native pixel coordinate system is the reconciliation master. Map other plates through inverse fitted similarities.",
+    "proposed_cad_convention": "+X right, +Y toward camera/front and narrow end of scan1_body (decreasing source v), +Z up. Front is supported by assembled photograph; architecture owner chooses global geometric-center datum from assembled interfaces.",
+    "datum_anchor_lower_stack": {
+      "value": [
+        1870.5,
+        1588.75
+      ],
+      "unit": "px",
+      "source": [
+        "Scan_1.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "inferred_from_symmetry"
+    },
+    "warning": "This anchor locates a shared square center, not a confirmed full-frame geometric origin. Fit small axis tilt before symmetry idealization."
+  },
+  "components": {
+    "scan1_body": {
+      "source_component": "Scan_1.main_plate",
+      "role": "lower/body plate; relative order within base pending dedicated photo review",
+      "bilateral_symmetry": true,
+      "front_rear_symmetry": false,
+      "observed_small_holes": {
+        "value": 22,
+        "unit": "count",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "observed_larger_round_openings": {
+        "value": 5,
+        "unit": "count",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "other_openings": "two rounded rectangles and one diamond/teardrop"
+    },
+    "scan2_broad": {
+      "source_component": "Scan_2.broad_plate",
+      "role": "mating lower/body plate; relative order within base pending dedicated photo review",
+      "bilateral_symmetry": true,
+      "unresolved_asymmetric_holes": [
+        "missing upper_right",
+        "missing counterpart to extra_left"
+      ],
+      "observed_hole_marks": {
+        "value": 23,
+        "unit": "count",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "other_openings": "four separate curved quadrants leaving a solid cross; three axial rounded rectangles"
+    },
+    "scan2_long": {
+      "source_component": "Scan_2.long_plate",
+      "role": "raised top deck, visually identified in assembled photograph",
+      "bilateral_symmetry": true,
+      "observed_hole_marks": {
+        "value": 13,
+        "unit": "count",
+        "source": [
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "other_openings": "six pairs of diagonal cutouts; one upper polygon pair; one longitudinal slot pair; one axial cutout with ambiguous lower edge; two open exterior forks"
+    },
+    "arm": {
+      "source_components": [
+        "Scan_1.arm_a",
+        "Scan_1.arm_b"
+      ],
+      "canonical_strategy": "One asymmetric-root canonical arm; mirror for opposite handedness and transform for placement. Motor paddle alone has approximate longitudinal symmetry.",
+      "observed_holes_per_arm": {
+        "value": 7,
+        "unit": "count",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "low",
+        "method": "direct_measurement",
+        "notes": "Four motor fastener candidates, one center clearance, two root fastener candidates; diamond opening separate."
+      },
+      "physical_quantity": {
+        "value": 4,
+        "unit": "count",
+        "source": [
+          "/tmp/codex-clipboard-NWppFv.png"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement"
+      }
+    }
+  },
+  "calibration": {
+    "anchors": {
+      "plate_inner": {
+        "centers": {
+          "value": [
+            [
+              1746.0,
+              744.0
+            ],
+            [
+              1982.0,
+              743.0
+            ],
+            [
+              1749.0,
+              980.0
+            ],
+            [
+              1984.0,
+              979.0
+            ]
+          ],
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "edge_distances": {
+          "value": [
+            236.00211863455803,
+            236.01906702637396,
+            236.00847442411893,
+            235.00212764994276
+          ],
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "mean_edge": {
+          "value": 235.75794693374843,
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "candidate_pitch": {
+          "value": 20,
+          "unit": "mm",
+          "source": [
+            "Scan_1.jpeg",
+            ".agent/handoffs/standards.md"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        },
+        "candidate_scale": {
+          "value": 11.787897346687421,
+          "unit": "px/mm",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        },
+        "residual_at_selected_scale": {
+          "value": -0.4517684923879415,
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        }
+      },
+      "plate_outer": {
+        "centers": {
+          "value": [
+            [
+              1684.0,
+              682.0
+            ],
+            [
+              2045.0,
+              681.0
+            ],
+            [
+              1688.0,
+              1042.0
+            ],
+            [
+              2047.0,
+              1041.0
+            ]
+          ],
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "edge_distances": {
+          "value": [
+            361.0013850388943,
+            360.0222215363935,
+            360.0055555126893,
+            359.00139275495854
+          ],
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "mean_edge": {
+          "value": 360.0076387107339,
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "candidate_pitch": {
+          "value": 30.5,
+          "unit": "mm",
+          "source": [
+            "Scan_1.jpeg",
+            ".agent/handoffs/standards.md"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        },
+        "candidate_scale": {
+          "value": 11.803529138056849,
+          "unit": "px/mm",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        },
+        "residual_at_selected_scale": {
+          "value": -0.21217731412411922,
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        }
+      },
+      "plate_lower_inner": {
+        "centers": {
+          "value": [
+            [
+              1690.0,
+              1408.0
+            ],
+            [
+              2049.0,
+              1408.0
+            ],
+            [
+              1691.0,
+              1770.0
+            ],
+            [
+              2052.0,
+              1769.0
+            ]
+          ],
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "edge_distances": {
+          "value": [
+            359.0,
+            362.0013812128346,
+            361.01246515875323,
+            361.0013850388943
+          ],
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "mean_edge": {
+          "value": 360.7538078526205,
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "direct_measurement"
+        },
+        "candidate_pitch": {
+          "value": 30.5,
+          "unit": "mm",
+          "source": [
+            "Scan_1.jpeg",
+            ".agent/handoffs/standards.md"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        },
+        "candidate_scale": {
+          "value": 11.82799370008592,
+          "unit": "px/mm",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        },
+        "residual_at_selected_scale": {
+          "value": 0.5339918277625202,
+          "unit": "px",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "estimated",
+          "method": "estimated"
+        }
+      }
+    },
+    "standard_hypothesis": "Nested 20/30.5 mm squares supported by manufacturer existence and observed ratio 1.527022; nominal ratio is 1.525. Physical identity is unconfirmed. These standards now cross-check independent A4 physical reference scale; they no longer determine absolute scale.",
+    "scan2_component_scales": {
+      "broad": {
+        "value": 11.842369562233252,
+        "unit": "px/mm",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "estimated",
+        "notes": "Component-to-master similarity correction on independently A4-calibrated page; raw A4 image scale is separately retained."
+      },
+      "long": {
+        "value": 11.821325233158147,
+        "unit": "px/mm",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "estimated",
+        "notes": "Component-to-master similarity correction on independently A4-calibrated page; raw A4 image scale is separately retained."
+      }
+    },
+    "accepted_physical_dimensions": [
+      "arm_thickness",
+      "plate_thickness",
+      "A4 sheet width 210 mm",
+      "A4 sheet height 297 mm"
+    ],
+    "metadata_resolution_is_anchor": false,
+    "remaining_confirmation": "No additional XY dimension is required to proceed with A4-calibrated reconstruction. Full-page extent/crop history remains a documented calibration assumption; a caliper check is useful manufacturing verification.",
+    "previous_standard_only_scale": {
+      "value": 11.803529138056849,
+      "unit": "px/mm",
+      "source": [
+        "Scan_1.jpeg",
+        ".agent/handoffs/standards.md"
+      ],
+      "confidence": "estimated",
+      "method": "estimated",
+      "notes": "Single explicit hypothesis: scan1 upper outer mean square edge is 30.5 mm. Inner 20 mm and repeated 30.5 mm square are cross-checks, not silently averaged anchors."
+    },
+    "selected_scale": {
+      "value": 11.81048577130682,
+      "unit": "px/mm",
+      "source": [
+        "user A4 physical tracing provenance, relayed by orchestrator 2026-09-13",
+        "Scan_1.jpeg",
+        "Scan_2.jpeg"
+      ],
+      "confidence": "high",
+      "method": "direct_measurement",
+      "notes": "Isotropic geometric mean of 2480/210 and 3508/297. A4 page calibration now takes priority over the earlier standard-only hypothesis. The full-sheet, no-crop/nonuniform-resize interpretation is supported by image aspect and matching independent standard checks."
+    },
+    "paper_calibration": {
+      "sheet_width": {
+        "value": 210,
+        "unit": "mm",
+        "source": [
+          "user A4 physical tracing provenance, relayed by orchestrator 2026-09-13",
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "known",
+        "method": "direct_measurement"
+      },
+      "sheet_height": {
+        "value": 297,
+        "unit": "mm",
+        "source": [
+          "user A4 physical tracing provenance, relayed by orchestrator 2026-09-13",
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "known",
+        "method": "direct_measurement"
+      },
+      "horizontal_scale": {
+        "value": 11.80952380952381,
+        "unit": "px/mm",
+        "source": [
+          "user A4 physical tracing provenance, relayed by orchestrator 2026-09-13",
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement"
+      },
+      "vertical_scale": {
+        "value": 11.811447811447811,
+        "unit": "px/mm",
+        "source": [
+          "user A4 physical tracing provenance, relayed by orchestrator 2026-09-13",
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement"
+      },
+      "relative_axis_scale_difference": {
+        "value": 0.00016290624799493987,
+        "unit": "ratio",
+        "source": [
+          "user A4 physical tracing provenance, relayed by orchestrator 2026-09-13",
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement"
+      },
+      "provenance": "User explicitly states actual parts were traced against an A4 sheet, then scanned. This is physical reference evidence; image pixel dimensions were independently verified.",
+      "assumptions": [
+        "The scan contains the full A4 page, with no material crop or padding.",
+        "No differential component resizing occurred before/during image assembly.",
+        "No nonuniform image stretch beyond the measured 0.017 percent axis-scale difference."
+      ],
+      "acceptance": "High-confidence reference scale under explicit image-extent assumptions; all observed standard checks agree within pen-center uncertainty."
+    }
+  },
+  "transforms": {
+    "scan1_body_to_scan2_broad": {
+      "equation": "q = c * p + t",
+      "coordinate_definition": "p=u+i*v; q=target_u+i*target_v; native image pixels; similarity least-squares fit, no shear",
+      "c": {
+        "value": [
+          1.002590688,
+          0.014779536
+        ],
+        "unit": "complex_ratio",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "t": {
+        "value": [
+          -1165.506411443,
+          476.020525593
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "scale_ratio": {
+        "value": 1.0026996172336868,
+        "unit": "ratio",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "rotation": {
+        "value": 0.8445557191176318,
+        "unit": "deg",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "reflection": false,
+      "rms_residual": {
+        "value": 2.6106525540428125,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "max_residual": {
+        "value": 5.009772627896073,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "correspondences": [
+        {
+          "source_feature": "plate_lower_inner_tl",
+          "target_feature": "square_upper_left",
+          "source_uv": {
+            "value": [
+              1690.0,
+              1408.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              506.0,
+              1913.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              508.06226477,
+              1912.645630013
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              2.06226477,
+              -0.354369987
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.092489920935902,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_lower_inner_tr",
+          "target_feature": "square_upper_right",
+          "source_uv": {
+            "value": [
+              2049.0,
+              1408.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              870.0,
+              1917.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              867.992321772,
+              1917.951483403
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -2.007678228,
+              0.951483403
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.221731877174934,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_lower_inner_bl",
+          "target_feature": "square_lower_left",
+          "source_uv": {
+            "value": [
+              1691.0,
+              1770.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              507.0,
+              2275.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              503.714663461,
+              2275.598238615
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -3.285336539,
+              0.598238615
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 3.3393600609749963,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_lower_inner_br",
+          "target_feature": "square_lower_right",
+          "source_uv": {
+            "value": [
+              2052.0,
+              1769.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              865.0,
+              2280.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              865.664681375,
+              2279.931060389
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              0.664681375,
+              -0.068939611
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 0.6682469600689181,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_tl",
+          "target_feature": "upper_left",
+          "source_uv": {
+            "value": [
+              1530.0,
+              1214.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              350.0,
+              1718.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              350.514984651,
+              1715.778310791
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              0.514984651,
+              -2.221689209
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.2805946878312673,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_ml",
+          "target_feature": "outer_upper_left",
+          "source_uv": {
+            "value": [
+              1550.0,
+              1375.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              370.0,
+              1878.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              368.187293131,
+              1877.491002282
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -1.812706869,
+              -0.508997718
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.8828130203480355,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_mr",
+          "target_feature": "outer_upper_right",
+          "source_uv": {
+            "value": [
+              2188.0,
+              1374.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1011.0,
+              1885.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1007.854931628,
+              1885.917755501
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -3.145068372,
+              0.917755501
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 3.276237204682197,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_ll",
+          "target_feature": "outer_lower_left",
+          "source_uv": {
+            "value": [
+              1559.0,
+              1819.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              372.0,
+              2324.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              370.648495382,
+              2322.774283589
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -1.351504618,
+              -1.225716411
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.8245397919936694,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_lr",
+          "target_feature": "outer_lower_right",
+          "source_uv": {
+            "value": [
+              2185.0,
+              1820.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              999.0,
+              2335.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              998.255486551,
+              2333.028863753
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -0.744513449,
+              -1.971136247
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.1070544318534705,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_bl",
+          "target_feature": "shoulder_left",
+          "source_uv": {
+            "value": [
+              1564.0,
+              1982.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              371.0,
+              2486.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              373.25238447,
+              2486.270463417
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              2.25238447,
+              0.270463417
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.268564801564339,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_br",
+          "target_feature": "shoulder_right",
+          "source_uv": {
+            "value": [
+              2182.0,
+              1982.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              990.0,
+              2495.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              992.85342967,
+              2495.404216606
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              2.85342967,
+              0.404216606
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.881918102379133,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_lower_center_top",
+          "target_feature": "axis_upper",
+          "source_uv": {
+            "value": [
+              1871.0,
+              1376.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              685.0,
+              1883.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              690.004124452,
+              1883.237823995
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              5.004124452,
+              0.237823995
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 5.009772627896073,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_lower_center_bottom",
+          "target_feature": "axis_lower",
+          "source_uv": {
+            "value": [
+              1872.0,
+              1802.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              686.0,
+              2310.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              684.710632845,
+              2310.356236631
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -1.289367155,
+              0.356236631
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.3376741748688714,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_lower_large_left",
+          "target_feature": "extra_left",
+          "source_uv": {
+            "value": [
+              1656.0,
+              1590.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              471.0,
+              2092.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              471.284305843,
+              2094.614631014
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              0.284305843,
+              2.614631014
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.6300428037898858,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        }
+      ]
+    },
+    "scan1_body_to_scan2_long": {
+      "equation": "q = c * p + t",
+      "coordinate_definition": "p=u+i*v; q=target_u+i*target_v; native image pixels; similarity least-squares fit, no shear",
+      "c": {
+        "value": [
+          1.000912406,
+          -0.003280649
+        ],
+        "unit": "complex_ratio",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "t": {
+        "value": [
+          -29.861942854,
+          457.562898826
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "scale_ratio": {
+        "value": 1.000917782897437,
+        "unit": "ratio",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "rotation": {
+        "value": -0.18779534489705624,
+        "unit": "deg",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "reflection": false,
+      "rms_residual": {
+        "value": 2.161346176802548,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "max_residual": {
+        "value": 3.2340117889846463,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "correspondences": [
+        {
+          "source_feature": "plate_tip_left",
+          "target_feature": "upper_tip_left",
+          "source_uv": {
+            "value": [
+              1638.0,
+              303.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1610.0,
+              755.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1610.626615735,
+              755.465654303
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              0.626615735,
+              0.465654303
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 0.7806927753149474,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_tip_right",
+          "target_feature": "upper_tip_right",
+          "source_uv": {
+            "value": [
+              2086.0,
+              302.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              2060.0,
+              752.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              2059.032093192,
+              752.995010973
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -0.967906808,
+              0.995010973
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.3881247869831326,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_tl",
+          "target_feature": "middle_lobe_left",
+          "source_uv": {
+            "value": [
+              1530.0,
+              1214.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1507.0,
+              1670.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1505.516747423,
+              1667.651166746
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -1.483252577,
+              -2.348833254
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.7779589385886307,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_tr",
+          "target_feature": "middle_lobe_right",
+          "source_uv": {
+            "value": [
+              2205.0,
+              1212.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              2181.0,
+              1665.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              2181.126060503,
+              1663.434903599
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              0.126060503,
+              -1.565096401
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.570164957356302,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_bl",
+          "target_feature": "lower_lobe_left",
+          "source_uv": {
+            "value": [
+              1564.0,
+              1982.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1540.0,
+              2437.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1542.067307969,
+              2436.240352849
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              2.067307969,
+              -0.759647151
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 2.2024590877294785,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "plate_wing_br",
+          "target_feature": "lower_lobe_right",
+          "source_uv": {
+            "value": [
+              2182.0,
+              1982.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              2161.0,
+              2431.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              2160.631175178,
+              2434.21291153
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -0.368824822,
+              3.21291153
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 3.2340117889846463,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg",
+              "Scan_2.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        }
+      ]
+    },
+    "scan1_arm_a_to_arm_b": {
+      "equation": "q = c * conjugate(p) + t",
+      "coordinate_definition": "p=u+i*v; q=target_u+i*target_v; native image pixels; similarity least-squares fit, no shear",
+      "c": {
+        "value": [
+          1.003040214,
+          0.000934276
+        ],
+        "unit": "complex_ratio",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "t": {
+        "value": [
+          561.749388227,
+          3497.18985018
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "scale_ratio": {
+        "value": 1.0030406492920387,
+        "unit": "ratio",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "rotation": {
+        "value": 0.05336780441219541,
+        "unit": "deg",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "reflection": true,
+      "rms_residual": {
+        "value": 4.121965040322326,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "max_residual": {
+        "value": 7.766977617024561,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement"
+      },
+      "correspondences": [
+        {
+          "source_feature": "arm_a_root_1",
+          "target_feature": "arm_b_root_1",
+          "source_uv": {
+            "value": [
+              404.0,
+              2072.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              968.0,
+              1418.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              968.913454546,
+              1419.267973889
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              0.913454546,
+              1.267973889
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.5627402183163037,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "arm_a_root_2",
+          "target_feature": "arm_b_root_2",
+          "source_uv": {
+            "value": [
+              528.0,
+              2170.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1094.0,
+              1322.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1093.382000148,
+              1321.085883118
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -0.617999852,
+              -0.914116882
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.1034190002676,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "arm_a_motor_clearance",
+          "target_feature": "arm_b_motor_clearance",
+          "source_uv": {
+            "value": [
+              490.0,
+              767.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1050.0,
+              2735.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1053.955682837,
+              2728.315801125
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              3.955682837,
+              -6.684198875
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 7.766977617024561,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "arm_a_motor_1",
+          "target_feature": "arm_b_motor_3",
+          "source_uv": {
+            "value": [
+              404.0,
+              682.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              972.0,
+              2814.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              967.614810961,
+              2813.493871598
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -4.385189039,
+              -0.506128402
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 4.414300496189967,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "arm_a_motor_2",
+          "target_feature": "arm_b_motor_4",
+          "source_uv": {
+            "value": [
+              567.0,
+              682.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1128.0,
+              2812.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1131.110365872,
+              2813.646158579
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              3.110365872,
+              1.646158579
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 3.5191211864524012,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "arm_a_motor_3",
+          "target_feature": "arm_b_motor_1",
+          "source_uv": {
+            "value": [
+              406.0,
+              838.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              972.0,
+              2653.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              969.766638439,
+              2657.021466738
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -2.233361561,
+              4.021466738
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 4.600010715780413,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        },
+        {
+          "source_feature": "arm_a_motor_4",
+          "target_feature": "arm_b_motor_2",
+          "source_uv": {
+            "value": [
+              567.0,
+              839.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "target_uv": {
+            "value": [
+              1132.0,
+              2655.0
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "direct_measurement"
+          },
+          "predicted_target_uv": {
+            "value": [
+              1131.257047198,
+              2656.168844953
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual_vector": {
+            "value": [
+              -0.742952802,
+              1.168844953
+            ],
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          },
+          "residual": {
+            "value": 1.384982812573839,
+            "unit": "px",
+            "source": [
+              "Scan_1.jpeg"
+            ],
+            "confidence": "medium",
+            "method": "cross_scan_measurement"
+          }
+        }
+      ]
+    }
+  },
+  "mapped_features_in_master": {
+    "scan2_broad": {
+      "upper_left": {
+        "value": [
+          1529.519116783,
+          1216.22303713
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "outer_upper_left": {
+        "value": [
+          1551.815112504,
+          1375.480925159
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "axis_upper": {
+        "value": [
+          1866.006394714,
+          1375.836402861
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "outer_upper_right": {
+        "value": [
+          2191.12276913,
+          1373.038581982
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "square_upper_left": {
+        "value": [
+          1687.948720438,
+          1408.383692795
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "square_upper_right": {
+        "value": [
+          2050.988068664,
+          1407.021668259
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "large_left": {
+        "value": [
+          1539.020436438,
+          1590.113977262
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "extra_left": {
+        "value": [
+          1655.678055374,
+          1587.396870958
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "large_right": {
+        "value": [
+          2199.283978585,
+          1588.360132137
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "square_lower_left": {
+        "value": [
+          1694.267341392,
+          1769.355142107
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "square_lower_right": {
+        "value": [
+          2051.338193833,
+          1769.078517237
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "outer_lower_left": {
+        "value": [
+          1560.365737789,
+          1820.202416255
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "axis_lower": {
+        "value": [
+          1873.280519556,
+          1801.625807171
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "outer_lower_right": {
+        "value": [
+          2185.771404348,
+          1821.954671146
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "shoulder_left": {
+        "value": [
+          1561.749948168,
+          1981.763404155
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "shoulder_right": {
+        "value": [
+          2179.148620146,
+          1981.638860909
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "tail_inner_left": {
+        "value": [
+          1756.558747847,
+          2476.602247434
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "tail_inner_right": {
+        "value": [
+          1990.944685326,
+          2476.139331304
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "tail_outer_left": {
+        "value": [
+          1694.631895113,
+          2538.357508968
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "tail_outer_right": {
+        "value": [
+          2052.71464692,
+          2539.063383347
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "tail_axis": {
+        "value": [
+          1874.938678538,
+          2658.381713106
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "tail_tip_left": {
+        "value": [
+          1681.043415818,
+          2699.141798458
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "tail_tip_right": {
+        "value": [
+          2069.027446795,
+          2698.409471735
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      }
+    },
+    "scan2_long": {
+      "upper_tip_left": {
+        "value": [
+          1637.37548796,
+          302.53272276
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "upper_tip_right": {
+        "value": [
+          2086.970273532,
+          301.009075628
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "upper_large_left": {
+        "value": [
+          1538.768376738,
+          515.015357009
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "upper_large_right": {
+        "value": [
+          2184.185664693,
+          513.13446073
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "upper_lobe_left": {
+        "value": [
+          1494.730680899,
+          843.571108547
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "upper_lobe_right": {
+        "value": [
+          2233.065468899,
+          840.995675671
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "axis": {
+        "value": [
+          1863.567179778,
+          790.829253623
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "middle_lobe_left": {
+        "value": [
+          1531.474194199,
+          1216.351524029
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "middle_lobe_right": {
+        "value": [
+          2204.868932182,
+          1213.56323985
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "lower_lobe_left": {
+        "value": [
+          1561.932112675,
+          1982.752177215
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "lower_lobe_right": {
+        "value": [
+          2182.379007586,
+          1978.791259665
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "lower_tip_left": {
+        "value": [
+          1684.46236137,
+          2701.498367616
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      },
+      "lower_tip_right": {
+        "value": [
+          2073.110133059,
+          2700.774045415
+        ],
+        "unit": "px_in_scan1_body_master",
+        "source": [
+          "Scan_1.jpeg",
+          "Scan_2.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "cross_scan_measurement",
+        "notes": "Mapped observation; fit residual and ink uncertainty remain. Not an independent engineering parameter."
+      }
+    }
+  },
+  "independent_cross_check_tail_tips": {
+    "description": "Broad plate tail tips and long plate lower tips are not in either fitted correspondence set. Their inverse-transformed centers should coincide if the proposed three-plate registration is coherent.",
+    "residuals": {
+      "value": [
+        4.152421809496003,
+        4.718001252480092
+      ],
+      "unit": "px_in_scan1_body_master",
+      "source": [
+        "Scan_1.jpeg",
+        "Scan_2.jpeg"
+      ],
+      "confidence": "medium",
+      "method": "cross_scan_measurement"
+    },
+    "status": "agreement supports shared standoff candidates; it does not establish Z order or bore diameter"
+  },
+  "arms": {
+    "a": {
+      "root_midpoint_uv": {
+        "value": [
+          466.0,
+          2121.0
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "motor_center_uv": {
+        "value": [
+          490.0,
+          767.0
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "root_pitch": {
+        "value": 158.05062480104277,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "root_to_motor": {
+        "value": 1354.2126863975245,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "canonical_basis_uv": {
+        "x": {
+          "value": [
+            0.999842945,
+            0.017722475
+          ],
+          "unit": "unit_vector",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "inferred_from_interface"
+        },
+        "y_toward_motor": {
+          "value": [
+            0.017722475,
+            -0.999842945
+          ],
+          "unit": "unit_vector",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "inferred_from_interface"
+        }
+      },
+      "root_holes_local": {
+        "value": [
+          [
+            -62.85866382366184,
+            47.89351085798435
+          ],
+          [
+            62.85866382366184,
+            -47.89351085798435
+          ]
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "motor_square_sides": {
+        "value": [
+          163.0,
+          156.01281998605114,
+          157.0,
+          161.00310556011024
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "motor_diagonals": {
+        "value": [
+          226.31394124092313,
+          224.1807306616695
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "candidate_19mm_diagonal_residuals": {
+        "value": [
+          1.9147115860935742,
+          -0.21849899316006827
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated"
+      },
+      "candidate_19mm_square_side_residuals": {
+        "value": [
+          -61.399229654829554,
+          -68.38640966877841,
+          -67.39922965482955,
+          -63.39612409471931
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated"
+      },
+      "motor_square_side": {
+        "value": 13.484117797545855,
+        "unit": "mm",
+        "source": [
+          "Scan_1.jpeg",
+          "user A4 physical tracing provenance"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Native pixel observation divided by A4-calibrated isotropic scale; pen-center uncertainty remains."
+      },
+      "motor_opposite_pitch": {
+        "value": 19.071809603168667,
+        "unit": "mm",
+        "source": [
+          "Scan_1.jpeg",
+          "user A4 physical tracing provenance"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Native pixel observation divided by A4-calibrated isotropic scale; pen-center uncertainty remains."
+      }
+    },
+    "b": {
+      "root_midpoint_uv": {
+        "value": [
+          1031.0,
+          1370.0
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "motor_center_uv": {
+        "value": [
+          1050.0,
+          2735.0
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "root_pitch": {
+        "value": 158.40454538932903,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "root_to_motor": {
+        "value": 1365.1322280277468,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "canonical_basis_uv": {
+        "x": {
+          "value": [
+            -0.999903139,
+            0.013918066
+          ],
+          "unit": "unit_vector",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "inferred_from_interface"
+        },
+        "y_toward_motor": {
+          "value": [
+            0.013918066,
+            0.999903139
+          ],
+          "unit": "unit_vector",
+          "source": [
+            "Scan_1.jpeg"
+          ],
+          "confidence": "medium",
+          "method": "inferred_from_interface"
+        }
+      },
+      "root_holes_local": {
+        "value": [
+          [
+            63.66196491130937,
+            47.118512536276164
+          ],
+          [
+            -63.66196491130937,
+            -47.118512536276164
+          ]
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "motor_square_sides": {
+        "value": [
+          160.0124995117569,
+          161.0,
+          157.05094714773293,
+          156.01281998605114
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "motor_diagonals": {
+        "value": [
+          222.74873737015884,
+          225.5681715136247
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "candidate_19mm_diagonal_residuals": {
+        "value": [
+          -1.6504922846707188,
+          1.1689418587951366
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated"
+      },
+      "candidate_19mm_square_side_residuals": {
+        "value": [
+          -64.38673014307267,
+          -63.399229654829554,
+          -67.34828250709663,
+          -68.38640966877841
+        ],
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "estimated",
+        "method": "estimated"
+      },
+      "motor_square_side": {
+        "value": 13.421892183850899,
+        "unit": "mm",
+        "source": [
+          "Scan_1.jpeg",
+          "user A4 physical tracing provenance"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Native pixel observation divided by A4-calibrated isotropic scale; pen-center uncertainty remains."
+      },
+      "motor_opposite_pitch": {
+        "value": 18.979613436940696,
+        "unit": "mm",
+        "source": [
+          "Scan_1.jpeg",
+          "user A4 physical tracing provenance"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement",
+        "notes": "Native pixel observation divided by A4-calibrated isotropic scale; pen-center uncertainty remains."
+      }
+    }
+  },
+  "arm_mount_candidates": {
+    "front_left": {
+      "body_feature_ids": [
+        "plate_wing_tl",
+        "plate_wing_ml"
+      ],
+      "body_pitch": {
+        "value": 162.2374802565671,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "arm_a_pitch_residual": {
+        "value": 4.186855455524324,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "status": "candidate only; front/rear labels follow provisional +Y toward low image v; endpoint assignment and root-outline interference must be reviewed"
+    },
+    "front_right": {
+      "body_feature_ids": [
+        "plate_wing_tr",
+        "plate_wing_mr"
+      ],
+      "body_pitch": {
+        "value": 162.88953311984167,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "arm_a_pitch_residual": {
+        "value": 4.8389083187989,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "status": "candidate only; front/rear labels follow provisional +Y toward low image v; endpoint assignment and root-outline interference must be reviewed"
+    },
+    "rear_left": {
+      "body_feature_ids": [
+        "plate_wing_ll",
+        "plate_wing_bl"
+      ],
+      "body_pitch": {
+        "value": 163.07666908543356,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "arm_a_pitch_residual": {
+        "value": 5.026044284390792,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "status": "candidate only; front/rear labels follow provisional +Y toward low image v; endpoint assignment and root-outline interference must be reviewed"
+    },
+    "rear_right": {
+      "body_feature_ids": [
+        "plate_wing_lr",
+        "plate_wing_br"
+      ],
+      "body_pitch": {
+        "value": 162.02777539668932,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "arm_a_pitch_residual": {
+        "value": 3.977150595646549,
+        "unit": "px",
+        "source": [
+          "Scan_1.jpeg"
+        ],
+        "confidence": "medium",
+        "method": "inferred_from_interface"
+      },
+      "status": "candidate only; front/rear labels follow provisional +Y toward low image v; endpoint assignment and root-outline interference must be reviewed"
+    }
+  },
+  "conflict_resolution": [
+    {
+      "issue": "Standards analyst suggested orientation reversal between body and broad plate.",
+      "evidence": "Four square corners, seven perimeter marks and three axial/inner marks align in same v direction; RMS 2.61 px.",
+      "resolution": "Use orientation-preserving similarity. Different longitudinal outline extensions belong to different components."
+    },
+    {
+      "issue": "Motor 16 or 19 mm square assignment disagrees with plate calibration.",
+      "evidence": "Measured adjacent pitch ~158-159 px; opposite pitch ~224-225 px. At ~11.8 px/mm, opposite pitch ~19 mm and square side ~13.4-13.5 mm.",
+      "resolution": "Represent measured square geometry and optional 19 mm opposite-hole hypothesis explicitly. Do not label a 19 mm square or assert commercial motor compatibility."
+    },
+    {
+      "issue": "Arm roots appear different.",
+      "evidence": "A to B requires conjugation (native-v reflection) with RMS 4.12 px on motor/root marks. Local root-hole x signs reverse.",
+      "resolution": "Use one handed canonical root with mathematical reflection, preserving root notch uncertainty for contour review."
+    },
+    {
+      "issue": "Scan2 broad extra_left has no visible right counterpart.",
+      "evidence": "extra_left maps to scan1 body lower_large_left with ~2.63 px residual. scan1 has lower_large_right but scan2 counterpart is absent.",
+      "resolution": "A candidate shared asymmetric/missing bore, not random pen debris. Final inferred counterpart and diameters require explicit topology decision."
+    }
+  ],
+  "unresolved_manufacturing_inputs": [
+    "plate Z stack and arm sandwich order",
+    "actual motor bolt coordinates and bore diameters",
+    "fastener/insert dimensions and clearances",
+    "camera/FC/ESC and propeller envelopes",
+    "missing or intentionally omitted broad-plate holes",
+    "arm root notch contour and any interlock",
+    "exact ambiguous long-plate axial cutout lower edge"
+  ],
+  "implementation_policy": "A4 physical trace provenance permits high-confidence calibrated reconstruction, with full-page extent assumptions explicit. Manufacturing acceptance still requires geometry, overlays, exact topology, interfaces, hardware and clearance validation. Do not invent unobserved camera/side plates or tabs.",
+  "confirmed_user_dimensions": {
+    "arm_thickness": {
+      "value": 5,
+      "unit": "mm",
+      "source": [
+        "user confirmation relayed by orchestrator 2026-09-13"
+      ],
+      "confidence": "known",
+      "method": "direct_measurement",
+      "notes": "User supplied nominal thickness; no local caliper verification."
+    },
+    "plate_thickness": {
+      "value": 2,
+      "unit": "mm",
+      "source": [
+        "user confirmation relayed by orchestrator 2026-09-13"
+      ],
+      "confidence": "known",
+      "method": "direct_measurement",
+      "notes": "User supplied nominal thickness for all three plates."
+    }
+  },
+  "assembly_photo_observations": {
+    "source": [
+      "/tmp/codex-clipboard-NWppFv.png"
+    ],
+    "interpretation": {
+      "lattice_plate": {
+        "value": "scan2_long is the raised top deck",
+        "unit": "classification",
+        "source": [
+          "/tmp/codex-clipboard-NWppFv.png"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement"
+      },
+      "base_plates": {
+        "value": "scan1_body and scan2_broad form the lower arm-mounting/body region; exact section order is partly occluded",
+        "unit": "classification",
+        "source": [
+          "/tmp/codex-clipboard-NWppFv.png"
+        ],
+        "confidence": "medium",
+        "method": "direct_measurement"
+      },
+      "front": {
+        "value": "large open fork of scan2_long is at the camera end; consistent with proposed +Y toward smaller source v",
+        "unit": "orientation",
+        "source": [
+          "/tmp/codex-clipboard-NWppFv.png"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement"
+      },
+      "four_arms": {
+        "value": 4,
+        "unit": "count",
+        "source": [
+          "/tmp/codex-clipboard-NWppFv.png"
+        ],
+        "confidence": "high",
+        "method": "direct_measurement"
+      }
+    },
+    "limits": "Perspective photograph is not a metric scale anchor. Raised deck, standoffs and front camera support are visible. Standoff heights and exact plate/arm Z sandwich need the dedicated assembly reviewer; do not estimate those here."
+  },
+  "engineering_interface_groups": {
+    "front_tip_standoff_pair": {
+      "members": {
+        "scan1_body": [
+          "plate_tip_left",
+          "plate_tip_right"
+        ],
+        "scan2_long": [
+          "upper_tip_left",
+          "upper_tip_right"
+        ]
+      },
+      "confidence": "high",
+      "semantic_role": "candidate camera-end standoffs; photograph supports front camera support"
+    },
+    "front_arm_outer_pair": {
+      "members": {
+        "scan1_body": [
+          "plate_wing_tl",
+          "plate_wing_tr"
+        ],
+        "scan2_broad": [
+          "upper_left",
+          null
+        ],
+        "scan2_long": [
+          "middle_lobe_left",
+          "middle_lobe_right"
+        ]
+      },
+      "confidence": "medium",
+      "semantic_role": "shared outer front arm root and raised-deck standoff axis candidates; broad right hole omitted from drawing"
+    },
+    "front_arm_inner_pair": {
+      "members": {
+        "scan1_body": [
+          "plate_wing_ml",
+          "plate_wing_mr"
+        ],
+        "scan2_broad": [
+          "outer_upper_left",
+          "outer_upper_right"
+        ]
+      },
+      "confidence": "high",
+      "semantic_role": "second front arm bolt pair"
+    },
+    "rear_arm_inner_pair": {
+      "members": {
+        "scan1_body": [
+          "plate_wing_ll",
+          "plate_wing_lr"
+        ],
+        "scan2_broad": [
+          "outer_lower_left",
+          "outer_lower_right"
+        ]
+      },
+      "confidence": "high",
+      "semantic_role": "second rear arm bolt pair"
+    },
+    "rear_arm_outer_pair": {
+      "members": {
+        "scan1_body": [
+          "plate_wing_bl",
+          "plate_wing_br"
+        ],
+        "scan2_broad": [
+          "shoulder_left",
+          "shoulder_right"
+        ],
+        "scan2_long": [
+          "lower_lobe_left",
+          "lower_lobe_right"
+        ]
+      },
+      "confidence": "high",
+      "semantic_role": "shared outer rear arm root and raised-deck standoff axis candidates"
+    },
+    "rear_tip_standoff_pair": {
+      "members": {
+        "scan2_broad": [
+          "tail_tip_left",
+          "tail_tip_right"
+        ],
+        "scan2_long": [
+          "lower_tip_left",
+          "lower_tip_right"
+        ]
+      },
+      "confidence": "high",
+      "semantic_role": "rear deck support; independent cross-check residuals 4.15 and 4.72 px"
+    },
+    "central_stack_square": {
+      "members": {
+        "scan1_body": [
+          "plate_lower_inner_tl",
+          "plate_lower_inner_tr",
+          "plate_lower_inner_bl",
+          "plate_lower_inner_br"
+        ],
+        "scan2_broad": [
+          "square_upper_left",
+          "square_upper_right",
+          "square_lower_left",
+          "square_lower_right"
+        ]
+      },
+      "confidence": "high",
+      "semantic_role": "shared four-hole square; provisional 30.5 mm pitch"
+    },
+    "central_axis_pair": {
+      "members": {
+        "scan1_body": [
+          "plate_lower_center_top",
+          "plate_lower_center_bottom"
+        ],
+        "scan2_broad": [
+          "axis_upper",
+          "axis_lower"
+        ]
+      },
+      "confidence": "high",
+      "semantic_role": "shared axes; bore dimensions differ visually and are unresolved"
+    },
+    "central_inner_lateral_pair": {
+      "members": {
+        "scan1_body": [
+          "plate_lower_large_left",
+          "plate_lower_large_right"
+        ],
+        "scan2_broad": [
+          "extra_left",
+          null
+        ]
+      },
+      "confidence": "medium",
+      "semantic_role": "left corresponding center proven; right broad counterpart absent, bore dimensions unresolved"
+    }
+  },
+  "engineering_interface_policy": "Build each group once from an ideal bilateral datum; members refer to that shared object. Numbers in mapped_features_in_master are review evidence. Do not instantiate independent pixel-coordinate holes on each part. Missing broad marks stay explicit inferred-topology decisions. Root pair mismatch (~3-5 px versus arm marks) is within observation uncertainty and should be reconciled to one shared pitch, not forced by assembly scaling."
+}

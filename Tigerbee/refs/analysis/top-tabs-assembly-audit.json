@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "solid_count": 20,
+  "all_solids_valid": true,
+  "differences": [
+    {
+      "center_mm": [
+        1.102950264453284e-08,
+        -28.6254368907295,
+        1.5
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        5.009326287108706e-13,
+        38.5734059325625,
+        9.5
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        63.54565771794718,
+        63.580624751893126,
+        5.5
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        -63.545657717907176,
+        63.580624751893126,
+        5.5
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        63.392069496914566,
+        -63.73014344155849,
+        5.5
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        -63.392069496875266,
+        -63.73014344155672,
+        5.5
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        0.0,
+        7.25,
+        36.5
+      ],
+      "is_top_plate": true,
+      "removed_mm3": 0,
+      "added_mm3": 128.5486677646202
+    },
+    {
+      "center_mm": [
+        -19.25,
+        108.75,
+        23.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        19.25,
+        108.75,
+        23.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        -23.73296708658,
+        35.309443796598,
+        23.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        23.732967086583,
+        35.309443796598,
+        23.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        -24.75601559162,
+        -33.0864009828,
+        23.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        24.756015591628,
+        -33.0864009828,
+        23.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        -16.5,
+        -94.0,
+        19.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        16.5,
+        -94.0,
+        19.0
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        108.86033069110606,
+        108.7586972767508,
+        -0.6000000499999993
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        -108.86033069106604,
+        108.7586972767508,
+        -0.6000000499999993
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        108.77926583802778,
+        -108.6587773584915,
+        -0.6000000499999993
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        -108.77926583798777,
+        -108.6587773584915,
+        -0.6000000499999993
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    },
+    {
+      "center_mm": [
+        0.0,
+        74.5000000000005,
+        49.75
+      ],
+      "is_top_plate": false,
+      "removed_mm3": 0,
+      "added_mm3": 0
+    }
+  ],
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
+  "file_sha256": {
+    "build/fidelity-audit/assembly-before.step": "30913d1489f6b58a03b759d57be9d6101020fea0467bb88e3327025349a938a6",
+    "exports/accessories/tigerbee-with-gopro-holder.step": "96ae92672b0517995685d7542df0e0a68cb49d265a970ed99848f42db04e130d"
+  },
+  "baseline_revision": "f685ed476e866680907ee589b4891656ddf811a1",
+  "baseline_path": "Tigerbee/exports/accessories/tigerbee-with-gopro-holder.step"
+}

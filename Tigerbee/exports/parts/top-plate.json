@@ -1,0 +1,138 @@
+{
+  "part": "top-plate",
+  "units": "mm",
+  "parameters": {
+    "thickness": 3.0,
+    "mounting_hole_diameter": 3.2,
+    "center_hole_diameter": null,
+    "length_extension": 0.0
+  },
+  "source_revision": "cad6a218932a9df39016e2a48310026780ddf711",
+  "source_sha256": "a1e30632d60af4c03554778b027f937121861a970cf15f276f901cbebb30632a",
+  "build123d": "0.11.1",
+  "reference_sha256": "dc9a162303b5aac7b0e97a9b7a69105cf389d0419af6249525085e45f4241556",
+  "reference_status": "symmetric-design-derived-from-reference",
+  "authoritative_geometry_source": "refs/Scan_2.jpeg",
+  "reference_body": null,
+  "nominal_frame_wheelbase_mm": 305.0,
+  "nominal_thickness_mm": 3.0,
+  "measured_frame_wheelbase_range_mm": [
+    303.0,
+    304.0
+  ],
+  "measurement_reference": "refs/measurements.md",
+  "reference_note": "Analytic nominal design informed by the near-1:1 tracing of a part absent from the original FreeCAD document; scan irregularities are not reproduced.",
+  "reference_assumptions": [
+    "Nominal A4 width 210 mm; user confirmed near-1:1 pen tracings",
+    "3/5 mm nominal holes",
+    "2.5 mm thickness from product photo; physical thickness unmeasured",
+    "Convex hull repairs cutout pen gaps",
+    "Rear plate missing corner hole mirrored from opposite side"
+  ],
+  "assumptions": [
+    "3.2 mm nominal mounting bores; machining tolerances are not specified",
+    "Symmetric analytic outline dimensions inferred from Scan_2; mounting interfaces follow the user-specified 305 mm X layout"
+  ],
+  "valid": true,
+  "solid_count": 1,
+  "mesh_validation": {
+    "valid": true,
+    "triangles": 21968,
+    "components": 1,
+    "degenerate_faces": 0,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "winding_errors": 0
+  },
+  "volume_mm3": 25696.050588148857,
+  "dimensions_mm": [
+    68.0,
+    214.50000000000009,
+    3.0
+  ],
+  "mesh_linear_deflection_mm": 0.01,
+  "mesh_angular_deflection_rad": 0.1,
+  "files": [
+    "top-plate.step",
+    "top-plate.stl",
+    "top-plate.3mf",
+    "top-plate.svg",
+    "top-plate.dxf"
+  ],
+  "file_sha256": {
+    "top-plate.step": "bc73b866ffe04cf27f61bea0e214ce9caf7be53d46284e6cc0f93201a6085172",
+    "top-plate.stl": "b427ff38441909f1fc5085bd6c138d72eb14e1d4d1c6b5fc57333bc43dee2328",
+    "top-plate.3mf": "87673e88d929419cfb64c40fcb151d16abba03b661d0db28968e354907af31d7",
+    "top-plate.svg": "d1ade4f4da16d7f243af8b154971398b1df16ae147df2678fb5fd0a179a27dca",
+    "top-plate.dxf": "dc1d038263eb0c792d07909bea380f02ade0d1a174de30207ff0823c4d2f522b"
+  },
+  "design_dimensions_mm": {
+    "corner_radius": 2.0,
+    "transition_radius": 1.0,
+    "top_shoulder_radius": 5.0,
+    "top_tab_radius": 2.0,
+    "top_tab_blend_radius": 1.0,
+    "top_tab_first_y": -15.0,
+    "top_tab_pitch": 27.0,
+    "camera_datum_y": 61.25,
+    "camera_clamp_shoulder_extension": 5.0,
+    "rear_front_shoulder_extension": 5.0,
+    "camera_round_diameter": 18.5,
+    "camera_square_size": 15.0,
+    "camera_square_radius": 2.0,
+    "camera_slot_width": 11.5,
+    "camera_slot_height": 8.5,
+    "camera_slot_radius": 2.5,
+    "camera_slot_pitch": 42.0,
+    "rear_slot_width": 10.0,
+    "rear_slot_height": 7.0,
+    "rear_slot_radius": 2.0,
+    "rear_slot_pitch": 18.0,
+    "rear_first_slot_y": -47.0,
+    "cross_half_web": 2.0,
+    "cross_extent": 10.0,
+    "cross_corner_radius": 0.6,
+    "chevron_width": 8.0,
+    "chevron_height": 12.0,
+    "chevron_skew": 6.0,
+    "chevron_pitch": 20.0,
+    "chevron_first_y": -68.0,
+    "chevron_x": 9.5,
+    "chevron_corner_radius": 1.0
+  },
+  "mounting_hole_centers_mm": [
+    [
+      -19.25,
+      108.75
+    ],
+    [
+      19.25,
+      108.75
+    ],
+    [
+      -23.73296708658303,
+      35.30944379659837
+    ],
+    [
+      23.73296708658303,
+      35.30944379659837
+    ],
+    [
+      -24.756015591627914,
+      -33.08640098280688
+    ],
+    [
+      24.756015591627914,
+      -33.08640098280688
+    ],
+    [
+      -16.5,
+      -94.0
+    ],
+    [
+      16.5,
+      -94.0
+    ]
+  ],
+  "datum": "Frame XY datum; X=0 is the bilateral symmetry axis; lower face Z=0"
+}
