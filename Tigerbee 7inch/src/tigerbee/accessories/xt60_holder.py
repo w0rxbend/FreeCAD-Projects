@@ -9,6 +9,10 @@ TITLE = "XT60 pigtail holder"
 MATERIAL = "TPU95A"
 PRINT = {"xt60_holder_right": (0, 0, 1), "xt60_holder_left": (0, 0, 1)}
 EXCLUSIVE = ()
+ASSEMBLY_LABELS = ("xt60_holder_right",)  # install one side only; the pair is the left/right choice
+MOUNTS = ("standoff_rear_arm_<side> Ø6 shaft over Z 22-33.8 (the clip, above the side panel's rear clip)",
+          "plate_bottom top face Z 2 (the inboard post stands on it and takes the plug's pull)")
+HARDWARE = ("none - 0.8 mm snap onto the Ø6 standoff; the XT60 socket presses in past the 1.0 mm lip",)
 NOTES = (
     "Clips onto the rear-arm standoff above the side panel's rear clip (Z 22-33.8) and carries the XT60 "
     "socket on edge behind it, plug facing rearward. A post down the inboard face stands on plate_bottom "

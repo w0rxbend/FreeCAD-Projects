@@ -6,6 +6,7 @@ parts in their installed position. Standoffs are checked against Ø STANDOFF_D (
 physical part), not the modelled Ø5.
 """
 
+import multiprocessing
 from functools import lru_cache
 from math import hypot
 
@@ -29,7 +30,23 @@ PROP_KEEPOUT_R = PROP_D / 2 + PROP_MARGIN  # 91.9
 PROP_Z0 = P.Z_MID  # arm top face: nothing but arms/motor hardware inside a disc above this
 MOTOR_PROP_SEAT = 25.0  # motor-mounted material may sit in its OWN disc up to PROP_Z0 + MOTOR_PROP_SEAT - 10
 OWN_DISC_Z_MAX = PROP_Z0 + MOTOR_PROP_SEAT - 10
-LANDING_Z = -3.0  # default lowest point of any accessory (motor_guard -10, led_buzzer -12 opt out)
+LANDING_Z = -3.0  # default lowest point of any accessory; only the two parts that MAKE the stance
+#                   opt out of it, and both of them sit exactly on GROUND_Z (see below).
+
+# GROUND_Z is the plane the STANDARD stance rests on: motor_guard's four feet plus led_buzzer's bar.
+# It is set by the deepest thing bolted under plate_bottom - led_buzzer's bar, whose closed 10.4 mm
+# WS2812 groove needs LED_FLOOR 2.0 + LED_H 10.4 + ROOF 2.8 = 15.2 mm of depth - and motor_guard
+# derives its foot DROP from it so the four landing feet reach the SAME plane instead of leaving the
+# quad on a three-point tripod.
+#
+# It is NOT a global invariant. The ground plane is a property of the installable SET: the
+# extended-feet family (arm_protector_feet, which is EXCLUSIVE with motor_guard, together with
+# front_bumper_feet) is deliberately coplanar 6.8 mm lower, and in that set led_buzzer's bar is
+# clear of the ground instead of load-bearing. What must hold in EVERY set is: everything that
+# touches down is coplanar, and nothing else reaches below that plane. motor_guard.checks() measures
+# that for the set the guards are in (EXCLUSIVE resolved first, guards pinned), and
+# _export._stance_check() repeats it on whatever the combined assembly actually installs.
+GROUND_Z = -15.2
 
 Z_BOTTOM_UNDER = P.Z_BOTTOM  # 0: plate_bottom underside
 Z_BOTTOM_TOP = P.Z_BOTTOM + P.PLATE_T  # 2: plate_bottom top face, tail floor, arm underside
@@ -162,6 +179,18 @@ def erode(part: Part, t: float, kind: Kind = Kind.INTERSECTION) -> Part:
     # Measure on the Solid: a Part wrapping a bare TopoDS_Solid reports volume 0.
     if off is None or off.wrapped is None or off.wrapped.IsNull() or off.volume <= 0:
         raise RuntimeError(f"offset_3d collapsed the solid at t={t}")
+    # A NON-ZERO result can still be meaningless. OCCT has been seen to erode a 12305 mm³ tray to
+    # 0.7 mm³ and call it valid; min_wall then subtracts almost nothing, reports the whole part as
+    # thin residual and fails a part whose walls are fine. Volume ratio cannot separate that from
+    # a genuinely thin-walled part (a 1.5 mm shell legitimately erodes to ~1.5 % of itself), so
+    # check the BOUNDING BOX instead: eroding by t shrinks each axis by about 2t, and a result
+    # far smaller than that in any axis has degenerated rather than measured anything.
+    a, b = part.bounding_box(), off.bounding_box()
+    for axis in ("X", "Y", "Z"):
+        expected = getattr(a.size, axis) - 2 * t
+        if expected > 0.2 and getattr(b.size, axis) < 0.5 * expected:
+            raise RuntimeError(f"offset_3d degenerated at t={t}: {axis} span "
+                               f"{getattr(b.size, axis):.3f} vs {expected:.3f} expected")
     # Part(<bare TopoDS_Solid>) reports volume 0; go through the compound-building operator.
     return Part() + off
 
@@ -266,6 +295,8 @@ def seated(part: Part, z_face: float, tol: float = 0.02) -> float:
 
 
 WALL_TOL = 0.02  # a wall built exactly at the threshold must pass its own min-wall check
+GRAZE_COS = 0.7  # |ray . hit normal| below this is a chord along a faceted surface, not a wall
+EXIT_EPS = 0.02  # probe distance past a hit used to tell a wall exit from an internal face
 
 
 _BARY = ((1 / 3, 1 / 3, 1 / 3), (0.6, 0.2, 0.2), (0.2, 0.6, 0.2), (0.2, 0.2, 0.6),
@@ -293,8 +324,9 @@ def ray_thickness(part: Part, t: float, allow: tuple[Part, ...] = (), per_face: 
     if not faces:
         return False, 0.0, "no sampleable faces"
     budget = max(1, max_rays // len(faces))
-    worst, thin, total = float("inf"), 0, 0
+    worst, thin, total, isolated = float("inf"), 0, 0, 0
     for f in faces:
+        face_thin: list[float] = []
         try:
             verts, tris = f.tessellate(0.3)
         except Exception:  # noqa: BLE001
@@ -310,8 +342,10 @@ def ray_thickness(part: Part, t: float, allow: tuple[Part, ...] = (), per_face: 
         for tri, (b0, b1, b2) in ((tri, bary) for tri in used for bary in _BARY[:k]):
             p = verts[tri[0]] * b0 + verts[tri[1]] * b1 + verts[tri[2]] * b2
             try:
-                if not f.is_inside(p):
-                    continue
+                # No is_inside() guard: the point comes from THIS face's own triangulation, so it
+                # is inside the trim by construction. Testing it again rejected curved faces --
+                # chord sag puts a tessellated point up to the tessellation tolerance off the true
+                # surface, so a sphere lost every sample and reported "no usable rays".
                 normal = f.normal_at(p)
             except Exception:  # noqa: BLE001  degenerate triangle
                 continue
@@ -327,19 +361,82 @@ def ray_thickness(part: Part, t: float, allow: tuple[Part, ...] = (), per_face: 
             # Discard hits right at the origin: where two faces of the same solid meet at a
             # shallow seam the neighbour sits a few hundredths of a mm ahead and is not a wall.
             floor = min(0.1, t / 20)
-            ahead = [x for x in ((h[0] - origin).dot(d) for h in hits) if x > floor]
+            # Reject GRAZING hits as well as origin hits. Crossing a wall lands on a surface
+            # roughly facing the ray, so |d . n| is near 1. On a faceted curved surface -- any
+            # Blender-domed part -- a ray can instead run along the shell and clip a neighbouring
+            # facet edge-on, returning a short CHORD that is not a wall at all. That artifact
+            # scales with facet count and curvature, which is exactly how it was caught: a dome
+            # the CAD measured at 2.105 mm was reported as 1.18 mm, and one Blender itself
+            # measured at 3.22 mm was reported as 0.24 mm.
+            # A hit only ends the wall if the SOLID ends there. A union can leave a face buried
+            # inside the material -- a clip ring's outer cylinder is the case here -- and stopping
+            # on one reports the distance to a seam as the wall. `clean()` removes most of those
+            # faces, which is why this survived: it does not remove all of them. Probing a hair
+            # past the hit settles it, and unlike the sample-point guard removed above, this point
+            # is strictly inside or outside the solid, where is_inside is reliable.
+            ahead = []
+            for h in hits:
+                dist = (h[0] - origin).dot(d)
+                if dist <= floor or abs(d.dot(h[1])) < GRAZE_COS:
+                    continue
+                try:
+                    if part.is_inside(origin + d * (dist + EXIT_EPS)):
+                        continue  # internal face, still material beyond it
+                except Exception:  # noqa: BLE001
+                    pass
+                ahead.append(dist)
             if not ahead:
                 continue
             total += 1
             thickness = min(ahead)
             if thickness < t - WALL_TOL:
-                thin += 1
-                worst = min(worst, thickness)
+                face_thin.append(thickness)
+        # A real thin wall is hit by several rays across the face; a lone reading is a ray that
+        # left near a boundary and grazed into the neighbouring wall. Corroborate before
+        # believing it -- an isolated sample is counted and reported, never failed on.
+        if len(face_thin) >= 2:
+            thin += len(face_thin)
+            worst = min(worst, min(face_thin))
+        else:
+            isolated += len(face_thin)
     if not total:
         return False, 0.0, "no usable rays"
+    note = f", {isolated} isolated reading(s) discounted" if isolated else ""
     if thin == 0:
-        return False, t, f"{total} rays, none thinner than {t} mm (rays cannot see knife-edge tips)"
-    return True, worst, f"{thin}/{total} rays thinner than {t} mm, worst {worst:.2f} mm"
+        return False, t, f"{total} rays, none thinner than {t} mm{note} (rays cannot see knife-edge tips)"
+    return True, worst, f"{thin}/{total} rays thinner than {t} mm, worst {worst:.2f} mm{note}"
+
+
+def _erode_probe(part: Part, t: float) -> None:
+    # Only a SIGNAL matters to the parent. An ordinary exception means the offset failed the way
+    # min_wall already handles, so swallow it here rather than letting the child print a traceback
+    # on every c_clip in the catalogue.
+    try:
+        erode(part, t)
+    except Exception:  # noqa: BLE001
+        pass
+
+
+def _offset_survivable(part: Part, t: float, timeout: float = 120.0) -> bool:
+    """True when erode() can be attempted safely. OCCT does not merely fail on some shapes -- it
+    SEGFAULTS, seen on a tub with a through-mouth -- and a segfault takes the whole export down
+    with no traceback, so the module that triggered it is guesswork. A raised exception min_wall
+    already handles; a dead process it cannot. So the offset is rehearsed in a forked child
+    first: if the child dies on a signal, the parent skips straight to ray sampling. The `fork`
+    context inherits the shape through copy-on-write rather than pickling it (OCCT shapes do not
+    pickle), and the cost is one fork plus a duplicate erode on shapes that survive."""
+    try:
+        ctx = multiprocessing.get_context("fork")
+        child = ctx.Process(target=_erode_probe, args=(part, t), daemon=True)
+        child.start()
+        child.join(timeout)
+        if child.is_alive():
+            child.terminate()
+            child.join(5)
+            return False
+        return (child.exitcode or 0) >= 0  # negative exit code == killed by a signal
+    except Exception:  # noqa: BLE001  no fork available: let min_wall try and catch normally
+        return True
 
 
 def min_wall(part: Part, t: float, allow: tuple[Part, ...] = ()) -> tuple[bool, float, str]:
@@ -354,6 +451,9 @@ def min_wall(part: Part, t: float, allow: tuple[Part, ...] = ()) -> tuple[bool, 
     # Erode by slightly less than t/2 so a wall built exactly at the threshold (WALL == t)
     # is not collapsed by its own check.
     half = max(t / 2 - WALL_TOL, 1e-3)
+    if not _offset_survivable(part, half):
+        thin, worst, detail = ray_thickness(part, t, allow)
+        return not thin, round(worst, 3), f"ray sampling (offset crashes OCCT): {detail}"
     try:
         residual = part - dilate(erode(part, half), half)
     except Exception:  # noqa: BLE001  OCCT offset failure -> ray sampling instead

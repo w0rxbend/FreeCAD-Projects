@@ -11,6 +11,13 @@ TITLE = "Capacitor saddle (outboard L-bracket)"
 MATERIAL = "TPU95A"
 PRINT = {"cap_holder_right": (0, 0, -1), "cap_holder_left": (0, 0, -1)}
 EXCLUSIVE = ()
+ASSEMBLY_LABELS = ("cap_holder_right",)  # install ONE side; the pair is the left/right choice
+MOUNTS = ("plate_bottom underside Z 0 (the tab seats on it)",
+          "Ø4.5 waist hole (±28, 0) - the Ø4.0 boss locates in it, the bolt passes through",
+          "plate_bottom outboard edge at y ±7 (two 2.5 mm key posts bear on it, Z 0-1.8)")
+HARDWARE = ("1 x M3 x 8 up from below + 1 x M3 nut on top of the plate (grip 5.7 mm; M3 x 12 also "
+            "fits and leaves 6 mm of thread standing)",
+            "1 x 2.5 mm zip tie round the closed ring at |y| 10.5-13.5 as a capacitor backup")
 NOTES = (
     "Install ONE (right or left). The tab seats on the plate_bottom underside; the Ø4.0 boss locates in "
     "the Ø4.5 waist hole (±28, 0) and an M3 x 8 comes up from below (head in the Ø6.6 x 1.7 recess at "

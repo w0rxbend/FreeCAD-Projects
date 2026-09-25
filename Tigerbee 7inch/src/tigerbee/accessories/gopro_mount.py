@@ -13,6 +13,12 @@ TITLE = "GoPro / action-cam 3-finger mount"
 MATERIAL = "PETG"
 PRINT = {"gopro_mount": (0, 0, -1)}
 EXCLUSIVE = ("gps_mount",)
+MOUNTS = ("plate_top top face Z 36, y 56-96 (1250 mm² of bearing)",
+          "Ø4.6 accessory holes (±27.3, 91) and (±31.3, 63.5)")
+HARDWARE = ("4 x M3 x 10 button head + 4 x M3 nyloc nuts (heads in the Ø6.6 x 3 counterbores from "
+            "above, nuts under the plate)",
+            "1 x M5 thumb screw through the Ø5.5 axle + 1 x M5 nut (8.4 AF) captive in the +X "
+            "finger pocket - the GoPro 3-finger hinge hardware")
 NOTES = (
     "Bolts to the four Ø4.6 top-plate accessory holes (±27.3, 91) and (±31.3, 63.5) with M3 x 10 "
     "buttons (Ø6.6 x 3 counterbores from above, nyloc nuts under the plate); no registration bosses, "

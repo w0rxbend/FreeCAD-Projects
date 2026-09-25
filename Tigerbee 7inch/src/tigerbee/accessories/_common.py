@@ -14,6 +14,12 @@ from build123d import (Align, Axis, Box, Circle, Cylinder, GeomType, Location, P
 from tigerbee.accessories._fit import *  # noqa: F401,F403
 from tigerbee.accessories._fit import (EPS, MIN_Z_ALIGN, STANDOFF_D, STANDOFF_FIT, box, cylinder, isect,
                                        prop_discs)
+# The style vocabulary (STYLES, scale_features, the vent_* generators, mark(), suture(), the kits)
+# rides in on the same `import *` every accessory already does, so a module never has to remember
+# where the design language lives. It has ONE owner - import it, never fork a generator. The only
+# names it shares with _fit/_common are the build123d and math re-exports, which are the same
+# objects, so nothing here is shadowed.
+from tigerbee.accessories._style import *  # noqa: F401,F403,E402
 
 # --- materials and print rules ------------------------------------------------------------
 MATERIALS = {
@@ -105,16 +111,27 @@ def fov_wedge(tilt: float, cam_w: float = 21.0, half_angle: float = 50.0, length
 # --- builders -----------------------------------------------------------------------------
 def c_clip(center: tuple[float, float], z0: float, h: float, opening_deg: float = 0.0, material: str = "TPU95A",
            bore_d: float = D_CLIP_BORE, wall: float = CLIP_WALL, snap: float | None = None,
-           mouth_fillet: float = MOUTH_FILLET) -> Part:
-    """C-clip round a standoff axis: bore Ø bore_d, OD bore_d + 2 wall, Z z0..z0+h, mouth of width
-    STANDOFF_D - snap facing `opening_deg` (0 = +X, 90 = +Y, 180 = -X). Filleted mouth corners."""
-    snap = MATERIALS[material]["snap"] if snap is None else snap
-    r_in, r_out, mouth = bore_d / 2, bore_d / 2 + wall, STANDOFF_D - snap
-    slot = Rectangle(r_out + 1, mouth, align=(Align.MIN, Align.CENTER))  # from the centre outward
-    sk = (Circle(r_out) - Circle(r_in)) - slot
-    lips = sk.vertices().filter_by(lambda v: abs(abs(v.Y) - mouth / 2) < 1e-6)
-    if mouth_fillet > 0:
-        sk = fillet(lips, mouth_fillet)
+           mouth_fillet: float = MOUTH_FILLET, closed: bool = True) -> Part:
+    """Collar round a standoff axis: bore Ø bore_d, OD bore_d + 2 wall, Z z0..z0+h.
+
+    closed=True (the default) is a COMPLETE ring that encircles the standoff. That is the correct
+    interface: it cannot be levered off, it carries load all the way round, and it keeps the part
+    concentric instead of letting it splay at the mouth. The part is threaded on while the standoff
+    is out, or over the standoff before its plate goes back on.
+
+    closed=False cuts a mouth of width STANDOFF_D - snap facing `opening_deg` (0 = +X, 90 = +Y,
+    180 = -X) with filleted lips, so the part snaps on sideways with the frame assembled. Only use
+    it where fitting without disassembly is the whole point of the part, and say so where you call
+    it -- an open mouth is a deliberate trade of retention for serviceability, not a default."""
+    r_in, r_out = bore_d / 2, bore_d / 2 + wall
+    sk = Circle(r_out) - Circle(r_in)
+    if not closed:
+        snap = MATERIALS[material]["snap"] if snap is None else snap
+        mouth = STANDOFF_D - snap
+        sk -= Rectangle(r_out + 1, mouth, align=(Align.MIN, Align.CENTER))  # from the centre outward
+        lips = sk.vertices().filter_by(lambda v: abs(abs(v.Y) - mouth / 2) < 1e-6)
+        if mouth_fillet > 0:
+            sk = fillet(lips, mouth_fillet)
     return extrude(Plane.XY.offset(z0) * sk.rotate(Axis.Z, opening_deg), amount=h).moved(Location((*center, 0)))
 
 
@@ -193,11 +210,14 @@ def overhangs(part: Part, bed_normal=(0, 0, -1), min_area: float = 5.0, cos_limi
             bad.append(f"planar {f.area:.1f} mm² at Z {bb.min.Z:.1f}-{bb.max.Z:.1f}, normal.Z {nz:.2f}")
             continue
         if f.geom_type == GeomType.CYLINDER:
-            # A fillet face kept as Geom_RectangularTrimmedSurface has no .Cylinder(); sample it instead.
-            try:
-                cyl = f.geom_adaptor().Cylinder()
-            except AttributeError:
-                cyl = None
+            # A trimmed cylinder (a bore split by a boolean, a filleted run-out) arrives as a
+            # Geom_RectangularTrimmedSurface, which has no .Cylinder() of its own - its
+            # BasisSurface() does. Unwrap it, or a plain Ø6.5 bore printed on its side loses the
+            # arch exemption and is reported as an unsupported overhang.
+            surf = f.geom_adaptor()
+            while not hasattr(surf, "Cylinder") and hasattr(surf, "BasisSurface"):
+                surf = surf.BasisSurface()
+            cyl = surf.Cylinder() if hasattr(surf, "Cylinder") else None
             if cyl is not None and abs(cyl.Axis().Direction().Z()) < 0.01 and 2 * cyl.Radius() <= arch_d:
                 continue
         samples = [f.normal_at(u, v).Z for u in (0.15, 0.5, 0.85) for v in (0.15, 0.5, 0.85)]

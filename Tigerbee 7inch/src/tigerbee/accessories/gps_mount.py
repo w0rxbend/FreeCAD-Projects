@@ -9,6 +9,11 @@ TITLE = "GPS mast and platform (front)"
 MATERIAL = "PETG"
 PRINT = {"gps_mount": (0, 0, -1)}
 EXCLUSIVE = ("gopro_mount",)
+MOUNTS = ("plate_top top face Z 36, bridge y 58-74.5, |x| <= 35.2 (832 mm² of bearing)",
+          "Ø4.6 accessory holes (±31.3, 63.5)")
+HARDWARE = ("2 x M3 x 8 button head + 2 x M3 nyloc nuts (nuts under the plate)",
+            "4 x M2 x 6 self-tappers into the blind platform bores - 18 x 18 or 20 x 20 pattern, "
+            "3.6 mm of engagement (GEP-M10 / Matek M10Q)")
 NOTES = (
     "Bridge Z 36-40 on plate_top, two M3 x 8 buttons with nyloc nuts through the Ø4.6 accessory holes "
     "at (±31.3, 63.5). The bridge outline is the plate_top outline inset 1 mm, also held off the prop "
