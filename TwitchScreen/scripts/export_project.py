@@ -45,7 +45,7 @@ def write_3mf(path, named_meshes):
 
 def print_shape(name,shape,p):
     s = shape.copy()
-    if name in ('shell','lcd_retainer'):
+    if name in ('shell','lcd_retainer','face_bezel'):
         s.Placement = face_transform(p).inverse().multiply(s.Placement)
         if name == 'shell':
             s.rotate(V(0,0,0),V(1,0,0),180)
@@ -110,11 +110,18 @@ def main():
     # Print plate: already oriented and separated, with only printable solids.
     plate = {}
     offset = 0
+    row_y = 0
+    row_depth = 0
     for name,pm in print_meshes.items():
         pm = Mesh.Mesh(pm)
-        pm.translate(offset,0,0)
+        if offset+pm.BoundBox.XLength > 200:
+            row_y += row_depth+10
+            offset = 0
+            row_depth = 0
+        pm.translate(offset,row_y,0)
         plate[name] = pm
         offset += pm.BoundBox.XLength+10
+        row_depth = max(row_depth,pm.BoundBox.YLength)
     write_3mf(OUT/'3mf'/'print_plate.3mf',plate)
     assembly = {**parts,**hw}
     Import.export(list(objects.values()),str(OUT/'step'/'TwitchScreen_assembly.step'))

@@ -4,7 +4,7 @@ from pathlib import Path
 import FreeCAD as App
 import Part
 from pod_document import ROOT, DEFAULTS, geometry
-from pod_geometry import V, box, cylinder, at_face, pcb_holes, screw_centres
+from pod_geometry import V, box, cylinder, at_face, pcb_holes, screw_centres, rear_slot
 
 
 def main():
@@ -23,6 +23,18 @@ def main():
     outside = refs['inner'].cut(refs['outer']).common(box(250,250,150,-125,-125,3.001))
     report['cavity_outside_outer_mm3'] = outside.Volume
     assert outside.Volume < .001
+    vents = []
+    for sign in (-1,1):
+        for y in (-2,3,8):
+            for z in (8,13,18):
+                vents.append(Part.makeCylinder(1.5,15,V(sign*(p['BodyHalfWidth']+1),y,z),V(-sign,0,0)))
+    vents += [rear_slot(20,2.2,p['BodyCenterY']+p['BodyHalfDepth']-25,z,30) for z in (34,39,44)]
+    for vent in vents:
+        assert vent.common(parts['shell']).Volume < .001
+        assert vent.common(refs['outer']).Volume > 1 and vent.common(refs['inner']).Volume > 1
+    for y in (-8,-3,2,7,12,17):
+        assert box(17,2,p['BaseThickness']+2,-8.5,y-1,-1).common(parts['base']).Volume < .001
+    report['open_vents'] = {'side':18,'rear':3,'base':6}
     # Check actual screw head envelopes; threaded shanks intentionally engage bosses.
     back = -p['LcdRecess']-p['LcdGlassThickness']-p['LcdPcbThickness']
     heads = {
@@ -46,7 +58,7 @@ def main():
             assert overlap < .001, (a,b,overlap)
     # Straight downward extraction of the assembled base, PCB and headers.
     base_group = Part.makeCompound([parts['base']]+[v for k,v in hw.items()
-                if k.startswith('esp32') or k in ('buttons','usb_socket')])
+                if k.startswith('esp32') or k in ('buttons','usb_socket','rubber_feet')])
     sweep = {}
     for travel in (1,3,6,10,20,35):
         shifted = base_group.copy()
@@ -56,7 +68,7 @@ def main():
         assert overlap < .001, ('base extraction',travel,overlap)
     report['base_extraction_collisions_mm3'] = sweep
     # LCD insertion along the face normal (retract into the open cavity).
-    lcd_group = Part.makeCompound([hw[n] for n in ('lcd_pcb','lcd_glass','lcd_connector')])
+    lcd_group = Part.makeCompound([hw[n] for n in ('lcd_pcb','lcd_glass','lcd_connector','lcd_brass_mounts')])
     normal = App.Rotation(V(1,0,0),p['FaceAngle']).multVec(V(0,0,1))
     report['lcd_retraction_collisions_mm3'] = {}
     for travel in (1,3,6,10,15):

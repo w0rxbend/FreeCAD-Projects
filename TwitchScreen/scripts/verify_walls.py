@@ -21,7 +21,7 @@ def main():
     minimum = min(samples)
     report = {'samples':len(samples),'minimum_sampled_separation_mm':minimum[0],
               'minimum_location_mm':minimum[1],
-              'scope':'Exact surface distance at interior UV samples; excludes open bottom below Z=6. Includes 1.5 mm bezel seat. Not an exhaustive structural or print test.'}
+              'scope':'Exact distance between underlying unperforated body and cavity surfaces at UV samples above Z=6; includes 1.5 mm structural bezel seat. Excludes deliberate vents, screw holes, added rim and 0.8 mm adhesive fascia. Not an exhaustive structural or print test.'}
     assert minimum[0] >= 1.45, report
     (ROOT/'output/reports/wall_validation.json').write_text(json.dumps(report,indent=2))
     print('WALLS_VALIDATED',json.dumps(report),flush=True)

@@ -11,6 +11,10 @@
     "file": "render_meshes/lcd_retainer.stl",
     "hardware": false
   },
+  "face_bezel": {
+    "file": "render_meshes/face_bezel.stl",
+    "hardware": false
+  },
   "esp32_pcb": {
     "file": "render_meshes/esp32_pcb.stl",
     "hardware": true
@@ -43,8 +47,16 @@
     "file": "render_meshes/lcd_connector.stl",
     "hardware": true
   },
+  "lcd_brass_mounts": {
+    "file": "render_meshes/lcd_brass_mounts.stl",
+    "hardware": true
+  },
   "cable_route": {
     "file": "render_meshes/cable_route.stl",
+    "hardware": true
+  },
+  "rubber_feet": {
+    "file": "render_meshes/rubber_feet.stl",
     "hardware": true
   }
 }

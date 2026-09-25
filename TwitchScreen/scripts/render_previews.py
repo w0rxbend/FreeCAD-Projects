@@ -39,11 +39,13 @@ materials = {
     'shell':mat('Warm porcelain PETG',(.72,.70,.64),0,.33),
     'base':mat('Charcoal PETG',(.025,.032,.040),0,.38),
     'lcd_retainer':mat('Retainer PETG',(.18,.20,.23),0,.4),
+    'face_bezel':mat('Matte black face insert',(.011,.009,.016),0,.4),
     'pcb':mat('Solder mask',(.012,.12,.115),0,.4),
     'metal':mat('Brushed metal',(.42,.45,.49),.85,.25),
     'lcd_glass':mat('Display glass',(.009,.007,.017),.28,.14),
     'plastic':mat('Connector polymer',(.07,.075,.08),0,.45),
     'lcd_connector':mat('Connector ivory',(.68,.65,.52),0,.5),
+    'lcd_brass_mounts':mat('LCD brass mounting points',(.45,.27,.075),.8,.28),
 }
 objects = {}
 for name,desc in json.loads((OUT/'render_scene.json').read_text()).items():
@@ -55,7 +57,7 @@ for name,desc in json.loads((OUT/'render_scene.json').read_text()).items():
     key = name if name in materials else 'pcb' if 'pcb' in name else 'metal' if name in ('esp32_shield','usb_socket') else 'plastic'
     obj.data.materials.append(materials[key])
     # Keep planar hardware crisp; smooth the actual curved CAD surfaces only.
-    if name in ('shell','lcd_glass','lcd_retainer','base'):
+    if name in ('shell','lcd_glass','lcd_retainer','base','face_bezel'):
         obj.data.set_sharp_from_angle(angle=math.radians(35))
         for poly in obj.data.polygons:
             poly.use_smooth = True
@@ -67,7 +69,7 @@ floor_mat = mat('Studio background',(.18,.205,.23),0,.85)
 bpy.ops.mesh.primitive_plane_add(size=2)
 floor = bpy.context.object
 floor.name = 'Studio floor'
-floor.location.z = -.0003
+floor.location.z = -.0013
 floor.data.materials.append(floor_mat)
 
 
@@ -96,7 +98,7 @@ cam_data.clip_end = 5
 
 def render(name,position,target=(0,4,36),scale=128):
     requested = os.environ.get('TWITCH_RENDER_ONLY')
-    if requested and requested != name:
+    if requested and name not in requested.split(','):
         return
     camera.location = Vector(position)*.001
     camera.rotation_euler = (Vector(target)*.001-camera.location).to_track_quat('-Z','Y').to_euler()
@@ -117,32 +119,35 @@ cut.name = 'Cutaway tool'
 cut.dimensions = (.32,.4,.3)
 bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
 cut.hide_render = True
-for name in ('shell','base','lcd_retainer'):
+for name in ('shell','base','lcd_retainer','face_bezel'):
     mod = objects[name].modifiers.new('Right half removed for inspection','BOOLEAN')
     mod.operation = 'DIFFERENCE'
     mod.solver = 'EXACT'
     mod.object = cut
 render('05_section',(160,-90,90))
-for name in ('shell','base','lcd_retainer'):
+for name in ('shell','base','lcd_retainer','face_bezel'):
     objects[name].modifiers.remove(objects[name].modifiers.get('Right half removed for inspection'))
 
 objects['shell'].location.z = .055
+objects['face_bezel'].location = (0,-.02,.075)
 objects['lcd_retainer'].location = (-.07,-.01,.02)
 objects['cable_route'].hide_render = True
-for name in ('lcd_pcb','lcd_glass','lcd_connector'):
+for name in ('lcd_pcb','lcd_glass','lcd_connector','lcd_brass_mounts'):
     objects[name].location += Vector((0,-.035,.09))
 render('06_exploded',(150,-185,125),target=(0,-2,76),scale=220)
 for obj in objects.values():
     obj.location = (0,0,0)
     obj.hide_render = False
 
-for name in ('shell','base','lcd_retainer'):
+for name in ('shell','base','lcd_retainer','face_bezel'):
     for key,obj in objects.items():
         obj.hide_render = key != name
     if name == 'base':
         render('part_base',(85,-110,120),target=(0,4,6),scale=112)
     elif name == 'lcd_retainer':
         render('part_lcd_retainer',(45,-110,95),target=(0,0,48),scale=78)
+    elif name == 'face_bezel':
+        render('part_face_bezel',(45,-110,95),target=(0,-6,55),scale=78)
     else:
         floor.hide_render = True
         render('part_shell_interior',(75,120,-48),target=(0,0,32),scale=120)
@@ -154,5 +159,6 @@ camera.location = Vector((120,-165,105))*.001
 camera.rotation_euler = (Vector((0,4,36))*.001-camera.location).to_track_quat('-Z','Y').to_euler()
 cam_data.ortho_scale = .128
 scene.render.filepath = str(OUT/'preview'/'01_front_hero.png')
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'preview'/'TwitchScreen.blend'))
+if not os.environ.get('TWITCH_SKIP_BLEND_SAVE'):
+    bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'preview'/'TwitchScreen.blend'))
 print('RENDERS_COMPLETE',flush=True)

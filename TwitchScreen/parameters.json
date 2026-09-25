@@ -21,6 +21,10 @@
   "LcdConnectorDepth": 6.5,
   "LcdConnectorHeight": 6.0,
   "LcdConnectorV": 10.0,
+  "LcdMountPitchX": 27.0,
+  "LcdMountPitchV": 19.0,
+  "LcdMountDiameter": 4.0,
+  "LcdMountProjection": 1.2,
   "EspWidth": 28.0,
   "EspLength": 55.0,
   "EspThickness": 1.6,
@@ -49,6 +53,7 @@
   "UsbBottomOffset": 0.0,
   "UsbPlugWidth": 14.0,
   "UsbPlugHeight": 9.0,
+  "UsbPlugCornerRadius": 2.0,
   "BaseScrewX": 24.0,
   "BaseScrewY": 19.0,
   "CableBundleDiameter": 4.4

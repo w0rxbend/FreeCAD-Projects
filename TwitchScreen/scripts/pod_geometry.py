@@ -13,6 +13,25 @@ def cylinder(r, h, x=0, y=0, z=0):
     return Part.makeCylinder(r, h, V(x, y, z))
 
 
+def rear_slot(width, height, y, z, depth):
+    mid = box(width-height,depth,height,-(width-height)/2,y,z-height/2)
+    ends = [Part.makeCylinder(height/2,depth,V(x,y,z),V(0,1,0))
+            for x in (-(width-height)/2,(width-height)/2)]
+    return mid.multiFuse(ends)
+
+
+def rounded_port(width,height,radius,depth,position):
+    if radius <= 0:
+        return box(width,depth,height,position.x-width/2,position.y,position.z-height/2)
+    assert radius < min(width,height)/2
+    pieces = [box(width-2*radius,depth,height,position.x-width/2+radius,position.y,position.z-height/2),
+              box(width,depth,height-2*radius,position.x-width/2,position.y,position.z-height/2+radius)]
+    for dx in (-width/2+radius,width/2-radius):
+        for dz in (-height/2+radius,height/2-radius):
+            pieces.append(Part.makeCylinder(radius,depth,position+V(dx,0,dz),V(0,1,0)))
+    return pieces[0].multiFuse(pieces[1:])
+
+
 def ellipse(rx, ry, cy, z):
     # Keep seam and winding consistent with the top circle.
     e = Part.Ellipse(V(0, cy + ry, z), V(-rx, cy, z), V(0, cy, z))
@@ -78,12 +97,29 @@ def core(p):
     shell = shell.cut(opening)
     usb = usb_placement(p)
     start = usb.y-p['UsbLength']-.5
-    port = box(p['UsbPlugWidth'],p['BodyCenterY']+p['BodyHalfDepth']+10-start,p['UsbPlugHeight'],
-               usb.x-p['UsbPlugWidth']/2, start,
-               usb.z-p['UsbPlugHeight']/2)
+    port = rounded_port(p['UsbPlugWidth'],p['UsbPlugHeight'],p['UsbPlugCornerRadius'],
+                        p['BodyCenterY']+p['BodyHalfDepth']+10-start,V(usb.x,start,usb.z))
     shell = shell.cut(port)
+    # Vent pattern comes from the supplied appearance references, not their
+    # unverified dimensions. All cuts stop at the local side/rear cavity.
+    for height in (34,39,44):
+        shell = shell.cut(rear_slot(20,2.2,p['BodyCenterY']+p['BodyHalfDepth']-25,height,30))
+    for sign in (-1,1):
+        for y in (-2,3,8):
+            for z in (8,13,18):
+                vent = Part.makeCylinder(1.5,15,V(sign*(p['BodyHalfWidth']+1),y,z),V(-sign,0,0))
+                shell = shell.cut(vent)
+    # Raised fine rim surrounds a separate matte black face insert. A 0.15 mm
+    # adhesive film seats the insert without thinning the structural bezel.
+    rim = cylinder(p['FaceRadius'],1.05,z=-.1).cut(cylinder(p['FaceRadius']-1.15,1.3,z=-.2))
+    shell = shell.fuse(at_face(rim,p))
     base = Part.Face(ellipse(p['BodyHalfWidth'], p['BodyHalfDepth'],
                             p['BodyCenterY'], 0)).extrude(V(0,0,p['BaseThickness']-0.2))
+    for y in (-8,-3,2,7,12,17):
+        slot = box(18,2.2,p['BaseThickness']+2,-9,y-1.1,-1)
+        for x in (-9,9):
+            slot = slot.fuse(cylinder(1.1,p['BaseThickness']+2,x,y,-1))
+        base = base.cut(slot)
     return {'shell': shell, 'base': base}, {'outer': outer, 'inner': inner, 'usb_keepout': port}
 
 
@@ -133,6 +169,11 @@ def hardware(p):
     conn = box(p['LcdConnectorWidth'],p['LcdConnectorDepth'],p['LcdConnectorHeight'],
                -p['LcdConnectorWidth']/2,p['LcdConnectorV']-p['LcdConnectorDepth']/2,
                t-p['LcdConnectorHeight'])
+    brass = []
+    for x in (-p['LcdMountPitchX']/2,p['LcdMountPitchX']/2):
+        for v in (-p['LcdMountPitchV']/2,p['LcdMountPitchV']/2):
+            mount = cylinder(p['LcdMountDiameter']/2,p['LcdMountProjection'],x,v,t-p['LcdMountProjection'])
+            brass.append(mount.cut(cylinder(.9,p['LcdMountProjection']+1,x,v,t-p['LcdMountProjection']-.5)))
     # A 4.4 mm routing corridor for the eight-wire loom; exact pin assignment is
     # firmware dependent. Rounded polyline reserves bend space inside the pod.
     pose = face_transform(p)
@@ -147,10 +188,12 @@ def hardware(p):
         delta = b-a
         tubes.append(Part.makeCylinder(radius,delta.Length,a,delta))
     cable = tubes[0].multiFuse(tubes[1:])
+    feet = Part.makeCompound([cylinder(4,1.5,x,y,-1) for x in (-15,15) for y in (-24,33)])
     return {'esp32_pcb':pcb,'esp32_shield':shield,'esp32_headers':Part.makeCompound(headers),
             'usb_socket':socket,'buttons':buttons,'lcd_pcb':at_face(lcd,p),
             'lcd_glass':at_face(glass,p),'lcd_connector':at_face(conn,p),
-            'cable_route':cable}, {
+            'lcd_brass_mounts':at_face(Part.makeCompound(brass),p),
+            'cable_route':cable,'rubber_feet':feet}, {
                 'header_housings':Part.makeCompound(sockets)}
 
 
@@ -189,6 +232,11 @@ def build(p):
                          -p['LcdConnectorWidth']/2-1,6,back-3))
     ring = ring.cut(box(p['LcdTabWidth']+1,6,4,
                          -p['LcdTabWidth']/2-.5,-22.2,back-3))
+    # Clear the four brass mounting points visible in the hardware photos.
+    # These are generous reliefs, not screw interfaces to unknown LCD threads.
+    for x in (-p['LcdMountPitchX']/2,p['LcdMountPitchX']/2):
+        for v in (-p['LcdMountPitchV']/2,p['LcdMountPitchV']/2):
+            ring = ring.cut(cylinder(p['LcdMountDiameter']/2+1,4,x,v,back-3))
     for x in (-22.5,22.5):
         boss = at_face(cylinder(3.3,-p['LcdRecess']-back+.1,x,0,back),p)
         shell = shell.fuse(boss.common(refs['outer']))
@@ -196,8 +244,10 @@ def build(p):
         ring = ring.cut(cylinder(1.1,4,x,0,back-3))
     # OCCT same-domain refinement corrupts the trimmed loft after boss union.
     # Preserve the valid boolean faces; never repair by dropping faces/solids.
+    fascia = cylinder(p['FaceRadius']-1.4,.8,z=.15).cut(cylinder(p['DisplayOpening']/2+.1,1.2,z=0))
     parts = {'shell':shell,'base':base.removeSplitter(),
-             'lcd_retainer':at_face(ring.removeSplitter(),p)}
+             'lcd_retainer':at_face(ring.removeSplitter(),p),
+             'face_bezel':at_face(fascia,p)}
     hw, keepouts = hardware(p)
     refs.update(keepouts)
     return parts, hw, refs

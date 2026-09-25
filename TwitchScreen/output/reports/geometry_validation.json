@@ -3,21 +3,21 @@
     "shell": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 35729.6423130011,
-      "mesh_volume_mm3": 35714.30859375,
-      "triangles": 26152,
+      "volume_mm3": 35256.0818051147,
+      "mesh_volume_mm3": 35241.359375,
+      "triangles": 45140,
       "size_mm": [
         64.0,
         85.99902725219727,
-        74.52416229248047
+        75.06906127929688
       ]
     },
     "base": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 13802.36735932868,
-      "mesh_volume_mm3": 13796.9404296875,
-      "triangles": 9832,
+      "volume_mm3": 13073.225064399316,
+      "mesh_volume_mm3": 13067.8154296875,
+      "triangles": 12472,
       "size_mm": [
         63.992835998535156,
         85.99115753173828,
@@ -27,19 +27,32 @@
     "lcd_retainer": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 1681.6638943682929,
-      "mesh_volume_mm3": 1680.2955322265625,
-      "triangles": 1516,
+      "volume_mm3": 1569.1920780425924,
+      "mesh_volume_mm3": 1567.57421875,
+      "triangles": 2252,
       "size_mm": [
         48.9984130859375,
         28.422877311706543,
         39.160972595214844
+      ]
+    },
+    "face_bezel": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1011.140445113795,
+      "mesh_volume_mm3": 1010.5070190429688,
+      "triangles": 840,
+      "size_mm": [
+        52.18831825256348,
+        30.592660903930664,
+        43.213809967041016
       ]
     }
   },
   "collisions_mm3": {
     "shell / base": 0.0,
     "shell / lcd_retainer": 0.0,
+    "shell / face_bezel": 0.0,
     "shell / esp32_pcb": 0.0,
     "shell / esp32_shield": 0.0,
     "shell / esp32_headers": 0.0,
@@ -48,9 +61,12 @@
     "shell / lcd_pcb": 0.0,
     "shell / lcd_glass": 0.0,
     "shell / lcd_connector": 0.0,
+    "shell / lcd_brass_mounts": 0.0,
     "shell / cable_route": 0.0,
+    "shell / rubber_feet": 0.0,
     "shell / header_housings": 0.0,
     "base / lcd_retainer": 0.0,
+    "base / face_bezel": 0.0,
     "base / esp32_pcb": 0.0,
     "base / esp32_shield": 0.0,
     "base / esp32_headers": 0.0,
@@ -59,8 +75,11 @@
     "base / lcd_pcb": 0.0,
     "base / lcd_glass": 0.0,
     "base / lcd_connector": 0.0,
+    "base / lcd_brass_mounts": 0.0,
     "base / cable_route": 0.0,
+    "base / rubber_feet": 0.0,
     "base / header_housings": 0.0,
+    "lcd_retainer / face_bezel": 0.0,
     "lcd_retainer / esp32_pcb": 0.0,
     "lcd_retainer / esp32_shield": 0.0,
     "lcd_retainer / esp32_headers": 0.0,
@@ -69,8 +88,22 @@
     "lcd_retainer / lcd_pcb": 0.0,
     "lcd_retainer / lcd_glass": 0.0,
     "lcd_retainer / lcd_connector": 0.0,
+    "lcd_retainer / lcd_brass_mounts": 0.0,
     "lcd_retainer / cable_route": 0.0,
-    "lcd_retainer / header_housings": 0.0
+    "lcd_retainer / rubber_feet": 0.0,
+    "lcd_retainer / header_housings": 0.0,
+    "face_bezel / esp32_pcb": 0.0,
+    "face_bezel / esp32_shield": 0.0,
+    "face_bezel / esp32_headers": 0.0,
+    "face_bezel / usb_socket": 0.0,
+    "face_bezel / buttons": 0.0,
+    "face_bezel / lcd_pcb": 0.0,
+    "face_bezel / lcd_glass": 0.0,
+    "face_bezel / lcd_connector": 0.0,
+    "face_bezel / lcd_brass_mounts": 0.0,
+    "face_bezel / cable_route": 0.0,
+    "face_bezel / rubber_feet": 0.0,
+    "face_bezel / header_housings": 0.0
   },
   "clearances_mm": {
     "header_housing_to_base": 2.6499999999999986
@@ -88,13 +121,14 @@
     ],
     "shell_overlap_mm3": 0.0,
     "front_port": false,
-    "front_wall_probe_volume_mm3": 94.74227030487299
+    "front_wall_probe_volume_mm3": 94.74227032550202
   },
   "freecad_reopen": true,
   "step_roundtrip": {
     "shell": true,
     "base": true,
-    "lcd_retainer": true
+    "lcd_retainer": true,
+    "face_bezel": true
   },
   "parameters": {
     "BodyHalfWidth": 32.0,
@@ -119,6 +153,10 @@
     "LcdConnectorDepth": 6.5,
     "LcdConnectorHeight": 6.0,
     "LcdConnectorV": 10.0,
+    "LcdMountPitchX": 27.0,
+    "LcdMountPitchV": 19.0,
+    "LcdMountDiameter": 4.0,
+    "LcdMountProjection": 1.2,
     "EspWidth": 28.0,
     "EspLength": 55.0,
     "EspThickness": 1.6,
@@ -147,6 +185,7 @@
     "UsbBottomOffset": 0.0,
     "UsbPlugWidth": 14.0,
     "UsbPlugHeight": 9.0,
+    "UsbPlugCornerRadius": 2.0,
     "BaseScrewX": 24.0,
     "BaseScrewY": 19.0,
     "CableBundleDiameter": 4.4

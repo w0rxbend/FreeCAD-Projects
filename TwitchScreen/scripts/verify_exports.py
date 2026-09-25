@@ -33,7 +33,7 @@ def read_3mf(path):
 def main():
     cad = json.loads((OUT/'reports/geometry_validation.json').read_text())
     report = {'parts':{},'print_plate':{}}
-    for name in ('shell','base','lcd_retainer'):
+    for name in ('shell','base','lcd_retainer','face_bezel'):
         stl = trimesh.load_mesh(OUT/'stl'/f'{name}.stl')
         mf = read_3mf(OUT/'3mf'/f'{name}.3mf')[name]
         for fmt,m in [('stl',stl),('3mf',mf)]:
@@ -47,9 +47,10 @@ def main():
             'volume_mm3':float(stl.volume),'print_extents_mm':stl.extents.tolist()}
     plate = read_3mf(OUT/'3mf/print_plate.3mf')
     assert set(plate)==set(report['parts'])
-    ordered = sorted(plate.items(),key=lambda kv:kv[1].bounds[0,0])
-    for (_,left),(_,right) in zip(ordered,ordered[1:]):
-        assert right.bounds[0,0]-left.bounds[1,0] >= 9.99
+    for i,left in enumerate(plate.values()):
+        for right in list(plate.values())[i+1:]:
+            gap = np.maximum(left.bounds[0,:2]-right.bounds[1,:2],right.bounds[0,:2]-left.bounds[1,:2])
+            assert np.max(gap) >= 9.99
     report['print_plate'] = {'objects':list(plate),'separation_at_least_mm':9.99,
         'extents_mm':(np.max([m.bounds[1] for m in plate.values()],axis=0)-
                       np.min([m.bounds[0] for m in plate.values()],axis=0)).tolist()}
