@@ -1,0 +1,8 @@
+__pycache__/
+*.FCStd1
+*.FCBak
+build.log
+*.log
+*.blend1
+scratch/
+TwitchScreen-deliverables.zip
