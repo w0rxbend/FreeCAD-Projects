@@ -56,6 +56,12 @@ def main():
     assembly = read_3mf(OUT/'3mf/TwitchScreen_assembly_view_only.3mf')
     assert {'shell','base','lcd_retainer','usb_socket','esp32_pcb','lcd_pcb'} <= set(assembly)
     report['assembly_3mf_objects'] = list(assembly)
+    assembly_stl = trimesh.load_mesh(OUT/'stl/TwitchScreen_assembly_view_only.stl')
+    combined = trimesh.util.concatenate(list(assembly.values()))
+    assert len(assembly_stl.faces) == len(combined.faces)
+    assert np.allclose(assembly_stl.bounds,combined.bounds,atol=1e-4)
+    assert abs(assembly_stl.volume/combined.volume-1) < 1e-5
+    report['assembly_stl_matches_3mf'] = True
     for path in (OUT/'freecad').glob('*.FCStd'):
         with zipfile.ZipFile(path) as z:
             assert z.testzip() is None and 'Document.xml' in z.namelist()

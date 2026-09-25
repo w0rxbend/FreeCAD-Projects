@@ -118,7 +118,10 @@ def main():
     write_3mf(OUT/'3mf'/'print_plate.3mf',plate)
     assembly = {**parts,**hw}
     Import.export(list(objects.values()),str(OUT/'step'/'TwitchScreen_assembly.step'))
-    Part.makeCompound(list(assembly.values())).exportStl(str(OUT/'stl'/'TwitchScreen_assembly_view_only.stl'))
+    assembly_mesh = Mesh.Mesh()
+    for shape in assembly.values():
+        assembly_mesh.addMesh(mesh(shape))
+    assembly_mesh.write(str(OUT/'stl'/'TwitchScreen_assembly_view_only.stl'))
     write_3mf(OUT/'3mf'/'TwitchScreen_assembly_view_only.3mf',
               {n:mesh(s) for n,s in assembly.items()})
     doc.saveAs(str(OUT/'freecad'/'TwitchScreen.FCStd'))

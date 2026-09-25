@@ -1,0 +1,270 @@
+{
+  "units": "millimetres",
+  "status": "nominal CAD verified; hardware measurements pending",
+  "files": {
+    "1000011984.jpg": {
+      "bytes": 300347,
+      "sha256": "a05f843aac1d720fd2c1e98ee107654cea30bd0d8e4f7abd14f5ce11bcbb7a61"
+    },
+    "1000011986.jpg": {
+      "bytes": 268233,
+      "sha256": "342e6834660122fa243443eed1a50616ba5156705cd54b9b4f08e861318e8005"
+    },
+    "1000011987.jpg": {
+      "bytes": 223848,
+      "sha256": "9843c913efa3ec8dff34100586633865028ab8326a6d22c19777a6242287e57c"
+    },
+    "1000011988.jpg": {
+      "bytes": 183121,
+      "sha256": "9480c266510dfe7a326de2888e947f3316c9562b497d821089cfaee99576ab37"
+    },
+    "PLAN.md": {
+      "bytes": 4771,
+      "sha256": "140da040c4dd0352766b548306cfaec7068c92e26756fad869f05896cb9debf2"
+    },
+    "README.md": {
+      "bytes": 6182,
+      "sha256": "aef4af4cf48f6f919a52df51c26748fc455ac5872694c5a7b45a8c45d372fa3d"
+    },
+    "TwitchScreen.FCMacro": {
+      "bytes": 966,
+      "sha256": "11c2bdbe6f5e7d84aa05e2099c9aa181297f4303516e7c4c635060bdc403c5cb"
+    },
+    "docs/completion_audit.md": {
+      "bytes": 3712,
+      "sha256": "85fa01a97871f93b15caff2cea7150dd67800bf171267f8cc79387ae3e218fa8"
+    },
+    "docs/measurement_checklist.md": {
+      "bytes": 3234,
+      "sha256": "aa7535d28bb0de0b15c98e342c1a6d94d687b0a60eadd798264638ff776ef597"
+    },
+    "docs/reference_analysis.md": {
+      "bytes": 4483,
+      "sha256": "fd3a4bb15f08a60ae6c101b0c3dd6615d0e93195680c2c366382e51ff5400573"
+    },
+    "output/3mf/TwitchScreen_assembly_view_only.3mf": {
+      "bytes": 670098,
+      "sha256": "2c26ca6f482a5d96233b9cbe9f61bddb3022cb95e2c04764df77a2bd919c07f7"
+    },
+    "output/3mf/base.3mf": {
+      "bytes": 102950,
+      "sha256": "3319e8354ee837bb8f8710fbefaf4f1989e790c988e45deda4dd5662afdd990c"
+    },
+    "output/3mf/lcd_retainer.3mf": {
+      "bytes": 16793,
+      "sha256": "4d876667c679d868c74a11870360d5a2f08e7a0c84beedfa9c5e74d68e7ee550"
+    },
+    "output/3mf/print_plate.3mf": {
+      "bytes": 504097,
+      "sha256": "c2c9327e7d307be0190e2c46818266925c8524b11f4cdda5f715c4ef4cfdf872"
+    },
+    "output/3mf/shell.3mf": {
+      "bytes": 385092,
+      "sha256": "34875bbda1d1a3c3542848962eb6f9ad7aef8e4ee59708276f417e6dd98a0443"
+    },
+    "output/freecad/TwitchScreen.FCStd": {
+      "bytes": 133435,
+      "sha256": "2fc5eb31225283107d9d42b97408fe960c68d18db3b612aa4c6cbeecb9abec46"
+    },
+    "output/freecad/base.FCStd": {
+      "bytes": 33822,
+      "sha256": "3a09be6103cf291cbcd8e33d5312fce653f6b47fa51a43154a7d88efb52c82c4"
+    },
+    "output/freecad/lcd_retainer.FCStd": {
+      "bytes": 5346,
+      "sha256": "5dbd484086cb6d2168ad0dce36aa81b34182d27dbad40f2925fca6f939f19c69"
+    },
+    "output/freecad/shell.FCStd": {
+      "bytes": 56991,
+      "sha256": "52e99949643de794e2ef1267246c967905d7521c481b78823226658923d8e415"
+    },
+    "output/index.html": {
+      "bytes": 3960,
+      "sha256": "84ba2382d6e7c3df8eb45363a3c8e7fd4905ec94e9242935ed0fbfd5f43e129d"
+    },
+    "output/preview/01_front_hero.png": {
+      "bytes": 2568010,
+      "sha256": "cbff785c838b95d90b5f45572e6468c253029491a33478f61b9526a672277d00"
+    },
+    "output/preview/02_rear_usb.png": {
+      "bytes": 2531503,
+      "sha256": "7db5dc58392c81cb7f00ad3945222b2ccc79eeb6426f9fc6eeda5b846d640c1e"
+    },
+    "output/preview/03_side.png": {
+      "bytes": 2550297,
+      "sha256": "838fc35f843486035065f995d063d953f9c2a68a69c77657ce9637c9ae15ead4"
+    },
+    "output/preview/04_front.png": {
+      "bytes": 2597242,
+      "sha256": "b8ae98a103c54dc6fc7804bef2cb209f2ee30d60f8ba2e35e7e6bccfda30645e"
+    },
+    "output/preview/05_section.png": {
+      "bytes": 2652748,
+      "sha256": "7d077a8febfd407c473d4eddf8bf1e5a8e3faa56abf7f791f5496375781e0ffc"
+    },
+    "output/preview/06_exploded.png": {
+      "bytes": 2621794,
+      "sha256": "1f17d0453ceba7e3e61870134219b30baf75258c731abd824b4183a8691349d8"
+    },
+    "output/preview/TwitchScreen.blend": {
+      "bytes": 1208636,
+      "sha256": "ad190608f76128cddd27883594444f2159e91fd8c125549bc1b839da4b5c20f2"
+    },
+    "output/preview/part_base.png": {
+      "bytes": 2514928,
+      "sha256": "f1edd860c5f2a78e89787a813df256a307ad50997c8058b34ce8cda8b5c37f5c"
+    },
+    "output/preview/part_lcd_retainer.png": {
+      "bytes": 2472809,
+      "sha256": "1482ac929fe3203aa31371fd1255ff0dcdd28045a1cd5b779dc711f207b14b0e"
+    },
+    "output/preview/part_shell_interior.png": {
+      "bytes": 2174087,
+      "sha256": "a8e1e5eae0029ce6209b41f8e64f6b6876c57692fde1acbb49af7c841d8bc944"
+    },
+    "output/render_meshes/base.stl": {
+      "bytes": 491684,
+      "sha256": "40a1a58bcb175c55dad757373ba632f003b969ae67f9b02bd1382ed1f670362e"
+    },
+    "output/render_meshes/buttons.stl": {
+      "bytes": 1284,
+      "sha256": "df652fd1f8e2eec2664628ab139513ff654374b54b429db558a2efc6fa4aa03e"
+    },
+    "output/render_meshes/cable_route.stl": {
+      "bytes": 514184,
+      "sha256": "9c5491035b1d3e5e0f9e770ccfeb93d8c8f64cac45a30907811d58bf857e37d4"
+    },
+    "output/render_meshes/esp32_headers.stl": {
+      "bytes": 19284,
+      "sha256": "665f50753e3de62f072b94b2e190c1412018c405c23faa2a9ea03144f78fefe6"
+    },
+    "output/render_meshes/esp32_pcb.stl": {
+      "bytes": 85484,
+      "sha256": "e9ac502c8ef70ff1e869ce64cf90e055ab56954d3888743eaf7e8fa9cc9e7ed2"
+    },
+    "output/render_meshes/esp32_shield.stl": {
+      "bytes": 684,
+      "sha256": "6e202ad2bf156506aa40bfe2b952b70af809965337cf0e3970cae96eec894eb6"
+    },
+    "output/render_meshes/lcd_connector.stl": {
+      "bytes": 684,
+      "sha256": "e99ee1448169f6d21f2ec41526eae5aa0cde769545eca2a445bee5d3bd9d8431"
+    },
+    "output/render_meshes/lcd_glass.stl": {
+      "bytes": 20884,
+      "sha256": "21dbe2b35b3d6e1c49226d884dded8253e2c02fba7c87ad31791d2d8a487ab0e"
+    },
+    "output/render_meshes/lcd_pcb.stl": {
+      "bytes": 19084,
+      "sha256": "a759e8740e355d00a3fb5d48f12f57d0289758c95a0b5e1dab959db6ad4ea50f"
+    },
+    "output/render_meshes/lcd_retainer.stl": {
+      "bytes": 75884,
+      "sha256": "037da67cbfc528b58858c516ca284c49bd1dd17705c941897609403958e2d5ae"
+    },
+    "output/render_meshes/shell.stl": {
+      "bytes": 1307684,
+      "sha256": "15814f91980c327b98248b6846da4ddb27ea98db1e54cc441b2ad74442e3a646"
+    },
+    "output/render_meshes/usb_socket.stl": {
+      "bytes": 1484,
+      "sha256": "81b0fe38951cc50b8011a3e19f7a63ae91bf0316a14d5509579ee6a81e2f1e09"
+    },
+    "output/render_scene.json": {
+      "bytes": 1045,
+      "sha256": "24a4f1f5067062fba81718d7f0e7d1f2ef07f976330ddc5aebe875c71622fe76"
+    },
+    "output/reports/assembly_validation.json": {
+      "bytes": 2879,
+      "sha256": "abc3c91db91b8709e5ab840d3ffa7f9b960ee617ca4614ba9b591d2cc3975638"
+    },
+    "output/reports/geometry_validation.json": {
+      "bytes": 3912,
+      "sha256": "6dd925daa57d3ecc81e245ef028ecd4525f63e7b366de3c8709293810e05a7e5"
+    },
+    "output/reports/mesh_validation.json": {
+      "bytes": 1505,
+      "sha256": "8027dfb209c6f8fb6d3d5b493eda5d8ecc5ab4755a224e0235612dedecb8ab8d"
+    },
+    "output/reports/wall_validation.json": {
+      "bytes": 341,
+      "sha256": "e80dd77edb1b697e590b66de39f06cd447b92b3fa291c144cb6b3f3b18494955"
+    },
+    "output/step/TwitchScreen_assembly.step": {
+      "bytes": 708800,
+      "sha256": "e72ccc24f4a02457043eef402662180f9e691d2cec71cb7242cc8c6695246d73"
+    },
+    "output/step/base.step": {
+      "bytes": 145225,
+      "sha256": "31d179c25b033a46897796119a3ef3ec44e809f524835ebc1c0a8fbddf34c5f0"
+    },
+    "output/step/lcd_retainer.step": {
+      "bytes": 19482,
+      "sha256": "312bef9a74e1a642fd1fa1572f5b1e9de9d6f6a4cfd8bec6da4695d0d2b73017"
+    },
+    "output/step/shell.step": {
+      "bytes": 252283,
+      "sha256": "2edd76812061259d955d559e1ecc44599980d4fc82a238641a01fb5e219abb18"
+    },
+    "output/stl/TwitchScreen_assembly_view_only.stl": {
+      "bytes": 2537384,
+      "sha256": "4df91d1ac1fcb58447005ed1d824f66f755c9d6d7631b767ee76c5834558657b"
+    },
+    "output/stl/base.stl": {
+      "bytes": 491684,
+      "sha256": "53525b9183367bf92a3d54e230b73b6270562014743816bf61caa4dac6c0dd0e"
+    },
+    "output/stl/lcd_retainer.stl": {
+      "bytes": 75884,
+      "sha256": "18504cbf91e765d43a9717096d5683d8e08dfb8c84b64d0dfd6ac149377a3ae2"
+    },
+    "output/stl/shell.stl": {
+      "bytes": 1308084,
+      "sha256": "b95f2375c121772a0c4039ed5f019833e4b84a2ab2a8beaaed61f5118562ace0"
+    },
+    "parameters.json": {
+      "bytes": 1277,
+      "sha256": "86781d28742836795b25a21b089a5e43057043e0f7045c288f7f40dec61a5b0a"
+    },
+    "refs/waveshare_dimensions.jpg": {
+      "bytes": 144307,
+      "sha256": "5003c42f3b082ca11e2b90844c324d18ec428375b89425fb172e05dfe9cd40d8"
+    },
+    "refs/waveshare_rear.jpg": {
+      "bytes": 184701,
+      "sha256": "7944f40596761180b76a91ee17a5263ac707c40b745bc9ad043d4f7c1bd352a0"
+    },
+    "scripts/export_project.py": {
+      "bytes": 7118,
+      "sha256": "fb33f23b0b02a16965b3fa5d4bb078a229a5156f1114c89d0faa42830c997b53"
+    },
+    "scripts/package_project.py": {
+      "bytes": 4834,
+      "sha256": "8fa00ddb67c701fb28d327dc344cec88542f945854759f72e3ad21cbeb818669"
+    },
+    "scripts/pod_document.py": {
+      "bytes": 2574,
+      "sha256": "51bb72eb03d49207f60743af73cbf8fdaab63925b0c26d5deb94df7343351aec"
+    },
+    "scripts/pod_geometry.py": {
+      "bytes": 9689,
+      "sha256": "99ce7b66bd666fb0fb413cf4e5a15a82a9e817312ae54658c07e78b48c64811d"
+    },
+    "scripts/render_previews.py": {
+      "bytes": 5993,
+      "sha256": "f846175ef7a122a3968e35290b69d047c810c3b62e8b9f35b11441ff025ed980"
+    },
+    "scripts/verify_assembly.py": {
+      "bytes": 4647,
+      "sha256": "63633a05690ff03a441f58f16dff1e370fcdabbf1757aa3db8de7c705016868e"
+    },
+    "scripts/verify_exports.py": {
+      "bytes": 3618,
+      "sha256": "3b4fc39793037e7b7f107a2c569a5416e7fdcd2434aa35ea62a0c719e1d0217a"
+    },
+    "scripts/verify_walls.py": {
+      "bytes": 1306,
+      "sha256": "a77f9ebe2d9716e4333fa09c22cc3fe064a77956242d3b5e3aae4fee0bf6be19"
+    }
+  }
+}

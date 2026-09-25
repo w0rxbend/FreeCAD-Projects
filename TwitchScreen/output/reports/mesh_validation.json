@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "shell": {
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "on_print_bed": true,
+      "stl_matches_3mf": true,
+      "volume_mm3": 35713.510651030985,
+      "print_extents_mm": [
+        63.9999996675115,
+        88.44979095458986,
+        75.71450037437269
+      ]
+    },
+    "base": {
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "on_print_bed": true,
+      "stl_matches_3mf": true,
+      "volume_mm3": 13796.824538515733,
+      "print_extents_mm": [
+        63.99283560051984,
+        85.9911561151381,
+        17.0
+      ]
+    },
+    "lcd_retainer": {
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "on_print_bed": true,
+      "stl_matches_3mf": true,
+      "volume_mm3": 1680.2978671118053,
+      "print_extents_mm": [
+        48.998413973077106,
+        46.12621996155309,
+        2.3999999046325797
+      ]
+    }
+  },
+  "print_plate": {
+    "objects": [
+      "shell",
+      "base",
+      "lcd_retainer"
+    ],
+    "separation_at_least_mm": 9.99,
+    "extents_mm": [
+      196.9912406675115,
+      88.44979100000002,
+      75.7145004
+    ]
+  },
+  "assembly_3mf_objects": [
+    "shell",
+    "base",
+    "lcd_retainer",
+    "esp32_pcb",
+    "esp32_shield",
+    "esp32_headers",
+    "usb_socket",
+    "buttons",
+    "lcd_pcb",
+    "lcd_glass",
+    "lcd_connector",
+    "cable_route"
+  ],
+  "assembly_stl_matches_3mf": true
+}

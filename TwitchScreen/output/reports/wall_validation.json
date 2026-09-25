@@ -1,0 +1,10 @@
+{
+  "samples": 695,
+  "minimum_sampled_separation_mm": 1.4999999999999958,
+  "minimum_location_mm": [
+    -9.166666666666668,
+    6.618681599723015,
+    73.02134497435782
+  ],
+  "scope": "Exact surface distance at interior UV samples; excludes open bottom below Z=6. Includes 1.5 mm bezel seat. Not an exhaustive structural or print test."
+}
