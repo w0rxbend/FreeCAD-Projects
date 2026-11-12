@@ -23,6 +23,7 @@ from zhalo.outline import (
     face,
     lobe,
     mirrored,
+    polygon,
     rounded_poly,
     rounded_rect,
     scallop,
@@ -183,7 +184,7 @@ def top_plate() -> Sheet:
 ARM_GUIDE_R = 2.0  # radius of the guide circles the flanks are tangent to
 LUG_FILLET = 4.0
 PAD_FILLET = 9.0
-ROOT_FILLET = 0.8
+ROOT_FILLET = 1.0
 
 
 def arm_to_frame(u: float, v: float, quadrant: str = "front_right") -> XY:
@@ -243,11 +244,8 @@ def arm() -> Sheet:
     # The root: keep what lies in the front-right quadrant (the neighbours own the other three),
     # then open a slot round the stack bolt so the arm can be pulled out along its own axis.
     far = 400.0
-    quadrant = face(
-        rounded_poly(
-            [frame_to_arm(*p) for p in ((P.ARM_GAP, P.ARM_GAP), (far, P.ARM_GAP), (far, far), (P.ARM_GAP, far))], 1e-3
-        )
-    )
+    corners = ((P.ARM_GAP, P.ARM_GAP), (far, P.ARM_GAP), (far, far), (P.ARM_GAP, far))
+    quadrant = face(polygon([frame_to_arm(*p) for p in corners]))
     stack_slot = face(slot((-45, 0), (0, 0), P.STACK_SLOT_W))
     root = (blank & quadrant) - stack_slot
     outline = _round_root(root.faces()[0])
@@ -274,7 +272,7 @@ def _rotated_diamond(center: XY, radial: float, tangential: float, deg: float) -
         (x - ux * radial / 2, y - uy * radial / 2),
         (x + uy * tangential / 2, y - ux * tangential / 2),
     ]
-    return rounded_poly(pts, 0.8)
+    return rounded_poly(pts, 1.0)
 
 
 def _round_root(f: Face) -> Face:

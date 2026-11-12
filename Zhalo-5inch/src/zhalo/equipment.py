@@ -27,7 +27,7 @@ VTX_LARGE_SIZE = (36.0, 36.0, 8.0)  # 30.5 x 30.5 class (Rush Tank Ultimate, Uni
 VTX_Z = P.Z_ARM + 5.0  # on 5 mm spacers
 
 # --- camera ----------------------------------------------------------------------------------
-CAM_PIVOT = (0.0, 62.0, 21.0)  # the camera's side screws; the tilt axis runs along X through it
+CAM_PIVOT = (0.0, 63.0, 21.0)  # the camera's side screws; the tilt axis runs along X through it
 CAM_TILT = 30.0  # nominal up-tilt, degrees
 CAM_TILT_RANGE = (15.0, 45.0)
 

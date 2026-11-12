@@ -150,6 +150,11 @@ def slot(p0: XY, p1: XY, w: float) -> Wire:
     return belt([lobe(p0, w / 2), lobe(p1, w / 2)])
 
 
+def polygon(points: list[XY]) -> Wire:
+    """Closed polygon with sharp corners."""
+    return Wire([Edge.make_line(Vector(*p), Vector(*points[(i + 1) % len(points)])) for i, p in enumerate(points)])
+
+
 def rounded_poly(points: list[XY], r: float) -> Wire:
     """Polygon (counter-clockwise) with every corner rounded to radius r, concave corners included."""
     n = len(points)

@@ -18,6 +18,7 @@ EPS = 1e-3  # mm^3: a boolean intersection smaller than this is numerical noise
 CARBON_DENSITY = 1.55e-3  # g / mm^3
 ALUMINIUM_DENSITY = 2.7e-3
 MIN_WEB = 2.0  # least carbon allowed between two cuts, or between a cut and the edge
+MIN_RADIUS = 1.0  # every corner can be cut with a 2 mm router bit
 
 
 def volume_of(shape) -> float:
@@ -87,6 +88,11 @@ def sheet_web(sheet: F.Sheet) -> tuple[float, str]:
             c = b.center()
             best, where = d, f"near ({c.X:.1f}, {c.Y:.1f})"
     return best, where
+
+
+def sheet_min_radius(sheet: F.Sheet) -> float:
+    """Smallest arc in the profile: an inside corner tighter than the cutter cannot be machined."""
+    return min((e.radius for e in sheet.face().edges() if e.geom_type.name == "CIRCLE"), default=float("inf"))
 
 
 def mass() -> dict[str, float]:
@@ -176,6 +182,14 @@ def frame_checks() -> list[Row]:
     for name, make in F.SHEETS.items():
         web, where = sheet_web(make())
         rows.append((f"{name}: carbon webs >= {MIN_WEB} mm", web >= MIN_WEB, f"narrowest {web:.2f} mm {where}"))
+        radius = sheet_min_radius(make())
+        rows.append(
+            (
+                f"{name}: no corner tighter than R{MIN_RADIUS:g}",
+                radius >= MIN_RADIUS - 1e-6,
+                f"smallest arc R{radius:.2f}",
+            )
+        )
 
     m = mass()
     carbon = sum(v for n, v in m.items() if not n.startswith("standoff"))
