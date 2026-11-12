@@ -51,6 +51,7 @@ class Accessory:
     overhang: float = 0.0  # mm2 of sloped overhang the print is allowed
     in_assembly: bool = True  # False for a variant that shares its place with another part
     instances: tuple = ()  # the other installed copies of the same print (qty > 1), for the assembly
+    color: str = "tpu"  # colour key for renders and the FreeCAD document
     checks: list[Row] = field(default_factory=list)
     module: str = ""
 

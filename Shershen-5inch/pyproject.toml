@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shershen"
+version = "0.1.0"
+description = "Shershen 5-inch FPV frame: the Zhalo hard points in a swept, hornet-styled body with its own TPU set"
+requires-python = ">=3.12,<3.13"
+dependencies = ["zhalo"]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "vtk>=9.3", "pillow>=10"]
+
+[project.scripts]
+shershen = "shershen.__main__:main"
+
+[tool.uv.sources]
+zhalo = { path = "../Zhalo-5inch", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shershen"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

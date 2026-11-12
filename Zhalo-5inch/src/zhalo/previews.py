@@ -25,8 +25,8 @@ def _gear(skip: tuple[str, ...] = ()) -> list[Item]:
     return [Item(p, c, o, edges=o == 1.0) for n, (p, c, o) in E.build().items() if not n.startswith(skip)]
 
 
-def _accessories(color: str = "tpu") -> list[Item]:
-    return [Item(p, color) for a in A.assembly() for p in (a.part, *a.instances)]
+def _accessories() -> list[Item]:
+    return [Item(p, a.color) for a in A.assembly() for p in (a.part, *a.instances)]
 
 
 def _exploded() -> list[Item]:
@@ -66,7 +66,7 @@ def _montage(out: Path) -> None:
         font = ImageFont.load_default()
     for i, acc in enumerate(accs):
         png = out / f"_tile_{acc.name}.png"
-        render([Item(acc.part, "tpu")], png, "iso", size=tile)
+        render([Item(acc.part, acc.color)], png, "iso", size=tile)
         with Image.open(png) as im:
             sheet.paste(im.convert("RGB"), ((i % cols) * tile[0], (i // cols) * tile[1]))
         png.unlink()

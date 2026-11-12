@@ -20,9 +20,9 @@ from pathlib import Path
 from build123d import export_brep
 
 from zhalo import accessories as A
+from zhalo import design
 from zhalo import equipment as E
 from zhalo import frame as F
-from zhalo.render import COLORS
 
 SCRIPT = r"""
 import json, os, sys
@@ -30,7 +30,7 @@ import FreeCAD as App, Part
 job = json.load(open(JOB))
 result = {"gui": bool(App.GuiUp)}
 try:
-    doc = App.newDocument("Zhalo5")
+    doc = App.newDocument(job["document"])
     groups = {}
     for item in job["items"]:
         grp = groups.get(item["group"])
@@ -74,11 +74,12 @@ def find_freecad() -> list[str] | None:
 
 
 def items() -> list[dict]:
+    colors = design.colors()
     out = []
     for name, (part, material) in F.build().items():
         group = "Standoffs" if material == F.ALUMINIUM else "Carbon"
         out.append(
-            {"name": name, "group": group, "part": part, "color": COLORS[material], "transparency": 0, "visible": True}
+            {"name": name, "group": group, "part": part, "color": colors[material], "transparency": 0, "visible": True}
         )
     for acc in A.build_all():
         for i, part in enumerate([acc.part, *acc.instances]):
@@ -87,7 +88,7 @@ def items() -> list[dict]:
                     "name": acc.name if i == 0 else f"{acc.name}_{i + 1}",
                     "group": "TPU accessories",
                     "part": part,
-                    "color": COLORS["tpu"],
+                    "color": colors[acc.color],
                     "transparency": 0,
                     "visible": acc.in_assembly,
                 }
@@ -98,7 +99,7 @@ def items() -> list[dict]:
                 "name": name,
                 "group": "Equipment (reference only)",
                 "part": part,
-                "color": COLORS[color],
+                "color": colors[color],
                 "transparency": 70 if opacity < 1 else 0,
                 "visible": not name.startswith(("prop_", "battery")),
             }
@@ -109,7 +110,7 @@ def items() -> list[dict]:
 def write_document(path: Path, freecad_cmd: list[str]) -> dict:
     todo = items()
     with tempfile.TemporaryDirectory() as tmp:
-        job = {"out": str(path.resolve()), "items": []}
+        job = {"out": str(path.resolve()), "items": [], "document": design.SLUG.capitalize()}
         for item in todo:
             brep = Path(tmp) / f"{item['name']}.brep"
             assert export_brep(item["part"], brep), brep

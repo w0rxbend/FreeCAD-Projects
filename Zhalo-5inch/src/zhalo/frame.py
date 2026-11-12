@@ -343,17 +343,18 @@ def _placed(
 def build() -> dict[str, tuple[Part, str]]:
     """Every solid of the frame in its installed position: name -> (part, material)."""
     out: dict[str, tuple[Part, str]] = {
-        "plate_bottom": (_placed(bottom_plate(), P.Z_BOTTOM), CARBON),
-        "plate_mid": (_placed(mid_plate(), P.Z_MID), CARBON),
-        "plate_top": (_placed(top_plate(), P.Z_TOP), CARBON),
+        "plate_bottom": (_placed(SHEETS["plate_bottom"](), P.Z_BOTTOM), CARBON),
+        "plate_mid": (_placed(SHEETS["plate_mid"](), P.Z_MID), CARBON),
+        "plate_top": (_placed(SHEETS["plate_top"](), P.Z_TOP), CARBON),
     }
     for name in P.MOTORS:
         out[f"arm_{name}"] = (
-            _placed(arm(), P.Z_ARM, P.ARM_ANGLE, P.S, mirror_x="left" in name, mirror_y="rear" in name),
+            _placed(SHEETS["arm"](), P.Z_ARM, P.ARM_ANGLE, P.S, mirror_x="left" in name, mirror_y="rear" in name),
             CARBON,
         )
-    for side, sx in (("right", 1), ("left", -1)):
-        out[f"brace_{side}"] = (_placed(brace(), P.Z_BRACE, at=(sx * P.LUG[0], 0)), CARBON)
+    for side in ("right", "left"):  # the left brace is the right one turned over
+        part = _placed(SHEETS["brace"](), P.Z_BRACE, at=(P.LUG[0], 0), mirror_x=side == "left")
+        out[f"brace_{side}"] = (part, CARBON)
     for name, (x, y, z0, h) in P.STANDOFFS.items():
         out[name] = (standoff(h).translate(Vector(x, y, z0)), ALUMINIUM)
     for name, (part, _m) in out.items():

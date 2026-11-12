@@ -84,8 +84,11 @@ def render(
     ren.SetBackground(1.0, 1.0, 1.0)
     ren.SetBackground2(0.86, 0.89, 0.93)
     ren.GradientBackgroundOn()
+    from zhalo import design
+
+    palette = design.colors()
     for item in items:
-        rgb = COLORS[item.color] if isinstance(item.color, str) else item.color
+        rgb = palette[item.color] if isinstance(item.color, str) else item.color
         poly = _polydata(item.part, tolerance)
         normals = vtk.vtkPolyDataNormals()
         normals.SetInputData(poly)

@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+PACKAGE = "zhalo"  # what `python -m` must start to rebuild this design; a sibling design passes its own
 
 
 def _check() -> bool:
@@ -49,9 +50,8 @@ def _export(out: Path, freecad: bool) -> bool:
 def _render(out: Path) -> bool:
     if not os.environ.get("DISPLAY") and shutil.which("xvfb-run") and not os.environ.get("ZHALO_XVFB"):
         os.environ["ZHALO_XVFB"] = "1"  # re-run once under a virtual display
-        os.execvp(
-            "xvfb-run", ["xvfb-run", "-a", "-s", "-screen 0 1600x1200x24", sys.executable, "-m", "zhalo", *sys.argv[1:]]
-        )
+        xvfb = ["xvfb-run", "-a", "-s", "-screen 0 1600x1200x24"]
+        os.execvp("xvfb-run", [*xvfb, sys.executable, "-m", PACKAGE, *sys.argv[1:]])
     from zhalo.previews import render_all
 
     files = render_all(out / "renders")
@@ -59,12 +59,12 @@ def _render(out: Path) -> bool:
     return True
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser(
-        prog="zhalo", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
+def main(root: Path = ROOT, prog: str = "zhalo") -> None:
+    global PACKAGE
+    PACKAGE = prog
+    ap = argparse.ArgumentParser(prog=prog, description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("command", choices=("check", "export", "render", "all"))
-    ap.add_argument("--out", type=Path, default=ROOT / "exports")
+    ap.add_argument("--out", type=Path, default=root / "exports")
     ap.add_argument("--no-freecad", action="store_true", help="do not write the FreeCAD document")
     args = ap.parse_args()
     ok = True

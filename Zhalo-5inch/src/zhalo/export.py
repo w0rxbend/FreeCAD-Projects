@@ -17,6 +17,7 @@ from OCP.BRepMesh import BRepMesh_IncrementalMesh
 
 from zhalo import accessories as A
 from zhalo import checks as C
+from zhalo import design
 from zhalo import equipment as E
 from zhalo import frame as F
 from zhalo import params as P
@@ -39,7 +40,7 @@ def write_stl(part: Part, path: Path) -> int:
     rec = np.zeros(len(t), dtype=[("n", "<f4", 3), ("a", "<f4", 3), ("b", "<f4", 3), ("c", "<f4", 3), ("attr", "<u2")])
     rec["n"], rec["a"], rec["b"], rec["c"] = n, a, b, c
     with path.open("wb") as fh:
-        fh.write(f"zhalo {path.stem}".encode().ljust(80, b" "))
+        fh.write(f"{design.SLUG} {path.stem}".encode().ljust(80, b" "))
         fh.write(struct.pack("<I", len(t)))
         fh.write(rec.tobytes())
     return len(t)
@@ -123,7 +124,7 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
     for sub in ("cnc", "print/stl", "print/3mf", "print/step", "assembly"):
         (out / sub).mkdir(parents=True, exist_ok=True)
     manifest: dict = {
-        "name": "Zhalo 5-inch",
+        "name": design.NAME,
         "units": "mm",
         "datum": "origin = centre of the 30.5 stack; +X right, +Y front, +Z up; Z = 0 underside of the bottom plate",
         "wheelbase": P.WHEELBASE,
@@ -214,7 +215,9 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
     manifest["all_checks_passed"] = bool(all_ok)
 
     frame_parts = [deepcopy(p) for p in F.parts().values()]
-    write_step(Compound(children=frame_parts, label="zhalo_frame"), out / "assembly" / "zhalo_frame.step")
+    write_step(
+        Compound(children=frame_parts, label=f"{design.SLUG}_frame"), out / "assembly" / f"{design.SLUG}_frame.step"
+    )
     acc_parts = []
     for i, p in enumerate(installed):
         q = deepcopy(p)
@@ -225,14 +228,14 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
             Compound(children=[deepcopy(p) for p in F.parts().values()], label="frame"),
             Compound(children=acc_parts, label="accessories"),
         ],
-        label="zhalo_complete",
+        label=f"{design.SLUG}_complete",
     )
-    write_step(complete, out / "assembly" / "zhalo_complete.step")
+    write_step(complete, out / "assembly" / f"{design.SLUG}_complete.step")
 
     if freecad_cmd:
         from zhalo.freecad import write_document
 
-        manifest["freecad"] = write_document(out / "assembly" / "Zhalo-5inch.FCStd", freecad_cmd)
+        manifest["freecad"] = write_document(out / "assembly" / f"{design.DOCUMENT}.FCStd", freecad_cmd)
     (out / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n")
     return manifest
 

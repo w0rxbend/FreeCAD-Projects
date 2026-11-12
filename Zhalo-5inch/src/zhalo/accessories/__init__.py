@@ -36,9 +36,9 @@ THIN = 0.9  # a wall the slicer would print as a single unsupported line
 def build_all() -> tuple[Accessory, ...]:
     out = []
     for name in MODULES:
-        module = importlib.import_module(f"zhalo.accessories.{name}")
+        module = importlib.import_module(name if "." in name else f"zhalo.accessories.{name}")
         for acc in module.build():
-            acc.module = name
+            acc.module = name.rsplit(".", 1)[-1]
             acc.part.label = acc.name
             out.append(acc)
     names = [a.name for a in out]
