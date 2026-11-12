@@ -8,6 +8,7 @@ The values below are Zhalo's. A sibling design that needs other numbers calls `c
 once, before it imports any other module of this package.
 """
 
+import sys
 from collections.abc import Callable
 from math import atan2, degrees, hypot, sqrt
 
@@ -157,6 +158,8 @@ def configure(**inputs) -> None:
     Call it before importing any other module of this package: they read these values on import."""
     unknown = sorted(set(inputs) - _INPUTS)
     assert not unknown, f"not input dimensions: {unknown}"
+    loaded = sorted(m for m in sys.modules if m.startswith("zhalo.") and m != "zhalo.params")
+    assert not loaded, f"configure() has to run before the rest of the engine is imported; already loaded: {loaded}"
     globals().update(inputs)
     _derive()
 

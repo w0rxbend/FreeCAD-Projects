@@ -251,3 +251,43 @@ SHEETS = {
     "core_nose": core_nose,
     "core_tail": core_tail,
 }
+
+
+def bill_of_materials() -> dict:
+    floor = P.T_BOTTOM + P.T_ARM + P.T_MID
+    return {
+        "carbon": [
+            {"part": name, "qty": make().count, "thickness_mm": make().thickness} for name, make in SHEETS.items()
+        ],
+        "standoffs": [
+            {
+                "item": f"M3 x {P.STACK_STANDOFF_H:g} mm round standoff, OD {P.STANDOFF_OD:g}",
+                "qty": 8,
+                "where": "all eight stand on the deck",
+            },
+        ],
+        "screws": [
+            {
+                "item": "M3 x 30 (with the stack) + M3 nut",
+                "qty": 4,
+                "where": f"stack bolts: through the {floor:g} mm floor, nut on the deck, then the stack",
+            },
+            {
+                "item": "M3 x 16 button head",
+                "qty": 8,
+                "where": "inner arm bolts (4) and nose/tail bolts (4): from below through the floor into the standoffs",
+            },
+            {
+                "item": "M3 x 14 button head + nyloc",
+                "qty": 4,
+                "where": "outer arm bolts (M3 x 16 with the feet fitted)",
+            },
+            {"item": "M3 x 8 button head", "qty": 8, "where": "top plate into the standoffs"},
+            {
+                "item": "M3 x 10",
+                "qty": 16,
+                "where": "motors: the arm is 6 mm, so M3 x 8 leaves only 2 mm in the motor; "
+                "check your motor's thread depth",
+            },
+        ],
+    }

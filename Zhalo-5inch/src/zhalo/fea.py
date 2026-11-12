@@ -263,7 +263,7 @@ def plot(data: dict, png: Path, case: str = "side", size: tuple[int, int] = (160
     bar.SetWidth(0.34)
     bar.SetHeight(0.14)
     bar.SetPosition(0.62, 0.04)
-    ren.AddActor2D(bar)
+    ren.AddViewProp(bar)
     win = vtk.vtkRenderWindow()
     win.SetOffScreenRendering(1)
     win.SetSize(*size)

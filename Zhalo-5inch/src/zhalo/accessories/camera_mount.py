@@ -40,7 +40,7 @@ def _mount(cam: E.Camera):
             (Y_REAR, Z0),
             (Y_FRONT - 2.0, Z0),
             (Y_FRONT, Z0 + 8.0),
-            (Y_FRONT, pz + 5.0),
+            (Y_FRONT, min(pz + 5.0, SLEEVE_TOP - 1.5)),
             (py + 1.0, SLEEVE_TOP),
             (Y_REAR, SLEEVE_TOP),
         ],

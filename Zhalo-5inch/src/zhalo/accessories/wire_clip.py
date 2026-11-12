@@ -17,7 +17,9 @@ HOOK_T = 1.5
 
 def _local():
     """Clip in arm coordinates, arm underside at Z = 0: profile in (v, z), extruded along the arm."""
-    half = P.arm_half_width(U) + FIT
+    centre, wide = P.arm_half_width(U), P.arm_half_width(U - LENGTH / 2)
+    # the arm is wider at the clip's root end; once that eats half the fit, size the slot for that end
+    half = (wide if wide - centre > FIT / 2 else centre) + FIT
     out = half + WALL
     top = P.T_ARM + FIT
     roof = top + TUNNEL[1] + WALL

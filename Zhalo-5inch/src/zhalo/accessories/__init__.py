@@ -9,9 +9,9 @@ import importlib
 from functools import lru_cache
 
 from zhalo import checks as C
+from zhalo import design, meshcheck
 from zhalo import equipment as E
 from zhalo import frame as F
-from zhalo import meshcheck
 from zhalo import params as P
 from zhalo.accessories.kit import BED, WALL, Accessory, Row, lay_on_bed
 
@@ -39,6 +39,7 @@ def build_all() -> tuple[Accessory, ...]:
         module = importlib.import_module(name if "." in name else f"zhalo.accessories.{name}")
         for acc in module.build():
             acc.module = name.rsplit(".", 1)[-1]
+            acc.color = design.COLOR_OF.get(acc.name, acc.color)
             acc.part.label = acc.name
             out.append(acc)
     names = [a.name for a in out]
