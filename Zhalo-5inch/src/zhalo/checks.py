@@ -9,6 +9,7 @@ from math import hypot
 
 from build123d import Part
 
+from zhalo import design
 from zhalo import equipment as E
 from zhalo import frame as F
 from zhalo import params as P
@@ -53,21 +54,25 @@ def bore_clear(part: Part, xy, d: float, z0: float, z1: float, wall: float = 1.0
 
 
 # name -> (points, pin diameter, [(part name pattern, z0, z1)])
+EXTRA_BOLTS: dict[str, tuple[list, float, list]] = {}  # bolt axes a sibling design adds, same form as bolts()
+
+
 def bolts() -> dict[str, tuple[list, float, list]]:
+    """name -> (axes, pin diameter, [(part name pattern, z0, z1)]): every layer each bolt has to pass."""
     zb, za, zm, zd, zt, zr = P.Z_BOTTOM, P.Z_ARM, P.Z_MID, P.Z_DECK, P.Z_TOP, P.Z_ROOF
     arm = ("arm_{q}", za, zm)
-    return {
-        "stack": (P.quad(P.S), 3.0, [("plate_bottom", zb, za), arm, ("plate_mid", zm, zd)]),
-        "arm_inner": (P.quad(P.B), 3.0, [("plate_bottom", zb, za), arm, ("plate_mid", zm, zd), ("plate_top", zt, zr)]),
-        "arm_outer": (P.quad(P.C), 3.0, [("plate_bottom", zb, za), arm, ("plate_mid", zm, zd)]),
-        "front_standoff": (P.pair(P.F), 3.0, [("plate_bottom", zb, za), ("plate_top", zt, zr)]),
-        "rear_standoff": (
-            [(P.R[0], P.R[1]), (-P.R[0], P.R[1])],
-            3.0,
-            [("plate_bottom", zb, za), ("plate_top", zt, zr)],
-        ),
-        "brace": (P.quad(P.LUG), 3.0, [("brace_{side}", P.Z_BRACE, za), arm]),
+    bottom, mid, top = ("plate_bottom", zb, za), ("plate_mid", zm, zd), ("plate_top", zt, zr)
+    bay = [bottom, mid, top] if P.BAY_ON_DECK else [bottom, top]
+    out = {
+        "stack": (P.quad(P.S), 3.0, [bottom, arm, mid]),
+        "arm_inner": (P.quad(P.B), 3.0, [bottom, arm, mid, top]),
+        "arm_outer": (P.quad(P.C), 3.0, [bottom, arm, mid]),
+        "front_standoff": (P.pair(P.F), 3.0, bay),
+        "rear_standoff": (P.pair(P.R), 3.0, bay),
     }
+    if P.BRACES:
+        out["brace"] = (P.quad(P.LUG), 3.0, [("brace_{side}", P.Z_BRACE, za), arm])
+    return {**out, **EXTRA_BOLTS}
 
 
 def _quadrant(x: float, y: float) -> str:
@@ -193,7 +198,13 @@ def frame_checks() -> list[Row]:
 
     m = mass()
     carbon = sum(v for n, v in m.items() if not n.startswith("standoff"))
-    rows.append(("frame mass", carbon < 130, f"{carbon:.1f} g carbon + {sum(m.values()) - carbon:.1f} g standoffs"))
+    rows.append(
+        (
+            f"frame mass under {design.MASS_LIMIT:g} g",
+            carbon < design.MASS_LIMIT,
+            f"{carbon:.1f} g carbon + {sum(m.values()) - carbon:.1f} g standoffs",
+        )
+    )
     return rows
 
 

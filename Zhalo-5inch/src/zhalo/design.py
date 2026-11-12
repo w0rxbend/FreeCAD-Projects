@@ -9,6 +9,8 @@ NAME = "Zhalo 5-inch"  # shown in the manifest
 SLUG = "zhalo"  # file-name stem of the assemblies
 DOCUMENT = "Zhalo-5inch"  # FreeCAD document name
 EXTRA_COLORS: dict[str, tuple[float, float, float]] = {}  # render colour overrides, by material or colour key
+BOM = None  # optional callable returning the bill of materials, for a design with other hardware
+MASS_LIMIT = 130.0  # grams of carbon the frame check accepts
 
 
 def colors() -> dict[str, tuple[float, float, float]]:

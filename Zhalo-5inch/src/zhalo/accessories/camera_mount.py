@@ -25,7 +25,7 @@ from zhalo.accessories.kit import (
 
 CHEEK_T = 2.6
 FLOOR_T = 1.6
-Z0 = P.Z_ARM  # stands on the bottom plate
+Z0 = P.Z_BAY  # stands on the floor of the front bay
 Y_REAR, Y_FRONT = P.F[1] - SLEEVE_OD / 2, E.CAM_PIVOT[1] + 7.0
 FLOOR_WINDOW = 11.0  # square opening under the camera: less weight, and the plate window stays open
 

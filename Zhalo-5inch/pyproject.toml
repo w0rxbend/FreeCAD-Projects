@@ -11,9 +11,10 @@ dependencies = ["build123d>=0.11,<0.12"]
 
 [project.optional-dependencies]
 render = ["vtk>=9.3", "pillow>=10"]
+fea = ["gmsh>=4.11", "scikit-fem>=10"]  # gmsh also needs the system library libGLU (apt: libglu1-mesa)
 
 [dependency-groups]
-dev = ["pytest>=8", "ruff>=0.6", "vtk>=9.3", "pillow>=10"]
+dev = ["pytest>=8", "ruff>=0.6", "vtk>=9.3", "pillow>=10", "gmsh>=4.11", "scikit-fem>=10"]
 
 [project.scripts]
 zhalo = "zhalo.__main__:main"

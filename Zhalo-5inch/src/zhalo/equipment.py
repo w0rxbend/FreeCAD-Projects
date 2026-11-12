@@ -24,10 +24,11 @@ FC_Z = P.Z_DECK + STACK_H - FC_SIZE[2]
 # --- analog VTX ------------------------------------------------------------------------------
 VTX_SIZE = (28.0, 28.0, 7.0)  # SpeedyBee TX800 with its heat sink; 20 x 20 holes
 VTX_LARGE_SIZE = (36.0, 36.0, 8.0)  # 30.5 x 30.5 class (Rush Tank Ultimate, Unify Pro32 HV)
-VTX_Z = P.Z_ARM + 5.0  # on 5 mm spacers
+VTX_Z = P.Z_BAY + 5.0  # on 5 mm spacers above the bay floor
 
 # --- camera ----------------------------------------------------------------------------------
-CAM_PIVOT = (0.0, 63.0, 21.0)  # the camera's side screws; the tilt axis runs along X through it
+# the camera's side screws; the tilt axis runs along X through this point, 1 mm above mid-height of the bay
+CAM_PIVOT = (0.0, 63.0, (P.Z_BAY + P.Z_TOP) / 2 + 1.0)
 CAM_TILT = 30.0  # nominal up-tilt, degrees
 CAM_TILT_RANGE = (15.0, 45.0)
 

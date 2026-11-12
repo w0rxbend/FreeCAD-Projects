@@ -28,7 +28,7 @@ from zhalo.accessories.kit import (
     prism_x,
 )
 
-Z0 = P.Z_ARM
+Z0 = P.Z_BAY  # floor of the rear bay
 WALL_T = 2.4
 WALL_Y = (P.R[1] - SLEEVE_OD / 2, P.R[1] - SLEEVE_OD / 2 + WALL_T)  # rear face, front face
 SMA_TILT = 40.0  # antenna axis above horizontal

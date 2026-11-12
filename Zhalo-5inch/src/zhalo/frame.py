@@ -352,14 +352,20 @@ def build() -> dict[str, tuple[Part, str]]:
             _placed(SHEETS["arm"](), P.Z_ARM, P.ARM_ANGLE, P.S, mirror_x="left" in name, mirror_y="rear" in name),
             CARBON,
         )
-    for side in ("right", "left"):  # the left brace is the right one turned over
-        part = _placed(SHEETS["brace"](), P.Z_BRACE, at=(P.LUG[0], 0), mirror_x=side == "left")
-        out[f"brace_{side}"] = (part, CARBON)
+    if P.BRACES:
+        for side in ("right", "left"):  # the left brace is the right one turned over
+            part = _placed(SHEETS["brace"](), P.Z_BRACE, at=(P.LUG[0], 0), mirror_x=side == "left")
+            out[f"brace_{side}"] = (part, CARBON)
+    for name, (sheet, z) in EXTRA.items():  # flat parts a sibling design adds, already in frame XY
+        out[name] = (_placed(SHEETS[sheet](), z), CARBON)
     for name, (x, y, z0, h) in P.STANDOFFS.items():
         out[name] = (standoff(h).translate(Vector(x, y, z0)), ALUMINIUM)
     for name, (part, _m) in out.items():
         part.label = name
     return out
+
+
+EXTRA: dict[str, tuple[str, float]] = {}  # part name -> (key in SHEETS, Z of its underside)
 
 
 def parts() -> dict[str, Part]:

@@ -33,7 +33,7 @@ def _exploded() -> list[Item]:
     lift = {"plate_bottom": -26.0, "brace": -44.0, "arm": 0.0, "plate_mid": 24.0, "standoff": 42.0, "plate_top": 74.0}
     out = []
     for name, (part, material) in F.build().items():
-        dz = next(v for k, v in lift.items() if name.startswith(k))
+        dz = next((v for k, v in lift.items() if name.startswith(k)), 0.0)
         out.append(
             Item(deepcopy(part).translate(Vector(0, 0, dz)), "aluminium" if material == F.ALUMINIUM else "carbon")
         )
@@ -41,9 +41,11 @@ def _exploded() -> list[Item]:
 
 
 def _cut_sheet() -> list[Item]:
-    """The five flat parts side by side, as a CNC shop would see them."""
+    """The flat parts side by side, as a CNC shop would see them."""
     out, x = [], 0.0
-    for name in ("plate_bottom", "plate_top", "plate_mid", "arm", "brace"):
+    order = ("plate_bottom", "plate_top", "plate_mid", "arm", "brace")
+    names = [n for n in order if n in F.SHEETS and (n != "brace" or P.BRACES)]
+    for name in names + [n for n in F.SHEETS if n not in order]:
         solid = F.SHEETS[name]().solid()
         if name == "arm":
             solid = solid.rotate(Axis.Z, 90)

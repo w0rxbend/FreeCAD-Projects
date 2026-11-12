@@ -78,6 +78,8 @@ def sheet_file(name: str) -> str:
 
 
 def bill_of_materials() -> dict:
+    if design.BOM is not None:
+        return design.BOM()
     thick = P.T_BOTTOM + P.T_ARM + P.T_MID  # the sandwich
     return {
         "carbon": [
