@@ -77,7 +77,8 @@
    "mass_g_each": 29.6,
    "files": [
     "cnc/plate_bottom_2.5mm.dxf",
-    "cnc/plate_bottom_2.5mm.step"
+    "cnc/plate_bottom_2.5mm.step",
+    "cnc/plate_bottom_2.5mm.stl"
    ],
    "holes": [
     {
@@ -275,7 +276,8 @@
    "mass_g_each": 9.1,
    "files": [
     "cnc/plate_mid_2mm.dxf",
-    "cnc/plate_mid_2mm.step"
+    "cnc/plate_mid_2mm.step",
+    "cnc/plate_mid_2mm.stl"
    ],
    "holes": [
     {
@@ -375,7 +377,8 @@
    "mass_g_each": 18.4,
    "files": [
     "cnc/plate_top_2mm.dxf",
-    "cnc/plate_top_2mm.step"
+    "cnc/plate_top_2mm.step",
+    "cnc/plate_top_2mm.stl"
    ],
    "holes": [
     {
@@ -475,7 +478,8 @@
    "mass_g_each": 15.1,
    "files": [
     "cnc/arm_5mm_x4.dxf",
-    "cnc/arm_5mm_x4.step"
+    "cnc/arm_5mm_x4.step",
+    "cnc/arm_5mm_x4.stl"
    ],
    "holes": [
     {
@@ -512,7 +516,8 @@
    "mass_g_each": 2.8,
    "files": [
     "cnc/brace_2mm_x2.dxf",
-    "cnc/brace_2mm_x2.step"
+    "cnc/brace_2mm_x2.step",
+    "cnc/brace_2mm_x2.stl"
    ],
    "holes": [
     {
@@ -1834,13 +1839,25 @@
    "detail": "smallest arc R1.60"
   },
   {
-   "name": "frame mass",
+   "name": "frame mass under 130 g",
    "passed": true,
    "detail": "123.3 g carbon + 10.0 g standoffs"
   }
  ],
  "accessory_clashes": [],
  "all_checks_passed": true,
+ "assembly": {
+  "files": [
+   "assembly/shershen_frame.step",
+   "assembly/shershen_frame.stl",
+   "assembly/shershen_complete.step",
+   "assembly/shershen_complete.stl"
+  ],
+  "mesh": {
+   "linear_deflection_mm": 0.05,
+   "angular_deflection_rad": 0.2
+  }
+ },
  "freecad": {
   "file": "assembly/Shershen-5inch.FCStd",
   "gui": true,

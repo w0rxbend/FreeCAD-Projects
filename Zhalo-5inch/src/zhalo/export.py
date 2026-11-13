@@ -1,8 +1,8 @@
 """Write everything a build needs into exports/.
 
-cnc/       flat carbon parts: DXF (true arcs and lines, mm) and STEP, one file per part
+cnc/       flat carbon parts: DXF (true arcs and lines, mm), STEP and STL, one file per part
 print/     TPU parts in print orientation: STL, 3MF and STEP
-assembly/  the frame alone and the complete quad as STEP, plus a FreeCAD document
+assembly/  the frame alone and the complete quad as STEP and STL, plus a FreeCAD document
 manifest.json  dimensions, masses, hole tables, bill of materials and every check result
 """
 
@@ -11,6 +11,7 @@ import struct
 from copy import deepcopy
 from pathlib import Path
 
+import ezdxf
 import numpy as np
 from build123d import Compound, ExportDXF, Mesher, Part, Unit, export_step
 from OCP.BRepMesh import BRepMesh_IncrementalMesh
@@ -25,12 +26,13 @@ from zhalo.accessories.kit import MATERIAL, lay_on_bed
 
 STEP_TIME = "2000-01-01T00:00:00"  # fixed stamp: regenerating gives the same file
 MESH_LIN, MESH_ANG = 0.02, 0.1
+ASSEMBLY_LIN, ASSEMBLY_ANG = 0.05, 0.2  # coarser: an assembly STL is for looking at, not for printing
 TPU_DENSITY = 1.21e-3  # g / mm3
 
 
-def write_stl(part: Part, path: Path) -> int:
+def write_stl(part, path: Path, lin: float = MESH_LIN, ang: float = MESH_ANG) -> int:
     """Binary STL from a fixed-deflection tessellation; returns the triangle count."""
-    verts, tris = part.tessellate(MESH_LIN, MESH_ANG)
+    verts, tris = part.tessellate(lin, ang)
     v = np.array([(p.X, p.Y, p.Z) for p in verts], dtype="<f4")
     t = np.array(tris, dtype=int)
     a, b, c = v[t[:, 0]], v[t[:, 1]], v[t[:, 2]]
@@ -60,10 +62,18 @@ def write_step(shape, path: Path) -> None:
 
 
 def write_dxf(sheet: F.Sheet, path: Path) -> None:
-    dxf = ExportDXF(unit=Unit.MM)
-    dxf.add_layer("CUT")
-    dxf.add_shape(sheet.face(), layer="CUT")
-    dxf.write(path)
+    # ezdxf stamps the time and two random GUIDs into every file, some when the document is
+    # created and some when it is saved; fixed values keep a regenerated but unchanged part
+    # byte-identical, as the fixed STEP timestamp does
+    previous = ezdxf.options.write_fixed_meta_data_for_testing
+    ezdxf.options.write_fixed_meta_data_for_testing = True
+    try:
+        dxf = ExportDXF(unit=Unit.MM)
+        dxf.add_layer("CUT")
+        dxf.add_shape(sheet.face(), layer="CUT")
+        dxf.write(path)
+    finally:
+        ezdxf.options.write_fixed_meta_data_for_testing = previous
 
 
 def _bbox(shape) -> list[float]:
@@ -158,6 +168,7 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
         stem = sheet_file(name)
         write_dxf(sheet, out / "cnc" / f"{stem}.dxf")
         write_step(sheet.solid(), out / "cnc" / f"{stem}.step")
+        write_stl(sheet.solid(), out / "cnc" / f"{stem}.stl")
         each = sheet.solid().volume * C.CARBON_DENSITY
         manifest["carbon"].append(
             {
@@ -166,7 +177,7 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
                 "thickness": sheet.thickness,
                 "size": _bbox(sheet.face())[:2],
                 "mass_g_each": round(each, 1),
-                "files": [f"cnc/{stem}.dxf", f"cnc/{stem}.step"],
+                "files": [f"cnc/{stem}.dxf", f"cnc/{stem}.step", f"cnc/{stem}.stl"],
                 "holes": [
                     {"name": h.name, "purpose": h.purpose, "x": round(h.x, 3), "y": round(h.y, 3), "d": h.d}
                     for h in sheet.holes
@@ -217,9 +228,9 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
     manifest["all_checks_passed"] = bool(all_ok)
 
     frame_parts = [deepcopy(p) for p in F.parts().values()]
-    write_step(
-        Compound(children=frame_parts, label=f"{design.SLUG}_frame"), out / "assembly" / f"{design.SLUG}_frame.step"
-    )
+    frame = Compound(children=frame_parts, label=f"{design.SLUG}_frame")
+    write_step(frame, out / "assembly" / f"{design.SLUG}_frame.step")
+    write_stl(frame, out / "assembly" / f"{design.SLUG}_frame.stl", ASSEMBLY_LIN, ASSEMBLY_ANG)
     acc_parts = []
     for i, p in enumerate(installed):
         q = deepcopy(p)
@@ -233,6 +244,11 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
         label=f"{design.SLUG}_complete",
     )
     write_step(complete, out / "assembly" / f"{design.SLUG}_complete.step")
+    write_stl(complete, out / "assembly" / f"{design.SLUG}_complete.stl", ASSEMBLY_LIN, ASSEMBLY_ANG)
+    manifest["assembly"] = {
+        "files": [f"assembly/{design.SLUG}_{kind}.{ext}" for kind in ("frame", "complete") for ext in ("step", "stl")],
+        "mesh": {"linear_deflection_mm": ASSEMBLY_LIN, "angular_deflection_rad": ASSEMBLY_ANG},
+    }
 
     if freecad_cmd:
         from zhalo.freecad import write_document

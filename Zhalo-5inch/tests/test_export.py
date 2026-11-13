@@ -26,3 +26,18 @@ def test_stl_is_a_closed_mesh_resting_on_the_bed(tmp_path):
     data = path.read_bytes()
     assert struct.unpack("<I", data[80:84])[0] == count and len(data) == 84 + 50 * count
     assert abs(printed.bounding_box().min.Z) < 1e-6
+
+
+def test_dxf_is_reproducible(tmp_path):
+    # regenerating an unchanged part must not change the file a CNC shop receives
+    sheet = F.SHEETS["plate_top"]()
+    write_dxf(sheet, tmp_path / "a.dxf")
+    write_dxf(sheet, tmp_path / "b.dxf")
+    assert (tmp_path / "a.dxf").read_bytes() == (tmp_path / "b.dxf").read_bytes()
+
+
+def test_carbon_stl_is_a_closed_flat_part(tmp_path):
+    sheet = F.SHEETS["arm"]()
+    count = write_stl(sheet.solid(), tmp_path / "arm.stl")
+    data = (tmp_path / "arm.stl").read_bytes()
+    assert struct.unpack("<I", data[80:84])[0] == count and len(data) == 84 + 50 * count

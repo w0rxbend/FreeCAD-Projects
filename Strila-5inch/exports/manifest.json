@@ -77,7 +77,8 @@
    "mass_g_each": 20.7,
    "files": [
     "cnc/plate_bottom_2mm.dxf",
-    "cnc/plate_bottom_2mm.step"
+    "cnc/plate_bottom_2mm.step",
+    "cnc/plate_bottom_2mm.stl"
    ],
    "holes": [
     {
@@ -205,7 +206,8 @@
    "mass_g_each": 19.6,
    "files": [
     "cnc/plate_mid_1.5mm.dxf",
-    "cnc/plate_mid_1.5mm.step"
+    "cnc/plate_mid_1.5mm.step",
+    "cnc/plate_mid_1.5mm.stl"
    ],
    "holes": [
     {
@@ -403,7 +405,8 @@
    "mass_g_each": 17.2,
    "files": [
     "cnc/plate_top_2mm.dxf",
-    "cnc/plate_top_2mm.step"
+    "cnc/plate_top_2mm.step",
+    "cnc/plate_top_2mm.stl"
    ],
    "holes": [
     {
@@ -489,7 +492,8 @@
    "mass_g_each": 17.6,
    "files": [
     "cnc/arm_6mm_x4.dxf",
-    "cnc/arm_6mm_x4.step"
+    "cnc/arm_6mm_x4.step",
+    "cnc/arm_6mm_x4.stl"
    ],
    "holes": [
     {
@@ -519,7 +523,8 @@
    "mass_g_each": 4.0,
    "files": [
     "cnc/core_nose_6mm.dxf",
-    "cnc/core_nose_6mm.step"
+    "cnc/core_nose_6mm.step",
+    "cnc/core_nose_6mm.stl"
    ],
    "holes": [
     {
@@ -549,7 +554,8 @@
    "mass_g_each": 3.4,
    "files": [
     "cnc/core_tail_6mm.dxf",
-    "cnc/core_tail_6mm.step"
+    "cnc/core_tail_6mm.step",
+    "cnc/core_tail_6mm.stl"
    ],
    "holes": [
     {
@@ -1908,6 +1914,18 @@
  ],
  "accessory_clashes": [],
  "all_checks_passed": true,
+ "assembly": {
+  "files": [
+   "assembly/strila_frame.step",
+   "assembly/strila_frame.stl",
+   "assembly/strila_complete.step",
+   "assembly/strila_complete.stl"
+  ],
+  "mesh": {
+   "linear_deflection_mm": 0.05,
+   "angular_deflection_rad": 0.2
+  }
+ },
  "freecad": {
   "file": "assembly/Strila-5inch.FCStd",
   "gui": true,
