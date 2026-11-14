@@ -2,5 +2,8 @@
 __pycache__/
 *.pyc
 *.FCBak
+*.FCStd1
 build/
 .scratch/
+.pytest_cache/
+.ruff_cache/
