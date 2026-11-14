@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tigerbeetle"
+version = "0.1.0"
+description = "Tiger Beetle 7-inch: the owner's frame rebuilt from traced scans, checked, with a printed accessory kit"
+requires-python = ">=3.12,<3.13"
+dependencies = ["zhalo"]
+
+[project.optional-dependencies]
+fea = ["gmsh>=4.11", "scikit-fem>=10"]
+
+[dependency-groups]
+dev = ["scikit-image>=0.24", "scipy>=1.13", "pytest>=8", "ruff>=0.6", "vtk>=9.3", "pillow>=10", "gmsh>=4.11", "scikit-fem>=10"]
+
+[project.scripts]
+tigerbeetle = "tigerbeetle.__main__:main"
+
+[tool.uv.sources]
+zhalo = { path = "../Zhalo-5inch", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tigerbeetle"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

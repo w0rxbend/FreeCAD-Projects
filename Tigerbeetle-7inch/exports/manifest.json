@@ -1,0 +1,1352 @@
+{
+ "name": "Tiger Beetle 7-inch",
+ "units": "mm",
+ "source": "references/Scan_1.jpeg and Scan_2.jpeg: the owner's parts traced on A4 at 300 dpi",
+ "datum": "origin = centre of the 30.5 stack; +X right, +Y front (camera), +Z up; Z = 0 underside of the bottom plate",
+ "stack_up_z": {
+  "plate_bottom": [
+   0.0,
+   2.0
+  ],
+  "arms": [
+   2.0,
+   7.0
+  ],
+  "plate_camera": [
+   7.0,
+   9.0
+  ],
+  "plate_top": [
+   34.0,
+   36.0
+  ]
+ },
+ "motors": {
+  "front_right": [
+   127.04,
+   83.78
+  ],
+  "front_left": [
+   -127.04,
+   83.78
+  ],
+  "rear_right": [
+   116.42,
+   -98.56
+  ],
+  "rear_left": [
+   -116.42,
+   -98.56
+  ]
+ },
+ "standoffs": {
+  "standoff_rear_left": {
+   "xy": [
+    -16.49,
+    -94.22
+   ],
+   "z0": 2.0,
+   "height": 32.0
+  },
+  "standoff_rear_right": {
+   "xy": [
+    16.49,
+    -94.22
+   ],
+   "z0": 2.0,
+   "height": 32.0
+  },
+  "standoff_arm_rear_left": {
+   "xy": [
+    -26.2,
+    -33.27
+   ],
+   "z0": 9.0,
+   "height": 25.0
+  },
+  "standoff_arm_rear_right": {
+   "xy": [
+    26.2,
+    -33.27
+   ],
+   "z0": 9.0,
+   "height": 25.0
+  },
+  "standoff_arm_front_left": {
+   "xy": [
+    -28.6,
+    31.75
+   ],
+   "z0": 9.0,
+   "height": 25.0
+  },
+  "standoff_arm_front_right": {
+   "xy": [
+    28.6,
+    31.75
+   ],
+   "z0": 9.0,
+   "height": 25.0
+  },
+  "standoff_front_left": {
+   "xy": [
+    -18.97,
+    109.01
+   ],
+   "z0": 9.0,
+   "height": 25.0
+  },
+  "standoff_front_right": {
+   "xy": [
+    18.97,
+    109.01
+   ],
+   "z0": 9.0,
+   "height": 25.0
+  }
+ },
+ "bolts": {
+  "g0": {
+   "xy": [
+    -16.49,
+    -94.22
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g1": {
+   "xy": [
+    16.49,
+    -94.22
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g2": {
+   "xy": [
+    0.0,
+    -90.75
+   ],
+   "plates": {
+    "bottom_plate": 3.2
+   }
+  },
+  "g3": {
+   "xy": [
+    -15.25,
+    -80.64
+   ],
+   "plates": {
+    "bottom_plate": 3.2
+   }
+  },
+  "g4": {
+   "xy": [
+    15.25,
+    -80.64
+   ],
+   "plates": {
+    "bottom_plate": 3.2
+   }
+  },
+  "g5": {
+   "xy": [
+    -10.0,
+    -75.35
+   ],
+   "plates": {
+    "bottom_plate": 3.2
+   }
+  },
+  "g6": {
+   "xy": [
+    10.0,
+    -75.35
+   ],
+   "plates": {
+    "bottom_plate": 3.2
+   }
+  },
+  "g7": {
+   "xy": [
+    -26.2,
+    -33.27
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g8": {
+   "xy": [
+    26.2,
+    -33.27
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g9": {
+   "xy": [
+    -26.55,
+    -19.68
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g10": {
+   "xy": [
+    26.55,
+    -19.68
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g11": {
+   "xy": [
+    -15.25,
+    -15.25
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g12": {
+   "xy": [
+    15.25,
+    -15.25
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g13": {
+   "xy": [
+    -28.05,
+    0.03
+   ],
+   "plates": {
+    "bottom_plate": 5.1
+   }
+  },
+  "g14": {
+   "xy": [
+    28.05,
+    0.03
+   ],
+   "plates": {
+    "bottom_plate": 5.1
+   }
+  },
+  "g15": {
+   "xy": [
+    -18.04,
+    0.05
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 6.3
+   }
+  },
+  "g16": {
+   "xy": [
+    18.04,
+    0.05
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 6.3
+   }
+  },
+  "g17": {
+   "xy": [
+    -15.25,
+    15.25
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g18": {
+   "xy": [
+    15.25,
+    15.25
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g19": {
+   "xy": [
+    0.0,
+    18.16
+   ],
+   "plates": {
+    "bottom_plate": 3.2
+   }
+  },
+  "g20": {
+   "xy": [
+    -27.04,
+    18.18
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g21": {
+   "xy": [
+    27.04,
+    18.18
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2
+   }
+  },
+  "g22": {
+   "xy": [
+    -28.6,
+    31.75
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g23": {
+   "xy": [
+    28.6,
+    31.75
+   ],
+   "plates": {
+    "bottom_plate": 3.2,
+    "camera_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g24": {
+   "xy": [
+    0.0,
+    -18.1
+   ],
+   "plates": {
+    "camera_plate": 6.2
+   }
+  },
+  "g25": {
+   "xy": [
+    -15.25,
+    46.08
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g26": {
+   "xy": [
+    15.25,
+    46.08
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g27": {
+   "xy": [
+    -10.0,
+    51.56
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g28": {
+   "xy": [
+    10.0,
+    51.56
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g29": {
+   "xy": [
+    0.0,
+    61.43
+   ],
+   "plates": {
+    "camera_plate": 18.4
+   }
+  },
+  "g30": {
+   "xy": [
+    -10.0,
+    71.56
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g31": {
+   "xy": [
+    10.0,
+    71.56
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g32": {
+   "xy": [
+    -15.25,
+    76.79
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g33": {
+   "xy": [
+    15.25,
+    76.79
+   ],
+   "plates": {
+    "camera_plate": 3.2
+   }
+  },
+  "g34": {
+   "xy": [
+    -18.97,
+    109.01
+   ],
+   "plates": {
+    "camera_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g35": {
+   "xy": [
+    18.97,
+    109.01
+   ],
+   "plates": {
+    "camera_plate": 3.2,
+    "top_plate": 3.2
+   }
+  },
+  "g36": {
+   "xy": [
+    -31.34,
+    63.28
+   ],
+   "plates": {
+    "top_plate": 5.4
+   }
+  },
+  "g37": {
+   "xy": [
+    31.34,
+    63.28
+   ],
+   "plates": {
+    "top_plate": 5.4
+   }
+  },
+  "g38": {
+   "xy": [
+    0.0,
+    67.62
+   ],
+   "plates": {
+    "top_plate": 5.3
+   }
+  },
+  "g39": {
+   "xy": [
+    -27.31,
+    91.12
+   ],
+   "plates": {
+    "top_plate": 5.3
+   }
+  },
+  "g40": {
+   "xy": [
+    27.31,
+    91.12
+   ],
+   "plates": {
+    "top_plate": 5.3
+   }
+  }
+ },
+ "carbon": [
+  {
+   "part": "plate_bottom",
+   "qty": 1,
+   "thickness_mm": 2.0,
+   "mass_g_each": 16.0,
+   "size": [
+    66.89,
+    135.5,
+    2.0
+   ],
+   "file": "cnc/plate_bottom_2mm.dxf"
+  },
+  {
+   "part": "plate_camera",
+   "qty": 1,
+   "thickness_mm": 2.0,
+   "mass_g_each": 17.3,
+   "size": [
+    66.47,
+    153.92,
+    2.0
+   ],
+   "file": "cnc/plate_camera_2mm.dxf"
+  },
+  {
+   "part": "plate_top",
+   "qty": 1,
+   "thickness_mm": 2.0,
+   "mass_g_each": 31.8,
+   "size": [
+    73.91,
+    212.72,
+    2.0
+   ],
+   "file": "cnc/plate_top_2mm.dxf"
+  },
+  {
+   "part": "arm",
+   "qty": 4,
+   "thickness_mm": 5.0,
+   "mass_g_each": 25.0,
+   "size": [
+    169.92,
+    35.26,
+    5.0
+   ],
+   "file": "cnc/arm_5mm_x4.dxf"
+  }
+ ],
+ "accessories": [
+  {
+   "name": "camera_mount",
+   "title": "FPV camera mount, 19 mm",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 5.0,
+   "print_size": [
+    46.95,
+    17.5,
+    24.8
+   ],
+   "in_assembly": true,
+   "hardware": "2x M2x5 (the camera's own side screws)",
+   "notes": "Sleeves over the front standoffs before the top plate goes on; set the tilt, tighten the screws.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 4.11 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "243 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "46.9 x 17.5 x 24.8 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "2 mm2 of bridge (allowed 8), 7 mm2 of overhang (allowed 14)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.60 mm"
+    ],
+    [
+     "camera swings 15-45 deg without touching the mount",
+     true,
+     "0.000 mm3"
+    ],
+    [
+     "TPU between the camera and each standoff",
+     true,
+     "6.62 mm"
+    ]
+   ]
+  },
+  {
+   "name": "side_panel_right",
+   "title": "Side panel, right",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 3.7,
+   "print_size": [
+    12.09,
+    73.72,
+    24.7
+   ],
+   "in_assembly": true,
+   "hardware": "",
+   "notes": "Push it on from outside: both rings open inboard. Print it standing on its top edge (upside down).",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 3.10 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "162 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "12.1 x 73.7 x 24.7 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "13 mm2 of bridge (allowed 66), 11 mm2 of overhang (allowed 82)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.2% of the surface, thinnest ray 0.18 mm"
+    ],
+    [
+     "vents",
+     true,
+     "6 slanted vents"
+    ],
+    [
+     "stays clear of the stack",
+     true,
+     "inner face outboard of x 22.8"
+    ]
+   ]
+  },
+  {
+   "name": "side_panel_left",
+   "title": "Side panel, left",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 3.7,
+   "print_size": [
+    12.09,
+    73.72,
+    24.7
+   ],
+   "in_assembly": true,
+   "hardware": "",
+   "notes": "Push it on from outside: both rings open inboard. Print it standing on its top edge (upside down).",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 3.10 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "162 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "12.1 x 73.7 x 24.7 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "13 mm2 of bridge (allowed 66), 11 mm2 of overhang (allowed 82)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.1% of the surface, thinnest ray 0.18 mm"
+    ],
+    [
+     "vents",
+     true,
+     "6 slanted vents"
+    ],
+    [
+     "stays clear of the stack",
+     true,
+     "inner face outboard of x 22.8"
+    ]
+   ]
+  },
+  {
+   "name": "arm_guard",
+   "title": "Arm guard",
+   "material": "TPU 95A",
+   "qty": 4,
+   "mass_g_each": 1.1,
+   "print_size": [
+    28.59,
+    27.02,
+    7.4
+   ],
+   "in_assembly": true,
+   "hardware": "",
+   "notes": "Stretch it over the arm tip, motor off. The left arms take the same print, turned over.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 0.95 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "226 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "28.6 x 27.0 x 7.4 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "35 mm2 of bridge (allowed 60), 0 mm2 of overhang (allowed 30)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.8% of the surface, thinnest ray 0.06 mm"
+    ],
+    [
+     "top lip clears the motor base",
+     true,
+     "lip outside a 35.2 mm circle"
+    ],
+    [
+     "covers the tip",
+     true,
+     "from the tip to 2 mm past the motor"
+    ]
+   ]
+  },
+  {
+   "name": "nose_bumper",
+   "title": "Nose bumper",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 1.8,
+   "print_size": [
+    52.04,
+    18.12,
+    3.6
+   ],
+   "in_assembly": true,
+   "hardware": "the two front-standoff bolts, 2 mm longer",
+   "notes": "It goes under the nose of the camera plate; the front standoff bolts hold it.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 1.51 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "701 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "52.0 x 18.1 x 3.6 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "0 mm2 of bridge (allowed 4), 0 mm2 of overhang (allowed 4)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.1% of the surface, thinnest ray 0.55 mm"
+    ],
+    [
+     "wall flush with the plate's top face",
+     true,
+     "the camera swings down just above it"
+    ]
+   ]
+  },
+  {
+   "name": "foot",
+   "title": "Foot",
+   "material": "TPU 95A",
+   "qty": 6,
+   "mass_g_each": 0.5,
+   "print_size": [
+    12.0,
+    12.0,
+    5.0
+   ],
+   "in_assembly": true,
+   "hardware": "the bolts it covers, 3 mm longer",
+   "notes": "Under the inner root bolt of each arm and the two tail standoff bolts: the bolt head sinks into it.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 0.42 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "104 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "12.0 x 12.0 x 5.0 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "0 mm2 of bridge (allowed 0), 0 mm2 of overhang (allowed 0)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.50 mm"
+    ],
+    [
+     "TPU under each bolt head",
+     true,
+     "2.0 mm"
+    ],
+    [
+     "feet",
+     true,
+     "6"
+    ]
+   ]
+  },
+  {
+   "name": "battery_pad",
+   "title": "Battery pad",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 6.1,
+   "print_size": [
+    40.0,
+    110.0,
+    1.6
+   ],
+   "in_assembly": true,
+   "hardware": "",
+   "notes": "Lay it on the top plate with its openings over the plate's windows; strap through both.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 5.05 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "3154 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "40.0 x 110.0 x 1.6 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "0 mm2 of bridge (allowed 0), 0 mm2 of overhang (allowed 0)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.1% of the surface, thinnest ray 0.09 mm"
+    ],
+    [
+     "covers the battery footprint",
+     true,
+     "40 x 110 mm"
+    ],
+    [
+     "openings over the plate's windows",
+     true,
+     "strap through both"
+    ]
+   ]
+  },
+  {
+   "name": "gopro_mount",
+   "title": "Action-camera mount (GoPro prongs)",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 16.3,
+   "print_size": [
+    73.67,
+    38.84,
+    23.0
+   ],
+   "in_assembly": true,
+   "hardware": "4x M3x12 + washer + nyloc (the plate's holes are 5.3 mm), M5 nut + thumbscrew",
+   "notes": "",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 13.49 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "2646 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "73.7 x 38.8 x 23.0 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "23 mm2 of bridge (allowed 40), 25 mm2 of overhang (allowed 30)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 2.00 mm"
+    ],
+    [
+     "room for the battery behind it",
+     true,
+     "base from Y 57.8, battery to Y 50.0"
+    ]
+   ]
+  },
+  {
+   "name": "crown",
+   "title": "Crown (GPS tray and antenna holder)",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 4.8,
+   "print_size": [
+    42.98,
+    32.6,
+    18.82
+   ],
+   "in_assembly": true,
+   "hardware": "2x M3x12 (replace the two rear top-plate screws); the SMA socket's own nut",
+   "notes": "GPS under the two lips; VTX pigtail through the tab; receiver antenna ends in the two tubes.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 3.94 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "950 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "43.0 x 32.6 x 18.8 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "16 mm2 of bridge (allowed 25), 10 mm2 of overhang (allowed 40)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.6% of the surface, thinnest ray 0.56 mm"
+    ],
+    [
+     "sits behind the battery",
+     true,
+     "tray to Y -66.6, battery from Y -60.0"
+    ]
+   ]
+  }
+ ],
+ "checks": {
+  "frame": [
+   [
+    "camera_plate: traced left and right halves agree",
+    true,
+    "98.4% of the area"
+   ],
+   [
+    "bottom_plate: traced left and right halves agree",
+    true,
+    "97.9% of the area"
+   ],
+   [
+    "top_plate: traced left and right halves agree",
+    true,
+    "95.3% of the area"
+   ],
+   [
+    "arm: the two tracings agree",
+    true,
+    "93.7% of the area, second tracing is the other face"
+   ],
+   [
+    "a bolt's holes line up across the plates as traced",
+    true,
+    "worst 0.31 mm (g16)"
+   ],
+   [
+    "arm front_right: traced root holes land on the plates' holes",
+    true,
+    "worst 0.12 mm"
+   ],
+   [
+    "arm front_right: root lies between the lower plates",
+    true,
+    "73% of its last 40 mm"
+   ],
+   [
+    "arm rear_right: traced root holes land on the plates' holes",
+    true,
+    "worst 0.09 mm"
+   ],
+   [
+    "arm rear_right: root lies between the lower plates",
+    true,
+    "76% of its last 40 mm"
+   ],
+   [
+    "plate_bottom: one valid solid",
+    true,
+    "1 solid(s), 10330 mm3"
+   ],
+   [
+    "plate_camera: one valid solid",
+    true,
+    "1 solid(s), 11160 mm3"
+   ],
+   [
+    "plate_top: one valid solid",
+    true,
+    "1 solid(s), 20542 mm3"
+   ],
+   [
+    "arm_front_right: one valid solid",
+    true,
+    "1 solid(s), 16120 mm3"
+   ],
+   [
+    "arm_front_left: one valid solid",
+    true,
+    "1 solid(s), 16120 mm3"
+   ],
+   [
+    "arm_rear_right: one valid solid",
+    true,
+    "1 solid(s), 16120 mm3"
+   ],
+   [
+    "arm_rear_left: one valid solid",
+    true,
+    "1 solid(s), 16120 mm3"
+   ],
+   [
+    "standoff_rear_left: one valid solid",
+    true,
+    "1 solid(s), 471 mm3"
+   ],
+   [
+    "standoff_rear_right: one valid solid",
+    true,
+    "1 solid(s), 471 mm3"
+   ],
+   [
+    "standoff_arm_rear_left: one valid solid",
+    true,
+    "1 solid(s), 368 mm3"
+   ],
+   [
+    "standoff_arm_rear_right: one valid solid",
+    true,
+    "1 solid(s), 368 mm3"
+   ],
+   [
+    "standoff_arm_front_left: one valid solid",
+    true,
+    "1 solid(s), 368 mm3"
+   ],
+   [
+    "standoff_arm_front_right: one valid solid",
+    true,
+    "1 solid(s), 368 mm3"
+   ],
+   [
+    "standoff_front_left: one valid solid",
+    true,
+    "1 solid(s), 368 mm3"
+   ],
+   [
+    "standoff_front_right: one valid solid",
+    true,
+    "1 solid(s), 368 mm3"
+   ],
+   [
+    "no two frame parts overlap",
+    true,
+    "none"
+   ],
+   [
+    "every bolt passes every layer it crosses (41 axes)",
+    true,
+    "all open"
+   ],
+   [
+    "standoff_rear_left on plate_bottom and under plate_top",
+    true,
+    "32 mm, Z 2-34"
+   ],
+   [
+    "standoff_rear_right on plate_bottom and under plate_top",
+    true,
+    "32 mm, Z 2-34"
+   ],
+   [
+    "standoff_arm_rear_left on plate_camera and under plate_top",
+    true,
+    "25 mm, Z 9-34"
+   ],
+   [
+    "standoff_arm_rear_right on plate_camera and under plate_top",
+    true,
+    "25 mm, Z 9-34"
+   ],
+   [
+    "standoff_arm_front_left on plate_camera and under plate_top",
+    true,
+    "25 mm, Z 9-34"
+   ],
+   [
+    "standoff_arm_front_right on plate_camera and under plate_top",
+    true,
+    "25 mm, Z 9-34"
+   ],
+   [
+    "standoff_front_left on plate_camera and under plate_top",
+    true,
+    "25 mm, Z 9-34"
+   ],
+   [
+    "standoff_front_right on plate_camera and under plate_top",
+    true,
+    "25 mm, Z 9-34"
+   ],
+   [
+    "7 inch props clear each other",
+    true,
+    "4.8 mm at the closest pair; diagonal 304.2 mm"
+   ],
+   [
+    "prop front_right: body stays 2.5 mm outside the disc",
+    true,
+    "clear"
+   ],
+   [
+    "prop front_left: body stays 2.5 mm outside the disc",
+    true,
+    "clear"
+   ],
+   [
+    "prop rear_right: body stays 2.5 mm outside the disc",
+    true,
+    "clear"
+   ],
+   [
+    "prop rear_left: body stays 2.5 mm outside the disc",
+    true,
+    "clear"
+   ],
+   [
+    "stack 30.5 fits",
+    true,
+    "clear"
+   ],
+   [
+    "VTX 30.5 in the front bay fits",
+    true,
+    "clear"
+   ],
+   [
+    "camera 19 mm, 15-45 deg fits",
+    true,
+    "clear"
+   ],
+   [
+    "battery fits",
+    true,
+    "clear"
+   ],
+   [
+    "bottom_plate: narrowest carbon web",
+    true,
+    "1.87 mm"
+   ],
+   [
+    "camera_plate: narrowest carbon web",
+    true,
+    "2.84 mm"
+   ],
+   [
+    "top_plate: narrowest carbon web",
+    true,
+    "2.91 mm"
+   ],
+   [
+    "arm: narrowest carbon web",
+    true,
+    "2.86 mm"
+   ],
+   [
+    "frame mass as modelled",
+    true,
+    "165.1 g of carbon"
+   ]
+  ],
+  "clashes": []
+ },
+ "all_checks_passed": true,
+ "mass_g": {
+  "carbon": 165.1,
+  "standoffs": 8.5
+ },
+ "freecad": {
+  "file": "assembly/Tigerbeetle-7inch.FCStd",
+  "gui": true,
+  "features": 44,
+  "invalid": []
+ }
+}

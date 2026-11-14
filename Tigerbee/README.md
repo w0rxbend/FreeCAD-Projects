@@ -1,5 +1,7 @@
 # Tigerbee CAD
 
+> **Замінено.** Ця рама відтворена заново зі сканів у [Tigerbeetle-7inch](../Tigerbeetle-7inch): контури векторизовані прямо з обводки, модель накладена назад на скани для перевірки, з повним комплектом друкованих аксесуарів. Ця папка лишається як історія попередньої спроби.
+
 Five independently buildable carbon components, four arm protector feet, a GoPro
 holder and a symmetric 7-inch FPV frame assembly, in a locked Python 3.13 / uv project.
 

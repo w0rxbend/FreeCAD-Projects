@@ -1,5 +1,7 @@
 # Tigerbee 7" FPV frame
 
+> **Замінено.** Ця рама відтворена заново зі сканів у [Tigerbeetle-7inch](../Tigerbeetle-7inch): контури векторизовані прямо з обводки, модель накладена назад на скани для перевірки, з повним комплектом друкованих аксесуарів. Ця папка лишається як історія попередньої спроби.
+
 Parametric build123d model of a 7-inch frame with a **303.0 mm** wheelbase, reconstructed from
 `Scan_1.jpeg` (two arms + mid plate) and `Scan_2.jpeg` (bottom and top plates). Three 2 mm carbon
 plates, four 5 mm arms (one handed part, placed four times), eight M3 standoffs.
