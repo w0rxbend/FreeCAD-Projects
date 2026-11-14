@@ -55,6 +55,23 @@ def write_dxf(name: str, path: Path) -> None:
         ezdxf.options.write_fixed_meta_data_for_testing = previous
 
 
+CUT_SHEETS = ("Carbon", "Polycarbonate")  # inserts cut from sheet, not printed: they also get a DXF
+
+
+def write_flat_dxf(part, path: Path) -> None:
+    """DXF of a flat part lying on the bed: the outline of its face on Z = 0."""
+    face = max((f for f in part.faces() if abs(f.center().Z) < 1e-4 and f.normal_at().Z < -0.999), key=lambda f: f.area)
+    previous = ezdxf.options.write_fixed_meta_data_for_testing
+    ezdxf.options.write_fixed_meta_data_for_testing = True
+    try:
+        dxf = ExportDXF(unit=Unit.MM)
+        dxf.add_layer("CUT")
+        dxf.add_shape(face, layer="CUT")
+        dxf.write(path)
+    finally:
+        ezdxf.options.write_fixed_meta_data_for_testing = previous
+
+
 def _bbox(shape) -> list[float]:
     bb = shape.bounding_box()
     return [round(v, 2) for v in (bb.size.X, bb.size.Y, bb.size.Z)]
@@ -123,6 +140,14 @@ def write_document(path: Path, cmd: list[str]) -> dict:
     return {"file": f"assembly/{path.name}", **result}
 
 
+def _density(material: str) -> float:
+    if material.startswith("Carbon"):
+        return C.CARBON_DENSITY
+    if material.startswith("Polycarbonate"):
+        return 1.2e-3
+    return DENSITY.get(material, TPU_DENSITY)
+
+
 def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
     for sub in ("cnc", "print/stl", "print/3mf", "print/step", "assembly"):
         (out / sub).mkdir(parents=True, exist_ok=True)
@@ -176,13 +201,15 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
         write_stl(printed, out / "print" / "stl" / f"{acc.name}.stl")
         write_3mf(printed, out / "print" / "3mf" / f"{acc.name}.3mf")
         write_step(printed, out / "print" / "step" / f"{acc.name}.step")
+        if acc.material.startswith(CUT_SHEETS):
+            write_flat_dxf(printed, out / "cnc" / f"{acc.name}_{acc.material.split()[-2]}mm.dxf")
         manifest["accessories"].append(
             {
                 "name": acc.name,
                 "title": acc.title,
                 "material": acc.material,
                 "qty": acc.qty,
-                "mass_g_each": round(acc.part.volume * DENSITY.get(acc.material, TPU_DENSITY), 1),
+                "mass_g_each": round(acc.part.volume * _density(acc.material), 1),
                 "print_size": _bbox(printed),
                 "in_assembly": acc.in_assembly,
                 "hardware": acc.hardware,
@@ -205,5 +232,6 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
     manifest["mass_g"] = mass
     if freecad_cmd:
         manifest["freecad"] = write_document(out / "assembly" / "Tigerbeetle-7inch.FCStd", freecad_cmd)
-    (out / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n")
+    # numpy scalars (a check computed with numpy) become plain numbers
+    (out / "manifest.json").write_text(json.dumps(manifest, indent=1, default=lambda o: o.item()) + "\n")
     return manifest

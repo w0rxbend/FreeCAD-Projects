@@ -5,7 +5,6 @@ finished quad. The beetle's wing case: a slightly bowed shell with a row of slan
 follow the top plate's chevrons, and a lifted lower edge in the middle for the motor wires.
 """
 
-
 from zhalo.accessories.kit import (
     CLIP_BORE,
     CLIP_WALL,

@@ -736,6 +736,291 @@
    ]
   },
   {
+   "name": "side_honeycomb",
+   "title": "Side panel, honeycomb",
+   "material": "TPU 95A",
+   "qty": 2,
+   "mass_g_each": 3.4,
+   "print_size": [
+    9.59,
+    73.72,
+    24.7
+   ],
+   "in_assembly": false,
+   "hardware": "",
+   "notes": "Swap for the vented panel.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 2.82 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "156 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "9.6 x 73.7 x 24.7 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "73 mm2 of bridge (allowed 80), 15 mm2 of overhang (allowed 60)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.60 mm"
+    ],
+    [
+     "cells",
+     true,
+     "23 hex cells of 5 mm"
+    ]
+   ]
+  },
+  {
+   "name": "side_armor",
+   "title": "Side panel, armor",
+   "material": "TPU 95A",
+   "qty": 2,
+   "mass_g_each": 4.1,
+   "print_size": [
+    9.85,
+    73.72,
+    24.7
+   ],
+   "in_assembly": false,
+   "hardware": "",
+   "notes": "Swap for the vented panel.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 3.43 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "156 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "9.9 x 73.7 x 24.7 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "4 mm2 of bridge (allowed 80), 3 mm2 of overhang (allowed 60)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.60 mm"
+    ],
+    [
+     "tiger stripes",
+     true,
+     "4 raised stripes"
+    ]
+   ]
+  },
+  {
+   "name": "side_frame",
+   "title": "Composite side panel, TPU frame",
+   "material": "TPU 95A",
+   "qty": 2,
+   "mass_g_each": 3.7,
+   "print_size": [
+    27.76,
+    74.63,
+    7.3
+   ],
+   "in_assembly": false,
+   "hardware": "",
+   "notes": "Press the insert into the frame from inside (the TPU stretches over its edges), then push the panel on from outside like the vented one. Print it lying on its outer face.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 3.02 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "691 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "27.8 x 74.6 x 7.3 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "204 mm2 of bridge (allowed 214), 78 mm2 of overhang (allowed 90)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.00 mm"
+    ],
+    [
+     "holds a 1.5 mm insert",
+     true,
+     "1.4 mm lips top and bottom"
+    ]
+   ]
+  },
+  {
+   "name": "side_insert_carbon",
+   "title": "Composite side panel, carbon insert (CNC)",
+   "material": "Carbon 1.5 mm",
+   "qty": 2,
+   "mass_g_each": 1.8,
+   "print_size": [
+    17.6,
+    55.3,
+    1.5
+   ],
+   "in_assembly": false,
+   "hardware": "",
+   "notes": "Cut from a flat sheet; one per side (the same part, turned over).",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 1.16 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "776 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "17.6 x 55.3 x 1.5 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "0 mm2 of bridge (allowed 80), 0 mm2 of overhang (allowed 60)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.50 mm"
+    ],
+    [
+     "stripes cut out",
+     true,
+     "4 stripes"
+    ]
+   ]
+  },
+  {
+   "name": "side_insert_clear",
+   "title": "LED side panel, clear insert (CNC or laser)",
+   "material": "Polycarbonate 1.5 mm",
+   "qty": 2,
+   "mass_g_each": 1.5,
+   "print_size": [
+    17.6,
+    55.3,
+    1.5
+   ],
+   "in_assembly": false,
+   "hardware": "",
+   "notes": "Cut from a flat sheet; one per side (the same part, turned over).",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 1.29 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "859 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "17.6 x 55.3 x 1.5 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "0 mm2 of bridge (allowed 80), 0 mm2 of overhang (allowed 60)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.50 mm"
+    ],
+    [
+     "light passes",
+     true,
+     "clear polycarbonate, 5 mm LED strip behind it"
+    ]
+   ]
+  },
+  {
    "name": "arm_guard",
    "title": "Arm guard",
    "material": "TPU 95A",
@@ -1091,6 +1376,125 @@
      "tray to Y -66.6, battery from Y -60.0"
     ]
    ]
+  },
+  {
+   "name": "xt60_holder",
+   "title": "XT60 holder",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 3.2,
+   "print_size": [
+    41.98,
+    16.2,
+    19.85
+   ],
+   "in_assembly": true,
+   "hardware": "a zip tie round the socket and the holder",
+   "notes": "Slide it over the two rear standoffs before the top plate goes on; the socket's mouth faces back.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 2.64 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "429 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "42.0 x 16.2 x 19.9 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "0 mm2 of bridge (allowed 12), 0 mm2 of overhang (allowed 20)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.60 mm"
+    ],
+    [
+     "pocket fits an XT60",
+     true,
+     "16.2 x 8.7 mm opening, 16.2 mm deep"
+    ],
+    [
+     "the plug's mouth is at the tail",
+     true,
+     "pocket from Y -104.4, plate ends at Y -99.2"
+    ]
+   ]
+  },
+  {
+   "name": "wire_clip",
+   "title": "Motor-wire clip",
+   "material": "TPU 95A",
+   "qty": 4,
+   "mass_g_each": 0.5,
+   "print_size": [
+    17.24,
+    18.87,
+    6.0
+   ],
+   "in_assembly": true,
+   "hardware": "",
+   "notes": "Lay the wires on the arm and press the clip down until both hooks snap under it.",
+   "checks": [
+    [
+     "one valid solid",
+     true,
+     "1 solid(s), 0.44 cm3"
+    ],
+    [
+     "does not cut into the frame",
+     true,
+     "clear"
+    ],
+    [
+     "clear of electronics, motors and prop discs",
+     true,
+     "clear"
+    ],
+    [
+     "rests on a flat face",
+     true,
+     "74 mm2 on the bed"
+    ],
+    [
+     "fits a 180 mm bed",
+     true,
+     "17.2 x 18.9 x 6.0 mm"
+    ],
+    [
+     "prints without supports",
+     true,
+     "0 mm2 of bridge (allowed 0), 0 mm2 of overhang (allowed 0)"
+    ],
+    [
+     "no walls under 0.9 mm",
+     true,
+     "0.0% of the surface, thinnest ray 1.30 mm"
+    ],
+    [
+     "sized to the traced arm",
+     true,
+     "arm 12.7 mm wide at the clip"
+    ]
+   ]
   }
  ],
  "checks": {
@@ -1346,7 +1750,7 @@
  "freecad": {
   "file": "assembly/Tigerbeetle-7inch.FCStd",
   "gui": true,
-  "features": 44,
+  "features": 59,
   "invalid": []
  }
 }

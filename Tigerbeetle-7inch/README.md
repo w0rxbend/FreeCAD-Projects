@@ -23,7 +23,7 @@
 | Стек | 30,5 × 30,5 — він і є початком координат |
 | Передній відсік | 30,5 × 30,5 і 20 × 20 на камерній пластині (VTX), камера 19 мм |
 | Карбон | **165 г** |
-| Друк | 9 видів деталей, ≈ 49 г TPU |
+| Аксесуари | 16 видів: 5 варіантів бокових панелей, бампери, ніжки, тримачі камери, GoPro, GPS, XT60 |
 
 ## 1. Як відтворено і наскільки точно
 
@@ -94,7 +94,7 @@
 | Корінь променя | у V2 зменшений до 35 × 29 мм, «щоб не налазив» | як обведений; обрізано лише 0,1 мм на центральній лінії |
 | Схема | у Tigerbee примусово квадратний X 305 мм | як показують отвори: передні промені 33,4°, задні 40,2° |
 | Доказ | порівняння окремих точок | модель накладена на обидва скани, відхилення виміряне по всьому контуру |
-| Аксесуари | захист променів, GoPro | 9 видів, кожен перевірений на складання й друк без підтримок |
+| Аксесуари | захист променів, GoPro | 16 видів, з них 5 варіантів бокових панелей; кожен перевірений на складання й друк без підтримок |
 
 ## 4. Перевірки
 
@@ -106,24 +106,52 @@
 репозиторію: не ріжуть раму, не зачіпають електроніку й гвинти, лягають на стіл пласкою гранню,
 друкуються без підтримок, без стінок тонших за 0,9 мм, не перетинаються між собою.
 
-## 5. Друковані аксесуари
+## 5. Аксесуари
 
 ![Усі друковані деталі](exports/renders/accessories.png)
 
-| Деталь | К-сть | Маса, г | Розмір на столі, мм | Метизи |
-|---|---|---|---|---|
-| `camera_mount` — FPV camera mount, 19 mm | 1 | 5,0 | 47 × 18 × 25 | 2x M2x5 (the camera's own side screws) |
-| `side_panel_right` — Side panel, right | 1 | 3,7 | 12 × 74 × 25 | — |
-| `side_panel_left` — Side panel, left | 1 | 3,7 | 12 × 74 × 25 | — |
-| `arm_guard` — Arm guard | 4 | 1,1 | 29 × 27 × 7 | — |
-| `nose_bumper` — Nose bumper | 1 | 1,8 | 52 × 18 × 4 | the two front-standoff bolts, 2 mm longer |
-| `foot` — Foot | 6 | 0,5 | 12 × 12 × 5 | the bolts it covers, 3 mm longer |
-| `battery_pad` — Battery pad | 1 | 6,1 | 40 × 110 × 2 | — |
-| `gopro_mount` — Action-camera mount (GoPro prongs) | 1 | 16,3 | 74 × 39 × 23 | 4x M3x12 + washer + nyloc (the plate's holes are 5.3 mm), M5 nut + thumbscrew |
-| `crown` — Crown (GPS tray and antenna holder) | 1 | 4,8 | 43 × 33 × 19 | 2x M3x12 (replace the two rear top-plate screws); the SMA socket's own nut |
+### Бокові панелі: п'ять варіантів на ті самі дві стійки
 
-TPU 95A, сопло 0,4 мм. Ніжки, бампери променів і носа, кріплення камери й тримач GPS — у помаранчевому
-акценті «тигра», бокові панелі — у чорному.
+Усі знімаються без інструмента: два кільця клацають на стійки зовні. Внизу посередині — виріз під дроти моторів.
+
+| Варіант | Що це | Для чого |
+|---|---|---|
+| Вентильована (`side_panel`) | TPU, шість похилих прорізів-«шевронів» | щоденні польоти, стоїть у збірці |
+| Стільникова (`side_honeycomb`) | TPU, стільники по всій висоті | найбільше повітря до стека влітку |
+| Броня (`side_armor`) | TPU без отворів, рельєфні смуги тигра | пісок, пил, трава, падіння на бік |
+| Композитна (`side_frame` + `side_insert_carbon`) | TPU-рамка + карбонова вставка 1,5 мм з вирізаними смугами | найжорсткіша й найлегша на вигляд; вставка — `cnc/side_insert_carbon_1.5mm.dxf` |
+| LED (`side_frame` + `side_insert_clear`) | та сама рамка + прозорий полікарбонат 1,5 мм | 5-мм LED-стрічка за вставкою — бік світиться; `cnc/side_insert_clear_1.5mm.dxf` |
+
+| Композитна | LED |
+|---|---|
+| ![Композитна](exports/renders/side_composite.png) | ![LED](exports/renders/side_led.png) |
+| ![Броня](exports/renders/side_armor.png) | ![Стільники](exports/renders/side_honeycomb.png) |
+
+Вставка вставляється в рамку зсередини: TPU-губи по 1,4 мм заходять за її верхній і нижній край. Рамка й
+вставка перевірені на взаємне розташування (не перетинаються) і на те, що разом не зачіпають раму й стек.
+
+### Усі деталі
+
+| Деталь | Матеріал | К-сть | Маса, г | Розмір, мм | Метизи |
+|---|---|---|---|---|---|
+| `camera_mount` — FPV camera mount, 19 mm | TPU 95A | 1 | 5,0 | 47 × 18 × 25 | 2x M2x5 (the camera's own side screws) |
+| `side_panel_right` — Side panel, right | TPU 95A | 1 | 3,7 | 12 × 74 × 25 | — |
+| `side_panel_left` — Side panel, left | TPU 95A | 1 | 3,7 | 12 × 74 × 25 | — |
+| `side_honeycomb` — Side panel, honeycomb *(варіант)* | TPU 95A | 2 | 3,4 | 10 × 74 × 25 | — |
+| `side_armor` — Side panel, armor *(варіант)* | TPU 95A | 2 | 4,1 | 10 × 74 × 25 | — |
+| `side_frame` — Composite side panel, TPU frame *(варіант)* | TPU 95A | 2 | 3,7 | 28 × 75 × 7 | — |
+| `side_insert_carbon` — Composite side panel, carbon insert (CNC) *(варіант)* | Carbon 1.5 mm | 2 | 1,8 | 18 × 55 × 2 | — |
+| `side_insert_clear` — LED side panel, clear insert (CNC or laser) *(варіант)* | Polycarbonate 1.5 mm | 2 | 1,5 | 18 × 55 × 2 | — |
+| `arm_guard` — Arm guard | TPU 95A | 4 | 1,1 | 29 × 27 × 7 | — |
+| `nose_bumper` — Nose bumper | TPU 95A | 1 | 1,8 | 52 × 18 × 4 | the two front-standoff bolts, 2 mm longer |
+| `foot` — Foot | TPU 95A | 6 | 0,5 | 12 × 12 × 5 | the bolts it covers, 3 mm longer |
+| `battery_pad` — Battery pad | TPU 95A | 1 | 6,1 | 40 × 110 × 2 | — |
+| `gopro_mount` — Action-camera mount (GoPro prongs) | TPU 95A | 1 | 16,3 | 74 × 39 × 23 | 4x M3x12 + washer + nyloc (the plate's holes are 5.3 mm), M5 nut + thumbscrew |
+| `crown` — Crown (GPS tray and antenna holder) | TPU 95A | 1 | 4,8 | 43 × 33 × 19 | 2x M3x12 (replace the two rear top-plate screws); the SMA socket's own nut |
+| `xt60_holder` — XT60 holder | TPU 95A | 1 | 3,2 | 42 × 16 × 20 | a zip tie round the socket and the holder |
+| `wire_clip` — Motor-wire clip | TPU 95A | 4 | 0,5 | 17 × 19 × 6 | — |
+
+TPU 95A, сопло 0,4 мм; у збірці ≈ 54 г друку. Помаранчеве — акцент «тигра», чорне — панелі й килимок.
 
 ## 6. Файли й метизи
 

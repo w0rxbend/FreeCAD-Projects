@@ -27,6 +27,20 @@ def _accessories():
     return [Item(p, a.color) for a in A.assembly() for p in (a.part, *a.instances)]
 
 
+def _with_panels(*names: str):
+    """The complete quad with the vented side panels swapped for the named variant parts."""
+    acc = {a.name: a for a in A.build_all()}
+    out = [
+        Item(p, a.color) for a in A.assembly() if not a.name.startswith("side_panel") for p in (a.part, *a.instances)
+    ]
+    for n in names:
+        a = acc[n]
+        out += [
+            Item(p, a.color, 0.55 if a.material.startswith("Polycarbonate") else 1.0) for p in (a.part, *a.instances)
+        ]
+    return _frame() + _gear(("prop_", "battery")) + out
+
+
 def _exploded():
     lift = {"plate_bottom": -20.0, "arm": 0.0, "plate_camera": 22.0, "standoff": 40.0, "plate_top": 70.0}
     out = []
@@ -82,6 +96,16 @@ def render_all(out: Path) -> dict:
         ("complete_side", full, "side", fp, 1.0),
         ("nose", full, LOW_FRONT, fp, 1.9),
         ("underside", full, UNDER, fp, 1.0),
+        (
+            "side_composite",
+            _with_panels("side_frame", "side_insert_carbon"),
+            ((1.0, 0.35, 0.45), (0, 0, 1), False),
+            fp,
+            1.0,
+        ),
+        ("side_led", _with_panels("side_frame", "side_insert_clear"), ((1.0, 0.35, 0.45), (0, 0, 1), False), fp, 1.0),
+        ("side_armor", _with_panels("side_armor"), ((1.0, 0.35, 0.45), (0, 0, 1), False), fp, 1.0),
+        ("side_honeycomb", _with_panels("side_honeycomb"), ((1.0, 0.35, 0.45), (0, 0, 1), False), fp, 1.0),
         ("frame", _frame(), FRONT_ISO, None, 1.0),
         ("frame_top", _frame(), "top", None, 1.0),
         ("frame_exploded", _exploded(), FRONT_ISO, None, 1.0),

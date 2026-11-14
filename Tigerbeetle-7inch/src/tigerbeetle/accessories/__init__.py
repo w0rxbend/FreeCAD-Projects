@@ -16,7 +16,19 @@ from zhalo.checks import overlap
 from tigerbeetle import equipment as E
 from tigerbeetle import frame as F
 
-MODULES = ("camera_mount", "side_panel", "arm_guard", "nose_bumper", "foot", "battery_pad", "gopro_mount", "crown")
+MODULES = (
+    "camera_mount",
+    "side_panel",
+    "panel_variants",
+    "arm_guard",
+    "nose_bumper",
+    "foot",
+    "battery_pad",
+    "gopro_mount",
+    "crown",
+    "xt60",
+    "wire_clip",
+)
 THIN = 0.9
 EPS = 1e-3
 

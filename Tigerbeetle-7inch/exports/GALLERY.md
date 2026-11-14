@@ -9,6 +9,8 @@ Every render of this frame. Models are in `cnc/`, `print/` and `assembly/`.
 | ![hero](renders/hero.png)<br>hero | ![complete rear](renders/complete_rear.png)<br>complete rear |
 | ![complete top](renders/complete_top.png)<br>complete top | ![complete side](renders/complete_side.png)<br>complete side |
 | ![nose](renders/nose.png)<br>nose | ![underside](renders/underside.png)<br>underside |
+| ![side composite](renders/side_composite.png)<br>side composite | ![side led](renders/side_led.png)<br>side led |
+| ![side armor](renders/side_armor.png)<br>side armor | ![side honeycomb](renders/side_honeycomb.png)<br>side honeycomb |
 | ![frame](renders/frame.png)<br>frame | ![frame top](renders/frame_top.png)<br>frame top |
 | ![frame exploded](renders/frame_exploded.png)<br>frame exploded | ![cut sheet](renders/cut_sheet.png)<br>cut sheet |
 | ![overlay scan 1](renders/overlay_scan_1.png)<br>overlay scan 1 | ![overlay scan 2](renders/overlay_scan_2.png)<br>overlay scan 2 |
@@ -26,17 +28,23 @@ Every render of this frame. Models are in `cnc/`, `print/` and `assembly/`.
 | | |
 |---|---|
 | ![FPV camera mount, 19 mm](renders/parts/camera_mount.png)<br>FPV camera mount, 19 mm | ![Side panel, right](renders/parts/side_panel_right.png)<br>Side panel, right |
-| ![Side panel, left](renders/parts/side_panel_left.png)<br>Side panel, left | ![Arm guard, x4](renders/parts/arm_guard.png)<br>Arm guard, x4 |
-| ![Nose bumper](renders/parts/nose_bumper.png)<br>Nose bumper | ![Foot, x6](renders/parts/foot.png)<br>Foot, x6 |
-| ![Battery pad](renders/parts/battery_pad.png)<br>Battery pad | ![Action-camera mount (GoPro prongs)](renders/parts/gopro_mount.png)<br>Action-camera mount (GoPro prongs) |
-| ![Crown (GPS tray and antenna holder)](renders/parts/crown.png)<br>Crown (GPS tray and antenna holder) |  |
+| ![Side panel, left](renders/parts/side_panel_left.png)<br>Side panel, left | ![Side panel, honeycomb, x2](renders/parts/side_honeycomb.png)<br>Side panel, honeycomb, x2 |
+| ![Side panel, armor, x2](renders/parts/side_armor.png)<br>Side panel, armor, x2 | ![Composite side panel, TPU frame, x2](renders/parts/side_frame.png)<br>Composite side panel, TPU frame, x2 |
+| ![Composite side panel, carbon insert (CNC), x2](renders/parts/side_insert_carbon.png)<br>Composite side panel, carbon insert (CNC), x2 | ![LED side panel, clear insert (CNC or laser), x2](renders/parts/side_insert_clear.png)<br>LED side panel, clear insert (CNC or laser), x2 |
+| ![Arm guard, x4](renders/parts/arm_guard.png)<br>Arm guard, x4 | ![Nose bumper](renders/parts/nose_bumper.png)<br>Nose bumper |
+| ![Foot, x6](renders/parts/foot.png)<br>Foot, x6 | ![Battery pad](renders/parts/battery_pad.png)<br>Battery pad |
+| ![Action-camera mount (GoPro prongs)](renders/parts/gopro_mount.png)<br>Action-camera mount (GoPro prongs) | ![Crown (GPS tray and antenna holder)](renders/parts/crown.png)<br>Crown (GPS tray and antenna holder) |
+| ![XT60 holder](renders/parts/xt60_holder.png)<br>XT60 holder | ![Motor-wire clip, x4](renders/parts/wire_clip.png)<br>Motor-wire clip, x4 |
 
 ## Printed parts in place
 
 | | |
 |---|---|
 | ![FPV camera mount, 19 mm](renders/installed/camera_mount.png)<br>FPV camera mount, 19 mm | ![Side panel, right](renders/installed/side_panel_right.png)<br>Side panel, right |
-| ![Side panel, left](renders/installed/side_panel_left.png)<br>Side panel, left | ![Arm guard, x4](renders/installed/arm_guard.png)<br>Arm guard, x4 |
-| ![Nose bumper](renders/installed/nose_bumper.png)<br>Nose bumper | ![Foot, x6](renders/installed/foot.png)<br>Foot, x6 |
-| ![Battery pad](renders/installed/battery_pad.png)<br>Battery pad | ![Action-camera mount (GoPro prongs)](renders/installed/gopro_mount.png)<br>Action-camera mount (GoPro prongs) |
-| ![Crown (GPS tray and antenna holder)](renders/installed/crown.png)<br>Crown (GPS tray and antenna holder) |  |
+| ![Side panel, left](renders/installed/side_panel_left.png)<br>Side panel, left | ![Side panel, honeycomb, x2](renders/installed/side_honeycomb.png)<br>Side panel, honeycomb, x2 |
+| ![Side panel, armor, x2](renders/installed/side_armor.png)<br>Side panel, armor, x2 | ![Composite side panel, TPU frame, x2](renders/installed/side_frame.png)<br>Composite side panel, TPU frame, x2 |
+| ![Composite side panel, carbon insert (CNC), x2](renders/installed/side_insert_carbon.png)<br>Composite side panel, carbon insert (CNC), x2 | ![LED side panel, clear insert (CNC or laser), x2](renders/installed/side_insert_clear.png)<br>LED side panel, clear insert (CNC or laser), x2 |
+| ![Arm guard, x4](renders/installed/arm_guard.png)<br>Arm guard, x4 | ![Nose bumper](renders/installed/nose_bumper.png)<br>Nose bumper |
+| ![Foot, x6](renders/installed/foot.png)<br>Foot, x6 | ![Battery pad](renders/installed/battery_pad.png)<br>Battery pad |
+| ![Action-camera mount (GoPro prongs)](renders/installed/gopro_mount.png)<br>Action-camera mount (GoPro prongs) | ![Crown (GPS tray and antenna holder)](renders/installed/crown.png)<br>Crown (GPS tray and antenna holder) |
+| ![XT60 holder](renders/installed/xt60_holder.png)<br>XT60 holder | ![Motor-wire clip, x4](renders/installed/wire_clip.png)<br>Motor-wire clip, x4 |
