@@ -50,7 +50,7 @@ def build() -> list[Accessory]:
     placed = {name: _place(local, name) for name in P.MOTORS}
     lip_gap = (P.MOTOR_PAD_R + FIT - LIP) - MOTOR_BASE_D / 2
     own = [
-        ("lip clears a 28.4 mm motor base", lip_gap >= 0.5, f"{lip_gap:.2f} mm radial gap"),
+        (f"lip clears a {MOTOR_BASE_D:g} mm motor base", lip_gap >= 0.5, f"{lip_gap:.2f} mm radial gap"),
         ("screw heads bear on carbon, not TPU", HEAD_HOLE >= 6.5, f"{HEAD_HOLE} mm holes round the heads"),
     ]
     wrap = 2 * (3.14159265 - acos(REACH / (P.MOTOR_PAD_R + FIT)))  # radians of pad edge under the lip

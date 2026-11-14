@@ -28,7 +28,7 @@ VTX_Z = P.Z_BAY + 5.0  # on 5 mm spacers above the bay floor
 
 # --- camera ----------------------------------------------------------------------------------
 # the camera's side screws; the tilt axis runs along X through this point, 1 mm above mid-height of the bay
-CAM_PIVOT = (0.0, 63.0, (P.Z_BAY + P.Z_TOP) / 2 + 1.0)
+CAM_PIVOT = (0.0, P.F[1] + 7.0, (P.Z_BAY + P.Z_TOP) / 2 + 1.0)
 CAM_TILT = 30.0  # nominal up-tilt, degrees
 CAM_TILT_RANGE = (15.0, 45.0)
 
@@ -130,6 +130,10 @@ def build() -> dict[str, tuple[Part, str, float]]:
     for name, xy in P.MOTORS.items():
         out[f"motor_{name}"] = (motor(xy), "motor", 1.0)
         out[f"prop_{name}"] = (prop(xy), "prop", 0.28)
+    out.update(EXTRA)
     for name, (part, _c, _o) in out.items():
         part.label = name
     return out
+
+
+EXTRA: dict[str, tuple[Part, str, float]] = {}  # gear a sibling design adds: name -> (part, colour key, opacity)

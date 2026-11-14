@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "zvir"
+version = "0.1.0"
+description = "Zvir 7-inch computer-vision FPV frame: a wide three-bay body, a servo chin turret that looks straight down, talon legs"
+requires-python = ">=3.12,<3.13"
+dependencies = ["zhalo"]
+
+[project.optional-dependencies]
+fea = ["gmsh>=4.11", "scikit-fem>=10"]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "vtk>=9.3", "pillow>=10", "gmsh>=4.11", "scikit-fem>=10"]
+
+[project.scripts]
+zvir = "zvir.__main__:main"
+
+[tool.uv.sources]
+zhalo = { path = "../Zhalo-5inch", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/zvir"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

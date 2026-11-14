@@ -22,12 +22,13 @@ from zhalo import design
 from zhalo import equipment as E
 from zhalo import frame as F
 from zhalo import params as P
-from zhalo.accessories.kit import MATERIAL, lay_on_bed
+from zhalo.accessories.kit import lay_on_bed
 
 STEP_TIME = "2000-01-01T00:00:00"  # fixed stamp: regenerating gives the same file
 MESH_LIN, MESH_ANG = 0.02, 0.1
 ASSEMBLY_LIN, ASSEMBLY_ANG = 0.05, 0.2  # coarser: an assembly STL is for looking at, not for printing
 TPU_DENSITY = 1.21e-3  # g / mm3
+DENSITY = {"PETG": 1.27e-3}  # printed materials other than TPU
 
 
 def write_stl(part, path: Path, lin: float = MESH_LIN, ang: float = MESH_ANG) -> int:
@@ -147,7 +148,7 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
             "arms": [P.Z_ARM, P.Z_MID],
             "plate_mid": [P.Z_MID, P.Z_DECK],
             "standoffs_stack": [P.Z_DECK, P.Z_TOP],
-            "standoffs_bay": [P.Z_ARM, P.Z_TOP],
+            "standoffs_bay": [P.Z_BAY, P.Z_TOP],
             "plate_top": [P.Z_TOP, P.Z_ROOF],
             "braces": [P.Z_BRACE, P.Z_ARM],
         },
@@ -156,6 +157,7 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
             "vtx": "analog, 20 x 20 or 30.5 x 30.5 M3, rear bay",
             "camera": "19 mm micro (22 mm mini variant)",
             "battery": list(E.BATTERY_SIZE),
+            **design.EQUIPMENT,
         },
         "carbon": [],
         "accessories": [],
@@ -207,9 +209,9 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
                 "name": acc.name,
                 "title": acc.title,
                 "module": acc.module,
-                "material": MATERIAL,
+                "material": acc.material,
                 "qty": acc.qty,
-                "mass_g_each": round(acc.part.volume * TPU_DENSITY, 1),
+                "mass_g_each": round(acc.part.volume * DENSITY.get(acc.material, TPU_DENSITY), 1),
                 "print_size": _bbox(printed),
                 "triangles": tris,
                 "hardware": acc.hardware,

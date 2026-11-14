@@ -356,8 +356,8 @@ def build() -> dict[str, tuple[Part, str]]:
         for side in ("right", "left"):  # the left brace is the right one turned over
             part = _placed(SHEETS["brace"](), P.Z_BRACE, at=(P.LUG[0], 0), mirror_x=side == "left")
             out[f"brace_{side}"] = (part, CARBON)
-    for name, (sheet, z) in EXTRA.items():  # flat parts a sibling design adds, already in frame XY
-        out[name] = (_placed(SHEETS[sheet](), z), CARBON)
+    for name, (sheet, z, *at) in EXTRA.items():  # flat parts a sibling design adds; optional XY offset
+        out[name] = (_placed(SHEETS[sheet](), z, at=at[0] if at else (0, 0)), CARBON)
     for name, (x, y, z0, h) in P.STANDOFFS.items():
         out[name] = (standoff(h).translate(Vector(x, y, z0)), ALUMINIUM)
     for name, (part, _m) in out.items():
@@ -365,7 +365,7 @@ def build() -> dict[str, tuple[Part, str]]:
     return out
 
 
-EXTRA: dict[str, tuple[str, float]] = {}  # part name -> (key in SHEETS, Z of its underside)
+EXTRA: dict[str, tuple] = {}  # part name -> (key in SHEETS, Z of its underside[, (x, y) to move it to])
 
 
 def parts() -> dict[str, Part]:

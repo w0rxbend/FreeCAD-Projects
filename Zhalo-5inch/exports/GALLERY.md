@@ -1,6 +1,6 @@
 # Zhalo 5-inch: gallery
 
-Every render of this design. The models themselves are in `cnc/` (carbon: DXF, STEP, STL), `print/` (TPU: STL, 3MF, STEP) and `assembly/` (STEP, STL, FreeCAD).
+Every render of this design. The models themselves are in `cnc/` (carbon: DXF, STEP, STL), `print/` (prints: STL, 3MF, STEP) and `assembly/` (STEP, STL, FreeCAD).
 
 ## The quad
 

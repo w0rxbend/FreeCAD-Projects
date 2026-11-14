@@ -32,6 +32,7 @@ STACK_STANDOFF_H = 28.0  # on the mid plate
 STANDOFF_OD = 5.0  # round knurled M3 standoff
 BAY_ON_DECK = False  # False: the front and rear standoffs stand on the bottom plate and are longer
 BRACES = True  # side braces between the front and rear arm of each side
+EXTRA_STANDOFFS: dict[str, XY] = {}  # more standoff pairs, tag -> right-hand (x, y); they stand on the bay floor
 
 # --- holes ----------------------------------------------------------------------------------
 D_M3 = 3.2
@@ -150,6 +151,9 @@ def _derive() -> None:
     ):
         standoffs[f"standoff_{tag}_right"] = (p[0], p[1], z0, h)
         standoffs[f"standoff_{tag}_left"] = (-p[0], p[1], z0, h)
+    for tag, p in EXTRA_STANDOFFS.items():
+        standoffs[f"standoff_{tag}_right"] = (p[0], p[1], Z_BAY, BAY_STANDOFF_H)
+        standoffs[f"standoff_{tag}_left"] = (-p[0], p[1], Z_BAY, BAY_STANDOFF_H)
     g["STANDOFFS"] = standoffs
 
 

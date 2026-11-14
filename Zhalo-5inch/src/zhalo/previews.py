@@ -164,7 +164,7 @@ def write_gallery(out: Path, overview: list[Path], parts: dict[str, list[tuple[s
         f"# {design.NAME}: gallery",
         "",
         "Every render of this design. The models themselves are in "
-        "`cnc/` (carbon: DXF, STEP, STL), `print/` (TPU: STL, 3MF, STEP) and `assembly/` (STEP, STL, FreeCAD).",
+        "`cnc/` (carbon: DXF, STEP, STL), `print/` (prints: STL, 3MF, STEP) and `assembly/` (STEP, STL, FreeCAD).",
         "",
     ]
     lines += ["## The quad", "", *grid([(names.get(p.stem, p.stem), p) for p in overview]), ""]
@@ -194,6 +194,10 @@ def render_all(out: Path) -> list[Path]:
         ("frame_exploded", _exploded(), FRONT_ISO, None, 1.0),
         ("cut_sheet", _cut_sheet(), "top", None, 1.0),
     ]
+    complete = _frame() + _gear(("prop_", "battery")) + _accessories()
+    for name, view, zoom, prefixes in design.EXTRA_RENDERS:
+        focus = [p for a in A.assembly() if a.name.startswith(prefixes) for p in (a.part, *a.instances)]
+        jobs.append((name, complete, view, focus or frame_parts, zoom))
     done = []
     for name, items, view, focus, zoom in jobs:
         done.append(render(items, out / f"{name}.png", view, size=SIZE, focus=focus, zoom=zoom))

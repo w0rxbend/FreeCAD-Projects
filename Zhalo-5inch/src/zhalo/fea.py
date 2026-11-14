@@ -23,12 +23,12 @@ from pathlib import Path
 
 import numpy as np
 
+from zhalo import design as D
 from zhalo import frame as F
 from zhalo import params as P
 from zhalo.structure import MATERIAL, Material
 
 MESH_SIZE = 1.6  # mm; three quadratic elements through a 5-6 mm arm
-TIP_MASS = 40.0  # g: motor, prop, screws
 
 
 @dataclass
@@ -147,7 +147,7 @@ def analyse(design: str, material: Material = MATERIAL, size: float = MESH_SIZE)
     for comp in range(3):
         idx = wall_dofs.nodal[f"u^{comp + 1}"] if hasattr(wall_dofs, "nodal") else []
         if len(idx):
-            share = TIP_MASS * 1e-6 / len(idx)
+            share = D.TIP_MASS * 1e-6 / len(idx)
             for d in idx:
                 m_tip[d, d] += share
     m_tip = m_tip.tocsr()

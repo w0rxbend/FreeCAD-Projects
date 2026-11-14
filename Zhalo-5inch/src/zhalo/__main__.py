@@ -63,11 +63,18 @@ def _render(out: Path) -> bool:
 def _analyse(out: Path, prog: str) -> bool:
     import json
 
+    from zhalo import design, structure
     from zhalo import params as P
-    from zhalo import structure
 
     edge = P.ARM_BOLT_U[1] + P.LEG_R
-    arm = structure.Arm(prog, P.T_ARM, P.ARM_LEN - edge, lambda x: 2 * P.arm_half_width(x + edge), pad=P.ARM_NECK_BACK)
+    arm = structure.Arm(
+        prog,
+        P.T_ARM,
+        P.ARM_LEN - edge,
+        lambda x: 2 * P.arm_half_width(x + edge),
+        pad=P.ARM_NECK_BACK,
+        tip_mass=design.TIP_MASS,
+    )
     beam = structure.analyse(arm)
     print(structure.table([beam]))
     result = {"design": prog, "material": structure.MATERIAL.__dict__, "beam": beam.__dict__}

@@ -52,6 +52,7 @@ class Accessory:
     in_assembly: bool = True  # False for a variant that shares its place with another part
     instances: tuple = ()  # the other installed copies of the same print (qty > 1), for the assembly
     color: str = "tpu"  # colour key for renders and the FreeCAD document
+    material: str = MATERIAL  # a rigid part (a camera turret) names its own
     checks: list[Row] = field(default_factory=list)
     module: str = ""
 
