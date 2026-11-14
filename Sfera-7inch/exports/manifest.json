@@ -1,0 +1,2283 @@
+{
+ "name": "Sfera 7-inch",
+ "units": "mm",
+ "datum": "origin = centre of the 30.5 stack; +X right, +Y front, +Z up; Z = 0 underside of the bottom plate",
+ "wheelbase": 354.0,
+ "motors": {
+  "front_right": [
+   125.158,
+   125.158
+  ],
+  "front_left": [
+   -125.158,
+   125.158
+  ],
+  "rear_right": [
+   125.158,
+   -125.158
+  ],
+  "rear_left": [
+   -125.158,
+   -125.158
+  ]
+ },
+ "prop": {
+  "diameter": 177.8,
+  "margin": 2.5
+ },
+ "stack_up_z": {
+  "plate_bottom": [
+   0.0,
+   2.0
+  ],
+  "arms": [
+   2.0,
+   10.0
+  ],
+  "plate_mid": [
+   10.0,
+   11.5
+  ],
+  "standoffs_stack": [
+   11.5,
+   46.5
+  ],
+  "standoffs_bay": [
+   11.5,
+   46.5
+  ],
+  "plate_top": [
+   46.5,
+   48.5
+  ],
+  "braces": [
+   0.0,
+   2.0
+  ]
+ },
+ "equipment": {
+  "stack": "SpeedyBee F405 V3/V4 + BLS 4-in-1, 30.5 x 30.5 M3",
+  "vtx": "20 x 20 behind the camera; 30.5 x 30.5 or 20 x 20 in either side bay, under the gills",
+  "camera": "19 mm micro (22 mm mini variant)",
+  "battery": [
+   46.0,
+   132.0,
+   46.0
+  ],
+  "companion_computer": "Zero-size board with 58 x 23 mm M2.5 holes (Raspberry Pi Zero / Zero 2 W, Radxa Zero / Zero 3W / 3E), across the rear bay",
+  "cargo": "bolted to a 15 mm M3 grid, strapped, or slung from a servo release; legs clear a 90 x 90 x 45 mm load"
+ },
+ "carbon": [
+  {
+   "part": "plate_bottom",
+   "qty": 1,
+   "thickness": 2.0,
+   "size": [
+    160.0,
+    160.0
+   ],
+   "mass_g_each": 45.3,
+   "files": [
+    "cnc/plate_bottom_2mm.dxf",
+    "cnc/plate_bottom_2mm.step",
+    "cnc/plate_bottom_2mm.stl"
+   ],
+   "holes": [
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": 15.25,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": -15.25,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": 15.25,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": -15.25,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": 26.564,
+     "y": 26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": -26.564,
+     "y": 26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": 26.564,
+     "y": -26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": -26.564,
+     "y": -26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 59.798,
+     "y": 59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -59.798,
+     "y": 59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 59.798,
+     "y": -59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -59.798,
+     "y": -59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 68.283,
+     "y": 68.283,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -68.283,
+     "y": 68.283,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 68.283,
+     "y": -68.283,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -68.283,
+     "y": -68.283,
+     "d": 3.2
+    },
+    {
+     "name": "camera_standoff",
+     "purpose": "through a puck into the standoff",
+     "x": 15.5,
+     "y": 62.0,
+     "d": 3.2
+    },
+    {
+     "name": "camera_standoff",
+     "purpose": "through a puck into the standoff",
+     "x": -15.5,
+     "y": 62.0,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 19.5,
+     "y": 71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -19.5,
+     "y": 71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 19.5,
+     "y": -71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -19.5,
+     "y": -71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 71.385,
+     "y": 19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -71.385,
+     "y": 19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 71.385,
+     "y": -19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -71.385,
+     "y": -19.5,
+     "d": 3.2
+    }
+   ]
+  },
+  {
+   "part": "plate_mid",
+   "qty": 1,
+   "thickness": 1.5,
+   "size": [
+    160.0,
+    160.0
+   ],
+   "mass_g_each": 47.6,
+   "files": [
+    "cnc/plate_mid_1.5mm.dxf",
+    "cnc/plate_mid_1.5mm.step",
+    "cnc/plate_mid_1.5mm.stl"
+   ],
+   "holes": [
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": 15.25,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": -15.25,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": 15.25,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "stack",
+     "purpose": "30.5 stack bolt, clamps the arm roots",
+     "x": -15.25,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": 26.564,
+     "y": 26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": -26.564,
+     "y": 26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": 26.564,
+     "y": -26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff; cargo plate",
+     "x": -26.564,
+     "y": -26.564,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 59.798,
+     "y": 59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -59.798,
+     "y": 59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 59.798,
+     "y": -59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -59.798,
+     "y": -59.798,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 68.283,
+     "y": 68.283,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -68.283,
+     "y": 68.283,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": 68.283,
+     "y": -68.283,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc; landing leg",
+     "x": -68.283,
+     "y": -68.283,
+     "d": 3.2
+    },
+    {
+     "name": "camera_standoff",
+     "purpose": "through a puck into the standoff",
+     "x": 15.5,
+     "y": 62.0,
+     "d": 3.2
+    },
+    {
+     "name": "camera_standoff",
+     "purpose": "through a puck into the standoff",
+     "x": -15.5,
+     "y": 62.0,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 19.5,
+     "y": 71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -19.5,
+     "y": 71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 19.5,
+     "y": -71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -19.5,
+     "y": -71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 71.385,
+     "y": 19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -71.385,
+     "y": 19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": 71.385,
+     "y": -19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "through a puck into the standoff; bumper",
+     "x": -71.385,
+     "y": -19.5,
+     "d": 3.2
+    },
+    {
+     "name": "vtx_20",
+     "purpose": "VTX 20 x 20, behind the camera",
+     "x": 10.0,
+     "y": 53.0,
+     "d": 3.2
+    },
+    {
+     "name": "vtx_20",
+     "purpose": "VTX 20 x 20, behind the camera",
+     "x": -10.0,
+     "y": 53.0,
+     "d": 3.2
+    },
+    {
+     "name": "vtx_20",
+     "purpose": "VTX 20 x 20, behind the camera",
+     "x": 10.0,
+     "y": 33.0,
+     "d": 3.2
+    },
+    {
+     "name": "vtx_20",
+     "purpose": "VTX 20 x 20, behind the camera",
+     "x": -10.0,
+     "y": 33.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": 63.25,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": 32.75,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": 63.25,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": 32.75,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": -32.75,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": -63.25,
+     "y": 15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": -32.75,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_30p5",
+     "purpose": "side bay, 30.5 x 30.5: VTX, receiver",
+     "x": -63.25,
+     "y": -15.25,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": 58.0,
+     "y": 10.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": 38.0,
+     "y": 10.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": 58.0,
+     "y": -10.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": 38.0,
+     "y": -10.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": -38.0,
+     "y": 10.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": -58.0,
+     "y": 10.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": -38.0,
+     "y": -10.0,
+     "d": 3.2
+    },
+    {
+     "name": "bay_20",
+     "purpose": "side bay, 20 x 20",
+     "x": -58.0,
+     "y": -10.0,
+     "d": 3.2
+    },
+    {
+     "name": "tray",
+     "purpose": "companion-computer tray, M3 + nut",
+     "x": 12.0,
+     "y": -46.0,
+     "d": 3.2
+    },
+    {
+     "name": "tray",
+     "purpose": "companion-computer tray, M3 + nut",
+     "x": -12.0,
+     "y": -46.0,
+     "d": 3.2
+    }
+   ]
+  },
+  {
+   "part": "plate_top",
+   "qty": 1,
+   "thickness": 2.0,
+   "size": [
+    160.0,
+    170.83
+   ],
+   "mass_g_each": 50.0,
+   "files": [
+    "cnc/plate_top_2mm.dxf",
+    "cnc/plate_top_2mm.step",
+    "cnc/plate_top_2mm.stl"
+   ],
+   "holes": [
+    {
+     "name": "camera_standoff",
+     "purpose": "standoff",
+     "x": 15.5,
+     "y": 62.0,
+     "d": 3.2
+    },
+    {
+     "name": "camera_standoff",
+     "purpose": "standoff",
+     "x": -15.5,
+     "y": 62.0,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": 19.5,
+     "y": 71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": -19.5,
+     "y": 71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": 19.5,
+     "y": -71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": -19.5,
+     "y": -71.385,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": 71.385,
+     "y": 19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": -71.385,
+     "y": 19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": 71.385,
+     "y": -19.5,
+     "d": 3.2
+    },
+    {
+     "name": "rim_standoff",
+     "purpose": "standoff; rear pair also takes the GPS and antenna perch",
+     "x": -71.385,
+     "y": -19.5,
+     "d": 3.2
+    },
+    {
+     "name": "stack_standoff",
+     "purpose": "standoff",
+     "x": 26.564,
+     "y": 26.564,
+     "d": 3.2
+    },
+    {
+     "name": "stack_standoff",
+     "purpose": "standoff",
+     "x": -26.564,
+     "y": 26.564,
+     "d": 3.2
+    },
+    {
+     "name": "stack_standoff",
+     "purpose": "standoff",
+     "x": 26.564,
+     "y": -26.564,
+     "d": 3.2
+    },
+    {
+     "name": "stack_standoff",
+     "purpose": "standoff",
+     "x": -26.564,
+     "y": -26.564,
+     "d": 3.2
+    },
+    {
+     "name": "accessory",
+     "purpose": "accessory",
+     "x": 15.5,
+     "y": 50.0,
+     "d": 3.2
+    },
+    {
+     "name": "accessory",
+     "purpose": "accessory",
+     "x": -15.5,
+     "y": 50.0,
+     "d": 3.2
+    }
+   ]
+  },
+  {
+   "part": "arm",
+   "qty": 4,
+   "thickness": 8.0,
+   "size": [
+    192.24,
+    37.0
+   ],
+   "mass_g_each": 37.4,
+   "files": [
+    "cnc/arm_8mm_x4.dxf",
+    "cnc/arm_8mm_x4.step",
+    "cnc/arm_8mm_x4.stl"
+   ],
+   "holes": [
+    {
+     "name": "arm_inner",
+     "purpose": "arm bolt + standoff",
+     "x": 16.0,
+     "y": 0,
+     "d": 3.2
+    },
+    {
+     "name": "arm_leg",
+     "purpose": "arm bolt + nyloc",
+     "x": 63.0,
+     "y": 0,
+     "d": 3.2
+    },
+    {
+     "name": "arm_outer",
+     "purpose": "arm bolt + nyloc",
+     "x": 75.0,
+     "y": 0,
+     "d": 3.2
+    }
+   ]
+  },
+  {
+   "part": "puck",
+   "qty": 10,
+   "thickness": 8.0,
+   "size": [
+    9.6,
+    9.6
+   ],
+   "mass_g_each": 0.8,
+   "files": [
+    "cnc/puck_8mm_x10.dxf",
+    "cnc/puck_8mm_x10.step",
+    "cnc/puck_8mm_x10.stl"
+   ],
+   "holes": [
+    {
+     "name": "bolt",
+     "purpose": "bolt through both skins into the standoff",
+     "x": 0,
+     "y": 0,
+     "d": 3.2
+    }
+   ]
+  }
+ ],
+ "accessories": [
+  {
+   "name": "hull_a",
+   "title": "Hull panel A (front right, rear left)",
+   "module": "hull",
+   "material": "TPU 95A",
+   "qty": 2,
+   "mass_g_each": 12.2,
+   "print_size": [
+    69.79,
+    81.68,
+    34.7
+   ],
+   "triangles": 3468,
+   "hardware": "",
+   "notes": "Push it on along the arm: both rings open towards the middle of the quad. Print it standing on its lower edge, as it sits on the deck. The gate at the foot is where the motor wires come in over the arm.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/hull_a.stl",
+    "print/3mf/hull_a.3mf",
+    "print/step/hull_a.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 10.04 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "253 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "69.8 x 81.7 x 34.7 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "51 mm2 of bridge (allowed 64), 9 mm2 of overhang (allowed 14)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "1.5% of the surface, thinnest ray 0.03 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "never leans further than it can print",
+     "passed": true,
+     "detail": "40 deg from upright, top and bottom"
+    },
+    {
+     "name": "blade tips pass the widest point of the hull",
+     "passed": true,
+     "detail": "3.1 mm at R 85.0"
+    },
+    {
+     "name": "shell passes outside the standoffs",
+     "passed": true,
+     "detail": "0.10 mm"
+    },
+    {
+     "name": "gills",
+     "passed": true,
+     "detail": "3 slots 3.3 x 17 mm over the side bay"
+    }
+   ]
+  },
+  {
+   "name": "hull_b",
+   "title": "Hull panel B (front left, rear right)",
+   "module": "hull",
+   "material": "TPU 95A",
+   "qty": 2,
+   "mass_g_each": 12.2,
+   "print_size": [
+    69.79,
+    81.68,
+    34.7
+   ],
+   "triangles": 3468,
+   "hardware": "",
+   "notes": "Push it on along the arm: both rings open towards the middle of the quad. Print it standing on its lower edge, as it sits on the deck. The gate at the foot is where the motor wires come in over the arm.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/hull_b.stl",
+    "print/3mf/hull_b.3mf",
+    "print/step/hull_b.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 10.04 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "253 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "69.8 x 81.7 x 34.7 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "51 mm2 of bridge (allowed 64), 9 mm2 of overhang (allowed 14)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "1.2% of the surface, thinnest ray 0.03 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "never leans further than it can print",
+     "passed": true,
+     "detail": "40 deg from upright, top and bottom"
+    },
+    {
+     "name": "blade tips pass the widest point of the hull",
+     "passed": true,
+     "detail": "3.1 mm at R 85.0"
+    },
+    {
+     "name": "shell passes outside the standoffs",
+     "passed": true,
+     "detail": "0.10 mm"
+    },
+    {
+     "name": "gills",
+     "passed": true,
+     "detail": "3 slots 3.3 x 17 mm over the side bay"
+    }
+   ]
+  },
+  {
+   "name": "bumper",
+   "title": "Rim bumper",
+   "module": "bumper",
+   "material": "TPU 95A",
+   "qty": 4,
+   "mass_g_each": 9.1,
+   "print_size": [
+    96.01,
+    28.71,
+    13.4
+   ],
+   "triangles": 1428,
+   "hardware": "uses the two rim-standoff bolts it covers (M3x18)",
+   "notes": "Print it flange down. The four segments are the same; each goes between two fingers of the base.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/bumper.stl",
+    "print/3mf/bumper.3mf",
+    "print/step/bumper.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 7.53 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "1346 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "96.0 x 28.7 x 13.4 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "0 mm2 of bridge (allowed 0), 0 mm2 of overhang (allowed 0)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.1% of the surface, thinnest ray 0.89 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "covers the open edge between the skins",
+     "passed": true,
+     "detail": "wall Z -2 to 11.4"
+    },
+    {
+     "name": "stays below the propellers",
+     "passed": true,
+     "detail": "top at Z 11.4, blades from Z 28"
+    }
+   ]
+  },
+  {
+   "name": "leg",
+   "title": "Landing leg",
+   "module": "leg",
+   "material": "TPU 95A",
+   "qty": 4,
+   "mass_g_each": 18.1,
+   "print_size": [
+    44.37,
+    64.23,
+    16.0
+   ],
+   "triangles": 2812,
+   "hardware": "2x M3x20 + nyloc: the two outer arm bolts, head on the deck, nut in the leg",
+   "notes": "Print it lying on the side without the nut slots, 4 perimeters, 40 % infill or more. Slide the two nylocs in from the side, then run the arm bolts down into them from the deck.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/leg.stl",
+    "print/3mf/leg.3mf",
+    "print/step/leg.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 14.96 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "973 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "44.4 x 64.2 x 16.0 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "6 mm2 of bridge (allowed 10), 15 mm2 of overhang (allowed 24)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.40 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "a 45 mm load lands on the legs, not on itself",
+     "passed": true,
+     "detail": "feet Z -60, load to Z -51"
+    },
+    {
+     "name": "stands under its arm",
+     "passed": true,
+     "detail": "16 mm wide under a 18.6 mm arm"
+    },
+    {
+     "name": "stance",
+     "passed": true,
+     "detail": "feet on a 211 mm circle, 149 mm apart"
+    }
+   ]
+  },
+  {
+   "name": "cargo_plate",
+   "title": "Cargo plate",
+   "module": "cargo",
+   "material": "PETG",
+   "qty": 1,
+   "mass_g_each": 33.1,
+   "print_size": [
+    96.0,
+    96.0,
+    6.0
+   ],
+   "triangles": 30384,
+   "hardware": "4x M3x20 (replace the inner arm bolts), 21x M3 nut",
+   "notes": "PETG or ASA, 4 perimeters, 40 % infill. Press an M3 nut into every pocket before the plate goes on: they are then held between the plate and the base. Bolt a load on from below, or strap it through the four slots.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/cargo_plate.stl",
+    "print/3mf/cargo_plate.3mf",
+    "print/step/cargo_plate.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 26.03 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "6557 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "96.0 x 96.0 x 6.0 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "84 mm2 of bridge (allowed 128), 0 mm2 of overhang (allowed 8)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.40 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "captive nuts",
+     "passed": true,
+     "detail": "21 M3 nuts on a 15 mm grid, a 30.5 mm square in the middle"
+    },
+    {
+     "name": "PETG under every nut",
+     "passed": true,
+     "detail": "1.4 mm"
+    },
+    {
+     "name": "the load hangs where no propeller blows",
+     "passed": true,
+     "detail": "rotor-free circle R 88.1 mm, plate R 48"
+    },
+    {
+     "name": "the plate's bolts are in the grid's gaps",
+     "passed": true,
+     "detail": "clear"
+    }
+   ]
+  },
+  {
+   "name": "cargo_hook",
+   "title": "Cargo release (servo hook)",
+   "module": "cargo",
+   "material": "PETG",
+   "qty": 1,
+   "mass_g_each": 14.1,
+   "print_size": [
+    57.0,
+    39.0,
+    28.8
+   ],
+   "triangles": 5140,
+   "hardware": "2x M3x8 into the plate's nuts, 9 g servo with its screws, 3 mm x 30 mm steel pin, 1 mm wire link",
+   "notes": "PETG or ASA, flange on the bed. The servo drops in between the two legs, shaft outwards. Link the horn's outer hole to the pin with a Z-bend of 1 mm wire. Hang the load's ring between the jaws and push the pin through; the servo pulls it to let go.",
+   "in_assembly": false,
+   "files": [
+    "print/stl/cargo_hook.stl",
+    "print/3mf/cargo_hook.3mf",
+    "print/step/cargo_hook.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 11.12 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "2197 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "57.0 x 39.0 x 28.8 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "6 mm2 of bridge (allowed 8), 15 mm2 of overhang (allowed 18)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.47 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "servo case hangs between the wall's legs",
+     "passed": true,
+     "detail": "0.000 mm3 shared with the servo"
+    },
+    {
+     "name": "pin passes both jaws",
+     "passed": true,
+     "detail": "3 mm pin, 4 mm slot for the load's ring"
+    },
+    {
+     "name": "the servo's stroke pulls the pin clear",
+     "passed": true,
+     "detail": "stroke 12.6 mm, needed 8.0 mm"
+    },
+    {
+     "name": "mounts on two nuts of the cargo plate",
+     "passed": true,
+     "detail": "at [(-15.0, 0.0), (30.0, 0.0)]"
+    },
+    {
+     "name": "hangs above the feet",
+     "passed": true,
+     "detail": "jaws to Z -34.8, feet Z -60"
+    }
+   ]
+  },
+  {
+   "name": "sbc_tray",
+   "title": "Companion-computer tray (Zero size)",
+   "module": "sbc_tray",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 3.6,
+   "print_size": [
+    67.0,
+    32.0,
+    5.0
+   ],
+   "triangles": 7184,
+   "hardware": "2x M3x6 + nut (tray to the deck), 4x M2.5x6 self-tapping (board to the posts)",
+   "notes": "For Raspberry Pi Zero / Zero 2 W and Radxa Zero / Zero 3W / 3E (58 x 23 mm holes), across the bay.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/sbc_tray.stl",
+    "print/3mf/sbc_tray.3mf",
+    "print/step/sbc_tray.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 2.98 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "1562 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "67.0 x 32.0 x 5.0 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "0 mm2 of bridge (allowed 0), 0 mm2 of overhang (allowed 0)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.60 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "the board fits across the rear bay",
+     "passed": true,
+     "detail": "clear of every plate and standoff"
+    },
+    {
+     "name": "tray screw heads clear the board",
+     "passed": true,
+     "detail": "1.7 mm between an M3 button head and the board"
+    },
+    {
+     "name": "room above the board",
+     "passed": true,
+     "detail": "25.1 mm to the top plate: the battery lead passes over it"
+    }
+   ]
+  },
+  {
+   "name": "camera_mount_19",
+   "title": "Camera mount, micro 19 mm",
+   "module": "camera_mount",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 5.7,
+   "print_size": [
+    40.0,
+    18.5,
+    26.8
+   ],
+   "triangles": 3568,
+   "hardware": "2x M2x5 (the camera's own side screws)",
+   "notes": "Slide the two sleeves over the front standoffs before the top plate goes on. Set the tilt, then tighten the camera's side screws. Tilt range 15-45 deg.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/camera_mount_19.stl",
+    "print/3mf/camera_mount_19.3mf",
+    "print/step/camera_mount_19.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 4.70 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "357 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "40.0 x 18.5 x 26.8 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "2 mm2 of bridge (allowed 6), 6 mm2 of overhang (allowed 8)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.60 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "micro 19 mm camera swings 15-45 deg without touching the mount",
+     "passed": true,
+     "detail": "0.000 mm3"
+    },
+    {
+     "name": "side screw holes are on the tilt axis",
+     "passed": true,
+     "detail": "0.000 mm3 in a 1.8 mm pin through both cheeks"
+    },
+    {
+     "name": "TPU left between the camera and each standoff",
+     "passed": true,
+     "detail": "3.15 mm"
+    }
+   ]
+  },
+  {
+   "name": "camera_mount_22",
+   "title": "Camera mount, mini 22 mm",
+   "module": "camera_mount",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 5.1,
+   "print_size": [
+    40.0,
+    18.5,
+    26.8
+   ],
+   "triangles": 3584,
+   "hardware": "2x M2x5 (the camera's own side screws)",
+   "notes": "Slide the two sleeves over the front standoffs before the top plate goes on. Set the tilt, then tighten the camera's side screws. Tilt range 15-45 deg.",
+   "in_assembly": false,
+   "files": [
+    "print/stl/camera_mount_22.stl",
+    "print/3mf/camera_mount_22.3mf",
+    "print/step/camera_mount_22.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 4.20 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "384 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "40.0 x 18.5 x 26.8 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "2 mm2 of bridge (allowed 6), 6 mm2 of overhang (allowed 8)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.60 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "mini 22 mm camera swings 15-45 deg without touching the mount",
+     "passed": true,
+     "detail": "0.000 mm3"
+    },
+    {
+     "name": "side screw holes are on the tilt axis",
+     "passed": true,
+     "detail": "0.000 mm3 in a 1.8 mm pin through both cheeks"
+    },
+    {
+     "name": "TPU left between the camera and each standoff",
+     "passed": true,
+     "detail": "1.65 mm"
+    }
+   ]
+  },
+  {
+   "name": "perch",
+   "title": "Perch (GPS tray and antenna holder)",
+   "module": "perch",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 4.1,
+   "print_size": [
+    49.0,
+    33.6,
+    18.82
+   ],
+   "triangles": 4840,
+   "hardware": "2x M3x12 (replace the two rear top-plate screws); the SMA socket's own nut",
+   "notes": "The GPS module presses under the two lips, lead to the front and down through the tail notch. VTX pigtail through the tab, antenna pointing back; the receiver's antenna ends go in the tubes.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/perch.stl",
+    "print/3mf/perch.3mf",
+    "print/step/perch.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 3.42 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "841 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "49.0 x 33.6 x 18.8 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "16 mm2 of bridge (allowed 23), 10 mm2 of overhang (allowed 30)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "1.5% of the surface, thinnest ray 0.80 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "sits behind the battery",
+     "passed": true,
+     "detail": "ears to Y -66.4, battery from Y -66.0"
+    },
+    {
+     "name": "GPS pocket",
+     "passed": true,
+     "detail": "22.4 x 20.4 x 6.0 mm for a 22 x 20 mm module"
+    },
+    {
+     "name": "leaves the tail notch open for the battery lead",
+     "passed": true,
+     "detail": "14.8 mm between the ears"
+    }
+   ]
+  },
+  {
+   "name": "arm_guard",
+   "title": "Arm guard",
+   "module": "arm_guard",
+   "material": "TPU 95A",
+   "qty": 4,
+   "mass_g_each": 4.3,
+   "print_size": [
+    40.06,
+    40.06,
+    11.3
+   ],
+   "triangles": 2628,
+   "hardware": "",
+   "notes": "Stretch it over the arm tip before the motor goes on: the lip snaps over the pad edge and the floor keys onto the four screw heads. Standard M3x8 motor screws.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/arm_guard.stl",
+    "print/3mf/arm_guard.3mf",
+    "print/step/arm_guard.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 3.51 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "839 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "40.1 x 40.1 x 11.3 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "63 mm2 of bridge (allowed 63), 0 mm2 of overhang (allowed 0)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.1% of the surface, thinnest ray 0.84 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "lip clears a 34.6 mm motor base",
+     "passed": true,
+     "detail": "0.50 mm radial gap"
+    },
+    {
+     "name": "screw heads bear on carbon, not TPU",
+     "passed": true,
+     "detail": "6.8 mm holes round the heads"
+    }
+   ]
+  },
+  {
+   "name": "battery_pad",
+   "title": "Battery pad",
+   "module": "pad",
+   "material": "TPU 95A",
+   "qty": 1,
+   "mass_g_each": 10.1,
+   "print_size": [
+    46.0,
+    132.0,
+    3.4
+   ],
+   "triangles": 6732,
+   "hardware": "",
+   "notes": "Print it top side down; the four pegs drop into the plate's slots. Strap through the four slots.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/battery_pad.stl",
+    "print/3mf/battery_pad.3mf",
+    "print/step/battery_pad.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 8.34 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "5137 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "46.0 x 132.0 x 3.4 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "0 mm2 of bridge (allowed 0), 0 mm2 of overhang (allowed 0)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.10 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "covers the battery footprint",
+     "passed": true,
+     "detail": "46 x 132 mm"
+    },
+    {
+     "name": "pegs sit in the plate's slots",
+     "passed": true,
+     "detail": "4 pegs"
+    }
+   ]
+  },
+  {
+   "name": "wire_clip",
+   "title": "Motor-wire clip",
+   "module": "wire_clip",
+   "material": "TPU 95A",
+   "qty": 4,
+   "mass_g_each": 0.7,
+   "print_size": [
+    21.89,
+    21.89,
+    6.0
+   ],
+   "triangles": 836,
+   "hardware": "",
+   "notes": "Lay the wires on the arm and press the clip down over them until both hooks snap under the arm.",
+   "in_assembly": true,
+   "files": [
+    "print/stl/wire_clip.stl",
+    "print/3mf/wire_clip.3mf",
+    "print/step/wire_clip.step"
+   ],
+   "checks": [
+    {
+     "name": "one valid solid",
+     "passed": true,
+     "detail": "1 solid(s), 0.56 cm3"
+    },
+    {
+     "name": "does not cut into the frame",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "clear of electronics, motors and prop discs",
+     "passed": true,
+     "detail": "clear"
+    },
+    {
+     "name": "rests on a flat face",
+     "passed": true,
+     "detail": "93 mm2 on the bed"
+    },
+    {
+     "name": "fits a 180 mm bed",
+     "passed": true,
+     "detail": "21.9 x 21.9 x 6.0 mm"
+    },
+    {
+     "name": "prints without supports",
+     "passed": true,
+     "detail": "0 mm2 of bridge (allowed 0), 0 mm2 of overhang (allowed 0)"
+    },
+    {
+     "name": "no walls under 0.9 mm",
+     "passed": true,
+     "detail": "0.0% of the surface, thinnest ray 1.30 mm (walls are designed at 1.6 mm or more)"
+    },
+    {
+     "name": "stays under the props",
+     "passed": true,
+     "detail": "top at Z 15.0, props from Z 28"
+    },
+    {
+     "name": "hooks leave a mouth the arm can pass",
+     "passed": true,
+     "detail": "1.4 mm hooks on a 14.2 mm arm"
+    }
+   ]
+  }
+ ],
+ "bom": {
+  "carbon": [
+   {
+    "part": "plate_bottom",
+    "qty": 1,
+    "thickness_mm": 2.0
+   },
+   {
+    "part": "plate_mid",
+    "qty": 1,
+    "thickness_mm": 1.5
+   },
+   {
+    "part": "plate_top",
+    "qty": 1,
+    "thickness_mm": 2.0
+   },
+   {
+    "part": "arm",
+    "qty": 4,
+    "thickness_mm": 8.0
+   },
+   {
+    "part": "puck",
+    "qty": 10,
+    "thickness_mm": 8.0
+   }
+  ],
+  "standoffs": [
+   {
+    "item": "M3 x 35 mm round standoff, OD 5",
+    "qty": 14,
+    "where": "all fourteen stand on the deck"
+   }
+  ],
+  "screws": [
+   {
+    "item": "M3 x 35 (with the stack) + M3 nut",
+    "qty": 4,
+    "where": "stack bolts: through the 11.5 mm base, nut on the deck, then the stack"
+   },
+   {
+    "item": "M3 x 22 button head",
+    "qty": 4,
+    "where": "inner arm bolts: through the cargo plate and the base into the stack standoffs (M3 x 16 without the cargo plate)"
+   },
+   {
+    "item": "M3 x 18 button head",
+    "qty": 8,
+    "where": "rim standoffs: through the bumper and the base"
+   },
+   {
+    "item": "M3 x 16 button head",
+    "qty": 2,
+    "where": "camera standoffs, through the base"
+   },
+   {
+    "item": "M3 x 20 button head + nyloc",
+    "qty": 8,
+    "where": "the two outer bolts of each arm: head on the deck, nut in the leg (M3 x 16 and a nut under the base without the legs)"
+   },
+   {
+    "item": "M3 x 8 button head",
+    "qty": 14,
+    "where": "top plate into the standoffs"
+   },
+   {
+    "item": "M3 x 12",
+    "qty": 16,
+    "where": "motors: the arm is 8 mm, so M3 x 12 puts 4 mm of thread in the motor; check your motor's thread depth"
+   }
+  ]
+ },
+ "mass_g": {
+  "carbon": 300.6,
+  "standoffs": 19.5
+ },
+ "frame_checks": [
+  {
+   "name": "wheelbase",
+   "passed": true,
+   "detail": "354.000 mm"
+  },
+  {
+   "name": "prop tips clear each other",
+   "passed": true,
+   "detail": "72.5 mm side to side, 72.5 mm front to rear"
+  },
+  {
+   "name": "plate_bottom: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 29233 mm3"
+  },
+  {
+   "name": "plate_mid: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 30702 mm3"
+  },
+  {
+   "name": "plate_top: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 32246 mm3"
+  },
+  {
+   "name": "arm_front_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 24158 mm3"
+  },
+  {
+   "name": "arm_front_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 24158 mm3"
+  },
+  {
+   "name": "arm_rear_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 24158 mm3"
+  },
+  {
+   "name": "arm_rear_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 24158 mm3"
+  },
+  {
+   "name": "puck_camera_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_camera_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_nose_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_nose_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_tail_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_tail_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_side_front_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_side_front_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_side_rear_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "puck_side_rear_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_front_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_front_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_stack_front_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_stack_front_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_stack_rear_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_stack_rear_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_rear_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_rear_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_nose_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_nose_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_side_front_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_side_front_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_side_rear_right: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "standoff_side_rear_left: one valid solid",
+   "passed": true,
+   "detail": "1 solid(s), 515 mm3"
+  },
+  {
+   "name": "no two frame parts overlap",
+   "passed": true,
+   "detail": "none"
+  },
+  {
+   "name": "stack bolts pass every layer (4 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "arm_inner bolts pass every layer (4 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "arm_outer bolts pass every layer (4 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "front_standoff bolts pass every layer (2 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "rear_standoff bolts pass every layer (2 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "camera_puck bolts pass every layer (2 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "tail_puck bolts pass every layer (2 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "nose_standoff bolts pass every layer (2 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "side_standoff bolts pass every layer (4 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "arm_leg bolts pass every layer (4 axes)",
+   "passed": true,
+   "detail": "all bores open and walled"
+  },
+  {
+   "name": "standoff_front_right fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_front_left fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_stack_front_right fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_stack_front_left fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_stack_rear_right fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_stack_rear_left fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_rear_right fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_rear_left fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_nose_right fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_nose_left fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_side_front_right fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_side_front_left fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_side_rear_right fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "standoff_side_rear_left fully seated on plate_mid and under plate_top",
+   "passed": true,
+   "detail": "Z 11.5-46.5"
+  },
+  {
+   "name": "prop front_right: body stays 2.5 mm outside the disc",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "prop front_left: body stays 2.5 mm outside the disc",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "prop rear_right: body stays 2.5 mm outside the disc",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "prop rear_left: body stays 2.5 mm outside the disc",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "esc fits",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "fc fits",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "vtx 20x20 fits",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "vtx 30.5 fits",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "camera 15-45 deg fits",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "camera mini fits",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "battery fits",
+   "passed": true,
+   "detail": "clear"
+  },
+  {
+   "name": "plate_bottom: carbon webs >= 2.0 mm",
+   "passed": true,
+   "detail": "narrowest 3.40 mm near (13.9, 62.0)"
+  },
+  {
+   "name": "plate_bottom: no corner tighter than R1",
+   "passed": true,
+   "detail": "smallest arc R1.60"
+  },
+  {
+   "name": "plate_mid: carbon webs >= 2.0 mm",
+   "passed": true,
+   "detail": "narrowest 3.40 mm near (10.4, -46.0)"
+  },
+  {
+   "name": "plate_mid: no corner tighter than R1",
+   "passed": true,
+   "detail": "smallest arc R1.60"
+  },
+  {
+   "name": "plate_top: carbon webs >= 2.0 mm",
+   "passed": true,
+   "detail": "narrowest 3.00 mm near (2.5, -15.5)"
+  },
+  {
+   "name": "plate_top: no corner tighter than R1",
+   "passed": true,
+   "detail": "smallest arc R1.60"
+  },
+  {
+   "name": "arm: carbon webs >= 2.0 mm",
+   "passed": true,
+   "detail": "narrowest 2.96 mm near (166.4, 8.7)"
+  },
+  {
+   "name": "arm: no corner tighter than R1",
+   "passed": true,
+   "detail": "smallest arc R1.00"
+  },
+  {
+   "name": "puck: carbon webs >= 2.0 mm",
+   "passed": true,
+   "detail": "narrowest 3.20 mm near (-1.6, 0.0)"
+  },
+  {
+   "name": "puck: no corner tighter than R1",
+   "passed": true,
+   "detail": "smallest arc R1.60"
+  },
+  {
+   "name": "frame mass under 330 g",
+   "passed": true,
+   "detail": "300.6 g carbon + 19.5 g standoffs"
+  }
+ ],
+ "accessory_clashes": [],
+ "all_checks_passed": true,
+ "assembly": {
+  "files": [
+   "assembly/sfera_frame.step",
+   "assembly/sfera_frame.stl",
+   "assembly/sfera_complete.step",
+   "assembly/sfera_complete.stl"
+  ],
+  "mesh": {
+   "linear_deflection_mm": 0.05,
+   "angular_deflection_rad": 0.2
+  }
+ },
+ "freecad": {
+  "file": "assembly/Sfera-7inch.FCStd",
+  "gui": true,
+  "features": 73,
+  "invalid": []
+ }
+}

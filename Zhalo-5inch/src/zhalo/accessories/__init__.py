@@ -51,7 +51,7 @@ def build_all() -> tuple[Accessory, ...]:
 def _obstacles() -> dict[str, object]:
     gear = E.build()
     out = {name: part for name, (part, _c, _o) in gear.items() if not name.startswith(("prop_", "camera"))}
-    out["vtx_30p5"] = E._slab(E.VTX_LARGE_SIZE, E.VTX_Z, (0.0, P.VTX_BAY_Y))
+    out["vtx_30p5"] = E.vtx_large()
     out["camera"] = E.camera_sweep()
     for name, xy in P.MOTORS.items():
         out[f"prop_{name}"] = E.prop_keepout(xy)

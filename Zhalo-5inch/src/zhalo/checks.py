@@ -175,7 +175,7 @@ def frame_checks() -> list[Row]:
         "esc": gear["esc"][0],
         "fc": gear["fc"][0],
         "vtx 20x20": gear["vtx"][0],
-        "vtx 30.5": E._slab(E.VTX_LARGE_SIZE, E.VTX_Z, (0.0, P.VTX_BAY_Y)),
+        "vtx 30.5": E.vtx_large(),
         f"camera {E.CAM_TILT_RANGE[0]:.0f}-{E.CAM_TILT_RANGE[1]:.0f} deg": cam,
         "camera mini": E.camera_sweep(E.CAM_MINI),
         "battery": gear["battery"][0],

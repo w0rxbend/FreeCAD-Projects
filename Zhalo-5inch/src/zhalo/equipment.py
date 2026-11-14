@@ -25,6 +25,7 @@ FC_Z = P.Z_DECK + STACK_H - FC_SIZE[2]
 VTX_SIZE = (28.0, 28.0, 7.0)  # SpeedyBee TX800 with its heat sink; 20 x 20 holes
 VTX_LARGE_SIZE = (36.0, 36.0, 8.0)  # 30.5 x 30.5 class (Rush Tank Ultimate, Unify Pro32 HV)
 VTX_Z = P.Z_BAY + 5.0  # on 5 mm spacers above the bay floor
+VTX_LARGE_AT: tuple[float, float] | None = None  # where the 30.5 class VTX goes, if not where the small one does
 
 # --- camera ----------------------------------------------------------------------------------
 # the camera's side screws; the tilt axis runs along X through this point, 1 mm above mid-height of the bay
@@ -111,6 +112,10 @@ def prop(xy) -> Part:
 def prop_keepout(xy) -> Part:
     """Where no body or accessory material may be: the prop disc plus margin over the blade band."""
     return cylinder(*xy, P.PROP_Z[0], P.PROP_Z[1], 2 * P.PROP_KEEPOUT_R)
+
+
+def vtx_large() -> Part:
+    return _slab(VTX_LARGE_SIZE, VTX_Z, VTX_LARGE_AT or (0.0, P.VTX_BAY_Y))
 
 
 def battery() -> Part:
