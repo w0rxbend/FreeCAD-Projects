@@ -29,6 +29,29 @@ MESH_LIN, MESH_ANG = 0.02, 0.1
 ASSEMBLY_LIN, ASSEMBLY_ANG = 0.05, 0.2  # coarser: an assembly STL is for looking at, not for printing
 TPU_DENSITY = 1.21e-3  # g / mm3
 DENSITY = {"PETG": 1.27e-3}  # printed materials other than TPU
+CUT_SHEETS = ("Carbon", "Polycarbonate")  # inserts cut from sheet rather than printed
+
+
+def density(material: str) -> float:
+    if material.startswith("Carbon"):
+        return 1.55e-3
+    if material.startswith("Polycarbonate"):
+        return 1.2e-3
+    return DENSITY.get(material, TPU_DENSITY)
+
+
+def write_flat_dxf(part, path: Path) -> None:
+    """DXF of a flat part lying on the bed: the outline of its face on Z = 0."""
+    face = max((f for f in part.faces() if abs(f.center().Z) < 1e-4 and f.normal_at().Z < -0.999), key=lambda f: f.area)
+    previous = ezdxf.options.write_fixed_meta_data_for_testing
+    ezdxf.options.write_fixed_meta_data_for_testing = True
+    try:
+        dxf = ExportDXF(unit=Unit.MM)
+        dxf.add_layer("CUT")
+        dxf.add_shape(face, layer="CUT")
+        dxf.write(path)
+    finally:
+        ezdxf.options.write_fixed_meta_data_for_testing = previous
 
 
 def write_stl(part, path: Path, lin: float = MESH_LIN, ang: float = MESH_ANG) -> int:
@@ -204,6 +227,8 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
         tris = write_stl(printed, out / "print/stl" / f"{acc.name}.stl")
         write_3mf(printed, out / "print/3mf" / f"{acc.name}.3mf")
         write_step(printed, out / "print/step" / f"{acc.name}.step")
+        if acc.material.startswith(CUT_SHEETS):  # an insert cut from sheet: the shop needs its outline
+            write_flat_dxf(printed, out / "cnc" / f"{acc.name}_{acc.material.split()[-2]}mm.dxf")
         manifest["accessories"].append(
             {
                 "name": acc.name,
@@ -211,7 +236,7 @@ def export_all(out: Path, freecad_cmd: list[str] | None = None) -> dict:
                 "module": acc.module,
                 "material": acc.material,
                 "qty": acc.qty,
-                "mass_g_each": round(acc.part.volume * DENSITY.get(acc.material, TPU_DENSITY), 1),
+                "mass_g_each": round(acc.part.volume * density(acc.material), 1),
                 "print_size": _bbox(printed),
                 "triangles": tris,
                 "hardware": acc.hardware,
