@@ -1,0 +1,248 @@
+{
+ "name": "Vektor 7.5-inch",
+ "units": "mm",
+ "datum": "origin = centre of the stack; +X right, +Y front, +Z up; Z = 0 underside of the lower skin",
+ "wheelbase": 320.0,
+ "prop": {
+  "diameter": 190.5,
+  "margin": 2.5
+ },
+ "motors": {
+  "front_right": [
+   113.137,
+   113.137
+  ],
+  "front_left": [
+   -113.137,
+   113.137
+  ],
+  "rear_right": [
+   113.137,
+   -113.137
+  ],
+  "rear_left": [
+   -113.137,
+   -113.137
+  ]
+ },
+ "stack_up_z": {
+  "skin_lower": [
+   0.0,
+   2.0
+  ],
+  "cavity_webs": [
+   2.0,
+   16.0
+  ],
+  "skin_upper": [
+   16.0,
+   18.0
+  ],
+  "bay": [
+   18.0,
+   44.0
+  ],
+  "plate_top": [
+   44.0,
+   46.0
+  ]
+ },
+ "arm": {
+  "stiffness_N_per_mm": 361.0,
+  "allowable_load_N": 1100,
+  "first_mode_Hz": 368,
+  "carbon_g": 22.8
+ },
+ "carbon": [
+  {
+   "part": "skin_lower",
+   "file": "skin_lower_2mm_x1",
+   "thickness": 2.0,
+   "qty": 1,
+   "area_mm2": 19141.5,
+   "mass_g": 59.3
+  },
+  {
+   "part": "skin_upper",
+   "file": "skin_upper_2mm_x1",
+   "thickness": 2.0,
+   "qty": 1,
+   "area_mm2": 21773.8,
+   "mass_g": 67.5
+  },
+  {
+   "part": "plate_top",
+   "file": "plate_top_2mm_x1",
+   "thickness": 2.0,
+   "qty": 1,
+   "area_mm2": 8156.9,
+   "mass_g": 25.3
+  },
+  {
+   "part": "web",
+   "file": "web_2mm_x8",
+   "thickness": 2.0,
+   "qty": 8,
+   "area_mm2": 1602.5,
+   "mass_g": 5.0
+  }
+ ],
+ "carbon_mass_g": 192.1,
+ "printed": [
+  {
+   "part": "tail_trident",
+   "title": "Tail trident (VTX antenna, two RX antennas, XT60)",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 11.94,
+   "size_mm": [
+    38.5,
+    46.5,
+    58.0
+   ],
+   "hardware": "the VTX antenna's SMA nut; a zip tie over the XT60",
+   "notes": "Print it standing, as it sits on the quad (the bridge over the receiver spans 28 mm), 4 perimeters, 30 % infill. Slide the sleeves over the rear standoffs before the battery plate goes on. Push each receiver antenna's base into a tube.",
+   "in_assembly": true
+  },
+  {
+   "part": "camera_pod",
+   "title": "Camera pod, 19 mm",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 4.35,
+   "size_mm": [
+    39.0,
+    29.5,
+    22.8
+   ],
+   "hardware": "the camera's two M2 side screws",
+   "notes": "Slide it over the front standoffs before the battery plate goes on; set the tilt, tighten the side screws.",
+   "in_assembly": true
+  },
+  {
+   "part": "side_fairing_right",
+   "title": "Side fairing, right",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 10.11,
+   "size_mm": [
+    23.6,
+    169.6,
+    25.6
+   ],
+   "hardware": "",
+   "notes": "Print it upside down; the slits' 3 mm tops bridge cleanly. Snap it on from outside after the sleeves of the camera pod and the trident.",
+   "in_assembly": true
+  },
+  {
+   "part": "side_fairing_left",
+   "title": "Side fairing, left",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 10.11,
+   "size_mm": [
+    23.6,
+    169.6,
+    25.6
+   ],
+   "hardware": "",
+   "notes": "Print it upside down; the slits' 3 mm tops bridge cleanly. Snap it on from outside after the sleeves of the camera pod and the trident.",
+   "in_assembly": true
+  },
+  {
+   "part": "motor_guard",
+   "title": "Motor guard",
+   "qty": 4,
+   "material": "TPU 95A",
+   "volume_cm3": 3.22,
+   "size_mm": [
+    38.6,
+    38.6,
+    20.0
+   ],
+   "hardware": "",
+   "notes": "Stretch it over the arm's tip, motor off: one lip over the upper pad, one under the lower ring.",
+   "in_assembly": true
+  },
+  {
+   "part": "foot",
+   "title": "Foot",
+   "qty": 6,
+   "material": "TPU 95A",
+   "volume_cm3": 0.5,
+   "size_mm": [
+    12.0,
+    12.0,
+    6.0
+   ],
+   "hardware": "the six body bolts, 5 mm longer",
+   "notes": "",
+   "in_assembly": true
+  },
+  {
+   "part": "battery_pad",
+   "title": "Battery pad",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 6.42,
+   "size_mm": [
+    46.0,
+    110.0,
+    1.6
+   ],
+   "hardware": "",
+   "notes": "",
+   "in_assembly": true
+  },
+  {
+   "part": "gps_mount",
+   "title": "GPS tray",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 3.62,
+   "size_mm": [
+    28.6,
+    28.6,
+    11.2
+   ],
+   "hardware": "4x M3x8 into nylocs under the plate; foam tape under the module",
+   "notes": "",
+   "in_assembly": true
+  },
+  {
+   "part": "gopro_mount",
+   "title": "Action-camera mount",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 5.02,
+   "size_mm": [
+    30.0,
+    26.0,
+    22.5
+   ],
+   "hardware": "4x M3x10 + nyloc, M5 thumbscrew",
+   "notes": "Takes the GPS tray's four holes: fit one or the other.",
+   "in_assembly": false
+  },
+  {
+   "part": "wire_grommet",
+   "title": "Wire grommet",
+   "qty": 4,
+   "material": "TPU 95A",
+   "volume_cm3": 0.28,
+   "size_mm": [
+    16.0,
+    16.0,
+    4.2
+   ],
+   "hardware": "",
+   "notes": "Squeeze it into the slot from above until the lip clicks under the skin; then feed the wires through.",
+   "in_assembly": true
+  }
+ ],
+ "accessory_clashes": [],
+ "freecad": {
+  "objects": 60,
+  "gui": 1
+ }
+}

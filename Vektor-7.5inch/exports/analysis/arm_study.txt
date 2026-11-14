@@ -1,0 +1,18 @@
+arm                                 mass g   k N/mm   load N   f1 Hz
+--------------------------------------------------------------------
+solid 6 mm                            24.9     46.9      840     132
+solid 8 mm                            33.2    111.2     1493     201
+box 12 mm, pinned spacers             13.6      2.3       98      30
+box 12 mm, rigid spacers              13.6     75.1      329     173
+box 8 mm + 1 mm webs                  16.2    140.1     1100     232
+box 8 mm + 1.5 mm webs                17.5    153.2     1100     242
+box 8 mm + 2 mm webs                  18.8    162.2     1100     249
+box 10 mm + 1 mm webs                 16.9    190.1     1100     270
+box 10 mm + 1.5 mm webs               18.5    210.2     1100     283
+box 10 mm + 2 mm webs                 20.2    224.3     1100     292
+box 12 mm + 1 mm webs                 17.5    243.1     1100     305
+box 12 mm + 1.5 mm webs               19.5    271.2     1100     321
+box 12 mm + 2 mm webs                 21.5    291.3     1100     331
+box 14 mm + 1 mm webs                 18.2    297.8     1100     337
+box 14 mm + 1.5 mm webs               20.5    334.5     1100     356
+box 14 mm + 2 mm webs                 22.8    361.0     1100     368
