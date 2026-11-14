@@ -3,32 +3,34 @@ requires = ["hatchling>=1.27,<2"]
 build-backend = "hatchling.build"
 
 [project]
-name = "fpv-frame"
+name = "tigerbeetle-v2"
 version = "0.1.0"
-description = "Parametric reconstruction of the Tigerbeetle FPV frame"
+description = "Tigerbeetle V2 6-inch HD: a wide-X frame in the Tiger Beetle style for a digital video system"
 requires-python = ">=3.12,<3.13"
-dependencies = ["build123d>=0.11,<0.12", "Pillow>=11,<13", "PyYAML>=6,<7"]
+dependencies = ["zhalo"]
 
-[project.scripts]
-fpv-frame = "fpv_frame.cli:main"
+[project.optional-dependencies]
+fea = ["gmsh>=4.11", "scikit-fem>=10"]
 
 [dependency-groups]
-dev = ["pytest>=8,<10", "ruff>=0.11,<1", "mypy>=1.15,<2", "types-PyYAML", "types-Pillow"]
+dev = ["pytest>=8", "ruff>=0.6", "vtk>=9.3", "pillow>=10", "gmsh>=4.11", "scikit-fem>=10"]
+
+[project.scripts]
+tigerbeetle-v2 = "tigerbeetle_v2.__main__:main"
+
+[tool.uv.sources]
+zhalo = { path = "../Zhalo-5inch", editable = true }
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/fpv_frame"]
+packages = ["src/tigerbeetle_v2"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-
-[tool.ruff]
-target-version = "py312"
-line-length = 100
-
-[tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
-
-[tool.mypy]
-python_version = "3.12"
-strict = true
-files = ["src/fpv_frame"]
