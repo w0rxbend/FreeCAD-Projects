@@ -1,0 +1,21 @@
+wheelbase  tip gap  flip accel  yaw inertia
+--------------------------------------------
+      200     11.9        1.04         0.88
+      205     15.5        1.03         0.92
+      210     19.0        1.01         0.97
+      214     21.8        1.00         1.00
+      220     26.1        0.98         1.05
+      225     29.6        0.97         1.10
+      230     33.1        0.95         1.14
+      240     40.2        0.92         1.24
+
+smallest wheelbase with 20 mm between tips: 211.4 mm
+
+arm (free length)                      g   k up  k side   F up  F side  f1 Hz
+-----------------------------------------------------------------------------
+uniform 12 mm                        6.6  189.3   757.2    732    1464    340  breaks first at u 48
+uniform 14 mm                        7.7  220.9  1202.5    854    1993    366  breaks first at u 48
+uniform 16 mm                        8.8  252.4  1794.9    976    2603    390  breaks first at u 48
+uniform 20 mm                       11.0  315.5  3505.7   1220    4068    433  breaks first at u 48
+taper 20 -> 12 mm (Bolid)            7.5  239.0  1384.3   1220    2445    381  breaks first at u 72
+taper 20 -> 12 mm, 5 mm thick        6.2  138.3  1153.6    847    2037    291  breaks first at u 72

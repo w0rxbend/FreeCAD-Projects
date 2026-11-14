@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bolid"
+version = "0.1.0"
+description = "Bolid 5-inch: a compact freestyle frame with fully stressed tapered arms and a supercar body"
+requires-python = ">=3.12,<3.13"
+dependencies = ["build123d>=0.9", "numpy>=1.26", "ezdxf>=1.3"]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "vtk>=9.3", "pillow>=10", "scipy>=1.13"]
+
+[project.scripts]
+bolid = "bolid.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bolid"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

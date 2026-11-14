@@ -1,0 +1,246 @@
+{
+ "name": "Bolid 5-inch",
+ "units": "mm",
+ "datum": "origin = centre of the stack; +X right, +Y front, +Z up; Z = 0 underside of the bottom plate",
+ "wheelbase": 214.0,
+ "prop": {
+  "diameter": 129.5,
+  "margin": 2.5,
+  "tip_gap": 21.8
+ },
+ "motors": {
+  "front_right": [
+   75.66,
+   75.66
+  ],
+  "front_left": [
+   -75.66,
+   75.66
+  ],
+  "rear_right": [
+   75.66,
+   -75.66
+  ],
+  "rear_left": [
+   -75.66,
+   -75.66
+  ]
+ },
+ "stack_up_z": {
+  "plate_bottom": [
+   0.0,
+   2.0
+  ],
+  "arms": [
+   2.0,
+   8.0
+  ],
+  "plate_press": [
+   8.0,
+   10.0
+  ],
+  "bay": [
+   10.0,
+   32.0
+  ],
+  "plate_top": [
+   32.0,
+   34.0
+  ]
+ },
+ "arm": {
+  "name": "Bolid",
+  "mass": 7.5,
+  "k_vertical": 239.0,
+  "k_side": 1384.3,
+  "f_vertical": 1220.3,
+  "f_side": 2444.8,
+  "freq": 380.6,
+  "weakest_u": 71.7
+ },
+ "carbon": [
+  {
+   "part": "plate_bottom",
+   "file": "plate_bottom_2mm_x1",
+   "thickness": 2.0,
+   "qty": 1,
+   "area_mm2": 7239.5,
+   "mass_g": 22.4
+  },
+  {
+   "part": "arm_front",
+   "file": "arm_front_6mm_x2",
+   "thickness": 6.0,
+   "qty": 2,
+   "area_mm2": 2390.4,
+   "mass_g": 22.2
+  },
+  {
+   "part": "arm_rear",
+   "file": "arm_rear_6mm_x2",
+   "thickness": 6.0,
+   "qty": 2,
+   "area_mm2": 2364.6,
+   "mass_g": 22.0
+  },
+  {
+   "part": "plate_press",
+   "file": "plate_press_2mm_x1",
+   "thickness": 2.0,
+   "qty": 1,
+   "area_mm2": 5624.4,
+   "mass_g": 17.4
+  },
+  {
+   "part": "plate_top",
+   "file": "plate_top_2mm_x1",
+   "thickness": 2.0,
+   "qty": 1,
+   "area_mm2": 2249.8,
+   "mass_g": 7.0
+  }
+ ],
+ "carbon_mass_g": 135.2,
+ "printed": [
+  {
+   "part": "body_shell",
+   "title": "Body shell",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 12.56,
+   "size_mm": [
+    47.6,
+    91.8,
+    21.6
+   ],
+   "hardware": "the camera's two M2 side screws",
+   "notes": "Print it standing on its foot, 3 perimeters (the wire ports bridge 13 mm). Slide it down the standoffs, then fit the top plate.",
+   "in_assembly": true
+  },
+  {
+   "part": "engine_cover",
+   "title": "Engine cover",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 5.3,
+   "size_mm": [
+    38.6,
+    44.1,
+    17.8
+   ],
+   "hardware": "2x M2x8 self-tapping, from under the bottom plate",
+   "notes": "Print it upside down, on its roof.",
+   "in_assembly": true
+  },
+  {
+   "part": "tail_light",
+   "title": "Tail light",
+   "qty": 1,
+   "material": "clear PETG or clear TPU",
+   "volume_cm3": 0.2,
+   "size_mm": [
+    20.8,
+    5.8,
+    4.3
+   ],
+   "hardware": "",
+   "notes": "Print it on the flange's face (the notch bridges 13 mm). Push it into the slot from inside before the cover goes on; a 5 V LED strip behind it, red.",
+   "in_assembly": true
+  },
+  {
+   "part": "rear_wing",
+   "title": "Rear wing (VTX antennas x2, RX antenna)",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 6.72,
+   "size_mm": [
+    50.0,
+    22.5,
+    44.9
+   ],
+   "hardware": "2x M3x10 from under the bottom plate",
+   "notes": "Print it upside down, on the wing's flat top. Feed the antennas' leads up beside the pylon.",
+   "in_assembly": true
+  },
+  {
+   "part": "front_splitter",
+   "title": "Front splitter",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 3.21,
+   "size_mm": [
+    47.6,
+    24.0,
+    14.4
+   ],
+   "hardware": "2x M3x16 through bottom plate, arm, press plate",
+   "notes": "",
+   "in_assembly": true
+  },
+  {
+   "part": "arm_cover",
+   "title": "Arm cover (wire channel)",
+   "qty": 4,
+   "material": "TPU 95A",
+   "volume_cm3": 1.91,
+   "size_mm": [
+    35.5,
+    35.5,
+    11.0
+   ],
+   "hardware": "",
+   "notes": "Its 0.9 mm lips print as short bridges. Spread it over the arm from below before the motor goes on; the wires run inside.",
+   "in_assembly": true
+  },
+  {
+   "part": "motor_skid",
+   "title": "Motor skid",
+   "qty": 4,
+   "material": "TPU 95A",
+   "volume_cm3": 1.78,
+   "size_mm": [
+    31.0,
+    31.0,
+    3.0
+   ],
+   "hardware": "motor screws 3 mm longer",
+   "notes": "",
+   "in_assembly": true
+  },
+  {
+   "part": "battery_pad",
+   "title": "Battery pad",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 2.5,
+   "size_mm": [
+    35.0,
+    63.0,
+    1.6
+   ],
+   "hardware": "",
+   "notes": "",
+   "in_assembly": true
+  },
+  {
+   "part": "gopro_mount",
+   "title": "Action-camera mount",
+   "qty": 1,
+   "material": "TPU 95A",
+   "volume_cm3": 2.87,
+   "size_mm": [
+    23.0,
+    16.0,
+    21.0
+   ],
+   "hardware": "4x M3x10 + nyloc, M5 thumbscrew",
+   "notes": "",
+   "in_assembly": true
+  }
+ ],
+ "accessory_clashes": [],
+ "freecad": {
+  "objects": 43,
+  "gui": 1
+ }
+}
